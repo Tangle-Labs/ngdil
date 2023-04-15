@@ -24,3 +24,4 @@
 <Story name="Primary" args="{args}" />
 
 <Story name="Secondary" args="{secondaryArgs}" />
+<Story name="White" args="{{ ...args, variant: 'white' }}" />

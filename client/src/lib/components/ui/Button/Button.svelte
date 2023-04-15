@@ -7,6 +7,7 @@
 		outline: none;
 		text-transform: capitalize;
 		box-shadow: var(--box-shadow);
+		border: solid 1px var(--black-900);
 
 		&:hover {
 			cursor: pointer;
@@ -26,6 +27,10 @@
 			&:hover {
 				background: var(--secondary-700);
 			}
+		}
+
+		&.white {
+			background: var(--white-300);
 		}
 	}
 </style>
