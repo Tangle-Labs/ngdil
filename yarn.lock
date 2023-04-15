@@ -2707,13 +2707,6 @@
   dependencies:
     "@types/unist" "*"
 
-"@types/hijackresponse@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@types/hijackresponse/-/hijackresponse-4.0.0.tgz#4bb8e0845c4f6da612754af5fd7425026a3fa96f"
-  integrity sha512-UYyqyHMwhdkRknZEjkzuw/lCxsG4tunMT8HATMjrRweozLgEizte5Ac+znWPfgN/QHat4+dMhh8kBPgaB0d2cg==
-  dependencies:
-    "@types/express" "*"
-
 "@types/html-minifier-terser@^5.0.0":
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/@types/html-minifier-terser/-/html-minifier-terser-5.1.2.tgz#693b316ad323ea97eed6b38ed1a3cc02b1672b57"
@@ -3747,6 +3740,11 @@ async-foreach@^0.1.3:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/async-foreach/-/async-foreach-0.1.3.tgz#36121f845c0578172de419a97dbeb1d16ec34542"
   integrity sha512-VUeSMD8nEGBWaZK4lizI1sf3yEC7pnAQ/mrI7pC2fBz2s/tq5jWWEngTwaf0Gruu/OoXRGLGg1XFqpYBiGTYJA==
+
+async-request-handler@^0.8.8:
+  version "0.8.8"
+  resolved "https://registry.yarnpkg.com/async-request-handler/-/async-request-handler-0.8.8.tgz#bf8ec58dae64f905c4726aa60199d4cd01af5779"
+  integrity sha512-B2vn6+gVOWTlRGfpTSWi0Ye/oWwaQ7LFKm1NzkQQFGIQijnz4v+DopeTu4uveqoQf1xQaQP5QaZNQJnWQxs/3w==
 
 asynckit@^0.4.0:
   version "0.4.0"
@@ -5970,12 +5968,12 @@ express-async-handler@^1.2.0:
   resolved "https://registry.yarnpkg.com/express-async-handler/-/express-async-handler-1.2.0.tgz#ffc9896061d90f8d2e71a2d2b8668db5b0934391"
   integrity sha512-rCSVtPXRmQSW8rmik/AIb2P0op6l7r1fMW538yyvTMltCO4xQEWMmobfrIxN2V1/mVrgxB8Az3reYF6yUZw37w==
 
-express-multi-hijack@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/express-multi-hijack/-/express-multi-hijack-1.0.1.tgz#dfc84b13ea6786b5c6e102cefe0b40741f0f6103"
-  integrity sha512-TKWnxp+kp49iV4aFq/Zu2o/9/pgs4h0Whk9ri4wFzcKwxxszkr+zmjp3EBdoBlunLOk/yI8PoRsIqPFC6mZAlQ==
+express-intercept@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/express-intercept/-/express-intercept-1.0.0.tgz#073bf6170a77b153ce8d64febda126bd8344c344"
+  integrity sha512-l4PdBQvRF6LitPl9vpbCtekn5XVO4VEZSf3ckEjcKTirWo6AM0uAeZUfe/c2qcWQOpWIyAOlrXPI8pMn3lTFFw==
   dependencies:
-    nanoid "^3.1.23"
+    async-request-handler "^0.8.8"
 
 express@^4.17.1, express@^4.18.2:
   version "4.18.2"
@@ -6952,11 +6950,6 @@ help-me@^4.0.1:
   dependencies:
     glob "^8.0.0"
     readable-stream "^3.6.0"
-
-hijackresponse@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/hijackresponse/-/hijackresponse-5.0.0.tgz#03174e70e582a244034af9254c71e7d0a7a763cd"
-  integrity sha512-9ErmDCl4BdTEgLTQh36ZFP62EXPeKyDd68K/FmQoQFaV3i2QY9l/kacf9Ygw+iuSvF/qsNIkwUz6NOCIZAaqMw==
 
 hmac-drbg@^1.0.1:
   version "1.0.1"
@@ -8712,7 +8705,7 @@ nan@^2.12.1, nan@^2.17.0:
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.17.0.tgz#c0150a2368a182f033e9aa5195ec76ea41a199cb"
   integrity sha512-2ZTgtl0nJsO0KQCjEpxcIr5D+Yv90plTitZt9JBfQvVJDS5seMl3FOvsh3+9CoYWXf/1l5OaZzzF6nDm4cagaQ==
 
-nanoid@^3.1.23, nanoid@^3.3.1, nanoid@^3.3.4:
+nanoid@^3.3.1, nanoid@^3.3.4:
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.4.tgz#730b67e3cd09e2deacf03c027c81c9d9dbc5e8ab"
   integrity sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==
