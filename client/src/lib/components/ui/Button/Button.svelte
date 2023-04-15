@@ -44,5 +44,6 @@
 
 <button class="{`button ${variant}`}" on:click="{onClick}">
 	<Typography variant="button" color="{variant === 'primary' ? '--white-300' : ''}"
-		>{label}</Typography>
+		>{label}</Typography
+	>
 </button>
