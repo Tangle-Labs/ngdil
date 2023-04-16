@@ -29,13 +29,6 @@
 		.modal-content {
 			position: relative;
 		}
-
-		.close-button {
-			position: absolute;
-			top: 0;
-			right: 0;
-			background-color: back;
-		}
 	}
 
 	@media only screen and (max-width: 700px) {
