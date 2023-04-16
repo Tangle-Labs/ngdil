@@ -29,13 +29,6 @@
 		.modal-content {
 			position: relative;
 		}
-
-		.close-button {
-			position: absolute;
-			top: 0;
-			right: 0;
-			background-color: back;
-		}
 	}
 
 	@media only screen and (max-width: 700px) {
@@ -59,11 +52,6 @@
 	<div class="modal" transition:fly="{{ y: 50, duration: 400 }}">
 		<Card>
 			<div class="modal-content">
-				<slot name="buttons">
-					<div class="close-button">
-						<Button label="x" size="circular" onClick="{() => setIsOpen(false)}" />
-					</div>
-				</slot>
 				<div class="modal-header">
 					<slot name="header" />
 				</div>
