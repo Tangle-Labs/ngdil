@@ -198,8 +198,7 @@
 		<Typography
 			>{receivedCreds
 				? "Click the request credentials button to see verify the student credentials."
-				: "Make sure to check the credentials, and click continue to proceed"}</Typography
-		>
+				: "Make sure to check the credentials, and click continue to proceed"}</Typography>
 	</div>
 
 	<div class="dash">
@@ -217,8 +216,7 @@
 					<div class="student">
 						<div class="name">
 							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>{$peterChosenStudent}</Typography
-							>
+								>{$peterChosenStudent}</Typography>
 						</div>
 						<div class="course">
 							<Typography fontVariant="kw1c" color="--kw1c-red-900">3d Print Design</Typography>
@@ -228,8 +226,7 @@
 						{#if receivedCreds}
 							<button
 								class="{`button ${loading && 'loading'}`}"
-								on:click="{() => goto('/demo/journeys/peter/verified-internship')}"
-							>
+								on:click="{() => goto('/demo/journeys/peter/verified-internship')}">
 								CONTINUE
 							</button>
 						{:else}
@@ -251,7 +248,7 @@
 								{:else if !receivedCreds}
 									<div class="circle"></div>
 								{:else}
-									<img src="imgs/verified.png" alt="" class="circle" />
+									<img src="/imgs/verified.png" alt="" class="circle" />
 								{/if}
 							</div>
 						{/each}
@@ -271,8 +268,7 @@
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c"
-								>Internationalisation Badge</Typography
-							>
+								>Internationalisation Badge</Typography>
 						</div>
 					</div>
 
