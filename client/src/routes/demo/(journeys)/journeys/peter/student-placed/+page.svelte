@@ -1,0 +1,116 @@
+<style lang="scss">
+	.container {
+		& > * {
+			padding: 15px 0;
+		}
+
+		.card {
+			background: white;
+			width: 100%;
+
+			.card-content {
+				padding: 20px;
+				display: flex;
+
+				.content {
+					width: 50%;
+
+					.list {
+						display: flex;
+						justify-content: flex-start;
+						align-items: center;
+						align-content: center;
+						padding: 15px 0;
+
+						img {
+							height: 25px;
+							padding-right: 5px;
+						}
+					}
+
+					.p {
+						padding: 30px 0;
+					}
+				}
+
+				.img {
+					width: 50%;
+					position: relative;
+					box-sizing: border-box;
+					margin-left: 30px;
+					background: var(--white-500);
+					border: 1px solid black;
+					border-radius: 10px;
+
+					img {
+						display: block;
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						height: 100px;
+						transform: translate(-50%, -50%);
+					}
+				}
+			}
+		}
+	}
+</style>
+
+<script lang="ts">
+	import { goto } from "$app/navigation";
+	import { Typography, Card, Button } from "$lib/components";
+	import { peterAssignedInternship } from "$lib/stores/flows.store";
+
+	function handleFinishCourse() {
+		peterAssignedInternship.set(true);
+		goto("/demo/journeys/peter");
+	}
+</script>
+
+<div class="container">
+	<div class="heading">
+		<Typography variant="heading"
+			>Amazing, you’ve successfully enrolled students with KW1C!</Typography
+		>
+	</div>
+	<div class="sub-text">
+		<Typography>Here is what you have achieved so far with your self-sovereign identity:</Typography
+		>
+	</div>
+	<div class="card">
+		<Card>
+			<div class="card-content">
+				<div class="content">
+					<div class="list">
+						<img src="/imgs/check-circle.png" alt="" />
+						<Typography variant="list">Evaluated student course results</Typography>
+					</div>
+					<div class="list">
+						<img src="/imgs/check-circle.png" alt="" />
+						<Typography variant="list">Issued course badges</Typography>
+					</div>
+					<div class="list">
+						<img src="/imgs/check-circle.png" alt="" />
+						<Typography variant="list">Issued internship placements</Typography>
+					</div>
+					<div class="p">
+						<Typography>
+							You have successfully reviewed student course results and issued their open badges for
+							internationalisation, and found and enlisted them with their international internship
+							placements.
+							<br /><br />
+							The students are going to head off and complete their internships abroad, we can verify
+							their successful completion on their return.
+							<br /><br />
+							Click continue to proceed.
+						</Typography>
+					</div>
+					<Button variant="secondary" label="continue" onClick="{handleFinishCourse}" />
+				</div>
+				<div class="img">
+					<img src="/imgs/pic-placeholder.png" alt="" />
+				</div>
+			</div>
+		</Card>
+	</div>
+</div>

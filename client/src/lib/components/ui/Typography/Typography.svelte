@@ -4,7 +4,7 @@
 	}
 
 	.kw1c-font {
-		font-family: var(--kw1c-font);
+		font-family: var(--kw1c-font) !important;
 	}
 
 	.typography {
@@ -18,6 +18,7 @@
 
 	.card-header {
 		font-size: var(--card-header-size);
+		font-weight: 600;
 	}
 
 	.status {
@@ -28,7 +29,7 @@
 
 	.button {
 		font-size: var(--button-text-size);
-		font-weight: 500;
+		font-weight: 600;
 	}
 
 	.list {

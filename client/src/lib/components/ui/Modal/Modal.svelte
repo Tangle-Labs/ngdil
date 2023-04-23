@@ -7,7 +7,8 @@
 		width: 100vw;
 		height: 100vh;
 		z-index: 5;
-		background-color: var(--backdrop);
+		background: rgba($color: rgb(93, 102, 107), $alpha: 0.3);
+		backdrop-filter: blur(5px);
 	}
 
 	.modal {
@@ -16,18 +17,13 @@
 		left: 50%;
 		transform: translate(-50%, -50%);
 		z-index: 10;
-		background-color: var(--body-background);
+		background: var(--background);
 		border-radius: 5px;
+		width: max-content;
 		max-width: 90vw;
-		min-width: 600px;
-
 		.modal-header {
 			padding-bottom: 10px;
 			border-bottom: 1px solid var(--border);
-		}
-
-		.modal-content {
-			position: relative;
 		}
 	}
 
@@ -43,20 +39,17 @@
 	import { fade, fly } from "svelte/transition";
 
 	export let isOpen = false;
-	export let setIsOpen: (isOpen: boolean) => void;
 </script>
 
 {#if isOpen}
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
-	<div class="backdrop" on:click="{() => setIsOpen(false)}" transition:fade></div>
+	<div class="backdrop" on:click="{() => (isOpen = false)}" transition:fade></div>
 	<div class="modal" transition:fly="{{ y: 50, duration: 400 }}">
 		<Card>
-			<div class="modal-content">
-				<div class="modal-header">
-					<slot name="header" />
-				</div>
-				<slot />
+			<div class="modal-header">
+				<slot name="header" />
 			</div>
+			<slot />
 		</Card>
 	</div>
 {/if}

@@ -6,7 +6,7 @@
 <Meta title="Progress Bar" component="{ProgressBar}" />
 
 <Template>
-	<ProgressBar current="{5}" nodes="{5}" />
+	<ProgressBar current="{4}" nodes="{5}" />
 </Template>
 
 <Story name="Progress Bar" />
