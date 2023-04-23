@@ -4,6 +4,8 @@
 		width: fit-content;
 		justify-content: center;
 		align-items: center;
+		border: 1px solid black;
+		border-radius: 100px;
 	}
 
 	.accompanying-text {
@@ -16,22 +18,22 @@
 	}
 
 	.avatar-img {
-		height: 60px;
-		width: 60px;
-		border-radius: 30px;
+		height: 90px;
+		width: 90px;
+		border-radius: 45px;
 		object-fit: cover;
 	}
 
 	.large {
-		height: 90px;
-		width: 90px;
-		border-radius: 45px;
+		height: 150px;
+		width: 150px;
+		border-radius: 80px;
 	}
 
 	.small {
-		height: 45px;
-		width: 45px;
-		border-radius: 22.5px;
+		height: 50px;
+		width: 50px;
+		border-radius: 25px;
 	}
 </style>
 
