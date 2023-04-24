@@ -82,6 +82,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Loading, Card, Avatar, Button, Modal } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currentJourney } from "$lib/stores/flows.store";
 	import { currStep } from "$lib/stores/onboarding.store";
 
@@ -185,7 +186,8 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>You’re all set! Let’s choose the user journey you would like to explore first.</Typography
+			>You’re all set! <Highlight>Let’s choose the user journey</Highlight> you would like to explore
+			first.</Typography
 		>
 	</div>
 	<div class="desc">
