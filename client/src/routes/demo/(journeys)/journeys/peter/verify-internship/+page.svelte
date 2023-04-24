@@ -165,6 +165,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Modal, Loading } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
 		dominiqueSelectedCourse,
 		peterAssignedStudent,
@@ -186,10 +187,12 @@
 	<div class="heading">
 		<Typography variant="heading">
 			{#if !receivedCreds}
-				To confirm {$peterAssignedStudent.split(" ")[0]}’s internship completion, let’s request the
-				credentials for verification.
+				To <Highlight
+					>confirm {$peterAssignedStudent.split(" ")[0]}’s internship completion,</Highlight> let’s request
+				the credentials for verification.
 			{:else}
-				It looks like {$peterAssignedStudent?.split(" ")[0]} had a very successful international internship.
+				It looks like {$peterAssignedStudent?.split(" ")[0]} had a very <Highlight
+					>successful international internship.</Highlight>
 				Take a look at the verified credentials.
 			{/if}
 		</Typography>
@@ -198,8 +201,7 @@
 		<Typography
 			>{receivedCreds
 				? "Click the request credentials button to see verify the student credentials."
-				: "Make sure to check the credentials, and click continue to proceed"}</Typography
-		>
+				: "Make sure to check the credentials, and click continue to proceed"}</Typography>
 	</div>
 
 	<div class="dash">
@@ -217,8 +219,7 @@
 					<div class="student">
 						<div class="name">
 							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>{$peterChosenStudent}</Typography
-							>
+								>{$peterChosenStudent}</Typography>
 						</div>
 						<div class="course">
 							<Typography fontVariant="kw1c" color="--kw1c-red-900">3d Print Design</Typography>
@@ -228,8 +229,7 @@
 						{#if receivedCreds}
 							<button
 								class="{`button ${loading && 'loading'}`}"
-								on:click="{() => goto('/demo/journeys/peter/verified-internship')}"
-							>
+								on:click="{() => goto('/demo/journeys/peter/verified-internship')}">
 								CONTINUE
 							</button>
 						{:else}
@@ -271,8 +271,7 @@
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c"
-								>Internationalisation Badge</Typography
-							>
+								>Internationalisation Badge</Typography>
 						</div>
 					</div>
 

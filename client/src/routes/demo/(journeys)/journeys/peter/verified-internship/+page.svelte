@@ -59,6 +59,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Button } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { peterVerifiedInternship } from "$lib/stores/flows.store";
 
 	function handleFinishCourse() {
@@ -70,12 +71,12 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>Amazing, you’ve successfully enrolled students with KW1C!</Typography
-		>
+			>You’ve successfully <Highlight>evaluate, enrolled, trained, & verified</Highlight> your students
+			international internships.</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography>Here is what you have achieved so far with your self-sovereign identity:</Typography
-		>
+		<Typography
+			>Here is what you have achieved so far with your self-sovereign identity:</Typography>
 	</div>
 	<div class="card">
 		<Card>
@@ -88,8 +89,7 @@
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
 						<Typography variant="list"
-							>Securely verified and confirmed student internships</Typography
-						>
+							>Securely verified and confirmed student internships</Typography>
 					</div>
 					<div class="p">
 						<Typography>

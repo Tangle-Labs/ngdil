@@ -42,10 +42,8 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Avatar, Button } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
-		dominiqueAppliedForJob,
-		dominiqueEarnedCourseCred,
-		dominiqueSharedCred,
 		peterAssignedInternship,
 		peterEnrolledStudent,
 		peterVerifiedInternship
@@ -56,13 +54,12 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>Time to get to work. Let’s use passwordless login to access the KW1C staff portal.</Typography
-		>
+			>Hi Peter. Let’s get you <Highlight>started with enrolling your students.</Highlight> Select your
+			experience to get started.</Typography>
 	</div>
 	<div class="desc">
 		<Typography variant="button">
-			In your identity wallet, scan the QR code and accept the connection request to the KW1C staff
-			portal.
+			Select the experience to start Peter’s journey and evaluate and enrol students.
 		</Typography>
 	</div>
 
@@ -74,8 +71,7 @@
 					<div class="text">
 						<div class="heading">
 							<Typography variant="card-header"
-								>Verify Student and enrol on Internationalisation course.</Typography
-							>
+								>Verify Student and enrol on Internationalisation course.</Typography>
 						</div>
 						<div class="desc">
 							<Typography>
@@ -90,8 +86,7 @@
 						onClick="{() => {
 							goto('/demo/journeys/peter/login-kw1c');
 						}}"
-						label="{$peterEnrolledStudent ? 'Retry' : 'Get Started'}"
-					/>
+						label="{$peterEnrolledStudent ? 'Retry' : 'Get Started'}" />
 				</div>
 			</Card>
 		</div>
@@ -102,8 +97,7 @@
 					<div class="text">
 						<div class="heading">
 							<Typography variant="card-header"
-								>Issue internationalisation course badges and assign student internship placements.</Typography
-							>
+								>Issue internationalisation course badges and assign student internship placements.</Typography>
 						</div>
 						<div class="desc">
 							<Typography>
@@ -122,8 +116,7 @@
 						onClick="{() => {
 							goto('/demo/journeys/peter/view-courses');
 						}}"
-						label="{$peterAssignedInternship ? 'Retry' : 'Get Started'}"
-					/>
+						label="{$peterAssignedInternship ? 'Retry' : 'Get Started'}" />
 				</div>
 			</Card>
 		</div>
@@ -152,8 +145,7 @@
 						onClick="{() => {
 							goto('/demo/journeys/peter/internship-results');
 						}}"
-						label="{$peterVerifiedInternship ? 'Retry' : 'Get Started'}"
-					/>
+						label="{$peterVerifiedInternship ? 'Retry' : 'Get Started'}" />
 				</div>
 			</Card>
 		</div>

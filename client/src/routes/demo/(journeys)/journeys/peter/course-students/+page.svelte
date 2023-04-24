@@ -164,6 +164,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Modal, Loading, Radio } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
 		peterAssignedBadges,
 		peterAssignedStudent,
@@ -182,7 +183,7 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading">
-			Exciting times. You have successfully enrolled your students onto the internationalisation
+			Exciting times. <Highlight>You have successfully enrolled</Highlight> your students onto the internationalisation
 			course.
 		</Typography>
 	</div>
@@ -212,8 +213,7 @@
 						{#each $peterChosenStudents as student (student)}
 							<div class="data">
 								<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>{student}</Typography
-								>
+									>{student}</Typography>
 							</div>
 						{/each}
 					</div>
@@ -226,8 +226,7 @@
 						{#each $peterChosenStudents as student (student)}
 							<div class="data">
 								<Typography variant="list" fontVariant="kw1c" color="--kw1c-red-900"
-									>3D Print Design</Typography
-								>
+									>3D Print Design</Typography>
 							</div>
 						{/each}
 					</div>
@@ -249,8 +248,7 @@
 						class="button"
 						on:click="{() => {
 							goto('/demo/journeys/peter/enrolled-students');
-						}}">Continue</button
-					>
+						}}">Continue</button>
 				</div>
 			</div>
 		</Kw1c>

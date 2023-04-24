@@ -39,12 +39,14 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You've made it to the <Hightlight>KW1C website, let's log in</Hightlight> to enrol on your course
-			of choice.</Typography>
+			of choice.</Typography
+		>
 	</div>
 	<div class="sub-text">
 		<Typography
 			>In your identity wallet, scan the QR code and accept the connection request to the KW1C
-			learners portal.</Typography>
+			learners portal.</Typography
+		>
 	</div>
 	<div class="dash">
 		<Kw1c variant="blue">
@@ -53,17 +55,20 @@
 					<div class="card-content">
 						<div class="heading">
 							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>LOGIN TO KW1C</Typography>
+								>LOGIN TO KW1C</Typography
+							>
 						</div>
 						<img
 							src="/imgs/qr.png"
 							on:click="{() => {
 								goto('/demo/journeys/dominique/choose-course');
 							}}"
-							alt="" />
+							alt=""
+						/>
 						<div class="desc">
 							<Typography variant="button"
-								>Scan the QR to access the KW1C learners portal.</Typography>
+								>Scan the QR to access the KW1C learners portal.</Typography
+							>
 						</div>
 					</div>
 				</Card>

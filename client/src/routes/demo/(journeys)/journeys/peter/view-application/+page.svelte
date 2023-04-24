@@ -165,6 +165,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Modal, Loading } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { dominiqueSelectedCourse, peterChosenStudent } from "$lib/stores/flows.store";
 	let receivedCreds = false;
 	let loading = false;
@@ -182,7 +183,8 @@
 	<div class="heading">
 		<Typography variant="heading">
 			{#if !receivedCreds}
-				To evaluate {$peterChosenStudent?.split(" ")[0]}’s eligibility let’s request the credentials
+				To evaluate {$peterChosenStudent?.split(" ")[0]}’s eligibility <Highlight>
+					let’s request the credentials</Highlight>
 				required to participate in the internship.
 			{:else}
 				It appears {$peterChosenStudent?.split(" ")[0]} is missing an internationalisation badge. Let’s
@@ -194,8 +196,7 @@
 		<Typography
 			>{receivedCreds
 				? "Click the enrol student button to enrol them onto the internationalisation course."
-				: "Click the request credentials button to get the students credentials"}</Typography
-		>
+				: "Click the request credentials button to get the students credentials"}</Typography>
 	</div>
 
 	<div class="dash">
@@ -213,8 +214,7 @@
 					<div class="student">
 						<div class="name">
 							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>{$peterChosenStudent}</Typography
-							>
+								>{$peterChosenStudent}</Typography>
 						</div>
 						<div class="course">
 							<Typography fontVariant="kw1c" color="--kw1c-red-900">3d Print Design</Typography>
@@ -224,8 +224,7 @@
 						{#if receivedCreds}
 							<button
 								class="{`button ${loading && 'loading'}`}"
-								on:click="{() => goto('/demo/journeys/peter/enrol-students')}"
-							>
+								on:click="{() => goto('/demo/journeys/peter/enrol-students')}">
 								ENROL STUDENT
 							</button>
 						{:else}
@@ -250,8 +249,7 @@
 									<img
 										src="{`/imgs/${i !== 3 ? 'verified' : 'missing'}.png`}"
 										alt=""
-										class="circle"
-									/>
+										class="circle" />
 								{/if}
 							</div>
 						{/each}
@@ -271,8 +269,7 @@
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c"
-								>Internationalisation Badge</Typography
-							>
+								>Internationalisation Badge</Typography>
 						</div>
 					</div>
 

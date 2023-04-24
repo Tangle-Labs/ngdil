@@ -126,6 +126,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Modal, Loading } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
 		dominiqueSelectedCourse,
 		peterAssignedStudent,
@@ -145,15 +146,14 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading">
-			Your students have returned from their internships abroad. Let’s verify their internship
-			completion.
+			Your students have <Highlight>returned from their internships abroad.</Highlight> Let’s verify
+			their internship completion.
 		</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography
 			>Click the view results button to see the outcome for the internationalisation course
-			students.</Typography
-		>
+			students.</Typography>
 	</div>
 
 	<div class="dash">
@@ -174,18 +174,15 @@
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Sarah Jones</Typography
-							>
+								>Sarah Jones</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Ivar Leifsson</Typography
-							>
+								>Ivar Leifsson</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Lagertha Bonde</Typography
-							>
+								>Lagertha Bonde</Typography>
 						</div>
 					</div>
 
@@ -195,18 +192,15 @@
 						</div>
 						<div class="data">
 							<Typography variant="status" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography
-							>
+								>3D Print Design</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="status" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography
-							>
+								>3D Print Design</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="status" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography
-							>
+								>3D Print Design</Typography>
 						</div>
 					</div>
 
@@ -219,8 +213,7 @@
 								class="{`button ${$peterAssignedStudent !== 'Sarah Jones' && 'disabled'}`}"
 								on:click="{() => {
 									goto('/demo/journeys/peter/verify-internship');
-								}}">VERIFY COMPLETION</button
-							>
+								}}">VERIFY COMPLETION</button>
 						</div>
 
 						<div class="button-container">
@@ -228,16 +221,14 @@
 								class="{`button ${$peterAssignedStudent !== 'Ivar Leifsson' && 'disabled'}`}"
 								on:click="{() => {
 									goto('/demo/journeys/peter/verify-internship');
-								}}">VERIFY COMPLETION</button
-							>
+								}}">VERIFY COMPLETION</button>
 						</div>
 						<div class="button-container">
 							<button
 								class="{`button ${$peterAssignedStudent !== 'Lagertha Bonde' && 'disabled'}`}"
 								on:click="{() => {
 									goto('/demo/journeys/peter/verify-internship');
-								}}">VERIFY COMPLETION</button
-							>
+								}}">VERIFY COMPLETION</button>
 						</div>
 					</div>
 				</div>
