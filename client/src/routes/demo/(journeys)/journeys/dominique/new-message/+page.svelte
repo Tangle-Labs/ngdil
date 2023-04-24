@@ -183,7 +183,8 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You shared your credential and an interested employer has messaged you after seeing your
-			skills.</Typography>
+			skills.</Typography
+		>
 	</div>
 	<div class="sub-text">
 		<Typography>Click view message to see what the employer has to say.</Typography>
@@ -192,7 +193,8 @@
 		<div class="modal-content">
 			<div class="heading">
 				<Typography variant="card-header" color="--open-jobs-blue-900"
-					>from Big Business Corp.</Typography>
+					>from Big Business Corp.</Typography
+				>
 			</div>
 			<div class="message">
 				<Typography>
@@ -209,7 +211,8 @@
 				</Typography>
 			</div>
 			<button class="button" on:click="{() => goto('/demo/journeys/dominique/shared-cred')}"
-				>CONTINUE</button>
+				>CONTINUE</button
+			>
 			<div class="subtext">
 				<Typography variant="sub-text">Click continue to proceed</Typography>
 			</div>
@@ -229,14 +232,16 @@
 					<div class="card card-1">
 						<div class="sub-text">
 							<Typography variant="sub-text"
-								>Dominique Veritas just shared a new credential</Typography>
+								>Dominique Veritas just shared a new credential</Typography
+							>
 						</div>
 						<div class="details">
 							<img src="/imgs/kw1c-white.png" class="logo" alt="" />
 							<div class="text">
 								<div class="heading">
 									<Typography variant="button"
-										>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography>
+										>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography
+									>
 								</div>
 								<div class="sub-text">
 									<Typography variant="sub-text">Issued by Konning Willem 1 College</Typography>
@@ -266,8 +271,8 @@
 
 				<div class="share">
 					<div class="credential">
-						<Typography variant="card-header" color="--open-jobs-blue-900"
-							>Your Messages</Typography>
+						<Typography variant="card-header" color="--open-jobs-blue-900">Your Messages</Typography
+						>
 					</div>
 					<img src="/imgs/inbox.png" alt="" class="logo" />
 					<div class="credential">
@@ -280,7 +285,8 @@
 						class="button"
 						on:click="{() => {
 							showModal = true;
-						}}">View Message</button>
+						}}">View Message</button
+					>
 				</div>
 			</div>
 		</OpenJobsNetwork>

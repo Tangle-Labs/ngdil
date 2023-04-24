@@ -90,12 +90,14 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>Not bad at all, the staff were successful in their training. Let’s issue them their badges.</Typography>
+			>Not bad at all, the staff were successful in their training. Let’s issue them their badges.</Typography
+		>
 	</div>
 	<div class="sub-text">
 		<Typography
 			>Select the check boxes next to the employees that passed, then click the issue badges button
-			to continue.</Typography>
+			to continue.</Typography
+		>
 	</div>
 	<div class="dash">
 		<FutureTech header="{`${$imaniBadgeName.toUpperCase()} BADGE HOLDERS`}">
@@ -128,7 +130,8 @@
 				<Button
 					variant="{pending ? 'future-tech-disabled' : 'future-tech'}"
 					label="Continue"
-					onClick="{() => goto('/demo/journeys/imani/issued-badge')}" />
+					onClick="{() => goto('/demo/journeys/imani/issued-badge')}"
+				/>
 			</div>
 		</FutureTech>
 	</div>

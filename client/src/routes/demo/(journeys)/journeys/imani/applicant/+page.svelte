@@ -60,7 +60,8 @@
 				? "Great! All of Gillian’s credentials are verified. With such a good CV let’s hire Gillian."
 				: `${
 						$imaniChosenApplicant?.split(" ")[0]
-				  } has shared their digital CV with you. It’s time to verify their credentials.`}</Typography>
+				  } has shared their digital CV with you. It’s time to verify their credentials.`}</Typography
+		>
 	</div>
 	<div class="sub-text">
 		<Typography
@@ -68,14 +69,16 @@
 				? "Click the hire applicant button to hire the candidate. You can view the candidate’s individual credentials by clicking the eye icon in each row."
 				: `Click the verify CV button to verify ${
 						$imaniChosenApplicant?.split(" ")[0]
-				  }’s credentials.`}</Typography>
+				  }’s credentials.`}</Typography
+		>
 	</div>
 	<div class="dash">
 		<FutureTech header="3D ENGINEER JOB APPLICATIONS">
 			<div class="header">
 				<div class="name">
 					<Typography variant="card-header" color="--future-tech-green" fontVariant="kw1c"
-						>{$imaniChosenApplicant} Digital CV</Typography>
+						>{$imaniChosenApplicant} Digital CV</Typography
+					>
 				</div>
 
 				{#if currStatus === "init"}
@@ -86,14 +89,16 @@
 						variant="future-tech-disabled"
 						onClick="{() => {
 							null;
-						}}" />
+						}}"
+					/>
 				{:else}
 					<Button
 						label="Hire Applicant"
 						variant="future-tech"
 						onClick="{() => {
 							goto('/demo/journeys/imani/issue-id');
-						}}" />
+						}}"
+					/>
 				{/if}
 			</div>
 

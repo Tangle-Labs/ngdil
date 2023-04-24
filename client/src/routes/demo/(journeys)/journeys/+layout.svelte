@@ -38,7 +38,8 @@
 				null;
 			}}"
 			label="Contact Us"
-			variant="white" />
+			variant="white"
+		/>
 	</div>
 </div>
 

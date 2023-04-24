@@ -11,6 +11,7 @@
 
 		.desc {
 			padding-bottom: 5px;
+			width: 100%;
 		}
 		.sub-title {
 			padding-top: 0;
@@ -142,8 +143,7 @@
 										currStep.set(5);
 									}, 8000);
 									qrVisible = true;
-								}}"
-							/>
+								}}" />
 						</div>
 					{/if}
 				</div>
@@ -154,8 +154,7 @@
 							<Typography variant="card-header"
 								>{buttonVisible
 									? "Your credentials are confirmed!"
-									: "Scan QR code to connect to NGDIL & receive your credentials."}</Typography
-							>
+									: "Scan QR code to connect to NGDIL & receive your credentials."}</Typography>
 						</div>
 						<div class="sub-text">
 							<Typography variant="sub-text">
@@ -170,8 +169,7 @@
 								onClick="{() => {
 									goto(`/demo/journeys/${selectedJourney}`);
 								}}"
-								variant="secondary"
-							/>
+								variant="secondary" />
 						{:else}
 							<Loading />
 						{/if}
@@ -184,8 +182,7 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>You’re all set! Let’s choose the user journey you would like to explore first.</Typography
-		>
+			>You’re all set! Let’s choose the user journey you would like to explore first.</Typography>
 	</div>
 	<div class="desc">
 		<Typography variant="button"
@@ -199,7 +196,7 @@
 	</div>
 	<div class="cards">
 		<div class="card">
-			<Card>
+			<Card withBorder="{true}">
 				<div class="card-content">
 					<Avatar image="/imgs/dominique.png" />
 					<div class="text">
@@ -209,8 +206,7 @@
 						<div class="desc">
 							<Typography
 								>Dominique is a school graduate, excited to enrol as a student at Koning Willem I
-								College.</Typography
-							>
+								College.</Typography>
 						</div>
 					</div>
 					<Button
@@ -220,13 +216,12 @@
 							currStep.set(3);
 							isOpen = true;
 						}}"
-						label="Get Started"
-					/>
+						label="Get Started" />
 				</div>
 			</Card>
 		</div>
 		<div class="card">
-			<Card>
+			<Card withBorder="{true}">
 				<div class="card-content">
 					<Avatar image="/imgs/peter.png" />
 					<div class="text">
@@ -247,13 +242,12 @@
 							currStep.set(3);
 							isOpen = true;
 						}}"
-						label="Get Started"
-					/>
+						label="Get Started" />
 				</div>
 			</Card>
 		</div>
 		<div class="card">
-			<Card>
+			<Card withBorder="{true}">
 				<div class="card-content">
 					<Avatar image="/imgs/imani.png" />
 					<div class="text">
@@ -274,8 +268,7 @@
 							currStep.set(3);
 							isOpen = true;
 						}}"
-						label="Get Started"
-					/>
+						label="Get Started" />
 				</div>
 			</Card>
 		</div>

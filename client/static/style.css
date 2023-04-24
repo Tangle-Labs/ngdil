@@ -1,8 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Oswald:wght@300;400;500;600;700&display=swap");
 
+@font-face {
+	font-family: "TWK";
+	src: url("/fonts/TWKLausannePan-400.woff2") format("woff2");
+}
+
 :root {
-	--header-font: "Open Sans", sans-serif;
-	--body-font: "Open Sans", sans-serif;
+	--header-font: "TWK", sans-serif;
+	--body-font: "TWK", sans-serif;
 	--kw1c-font: "Oswald", sans-serif;
 
 	--box-shadow: 2px 2px 0px #001d49;

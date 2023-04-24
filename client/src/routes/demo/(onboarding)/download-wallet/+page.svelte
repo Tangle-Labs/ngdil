@@ -47,8 +47,7 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>To begin with self-sovereign identity you must first have an identity wallet app.</Typography
-		>
+			>To begin with self-sovereign identity you must first have an identity wallet app.</Typography>
 	</div>
 
 	<div class="desc">
@@ -60,7 +59,7 @@
 
 	<div class="cards">
 		<div class="card tl-wallet">
-			<Card>
+			<Card withBorder="{true}">
 				<div class="card-content">
 					<img src="/imgs/vira.png" />
 					<div class="wallet-name">
@@ -74,13 +73,12 @@
 						onClick="{() => {
 							null;
 						}}"
-						label="Download"
-					/>
+						label="Download" />
 				</div>
 			</Card>
 		</div>
 		<div class="card impierce-wallet">
-			<Card>
+			<Card withBorder="{true}">
 				<div class="card-content">
 					<img src="/imgs/impierce.png" />
 					<div class="wallet-name">
@@ -95,8 +93,7 @@
 						onClick="{() => {
 							null;
 						}}"
-						label="Download"
-					/>
+						label="Download" />
 				</div>
 			</Card>
 		</div>
