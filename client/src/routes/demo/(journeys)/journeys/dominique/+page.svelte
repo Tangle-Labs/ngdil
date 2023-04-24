@@ -54,8 +54,7 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>Hi Dominique. Let’s get you started on your learning journey. Select your first experience to
-			get started.</Typography
-		>
+			get started.</Typography>
 	</div>
 	<div class="desc">
 		<Typography variant="button">
@@ -66,20 +65,18 @@
 
 	<div class="cards">
 		<div class="card">
-			<Card>
+			<Card withBorder="{true}">
 				<div class="card-content">
 					<Avatar image="/imgs/pic-placeholder.png" />
 					<div class="text">
 						<div class="heading">
 							<Typography variant="card-header"
-								>Enrol at KW1C and earn a course credential.</Typography
-							>
+								>Enrol at KW1C and earn a course credential.</Typography>
 						</div>
 						<div class="desc">
 							<Typography
 								>Dominique is a school graduate, excited to enrol as a student at Koning Willem I
-								College.</Typography
-							>
+								College.</Typography>
 						</div>
 					</div>
 					<Button
@@ -87,20 +84,18 @@
 						onClick="{() => {
 							goto('/demo/journeys/dominique/earn-a-cred');
 						}}"
-						label="{$dominiqueEarnedCourseCred ? 'Retry' : 'Get Started'}"
-					/>
+						label="{$dominiqueEarnedCourseCred ? 'Retry' : 'Get Started'}" />
 				</div>
 			</Card>
 		</div>
 		<div class="card">
-			<Card>
+			<Card withBorder="{true}">
 				<div class="card-content">
 					<Avatar image="/imgs/pic-placeholder.png" />
 					<div class="text">
 						<div class="heading">
 							<Typography variant="card-header"
-								>Share your new credential on social media.</Typography
-							>
+								>Share your new credential on social media.</Typography>
 						</div>
 						<div class="desc">
 							<Typography>
@@ -118,13 +113,12 @@
 						onClick="{() => {
 							goto('/demo/journeys/dominique/share-a-cred');
 						}}"
-						label="{$dominiqueSharedCred ? 'Retry' : 'Get Started'}"
-					/>
+						label="{$dominiqueSharedCred ? 'Retry' : 'Get Started'}" />
 				</div>
 			</Card>
 		</div>
 		<div class="card">
-			<Card>
+			<Card withBorder="{true}">
 				<div class="card-content">
 					<Avatar image="/imgs/pic-placeholder.png" />
 					<div class="text">
@@ -147,8 +141,7 @@
 						onClick="{() => {
 							goto('/demo/journeys/dominique/apply-for-job');
 						}}"
-						label="{$dominiqueAppliedForJob ? 'Retry' : 'Get Started'}"
-					/>
+						label="{$dominiqueAppliedForJob ? 'Retry' : 'Get Started'}" />
 				</div>
 			</Card>
 		</div>

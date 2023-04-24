@@ -47,7 +47,8 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>To begin with self-sovereign identity you must first have an identity wallet app.</Typography>
+			>To begin with self-sovereign identity you must first have an identity wallet app.</Typography
+		>
 	</div>
 
 	<div class="desc">
@@ -73,7 +74,8 @@
 						onClick="{() => {
 							null;
 						}}"
-						label="Download" />
+						label="Download"
+					/>
 				</div>
 			</Card>
 		</div>
@@ -93,7 +95,8 @@
 						onClick="{() => {
 							null;
 						}}"
-						label="Download" />
+						label="Download"
+					/>
 				</div>
 			</Card>
 		</div>
