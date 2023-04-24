@@ -215,12 +215,14 @@
 				with:<br />
 			</Typography>
 			<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-				>{$peterAssignedCompany}</Typography>
+				>{$peterAssignedCompany}</Typography
+			>
 			<div class="p">
 				Click the ASSIGN INTERNSHIP button to assign your student internship placement.
 			</div>
 			<button class="button" on:click="{() => goto('/demo/journeys/peter/student-placed')}"
-				>ISSUE BADGES</button>
+				>ISSUE BADGES</button
+			>
 			<div class="subtext">
 				<Typography variant="sub-text" />
 			</div>
@@ -230,7 +232,8 @@
 	<div class="heading">
 		<Typography variant="heading">
 			{$peterAssignedStudent?.split(" ")[0]} has <Highlight
-				>two relevant internship opportunities.</Highlight> Let’s assign their placement.
+				>two relevant internship opportunities.</Highlight
+			> Let’s assign their placement.
 		</Typography>
 	</div>
 	<div class="sub-text">
@@ -258,7 +261,8 @@
 							</div>
 							<div class="content">
 								<Typography fontVariant="kw1c" variant="heading" color="--kw1c-blue-900"
-									>{$peterAssignedStudent}</Typography>
+									>{$peterAssignedStudent}</Typography
+								>
 							</div>
 						</div>
 
@@ -268,7 +272,8 @@
 							</div>
 							<div class="content">
 								<Typography fontVariant="kw1c" variant="list" color="--kw1c-red-900"
-									>3D Print Design</Typography>
+									>3D Print Design</Typography
+								>
 							</div>
 						</div>
 					</div>
@@ -278,18 +283,21 @@
 						<div class="intern-content">
 							<div class="location">
 								<Typography variant="status" fontVariant="kw1c" color="--kw1c-red-900"
-									>Cork, Ireland</Typography>
+									>Cork, Ireland</Typography
+								>
 							</div>
 							<div class="org">
 								<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>Irish Future Print Co.</Typography>
+									>Irish Future Print Co.</Typography
+								>
 							</div>
 							<button
 								class="button"
 								on:click="{() => {
 									peterAssignedCompany.set('Irish Future Print Co.');
 									showModal = true;
-								}}">ASSIGN PLACEMENT</button>
+								}}">ASSIGN PLACEMENT</button
+							>
 						</div>
 					</div>
 
@@ -298,18 +306,21 @@
 						<div class="intern-content">
 							<div class="location">
 								<Typography variant="status" fontVariant="kw1c" color="--kw1c-red-900"
-									>Oslo, Norway</Typography>
+									>Oslo, Norway</Typography
+								>
 							</div>
 							<div class="org">
 								<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>3D Printers Norge</Typography>
+									>3D Printers Norge</Typography
+								>
 							</div>
 							<button
 								class="button"
 								on:click="{() => {
 									peterAssignedCompany.set('3D Printers Norge');
 									showModal = true;
-								}}">ASSIGN PLACEMENT</button>
+								}}">ASSIGN PLACEMENT</button
+							>
 						</div>
 					</div>
 				</div>

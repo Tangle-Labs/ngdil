@@ -183,10 +183,12 @@
 		<div class="modal-content">
 			<img src="/imgs/kw1c-white.png" alt="" class="logo" />
 			<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-red-900"
-				>YOU ARE ABOUT TO INVITE {selected.length} STUDENTS ON THE COURSE: INTERNATIONALISATION</Typography>
+				>YOU ARE ABOUT TO INVITE {selected.length} STUDENTS ON THE COURSE: INTERNATIONALISATION</Typography
+			>
 			<div class="p">Click send invitations to confirm the invites.</div>
 			<button class="button" on:click="{() => goto('/demo/journeys/peter/course-students')}"
-				>SEND INVITES</button>
+				>SEND INVITES</button
+			>
 			<div class="subtext">
 				<Typography variant="sub-text" />
 			</div>
@@ -196,7 +198,8 @@
 	<div class="heading">
 		<Typography variant="heading">
 			Three students are looking to get this badge. Let’s select the students and <Highlight
-				>issue their course invites.</Highlight>
+				>issue their course invites.</Highlight
+			>
 		</Typography>
 	</div>
 	<div class="sub-text">
@@ -239,15 +242,18 @@
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Sarah Jones</Typography>
+								>Sarah Jones</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Ivar Leifsson</Typography>
+								>Ivar Leifsson</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Lagertha Bonde</Typography>
+								>Lagertha Bonde</Typography
+							>
 						</div>
 					</div>
 
@@ -257,15 +263,18 @@
 						</div>
 						<div class="data">
 							<Typography variant="list" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography>
+								>3D Print Design</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="list" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography>
+								>3D Print Design</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="list" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography>
+								>3D Print Design</Typography
+							>
 						</div>
 					</div>
 
@@ -276,17 +285,20 @@
 
 						<div class="data">
 							<Typography variant="list" fontVariant="kw1c" color="--kw1c-red-900"
-								>Internationalisation Course</Typography>
+								>Internationalisation Course</Typography
+							>
 						</div>
 
 						<div class="data">
 							<Typography variant="list" fontVariant="kw1c" color="--kw1c-red-900"
-								>Internationalisation Course</Typography>
+								>Internationalisation Course</Typography
+							>
 						</div>
 
 						<div class="data">
 							<Typography variant="list" fontVariant="kw1c" color="--kw1c-red-900"
-								>Internationalisation Course</Typography>
+								>Internationalisation Course</Typography
+							>
 						</div>
 					</div>
 				</div>
@@ -294,7 +306,8 @@
 				<div class="button-container">
 					<button
 						class="{`button ${selected.length <= 0 && 'disabled'}`}"
-						on:click="{handleIssueCourseInvites}">ISSUE COURSE INVITES</button>
+						on:click="{handleIssueCourseInvites}">ISSUE COURSE INVITES</button
+					>
 				</div>
 			</div>
 		</Kw1c>

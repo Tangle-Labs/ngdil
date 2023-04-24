@@ -58,7 +58,7 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, Card, Button } from "$lib/components";
+	import { Typography, Card, Button, Hightlight } from "$lib/components";
 	import { imaniHiredEmployee } from "$lib/stores/flows.store";
 
 	function handleFinishCourse() {
@@ -70,13 +70,12 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>You’ve already successfully verified and hired a new employee. Let’s get them trained up
-			next.</Typography
-		>
+			>You’ve already <Hightlight>successfully verified and hired</Hightlight> a new employee. Let’s
+			get them trained up next.</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography>Here is what you have achieved so far with your self-sovereign identity:</Typography
-		>
+		<Typography
+			>Here is what you have achieved so far with your self-sovereign identity:</Typography>
 	</div>
 	<div class="card">
 		<Card>

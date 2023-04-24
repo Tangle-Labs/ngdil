@@ -42,6 +42,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Avatar, Button } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { imaniHiredEmployee, imaniIssuedBadge } from "$lib/stores/flows.store";
 	import { currStep } from "$lib/stores/onboarding.store";
 </script>
@@ -49,9 +50,8 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>Hi Imani. Let’s get you hiring some experienced staff. Select your first experience to get
-			started.</Typography
-		>
+			>Hi Imani. Let’s <Highlight>get you hiring some experienced staff</Highlight>. Select your
+			first experience to get started.</Typography>
 	</div>
 	<div class="desc">
 		<Typography variant="button">
@@ -80,8 +80,7 @@
 						onClick="{() => {
 							goto('/demo/journeys/imani/login');
 						}}"
-						label="{$imaniHiredEmployee ? 'Retry' : 'Get Started'}"
-					/>
+						label="{$imaniHiredEmployee ? 'Retry' : 'Get Started'}" />
 				</div>
 			</Card>
 		</div>
@@ -110,8 +109,7 @@
 						onClick="{() => {
 							goto('/demo/journeys/imani/company-badges');
 						}}"
-						label="{$imaniIssuedBadge ? 'Retry' : 'Get Started'}"
-					/>
+						label="{$imaniIssuedBadge ? 'Retry' : 'Get Started'}" />
 				</div>
 			</Card>
 		</div>

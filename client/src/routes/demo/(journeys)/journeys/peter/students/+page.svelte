@@ -210,7 +210,8 @@
 						{#each $peterAssignedBadges as student (student)}
 							<div class="data">
 								<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>{student}</Typography>
+									>{student}</Typography
+								>
 							</div>
 						{/each}
 					</div>
@@ -223,7 +224,8 @@
 						{#each $peterAssignedBadges as student (student)}
 							<div class="data">
 								<Typography variant="list" fontVariant="kw1c" color="--kw1c-red-900"
-									>3D Print Design</Typography>
+									>3D Print Design</Typography
+								>
 							</div>
 						{/each}
 					</div>
@@ -240,7 +242,8 @@
 									on:click="{() => {
 										peterAssignedStudent.set(student);
 										goto('/demo/journeys/peter/place-student');
-									}}">ASSIGN PLACEMENT</button>
+									}}">ASSIGN PLACEMENT</button
+								>
 							</div>
 						{/each}
 					</div>

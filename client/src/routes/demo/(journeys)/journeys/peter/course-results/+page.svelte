@@ -183,10 +183,12 @@
 		<div class="modal-content">
 			<img src="/imgs/kw1c-white.png" alt="" class="logo" />
 			<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-red-900"
-				>YOU ARE ABOUT TO ISSUE {selected.length} STUDENT INTERNATIONALISATION COURSE BADGES</Typography>
+				>YOU ARE ABOUT TO ISSUE {selected.length} STUDENT INTERNATIONALISATION COURSE BADGES</Typography
+			>
 			<div class="p">Click ISSUE BADGES button to issue the selected students.</div>
 			<button class="button" on:click="{() => goto('/demo/journeys/peter/students')}"
-				>ISSUE BADGES</button>
+				>ISSUE BADGES</button
+			>
 			<div class="subtext">
 				<Typography variant="sub-text" />
 			</div>
@@ -239,15 +241,18 @@
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Sarah Jones</Typography>
+								>Sarah Jones</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Ivar Leifsson</Typography>
+								>Ivar Leifsson</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Lagertha Bonde</Typography>
+								>Lagertha Bonde</Typography
+							>
 						</div>
 					</div>
 
@@ -257,15 +262,18 @@
 						</div>
 						<div class="data">
 							<Typography variant="list" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography>
+								>3D Print Design</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="list" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography>
+								>3D Print Design</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="list" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography>
+								>3D Print Design</Typography
+							>
 						</div>
 					</div>
 
@@ -291,7 +299,8 @@
 				<div class="button-container">
 					<button
 						class="{`button ${selected.length <= 0 && 'disabled'}`}"
-						on:click="{handleIssueCourseBadges}">ISSUE COURSE BADGES</button>
+						on:click="{handleIssueCourseBadges}">ISSUE COURSE BADGES</button
+					>
 				</div>
 			</div>
 		</Kw1c>

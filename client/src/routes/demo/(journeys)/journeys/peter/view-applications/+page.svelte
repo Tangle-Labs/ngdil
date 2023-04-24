@@ -134,7 +134,8 @@
 	<div class="heading">
 		<Typography variant="heading">
 			The students are keen to get on their international internships. Let’s see<Highlight>
-				if they meet the requirements.</Highlight>
+				if they meet the requirements.</Highlight
+			>
 		</Typography>
 	</div>
 	<div class="sub-text">
@@ -159,15 +160,18 @@
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Sarah Jones</Typography>
+								>Sarah Jones</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Ivar Leifsson</Typography>
+								>Ivar Leifsson</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Lagertha Bonde</Typography>
+								>Lagertha Bonde</Typography
+							>
 						</div>
 					</div>
 
@@ -177,15 +181,18 @@
 						</div>
 						<div class="data">
 							<Typography variant="status" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography>
+								>3D Print Design</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="status" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography>
+								>3D Print Design</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="status" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography>
+								>3D Print Design</Typography
+							>
 						</div>
 					</div>
 
@@ -199,7 +206,8 @@
 								on:click="{() => {
 									peterChosenStudent.set('Sarah Jones');
 									goto('/demo/journeys/peter/view-application');
-								}}">VIEW APPLICATION</button>
+								}}">VIEW APPLICATION</button
+							>
 						</div>
 
 						<div class="button-container">
@@ -208,7 +216,8 @@
 									peterChosenStudent.set('Ivar Leifsson');
 									goto('/demo/journeys/peter/view-application');
 								}}"
-								class="button">VIEW APPLICATION</button>
+								class="button">VIEW APPLICATION</button
+							>
 						</div>
 
 						<div class="button-container">
@@ -217,7 +226,8 @@
 									peterChosenStudent.set('Lagertha Bonde');
 									goto('/demo/journeys/peter/view-application');
 								}}"
-								class="button">VIEW APPLICATION</button>
+								class="button">VIEW APPLICATION</button
+							>
 						</div>
 					</div>
 				</div>

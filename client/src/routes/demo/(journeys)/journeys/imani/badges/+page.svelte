@@ -78,14 +78,15 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Button, Loading, Modal } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { imaniBadgeName, imaniChosenApplicant } from "$lib/stores/flows.store";
 </script>
 
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>You’ve successfully created a new badge template. Let’s continue to get training the staff.</Typography
-		>
+			>You’ve successfully <Highlight>created a new badge template.</Highlight> Let’s continue to get
+			training the staff.</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography>Click continue to proceed to staff training.</Typography>
@@ -150,8 +151,7 @@
 					label="Continue"
 					onClick="{() => {
 						goto('/demo/journeys/imani/train-staff');
-					}}"
-				/>
+					}}" />
 			</div>
 		</FutureTech>
 	</div>
