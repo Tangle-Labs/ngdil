@@ -92,7 +92,8 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>Almost there! <Highlight>Just confirm the issuing of the badges</Highlight>to the successful
-			employees.</Typography>
+			employees.</Typography
+		>
 	</div>
 	<div class="sub-text">
 		<Typography>Click the Issue Badges button to confirm and issue the open badges.</Typography>
@@ -128,7 +129,8 @@
 				<Button
 					variant="{pending ? 'future-tech-disabled' : 'future-tech'}"
 					label="Continue"
-					onClick="{() => goto('/demo/journeys/imani/issued-badge')}" />
+					onClick="{() => goto('/demo/journeys/imani/issued-badge')}"
+				/>
 			</div>
 		</FutureTech>
 	</div>

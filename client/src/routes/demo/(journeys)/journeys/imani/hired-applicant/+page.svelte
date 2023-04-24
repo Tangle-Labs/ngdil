@@ -71,11 +71,12 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You’ve already <Hightlight>successfully verified and hired</Hightlight> a new employee. Let’s
-			get them trained up next.</Typography>
+			get them trained up next.</Typography
+		>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>Here is what you have achieved so far with your self-sovereign identity:</Typography>
+		<Typography>Here is what you have achieved so far with your self-sovereign identity:</Typography
+		>
 	</div>
 	<div class="card">
 		<Card>

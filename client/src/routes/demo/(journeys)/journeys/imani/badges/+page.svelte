@@ -86,7 +86,8 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You’ve successfully <Highlight>created a new badge template.</Highlight> Let’s continue to get
-			training the staff.</Typography>
+			training the staff.</Typography
+		>
 	</div>
 	<div class="sub-text">
 		<Typography>Click continue to proceed to staff training.</Typography>
@@ -151,7 +152,8 @@
 					label="Continue"
 					onClick="{() => {
 						goto('/demo/journeys/imani/train-staff');
-					}}" />
+					}}"
+				/>
 			</div>
 		</FutureTech>
 	</div>

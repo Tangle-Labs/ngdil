@@ -86,11 +86,13 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>Future Tech Co. <Highlight>is big on employee development.</Highlight> Let’s create a new badge
-			so we can train staff.</Typography>
+			so we can train staff.</Typography
+		>
 	</div>
 	<div class="sub-text">
 		<Typography
-			>Click the Create New Badge button to continue and create a new open badge template.</Typography>
+			>Click the Create New Badge button to continue and create a new open badge template.</Typography
+		>
 	</div>
 	<div class="dash">
 		<FutureTech header="COMPANY BADGES">
@@ -142,7 +144,8 @@
 					label="Create New Badge"
 					onClick="{() => {
 						goto('/demo/journeys/imani/new-badge');
-					}}" />
+					}}"
+				/>
 			</div>
 		</FutureTech>
 	</div>

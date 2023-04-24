@@ -93,10 +93,12 @@
 			<img src="/imgs/future-tech.png" alt="" class="logo" />
 			<div class="heading">
 				<Typography variant="card-header" fontVariant="kw1c" color="--future-tech-green"
-					>FUTURE TECH CO.</Typography>
+					>FUTURE TECH CO.</Typography
+				>
 			</div>
 			<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-red-900"
-				>You are about to issue {$imaniChosenStaff.length} badges - {$imaniBadgeName}</Typography>
+				>You are about to issue {$imaniChosenStaff.length} badges - {$imaniBadgeName}</Typography
+			>
 			<div class="p">
 				<Typography color="--black-500">
 					To continue and issue the badges click the issue badges button.
@@ -111,12 +113,14 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>Not bad at all, the <Highlight>staff were successful in their training.</Highlight> Let’s issue
-			them their badges.</Typography>
+			them their badges.</Typography
+		>
 	</div>
 	<div class="sub-text">
 		<Typography
 			>Select the check boxes next to the employees that passed, then click the issue badges button
-			to continue.</Typography>
+			to continue.</Typography
+		>
 	</div>
 	<div class="dash">
 		<FutureTech header="{`${$imaniBadgeName.toUpperCase()} TRAINEES`}">

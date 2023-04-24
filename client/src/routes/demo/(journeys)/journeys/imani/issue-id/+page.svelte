@@ -99,10 +99,12 @@
 			<img src="/imgs/future-tech.png" alt="" class="logo" />
 			<div class="heading">
 				<Typography variant="card-header" fontVariant="kw1c" color="--future-tech-green"
-					>FUTURE TECH CO.</Typography>
+					>FUTURE TECH CO.</Typography
+				>
 			</div>
 			<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-red-900"
-				>You are about to issue {$imaniChosenApplicant} with an Employee ID Credential</Typography>
+				>You are about to issue {$imaniChosenApplicant} with an Employee ID Credential</Typography
+			>
 			<div class="p">
 				<Typography color="--black-500">
 					To continue and issue the credential please click the issue credential button.
@@ -118,17 +120,20 @@
 		<Typography variant="heading"
 			>{#if currStage === "issued"}
 				Great work. {$imaniChosenApplicant?.split(" ")[0]} has <Highlight
-					>received their employee ID card.</Highlight> Let’s continue to see what’s next.
+					>received their employee ID card.</Highlight
+				> Let’s continue to see what’s next.
 			{:else}
 				<Highlight>{$imaniChosenApplicant?.split(" ")[0]} has accepted your job offer</Highlight> and
 				joined the system. Let’s issue their employee ID credential.
-			{/if}</Typography>
+			{/if}</Typography
+		>
 	</div>
 	<div class="sub-text">
 		<Typography
 			>{currStage === "issued"
 				? "Click the continue button to proceed and see what you have achieved so far."
-				: "Click the issue ID button to issue Gillian with an employee ID credential from the company."}</Typography>
+				: "Click the issue ID button to issue Gillian with an employee ID credential from the company."}</Typography
+		>
 	</div>
 	<div class="dash">
 		<FutureTech header="COMPANY EMPLOYEES">
@@ -147,7 +152,8 @@
 								label="Issue ID"
 								onClick="{() => {
 									showModal = true;
-								}}" />
+								}}"
+							/>
 						{:else if currStage === "loading"}
 							<div class="loading">
 								<Loading size="1.125rem" />
@@ -216,7 +222,8 @@
 						label="Continue"
 						onClick="{() => {
 							goto('/demo/journeys/imani/hired-applicant');
-						}}" />
+						}}"
+					/>
 				</div>
 			{/if}
 		</FutureTech>

@@ -113,5 +113,13 @@
 				</div>
 			</Card>
 		</div>
+		{#if $imaniHiredEmployee && $imaniIssuedBadge}
+			<div class="other">
+				<Button
+					variant="secondary"
+					onClick="{() => goto('/demo/choose-journey')}"
+					label="Try Other Journey" />
+			</div>
+		{/if}
 	</div>
 </div>

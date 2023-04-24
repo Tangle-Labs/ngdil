@@ -111,12 +111,14 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>There are four staff <Highlight>available for the new badge training.</Highlight> Select the staff
-			to train.</Typography>
+			to train.</Typography
+		>
 	</div>
 	<div class="sub-text">
 		<Typography
 			>Select the check boxes next to the employees you wish to train, then click the train staff
-			button to continue.</Typography>
+			button to continue.</Typography
+		>
 	</div>
 	<div class="dash">
 		<FutureTech header="{`${$imaniBadgeName.toUpperCase()} TRAINEES`}">

@@ -71,7 +71,7 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			><Highlight>Congratulations. You have successfully created</Highlight> a new open badge and issued
+			>Congratulations. <Highlight>You have successfully created</Highlight> a new open badge and issued
 			them to your team.</Typography>
 	</div>
 	<div class="sub-text">
