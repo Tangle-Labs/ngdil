@@ -59,6 +59,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Button } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { dominiqueEarnedCourseCred } from "$lib/stores/flows.store";
 
 	function handleFinishCourse() {
@@ -70,12 +71,12 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>Amazing, you’ve successfully enrolled with KW1C and earned your course credential.</Typography
-		>
+			>Amazing, <Highlight>you’ve successfully enrolled with KW1C</Highlight> and earned your course
+			credential.</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography>Here is what you have achieved so far with your self-sovereign identity:</Typography
-		>
+		<Typography
+			>Here is what you have achieved so far with your self-sovereign identity:</Typography>
 	</div>
 	<div class="card">
 		<Card>

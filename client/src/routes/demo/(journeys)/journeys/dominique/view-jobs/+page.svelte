@@ -99,6 +99,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, BigBusinessCorp, Modal, Loading } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { dominiqueSelectedCourse } from "$lib/stores/flows.store";
 
 	function handleClick() {
@@ -109,9 +110,8 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>There are a few jobs available. Let’s select the job to apply for that is relevant to our new
-			credential.</Typography
-		>
+			>There are a few jobs available. <Highlight>Let’s select the job to apply</Highlight> for that
+			is relevant to our new credential.</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography>Select the job you can now apply for with your new credential</Typography>
@@ -129,8 +129,7 @@
 
 						<button
 							class="{`button ${$dominiqueSelectedCourse !== 'engineer' && 'disabled'}`}"
-							on:click="{handleClick}">Apply Now</button
-						>
+							on:click="{handleClick}">Apply Now</button>
 					</div>
 					<div class="course">
 						<img src="/imgs/dentist.png" alt="" />
@@ -141,8 +140,7 @@
 
 						<button
 							class="{`button ${$dominiqueSelectedCourse !== 'dentist' && 'disabled'}`}"
-							on:click="{handleClick}">Apply Now</button
-						>
+							on:click="{handleClick}">Apply Now</button>
 					</div>
 
 					<div class="course">
@@ -152,8 +150,7 @@
 						</div>
 						<button
 							class="{`button ${$dominiqueSelectedCourse !== 'designer' && 'disabled'}`}"
-							on:click="{handleClick}">Apply Now</button
-						>
+							on:click="{handleClick}">Apply Now</button>
 					</div>
 				</div>
 			</div>

@@ -39,13 +39,14 @@
 	import { fade, fly } from "svelte/transition";
 
 	export let isOpen = false;
+	export let withBorder = false;
 </script>
 
 {#if isOpen}
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div class="backdrop" on:click="{() => (isOpen = false)}" transition:fade></div>
 	<div class="modal" transition:fly="{{ y: 50, duration: 400 }}">
-		<Card>
+		<Card withBorder="{withBorder}">
 			<div class="modal-header">
 				<slot name="header" />
 			</div>

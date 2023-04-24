@@ -42,6 +42,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Avatar, Button } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
 		dominiqueAppliedForJob,
 		dominiqueEarnedCourseCred,
@@ -53,8 +54,8 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>Hi Dominique. Let’s get you started on your learning journey. Select your first experience to
-			get started.</Typography>
+			>Hi Dominique. <Highlight>Let’s get you started on your learning journey.</Highlight>Select
+			your experienceto get started.</Typography>
 	</div>
 	<div class="desc">
 		<Typography variant="button">

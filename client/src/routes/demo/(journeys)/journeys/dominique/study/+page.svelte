@@ -113,7 +113,7 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, Kw1c, Modal, Loading } from "$lib/components";
+	import { Typography, Kw1c, Modal, Loading, Hightlight } from "$lib/components";
 	import { dominqueCourses, dominiqueSelectedCourse } from "$lib/stores/flows.store";
 
 	let progress = 0;
@@ -129,8 +129,7 @@
 			<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-red-900"
 				>{receivedCreds
 					? "YOU HAVE RECEIVED & ACCEPTED YOUR NEW COURSE CREDENTIAL."
-					: "KW1C HAS SENT YOU A NEW COURSE CREDENTIAL"}</Typography
-			>
+					: "KW1C HAS SENT YOU A NEW COURSE CREDENTIAL"}</Typography>
 			<div class="p">
 				{receivedCreds
 					? "This is now visible in your wallet and free for you to share with anyone, at any time. "
@@ -139,8 +138,7 @@
 			{#if receivedCreds}
 				<img class="checked" src="/imgs/checked.png" alt="" />
 				<button class="button" on:click="{() => goto('/demo/journeys/dominique/finished-course')}"
-					>CONTINUE</button
-				>
+					>CONTINUE</button>
 			{:else}
 				<Loading img="/imgs/blue-loading.png" />
 			{/if}
@@ -148,24 +146,29 @@
 				<Typography variant="sub-text"
 					>{receivedCreds
 						? "Click Continue to proceed"
-						: "Awaiting credential acceptance..."}</Typography
-				>
+						: "Awaiting credential acceptance..."}</Typography>
 			</div>
 		</div>
 	</Modal>
 	<div class="heading">
-		<Typography variant="heading"
-			>{studied
-				? "Exciting times. You have completed your course with top marks. Let’s get your credential."
-				: "Congratulations. You have been accepted on the course. Now you need to complete your studies."}</Typography
-		>
+		{#if studied}
+			<Typography variant="heading">
+				<Hightlight>Exciting times. You have completed your course</Hightlight>with top marks. Let’s
+				get your credential.
+			</Typography>
+		{:else}
+			<Typography variant="heading">
+				Congratulations. <Hightlight>You have been accepted</Hightlight> on the course. Now you need
+				to complete your studies.</Typography>
+		{/if}
 	</div>
 	<div class="sub-text">
-		<Typography
-			>{studied
-				? "Click the get credential button to receive your credential from KW1C."
-				: "Click the start studying button to continue and complete the course."}</Typography
-		>
+		<Typography>
+			{#if studied}
+				Click the get credential button to receive your credential from KW1C.
+			{:else}
+				Click the start studying button to continue and complete the course.
+			{/if}</Typography>
 	</div>
 	<div class="dash-outer">
 		<Kw1c variant="blue">
@@ -174,20 +177,17 @@
 					<Typography variant="card-header" fontVariant="kw1c"
 						>{studied
 							? "CONGRATULATIONS DOMINIQUE, YOU HAVE COMPLETED YOUR COURSE!"
-							: "HELLO DOMINIQUE, WELCOME TO YOUR NEW COURSE"}</Typography
-					>
+							: "HELLO DOMINIQUE, WELCOME TO YOUR NEW COURSE"}</Typography>
 				</div>
 				<div class="details">
 					<div class="text">
 						<div class="category">
 							<Typography variant="status" fontVariant="kw1c" color="--kw1c-red-900"
-								>{dominqueCourses[$dominiqueSelectedCourse].category}</Typography
-							>
+								>{dominqueCourses[$dominiqueSelectedCourse].category}</Typography>
 						</div>
 						<div class="course">
 							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography
-							>
+								>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography>
 						</div>
 					</div>
 					{#if studied}
@@ -198,16 +198,14 @@
 								setTimeout(() => {
 									receivedCreds = true;
 								}, 9000);
-							}}">GET CREDENTIAL</button
-						>
+							}}">GET CREDENTIAL</button>
 					{:else}
 						<button
 							class="button"
 							on:click="{() => {
 								studied = true;
 								progress = 100;
-							}}">START STUDYING</button
-						>
+							}}">START STUDYING</button>
 					{/if}
 				</div>
 				<div class="cards">
@@ -219,8 +217,7 @@
 							<div class="dash gray-dash"></div>
 							<div class="progress">
 								<Typography variant="status" fontVariant="kw1c" color="--kw1c-blue-900"
-									>{progress}%</Typography
-								>
+									>{progress}%</Typography>
 							</div>
 						</div>
 					{/each}

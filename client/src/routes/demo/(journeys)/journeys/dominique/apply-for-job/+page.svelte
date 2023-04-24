@@ -39,19 +39,20 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, BigBusinessCorp, Card } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 </script>
 
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading">
-			You made it to the Big Business Corp website. Let’s login to view their jobs board.
+			You made it to the <Highlight>Big Business Corp website. Let’s login</Highlight> to view their
+			jobs board.
 		</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography
 			>In your mobile wallet, scan the QR code & accept the connection request to login privately to
-			the Big Business Corp website.</Typography
-		>
+			the Big Business Corp website.</Typography>
 	</div>
 	<div class="dash">
 		<BigBusinessCorp>
@@ -66,15 +67,13 @@
 							on:click="{() => {
 								goto('/demo/journeys/dominique/view-jobs');
 							}}"
-							alt=""
-						/>
+							alt="" />
 						<div class="heading">
 							<Typography variant="card-header" color="--bbc-blue">Passwordless Login</Typography>
 						</div>
 						<div class="desc">
 							<Typography variant="sub-text"
-								>Scan the QR to access the KW1C learners portal.</Typography
-							>
+								>Scan the QR to access the KW1C learners portal.</Typography>
 						</div>
 					</div>
 				</Card>

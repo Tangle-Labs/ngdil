@@ -90,6 +90,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Modal, Loading } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { dominiqueSelectedCourse } from "$lib/stores/flows.store";
 	let receivedCreds = false;
 
@@ -105,14 +106,13 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>You've made it to the KW1C website, let's log in to enrol on your course of choice.</Typography
-		>
+			>You’re in! Now let’s <Highlight>take a look at the courses</Highlight>available and select
+			the course you wish to study.</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography
-			>In your identity wallet, scan the QR code and accept the connection request to the KW1C
-			learners portal.</Typography
-		>
+			>Click the enrol now button to select the course you wish to study to begin the application
+			process.</Typography>
 	</div>
 	<Modal bind:isOpen="{showModal}">
 		<div class="modal-content">
@@ -120,8 +120,7 @@
 			<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-red-900"
 				>{receivedCreds
 					? "KW1C HAS RECEIVED YOUR APPLICATION CREDENTIALS."
-					: "KW1C IS REQUESTING YOU SHARE YOUR CREDENTIALS FOR COURSE APPLICATION"}</Typography
-			>
+					: "KW1C IS REQUESTING YOU SHARE YOUR CREDENTIALS FOR COURSE APPLICATION"}</Typography>
 			<div class="p">
 				{receivedCreds
 					? "You may continue further in the browser. "
@@ -130,15 +129,13 @@
 			{#if receivedCreds}
 				<img class="checked" src="/imgs/checked.png" alt="" />
 				<button class="button" on:click="{() => goto('/demo/journeys/dominique/study')}"
-					>CONTINUE</button
-				>
+					>CONTINUE</button>
 			{:else}
 				<Loading img="/imgs/blue-loading.png" />
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text"
-					>{receivedCreds ? "Click continue to proceed" : "Waiting for credentials"}</Typography
-				>
+					>{receivedCreds ? "Click continue to proceed" : "Waiting for credentials"}</Typography>
 			</div>
 		</div>
 	</Modal>
@@ -150,13 +147,11 @@
 						<img src="/imgs/engineer.png" alt="" />
 						<div class="subtext">
 							<Typography variant="sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>ENGINEERING AND LABORATORY</Typography
-							>
+								>ENGINEERING AND LABORATORY</Typography>
 						</div>
 						<div class="title">
 							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>FUTURE ENGINEER</Typography
-							>
+								>FUTURE ENGINEER</Typography>
 						</div>
 
 						<button
@@ -165,20 +160,17 @@
 								showModal = true;
 								dominiqueSelectedCourse.set('engineer');
 								handleWait();
-							}}">ENROL NOW</button
-						>
+							}}">ENROL NOW</button>
 					</div>
 					<div class="course">
 						<img src="/imgs/dentist.png" alt="" />
 						<div class="subtext">
 							<Typography variant="sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>CARE AND WELFARE</Typography
-							>
+								>CARE AND WELFARE</Typography>
 						</div>
 						<div class="title">
 							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>DENTAL ASSISTANT</Typography
-							>
+								>DENTAL ASSISTANT</Typography>
 						</div>
 
 						<button
@@ -187,21 +179,18 @@
 								showModal = true;
 								dominiqueSelectedCourse.set('dentist');
 								handleWait();
-							}}">ENROL NOW</button
-						>
+							}}">ENROL NOW</button>
 					</div>
 
 					<div class="course">
 						<img src="/imgs/designer.png" alt="" />
 						<div class="subtext">
 							<Typography variant="sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>CREATIVE / MEDIA, ICT AND DESIGN</Typography
-							>
+								>CREATIVE / MEDIA, ICT AND DESIGN</Typography>
 						</div>
 						<div class="title">
 							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>MEDIA DESIGNER</Typography
-							>
+								>MEDIA DESIGNER</Typography>
 						</div>
 
 						<button
@@ -210,8 +199,7 @@
 								dominiqueSelectedCourse.set('designer');
 								handleWait();
 							}}"
-							class="button">ENROL NOW</button
-						>
+							class="button">ENROL NOW</button>
 					</div>
 				</div>
 			</div>

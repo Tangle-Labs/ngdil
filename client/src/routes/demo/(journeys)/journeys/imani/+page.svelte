@@ -50,7 +50,8 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>Hi Imani. Let’s get you hiring some experienced staff. Select your first experience to get
-			started.</Typography>
+			started.</Typography
+		>
 	</div>
 	<div class="desc">
 		<Typography variant="button">
@@ -79,7 +80,8 @@
 						onClick="{() => {
 							goto('/demo/journeys/imani/login');
 						}}"
-						label="{$imaniHiredEmployee ? 'Retry' : 'Get Started'}" />
+						label="{$imaniHiredEmployee ? 'Retry' : 'Get Started'}"
+					/>
 				</div>
 			</Card>
 		</div>
@@ -108,7 +110,8 @@
 						onClick="{() => {
 							goto('/demo/journeys/imani/company-badges');
 						}}"
-						label="{$imaniIssuedBadge ? 'Retry' : 'Get Started'}" />
+						label="{$imaniIssuedBadge ? 'Retry' : 'Get Started'}"
+					/>
 				</div>
 			</Card>
 		</div>

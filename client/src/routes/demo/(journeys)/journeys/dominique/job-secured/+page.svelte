@@ -59,6 +59,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Button } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { dominiqueAppliedForJob, dominiqueEarnedCourseCred } from "$lib/stores/flows.store";
 
 	function handleFinishCourse() {
@@ -70,12 +71,12 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>You are now an employee of the Big Business Corp. Let’s see what you have achieved.</Typography
-		>
+			><Highlight>You are now an employee of the Big Business Corp.</Highlight> Let’s see what you have
+			achieved.</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography>Here is what you have achieved so far with your self-sovereign identity:</Typography
-		>
+		<Typography
+			>Here is what you have achieved so far with your self-sovereign identity:</Typography>
 	</div>
 	<div class="card">
 		<Card>
