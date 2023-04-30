@@ -135,7 +135,8 @@
 							<CredModal
 								issuer="The Government"
 								name="National ID"
-								credential="{{ ...credentials.nationalId, 'Full Name': $imaniChosenApplicant }}" />
+								credential="{{ ...credentials.nationalId, 'Full Name': $imaniChosenApplicant }}"
+								logo="/imgs/gov.svg" />
 						</div>
 					{/if}
 				</div>
@@ -165,6 +166,7 @@
 						<div class="verify">
 							<CredModal
 								issuer="{$imaniChosenApplicant}"
+								logo="/imgs/verified.png"
 								name="Personal Statement"
 								credential="{{
 									...credentials.personalStatement,
@@ -199,6 +201,7 @@
 							<CredModal
 								issuer="Koning Willem 1 College"
 								name="Future Engineer Diploma"
+								logo="/imgs/kw1c-white.png"
 								credential="{{
 									...credentials.courseCred,
 									'Student Name': $imaniChosenApplicant
@@ -223,19 +226,20 @@
 								<Typography variant="list">Internship Certificate</Typography>
 							</div>
 							<div class="issuer">
-								<Typography variant="sub-text">Issued by The Irish 3D Print Company</Typography>
+								<Typography variant="sub-text">Issued by Irish Future Print Co.</Typography>
 							</div>
 						</div>
 					</div>
 					{#if currStatus === "loaded"}
 						<div class="verify">
 							<CredModal
-								issuer="The Irish 3d Print Company"
+								issuer="Irish Future Print Co."
 								name="Internship Certificate"
+								logo="{'/imgs/irish.svg'}"
 								credential="{{
 									...credentials.internshipBadge,
 									'Intern Name': $imaniChosenApplicant,
-									Issuer: 'The Irish 3d Print Company',
+									Issuer: 'Irish Future Print Co.',
 									Country: 'Ireland'
 								}}" />
 						</div>

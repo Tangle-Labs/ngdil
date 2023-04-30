@@ -51,7 +51,8 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>Hi Imani. Let’s <Highlight>get you hiring some experienced staff</Highlight>. Select your
-			first experience to get started.</Typography>
+			first experience to get started.</Typography
+		>
 	</div>
 	<div class="desc">
 		<Typography variant="button">
@@ -80,7 +81,8 @@
 						onClick="{() => {
 							goto('/demo/journeys/imani/login');
 						}}"
-						label="{$imaniHiredEmployee ? 'Retry' : 'Get Started'}" />
+						label="{$imaniHiredEmployee ? 'Retry' : 'Get Started'}"
+					/>
 				</div>
 			</Card>
 		</div>
@@ -109,7 +111,8 @@
 						onClick="{() => {
 							goto('/demo/journeys/imani/company-badges');
 						}}"
-						label="{$imaniIssuedBadge ? 'Retry' : 'Get Started'}" />
+						label="{$imaniIssuedBadge ? 'Retry' : 'Get Started'}"
+					/>
 				</div>
 			</Card>
 		</div>
@@ -118,7 +121,8 @@
 				<Button
 					variant="secondary"
 					onClick="{() => goto('/demo/choose-journey')}"
-					label="Try Another Journey" />
+					label="Try Another Journey"
+				/>
 			</div>
 		{/if}
 	</div>

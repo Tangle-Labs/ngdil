@@ -78,6 +78,10 @@
 						flex-wrap: wrap;
 						width: 20%;
 
+						&.badge {
+							width: 30px;
+						}
+
 						&:last-of-type {
 							padding-left: 10px;
 						}
@@ -314,7 +318,7 @@
 							</div>
 						{/each}
 					</div>
-					<div class="column">
+					<div class="column badge">
 						{#if receivedCreds}
 							<div class="header">
 								<Typography variant="sub-text" fontVariant="kw1c" color="--white-300">_</Typography>
@@ -323,7 +327,8 @@
 								<CredModal
 									name="National ID"
 									issuer="The Government"
-									credential="{{ ...credentials.nationalId, 'Full Name': $peterChosenStudent }}" />
+									credential="{{ ...credentials.nationalId, 'Full Name': $peterChosenStudent }}"
+									logo="/imgs/gov.svg" />
 							</div>
 							<div class="data">
 								<CredModal
@@ -332,12 +337,14 @@
 									credential="{{
 										...credentials.collegeId,
 										'Student Name': $peterChosenStudent
-									}}" />
+									}}"
+									logo="/imgs/kw1c-white.png" />
 							</div>
 							<div class="data">
 								<CredModal
 									name="Course Badge"
 									issuer="Koning Willem 1 College"
+									logo="/imgs/kw1c-white.png"
 									credential="{{
 										...credentials.courseCred,
 										'Student Name': $peterChosenStudent

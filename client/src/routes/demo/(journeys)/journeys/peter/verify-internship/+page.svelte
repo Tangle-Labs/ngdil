@@ -174,6 +174,7 @@
 	import { credentials } from "$lib/stores/creds";
 	import {
 		dominiqueSelectedCourse,
+		dominqueCourses,
 		peterAssignecCompanyCountry,
 		peterAssignedCompany,
 		peterAssignedStudent,
@@ -324,7 +325,8 @@
 								<CredModal
 									name="National ID"
 									issuer="The Government"
-									credential="{{ ...credentials.nationalId, 'Full Name': $peterChosenStudent }}" />
+									credential="{{ ...credentials.nationalId, 'Full Name': $peterChosenStudent }}"
+									logo="{'/imgs/gov.svg'}" />
 							</div>
 							<div class="data">
 								<CredModal
@@ -333,7 +335,8 @@
 									credential="{{
 										...credentials.collegeId,
 										'Student Name': $peterChosenStudent
-									}}" />
+									}}"
+									logo="/imgs/kw1c-white.png" />
 							</div>
 							<div class="data">
 								<CredModal
@@ -342,12 +345,16 @@
 									credential="{{
 										...credentials.collegeId,
 										'Student Name': $peterChosenStudent
-									}}" />
+									}}"
+									logo="/imgs/kw1c-white.png" />
 							</div>
 							<div class="data">
 								<CredModal
 									name="National ID"
 									issuer="The Government"
+									logo="{dominqueCourses[2].internships.find(
+										(i) => i.name === $peterAssignedCompany
+									).img}"
 									credential="{{
 										...credentials.internshipBadge,
 										'Intern Name': $peterChosenStudent,

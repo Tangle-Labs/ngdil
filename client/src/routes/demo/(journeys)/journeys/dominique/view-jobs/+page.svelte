@@ -131,7 +131,8 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>There are a few jobs available. <Highlight>Let’s select the job to apply</Highlight> for that
-			is relevant to our new credential.</Typography>
+			is relevant to our new credential.</Typography
+		>
 	</div>
 	<div class="sub-text">
 		<Typography>Select the job you can now apply for with your new credential</Typography>
@@ -156,7 +157,8 @@
 								class="{`button ${$dominiqueSelectedCourse !== i && 'disabled'}`}"
 								on:click="{() => {
 									handleClick(i);
-								}}">Apply Now</button>
+								}}">Apply Now</button
+							>
 						</div>
 					{/each}
 				</div>

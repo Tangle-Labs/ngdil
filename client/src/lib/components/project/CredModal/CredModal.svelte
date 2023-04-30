@@ -53,6 +53,7 @@
 	export let credential: Record<string, string>;
 	export let name: string;
 	export let issuer: string;
+	export let logo: string;
 
 	let isOpen = false;
 </script>
@@ -69,7 +70,7 @@
 <Modal bind:isOpen="{isOpen}">
 	<div class="card-content">
 		<div class="logo">
-			<img src="/imgs/kw1c-white.png" alt="" />
+			<img src="{logo}" alt="" />
 		</div>
 		<div class="cred-name">
 			<Typography variant="card-header">{name}</Typography>

@@ -144,7 +144,8 @@
 										currStep.set(5);
 									}, 8000);
 									qrVisible = true;
-								}}" />
+								}}"
+							/>
 						</div>
 					{/if}
 				</div>
@@ -155,7 +156,8 @@
 							<Typography variant="card-header"
 								>{buttonVisible
 									? "Your credentials are confirmed!"
-									: "Scan QR code to connect to NGDIL & receive your credentials."}</Typography>
+									: "Scan QR code to connect to NGDIL & receive your credentials."}</Typography
+							>
 						</div>
 						<div class="sub-text">
 							<Typography variant="sub-text">
@@ -170,7 +172,8 @@
 								onClick="{() => {
 									goto(`/demo/journeys/${selectedJourney}`);
 								}}"
-								variant="secondary" />
+								variant="secondary"
+							/>
 						{:else}
 							<Loading />
 						{/if}
@@ -184,7 +187,8 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You’re all set! <Highlight>Let’s choose the user journey</Highlight> you would like to explore
-			first.</Typography>
+			first.</Typography
+		>
 	</div>
 	<div class="desc">
 		<Typography variant="button"
@@ -208,7 +212,8 @@
 						<div class="desc">
 							<Typography
 								>Dominique is a school graduate, excited to enrol as a student at Koning Willem I
-								College.</Typography>
+								College.</Typography
+							>
 						</div>
 					</div>
 					<Button
@@ -218,7 +223,8 @@
 							currStep.set(3);
 							isOpen = true;
 						}}"
-						label="Get Started" />
+						label="Get Started"
+					/>
 				</div>
 			</Card>
 		</div>
@@ -244,7 +250,8 @@
 							currStep.set(3);
 							isOpen = true;
 						}}"
-						label="Get Started" />
+						label="Get Started"
+					/>
 				</div>
 			</Card>
 		</div>
@@ -270,7 +277,8 @@
 							currStep.set(3);
 							isOpen = true;
 						}}"
-						label="Get Started" />
+						label="Get Started"
+					/>
 				</div>
 			</Card>
 		</div>
