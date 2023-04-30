@@ -70,11 +70,12 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>Amazing, you’ve <Highlight>successfully enrolled students</Highlight> with KW1C!</Typography>
+			>Amazing, you’ve <Highlight>successfully enrolled students</Highlight> with KW1C!</Typography
+		>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>Here is what you have achieved so far with your self-sovereign identity:</Typography>
+		<Typography>Here is what you have achieved so far with your self-sovereign identity:</Typography
+		>
 	</div>
 	<div class="card">
 		<Card>

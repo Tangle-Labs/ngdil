@@ -71,11 +71,12 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>Congratulations. <Highlight>You have successfully created</Highlight> a new open badge and issued
-			them to your team.</Typography>
+			them to your team.</Typography
+		>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>Here is what you have achieved so far with your self-sovereign identity:</Typography>
+		<Typography>Here is what you have achieved so far with your self-sovereign identity:</Typography
+		>
 	</div>
 	<div class="card">
 		<Card>
