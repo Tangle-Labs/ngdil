@@ -14,10 +14,12 @@
 
 				.left {
 					padding-right: 10px;
+					width: 50%;
 
 					img {
 						border-top-left-radius: 20px;
 						border-bottom-right-radius: 20px;
+						width: 100%;
 					}
 
 					.heading {
@@ -49,6 +51,26 @@
 		}
 	}
 
+	.modal-header {
+		background: var(--bbc-blue);
+		width: 100%;
+		padding: 20px;
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		box-sizing: border-box;
+
+		img {
+			height: 30px;
+			padding-bottom: 5px;
+		}
+
+		& > .logo-text {
+			width: 100%;
+			text-align: center;
+		}
+	}
+
 	.modal-content {
 		width: 400px;
 		background: white;
@@ -73,6 +95,13 @@
 
 		.checked {
 			height: 60px;
+		}
+	}
+
+	.button-container {
+		width: 50%;
+		.button {
+			margin: 20px 0;
 		}
 	}
 
@@ -122,14 +151,18 @@
 </script>
 
 <div class="container">
-	<Modal bind:isOpen="{showModal}">
-		<div class="modal-content">
+	<Modal withoutPadding="{true}" bind:isOpen="{showModal}">
+		<div class="modal-header">
 			<img src="/imgs/bbc.png" alt="" class="logo" />
+			<div class="logo-text">
+				<Typography color="--white-300" variant="card-header">Big Business Corp</Typography>
+			</div>
+		</div>
+		<div class="modal-content">
 			<Typography variant="card-header"
 				>{receivedCreds
 					? "You have accepted the following credential:"
-					: "Big Business Corp Staff ID"}</Typography
-			>
+					: "Big Business Corp Staff ID"}</Typography>
 			<div class="p">
 				{receivedCreds
 					? "You may continue further in your browser."
@@ -138,41 +171,36 @@
 			{#if receivedCreds}
 				<img class="checked" src="/imgs/check-circle.png" alt="" />
 				<button class="button" on:click="{() => goto('/demo/journeys/dominique/job-secured')}"
-					>CONTINUE</button
-				>
+					>CONTINUE</button>
 			{:else}
 				<Loading img="/imgs/blue-loading.png" />
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text"
-					>{receivedCreds ? "Click continue to proceed" : "Awaiting on confirmation"}</Typography
-				>
+					>{receivedCreds ? "Click continue to proceed" : "Awaiting on confirmation"}</Typography>
 			</div>
 		</div>
 	</Modal>
 	<div class="heading">
 		<Typography variant="heading"
 			><Highlight>You’ve got the job! Congratulations,</Highlight> Big Business Corp now wants to issue
-			you with your staff ID.</Typography
-		>
+			you with your staff ID.</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography
-			>Click the get staff ID button to receive your staff ID credential from Big Business Corp.</Typography
-		>
+			>Click the get staff ID button to receive your staff ID credential from Big Business Corp.</Typography>
 	</div>
 
 	<div class="dash">
 		<BigBusinessCorp>
 			<div class="card">
 				<div class="left">
-					<img src="{`/imgs/${$dominiqueSelectedCourse}.png`}" alt="" />
+					<img src="{dominqueCourses[$dominiqueSelectedCourse].img}" alt="" />
 
 					<div class="details">
 						<div class="heading">
 							<Typography variant="card-header" color="--bbc-blue"
-								>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography
-							>
+								>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography>
 						</div>
 
 						<div class="bars">
@@ -190,20 +218,20 @@
 					<div class="sub-text">
 						<Typography
 							>Big Business Corp would like to welcome you to the team and send you the following
-							credential:</Typography
-						>
+							credential:</Typography>
 					</div>
 					<div class="list">
 						<Typography variant="list">Big Business Corp Staff ID</Typography>
 					</div>
 
-					<button
-						class="button"
-						on:click="{() => {
-							showModal = true;
-							handleWait();
-						}}">Get Staff ID</button
-					>
+					<div class="button-container">
+						<button
+							class="button"
+							on:click="{() => {
+								showModal = true;
+								handleWait();
+							}}">Get Staff ID</button>
+					</div>
 				</div>
 			</div>
 		</BigBusinessCorp>

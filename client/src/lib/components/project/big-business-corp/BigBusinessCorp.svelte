@@ -36,7 +36,7 @@
 
 			.tabs {
 				position: absolute;
-				width: calc(50% - 180px);
+				width: calc(40% - 180px);
 				height: 10px;
 				bottom: 30px;
 				right: 40px;

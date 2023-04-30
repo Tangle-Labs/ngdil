@@ -31,6 +31,8 @@
 
 				img {
 					padding: 0;
+					height: 160px;
+					object-fit: cover;
 					width: 100%;
 					border-top-right-radius: 20px;
 					border-top-left-radius: 20px;
@@ -91,7 +93,7 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Modal, Loading } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { dominiqueSelectedCourse } from "$lib/stores/flows.store";
+	import { dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
 	let receivedCreds = false;
 
 	function handleWait() {
@@ -107,14 +109,12 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You’re in! Now let’s <Highlight>take a look at the courses</Highlight>available and select
-			the course you wish to study.</Typography
-		>
+			the course you wish to study.</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography
 			>Click the enrol now button to select the course you wish to study to begin the application
-			process.</Typography
-		>
+			process.</Typography>
 	</div>
 	<Modal bind:isOpen="{showModal}">
 		<div class="modal-content">
@@ -122,8 +122,7 @@
 			<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-red-900"
 				>{receivedCreds
 					? "KW1C HAS RECEIVED YOUR APPLICATION CREDENTIALS."
-					: "KW1C IS REQUESTING YOU SHARE YOUR CREDENTIALS FOR COURSE APPLICATION"}</Typography
-			>
+					: "KW1C IS REQUESTING YOU SHARE YOUR CREDENTIALS FOR COURSE APPLICATION"}</Typography>
 			<div class="p">
 				{receivedCreds
 					? "You may continue further in the browser. "
@@ -132,15 +131,13 @@
 			{#if receivedCreds}
 				<img class="checked" src="/imgs/checked.png" alt="" />
 				<button class="button" on:click="{() => goto('/demo/journeys/dominique/study')}"
-					>CONTINUE</button
-				>
+					>CONTINUE</button>
 			{:else}
 				<Loading img="/imgs/blue-loading.png" />
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text"
-					>{receivedCreds ? "Click continue to proceed" : "Waiting for credentials"}</Typography
-				>
+					>{receivedCreds ? "Click continue to proceed" : "Waiting for credentials"}</Typography>
 			</div>
 		</div>
 	</Modal>
@@ -148,73 +145,27 @@
 		<Kw1c variant="white">
 			<div class="content">
 				<div class="courses">
-					<div class="course">
-						<img src="/imgs/engineer.png" alt="" />
-						<div class="subtext">
-							<Typography variant="sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>ENGINEERING AND LABORATORY</Typography
-							>
-						</div>
-						<div class="title">
-							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>FUTURE ENGINEER</Typography
-							>
-						</div>
+					{#each dominqueCourses as course, i (course.name)}
+						<div class="course">
+							<img src="{course.img}" alt="" />
+							<div class="subtext">
+								<Typography variant="sub-text" fontVariant="kw1c" color="--kw1c-red-900"
+									>{course.category.toUpperCase()}</Typography>
+							</div>
+							<div class="title">
+								<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
+									>{course.name.toUpperCase()}</Typography>
+							</div>
 
-						<button
-							class="button"
-							on:click="{() => {
-								showModal = true;
-								dominiqueSelectedCourse.set('engineer');
-								handleWait();
-							}}">ENROL NOW</button
-						>
-					</div>
-					<div class="course">
-						<img src="/imgs/dentist.png" alt="" />
-						<div class="subtext">
-							<Typography variant="sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>CARE AND WELFARE</Typography
-							>
+							<button
+								class="button"
+								on:click="{() => {
+									showModal = true;
+									dominiqueSelectedCourse.set(i);
+									handleWait();
+								}}">ENROL NOW</button>
 						</div>
-						<div class="title">
-							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>DENTAL ASSISTANT</Typography
-							>
-						</div>
-
-						<button
-							class="button"
-							on:click="{() => {
-								showModal = true;
-								dominiqueSelectedCourse.set('dentist');
-								handleWait();
-							}}">ENROL NOW</button
-						>
-					</div>
-
-					<div class="course">
-						<img src="/imgs/designer.png" alt="" />
-						<div class="subtext">
-							<Typography variant="sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>CREATIVE / MEDIA, ICT AND DESIGN</Typography
-							>
-						</div>
-						<div class="title">
-							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>MEDIA DESIGNER</Typography
-							>
-						</div>
-
-						<button
-							on:click="{() => {
-								showModal = true;
-								dominiqueSelectedCourse.set('designer');
-								handleWait();
-							}}"
-							class="button">ENROL NOW</button
-						>
-					</div>
+					{/each}
 				</div>
 			</div>
 		</Kw1c>

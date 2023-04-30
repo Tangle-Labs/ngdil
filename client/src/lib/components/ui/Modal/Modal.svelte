@@ -1,6 +1,6 @@
 <style lang="scss">
 	.backdrop {
-		position: absolute;
+		position: fixed;
 		top: 0;
 		left: 0;
 		display: flex;
@@ -12,7 +12,7 @@
 	}
 
 	.modal {
-		position: absolute;
+		position: fixed;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
@@ -40,16 +40,14 @@
 
 	export let isOpen = false;
 	export let withBorder = false;
+	export let withoutPadding = false;
 </script>
 
 {#if isOpen}
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div class="backdrop" on:click="{() => (isOpen = false)}" transition:fade></div>
 	<div class="modal" transition:fly="{{ y: 50, duration: 400 }}">
-		<Card withBorder="{withBorder}">
-			<div class="modal-header">
-				<slot name="header" />
-			</div>
+		<Card withBorder="{withBorder}" withoutPadding="{withoutPadding}">
 			<slot />
 		</Card>
 	</div>

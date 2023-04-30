@@ -191,6 +191,8 @@
 	import { Typography, Kw1c, Modal, Loading, Radio } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
+		dominqueCourses,
+		peterAssignecCompanyCountry,
 		peterAssignedBadges,
 		peterAssignedCompany,
 		peterAssignedStudent,
@@ -215,14 +217,12 @@
 				with:<br />
 			</Typography>
 			<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-				>{$peterAssignedCompany}</Typography
-			>
+				>{$peterAssignedCompany}</Typography>
 			<div class="p">
 				Click the ASSIGN INTERNSHIP button to assign your student internship placement.
 			</div>
 			<button class="button" on:click="{() => goto('/demo/journeys/peter/student-placed')}"
-				>ISSUE BADGES</button
-			>
+				>ISSUE BADGES</button>
 			<div class="subtext">
 				<Typography variant="sub-text" />
 			</div>
@@ -232,8 +232,7 @@
 	<div class="heading">
 		<Typography variant="heading">
 			{$peterAssignedStudent?.split(" ")[0]} has <Highlight
-				>two relevant internship opportunities.</Highlight
-			> Let’s assign their placement.
+				>two relevant internship opportunities.</Highlight> Let’s assign their placement.
 		</Typography>
 	</div>
 	<div class="sub-text">
@@ -261,8 +260,7 @@
 							</div>
 							<div class="content">
 								<Typography fontVariant="kw1c" variant="heading" color="--kw1c-blue-900"
-									>{$peterAssignedStudent}</Typography
-								>
+									>{$peterAssignedStudent}</Typography>
 							</div>
 						</div>
 
@@ -272,57 +270,33 @@
 							</div>
 							<div class="content">
 								<Typography fontVariant="kw1c" variant="list" color="--kw1c-red-900"
-									>3D Print Design</Typography
-								>
+									>3D Print Design</Typography>
 							</div>
 						</div>
 					</div>
 
-					<div class="card internship">
-						<img src="/imgs/engineer.png" alt="" />
-						<div class="intern-content">
-							<div class="location">
-								<Typography variant="status" fontVariant="kw1c" color="--kw1c-red-900"
-									>Cork, Ireland</Typography
-								>
+					{#each dominqueCourses[2].internships as internship}
+						<div class="card internship">
+							<img src="/imgs/engineer.png" alt="" />
+							<div class="intern-content">
+								<div class="location">
+									<Typography variant="status" fontVariant="kw1c" color="--kw1c-red-900"
+										>{internship.location}</Typography>
+								</div>
+								<div class="org">
+									<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
+										>{internship.name}</Typography>
+								</div>
+								<button
+									class="button"
+									on:click="{() => {
+										peterAssignedCompany.set(internship.name);
+										peterAssignecCompanyCountry.set(internship.location.split(',')[1]);
+										showModal = true;
+									}}">ASSIGN PLACEMENT</button>
 							</div>
-							<div class="org">
-								<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>Irish Future Print Co.</Typography
-								>
-							</div>
-							<button
-								class="button"
-								on:click="{() => {
-									peterAssignedCompany.set('Irish Future Print Co.');
-									showModal = true;
-								}}">ASSIGN PLACEMENT</button
-							>
 						</div>
-					</div>
-
-					<div class="card internship">
-						<img src="/imgs/engineer.png" alt="" />
-						<div class="intern-content">
-							<div class="location">
-								<Typography variant="status" fontVariant="kw1c" color="--kw1c-red-900"
-									>Oslo, Norway</Typography
-								>
-							</div>
-							<div class="org">
-								<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>3D Printers Norge</Typography
-								>
-							</div>
-							<button
-								class="button"
-								on:click="{() => {
-									peterAssignedCompany.set('3D Printers Norge');
-									showModal = true;
-								}}">ASSIGN PLACEMENT</button
-							>
-						</div>
-					</div>
+					{/each}
 				</div>
 			</div>
 		</Kw1c>

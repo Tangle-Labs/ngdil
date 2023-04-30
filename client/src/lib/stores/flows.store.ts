@@ -8,28 +8,43 @@ export const currentJourney = persisted<Journeys | null>("journeySelected", null
  * Dominique Courses
  */
 
-export const dominiqueSelectedCourse = persisted<"engineer" | "dentist" | "designer" | null>(
-	"dominique-selectedCourse",
-	null
-);
+export const dominiqueSelectedCourse = persisted<number | null>("dominique-selectedCourse", null);
 export const dominiqueEarnedCourseCred = persisted("dominique-earnedCourseCred", false);
 export const dominiqueSharedCred = persisted("dominique-earnedSharedCred", false);
 export const dominiqueAppliedForJob = persisted("dominique-appliedForJob", false);
 
-export const dominqueCourses = {
-	engineer: {
-		category: "ENGINEERING AND LABORATORY",
-		name: "FUTURE ENGINEER"
+export const dominqueCourses = [
+	{
+		category: "Construction",
+		name: "All Round Carpenter",
+		jobName: "Carpenter Assistant",
+		img: "/imgs/carpenter.png",
+		internships: [
+			{ name: "Oak Carpentry Ltd", location: "Yorkshire, United Kingdom", img: "/imgs/oak.svg" },
+			{ name: "Horz Hamburg", location: "Hamburg, Germany", img: "/imgs/holz.svg" }
+		]
 	},
-	dentist: {
-		category: "CARE AND WELFARE",
-		name: "DENTAL ASSISTANT"
+	{
+		category: "Marketing and Communications",
+		name: "Marketing Communications",
+		jobName: "Marketing Assistant",
+		img: "/imgs/marketing.png",
+		internships: [
+			{ name: "Madrid Marketing", location: "Madrid, Spain", img: "/imgs/madrid.svg" },
+			{ name: "Marketing Masters Monaco", location: "Monte Carlo, Monaco", img: "/imgs/monaco.svg" }
+		]
 	},
-	designer: {
-		category: "CREATIVE / MEDIA, ICT AND DESIGN",
-		name: "MEDIA DESIGNER"
+	{
+		category: "Engineering and Laboratory",
+		name: "Future Engineer",
+		jobName: "3d Future Engineer",
+		img: "/imgs/engineer.png",
+		internships: [
+			{ name: "3d Print Norge", location: "Oslo, Norway", img: "/imgs/norge.svg" },
+			{ name: "Irish Future Print Co.", location: "Dublin, Ireland", img: "/img/irish.svg" }
+		]
 	}
-};
+];
 
 /**
  * Peter Journey
@@ -47,6 +62,7 @@ export const peterAssignedStudent = persisted<
 	"Sarah Jones" | "Ivar Leifsson" | "Lagertha Bonde" | null
 >("peter-assignedStudent", null);
 export const peterAssignedCompany = persisted<string | null>("peter-assignedCompany", null);
+export const peterAssignecCompanyCountry = persisted<string>("peter-assignecCountry", "");
 
 /**
  * Imani's Journey

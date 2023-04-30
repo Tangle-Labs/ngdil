@@ -52,8 +52,7 @@
 	<div class="sub-text">
 		<Typography
 			>In your mobile wallet, scan the QR code & accept the connection request to login privately to
-			the Big Business Corp website.</Typography
-		>
+			the Big Business Corp website.</Typography>
 	</div>
 	<div class="dash">
 		<BigBusinessCorp>
@@ -68,15 +67,13 @@
 							on:click="{() => {
 								goto('/demo/journeys/dominique/view-jobs');
 							}}"
-							alt=""
-						/>
+							alt="" />
 						<div class="heading">
-							<Typography variant="card-header" color="--bbc-blue">Passwordless Login</Typography>
+							<Typography variant="card-header" color="--bbc-blue">Scan QR to Login</Typography>
 						</div>
 						<div class="desc">
 							<Typography variant="sub-text"
-								>Scan the QR to access the KW1C learners portal.</Typography
-							>
+								>Scan the QR to access the KW1C learners portal.</Typography>
 						</div>
 					</div>
 				</Card>

@@ -9,6 +9,7 @@
 
 	.typography {
 		color: var(--black-900);
+		line-height: 130%;
 	}
 
 	.heading {
@@ -60,5 +61,4 @@
 
 <span
 	class="{`typography ${variant} ${fontVariant}-font`}"
-	style="{color && `color: var(${color});`}"><slot /></span
->
+	style="{color && `color: var(${color});`}"><slot /></span>
