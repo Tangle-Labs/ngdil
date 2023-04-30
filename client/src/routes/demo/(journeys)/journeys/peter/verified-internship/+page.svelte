@@ -5,7 +5,6 @@
 		}
 
 		.card {
-			background: white;
 			width: 100%;
 
 			.card-content {
@@ -72,12 +71,11 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You’ve successfully <Highlight>evaluate, enrolled, trained, & verified</Highlight> your students
-			international internships.</Typography
-		>
+			international internships.</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography>Here is what you have achieved so far with your self-sovereign identity:</Typography
-		>
+		<Typography
+			>Here is what you have achieved so far with your self-sovereign identity:</Typography>
 	</div>
 	<div class="card">
 		<Card>
@@ -90,8 +88,7 @@
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
 						<Typography variant="list"
-							>Securely verified and confirmed student internships</Typography
-						>
+							>Securely verified and confirmed student internships</Typography>
 					</div>
 					<div class="p">
 						<Typography>

@@ -197,11 +197,12 @@
 		<Typography variant="heading">
 			{#if !receivedCreds}
 				To <Highlight
-					>confirm {$peterAssignedStudent.split(" ")[0]}’s internship completion,</Highlight> let’s request
-				the credentials for verification.
+					>confirm {$peterAssignedStudent.split(" ")[0]}’s internship completion,</Highlight
+				> let’s request the credentials for verification.
 			{:else}
 				It looks like {$peterAssignedStudent?.split(" ")[0]} had a very <Highlight
-					>successful international internship.</Highlight>
+					>successful international internship.</Highlight
+				>
 				Take a look at the verified credentials.
 			{/if}
 		</Typography>
@@ -210,7 +211,8 @@
 		<Typography
 			>{receivedCreds
 				? "Click the request credentials button to see verify the student credentials."
-				: "Make sure to check the credentials, and click continue to proceed"}</Typography>
+				: "Make sure to check the credentials, and click continue to proceed"}</Typography
+		>
 	</div>
 
 	<div class="dash">
@@ -228,7 +230,8 @@
 					<div class="student">
 						<div class="name">
 							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>{$peterChosenStudent}</Typography>
+								>{$peterChosenStudent}</Typography
+							>
 						</div>
 						<div class="course">
 							<Typography fontVariant="kw1c" color="--kw1c-red-900">3d Print Design</Typography>
@@ -238,7 +241,8 @@
 						{#if receivedCreds}
 							<button
 								class="{`button ${loading && 'loading'}`}"
-								on:click="{() => goto('/demo/journeys/peter/verified-internship')}">
+								on:click="{() => goto('/demo/journeys/peter/verified-internship')}"
+							>
 								CONTINUE
 							</button>
 						{:else}
@@ -326,7 +330,8 @@
 									name="National ID"
 									issuer="The Government"
 									credential="{{ ...credentials.nationalId, 'Full Name': $peterChosenStudent }}"
-									logo="{'/imgs/gov.svg'}" />
+									logo="{'/imgs/gov.svg'}"
+								/>
 							</div>
 							<div class="data">
 								<CredModal
@@ -336,7 +341,8 @@
 										...credentials.collegeId,
 										'Student Name': $peterChosenStudent
 									}}"
-									logo="/imgs/kw1c-white.png" />
+									logo="/imgs/kw1c-white.png"
+								/>
 							</div>
 							<div class="data">
 								<CredModal
@@ -346,7 +352,8 @@
 										...credentials.collegeId,
 										'Student Name': $peterChosenStudent
 									}}"
-									logo="/imgs/kw1c-white.png" />
+									logo="/imgs/kw1c-white.png"
+								/>
 							</div>
 							<div class="data">
 								<CredModal
@@ -360,7 +367,8 @@
 										'Intern Name': $peterChosenStudent,
 										Issuer: $peterAssignedCompany,
 										Country: $peterAssignecCompanyCountry
-									}}" />
+									}}"
+								/>
 							</div>
 						{/if}
 					</div>
