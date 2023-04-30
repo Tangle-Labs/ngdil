@@ -31,11 +31,38 @@
 					.welcome {
 						padding-top: 20px;
 					}
+
+					.big-bar {
+						width: 70%;
+						height: 15px;
+						background: var(--black-300);
+						border-radius: 10px;
+						margin-top: 20px;
+					}
+
+					.bars {
+						width: 80%;
+						padding-left: 0 10%;
+						margin-top: 20px;
+
+						.bar {
+							width: 100%;
+							height: 10px;
+							background: var(--white-900);
+							margin: 10px 0;
+							border-radius: 10px;
+						}
+					}
 				}
 
 				.cards {
 					width: 50%;
 					margin: 0px 20px;
+					.header,
+					img,
+					.issued-by {
+						padding-bottom: 15px;
+					}
 					.card {
 						height: 30%;
 						width: 100%;
@@ -64,7 +91,7 @@
 						}
 
 						.pic {
-							height: 70px;
+							height: 100px;
 							width: 100px;
 							background: var(--white-700);
 							border-radius: 10px;
@@ -76,10 +103,10 @@
 
 							.bar {
 								width: 100%;
-								height: 10px;
+								height: 12.5px;
 								border-radius: 10px;
 								background: var(--white-900);
-								margin: 10px;
+								margin: 10px 0;
 
 								&:nth-of-type(1) {
 									width: 70%;
@@ -184,8 +211,7 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You <Highlight>shared your credential</Highlight> and an interested employer has messaged you
-			after seeing your skills.</Typography
-		>
+			after seeing your skills.</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography>Click view message to see what the employer has to say.</Typography>
@@ -194,8 +220,7 @@
 		<div class="modal-content">
 			<div class="heading">
 				<Typography variant="card-header" color="--open-jobs-blue-900"
-					>from Big Business Corp.</Typography
-				>
+					>from Big Business Corp.</Typography>
 			</div>
 			<div class="message">
 				<Typography>
@@ -212,8 +237,7 @@
 				</Typography>
 			</div>
 			<button class="button" on:click="{() => goto('/demo/journeys/dominique/shared-cred')}"
-				>CONTINUE</button
-			>
+				>CONTINUE</button>
 			<div class="subtext">
 				<Typography variant="sub-text">Click continue to proceed</Typography>
 			</div>
@@ -227,22 +251,27 @@
 					<div class="welcome">
 						<Typography variant="button">Welcome, Dominique Veritas</Typography>
 					</div>
+
+					<div class="big-bar"></div>
+					<div class="bars">
+						<div class="bar"></div>
+						<div class="bar"></div>
+						<div class="bar"></div>
+					</div>
 				</div>
 
 				<div class="cards">
 					<div class="card card-1">
 						<div class="sub-text">
 							<Typography variant="sub-text"
-								>Dominique Veritas just shared a new credential</Typography
-							>
+								>Dominique Veritas just shared a new credential</Typography>
 						</div>
 						<div class="details">
 							<img src="/imgs/kw1c-white.png" class="logo" alt="" />
 							<div class="text">
 								<div class="heading">
 									<Typography variant="button"
-										>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography
-									>
+										>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography>
 								</div>
 								<div class="sub-text">
 									<Typography variant="sub-text">Issued by Konning Willem 1 College</Typography>
@@ -272,8 +301,8 @@
 
 				<div class="share">
 					<div class="credential">
-						<Typography variant="card-header" color="--open-jobs-blue-900">Your Messages</Typography
-						>
+						<Typography variant="card-header" color="--open-jobs-blue-900"
+							>Your Messages</Typography>
 					</div>
 					<img src="/imgs/inbox.png" alt="" class="logo" />
 					<div class="credential">
@@ -286,8 +315,7 @@
 						class="button"
 						on:click="{() => {
 							showModal = true;
-						}}">View Message</button
-					>
+						}}">View Message</button>
 				</div>
 			</div>
 		</OpenJobsNetwork>
