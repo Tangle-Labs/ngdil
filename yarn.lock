@@ -11313,6 +11313,11 @@ svelte-check@^2.7.1:
     svelte-preprocess "^4.0.0"
     typescript "*"
 
+svelte-confetti@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/svelte-confetti/-/svelte-confetti-1.2.2.tgz#87e96d19ce859af40b099535cfd406bf38245770"
+  integrity sha512-LkvWO732jRNmYykWi0IOK7xoBX241p+p+tC7Ef1EcO3TK9b9lpB/vYqKkcwVya+onG2SgQsX2g+JVbVKxq5ixQ==
+
 svelte-dev-helper@^1.1.9:
   version "1.1.9"
   resolved "https://registry.yarnpkg.com/svelte-dev-helper/-/svelte-dev-helper-1.1.9.tgz#7d187db5c6cdbbd64d75a32f91b8998bde3273c3"
