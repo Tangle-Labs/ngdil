@@ -2,7 +2,38 @@
 
 @font-face {
 	font-family: "TWK";
+	src: url("/fonts/TWKLausannePan-300.woff2") format("woff2");
+	font-weight: 300;
+}
+
+@font-face {
+	font-family: "TWK";
 	src: url("/fonts/TWKLausannePan-400.woff2") format("woff2");
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: "TWK";
+	src: url("/fonts/TWKLausannePan-500.woff2") format("woff2");
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: "TWK";
+	src: url("/fonts/TWKLausannePan-600.woff2") format("woff2");
+	font-weight: 600;
+}
+
+@font-face {
+	font-family: "TWK";
+	src: url("/fonts/TWKLausannePan-700.woff2") format("woff2");
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: "TWK";
+	src: url("/fonts/TWKLausannePan-800.woff2") format("woff2");
+	font-weight: 800;
 }
 
 :root {
