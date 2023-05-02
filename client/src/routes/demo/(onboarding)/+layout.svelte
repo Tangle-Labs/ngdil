@@ -5,7 +5,7 @@
 		padding: 0;
 		margin: 0;
 		box-sizing: border-box;
-		padding: 15vh 20vw;
+		padding: 15vh 22.5vw;
 
 		& > .container {
 			display: flex;

@@ -1,7 +1,7 @@
 <style lang="scss">
 	.card {
 		box-shadow: 0px 8px 28px rgba(20, 20, 43, 0.1);
-
+		background: white;
 		padding: 15px;
 		border-radius: 10px;
 

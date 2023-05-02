@@ -71,15 +71,14 @@
 	<div class="heading">
 		<Typography variant="heading"
 			><Highlight>You are now an employee of the Big Business Corp.</Highlight> Let’s see what you have
-			achieved.</Typography
-		>
+			achieved.</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography>Here is what you have achieved so far with your self-sovereign identity:</Typography
-		>
+		<Typography
+			>Here is what you have achieved so far with your self-sovereign identity:</Typography>
 	</div>
 	<div class="card">
-		<Card>
+		<Card withBorder="{true}">
 			<div class="card-content">
 				<div class="content">
 					<div class="list">

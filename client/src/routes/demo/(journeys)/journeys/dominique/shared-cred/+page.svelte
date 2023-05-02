@@ -71,15 +71,14 @@
 	<div class="heading">
 		<Typography variant="heading"
 			><Highlight>A new credential, a job invite,</Highlight> all that’s left to do now is to land that
-			job.</Typography
-		>
+			job.</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography>Here is what you have achieved so far with your self-sovereign identity:</Typography
-		>
+		<Typography
+			>Here is what you have achieved so far with your self-sovereign identity:</Typography>
 	</div>
 	<div class="card">
-		<Card>
+		<Card withBorder="{true}">
 			<div class="card-content">
 				<div class="content">
 					<div class="list">
