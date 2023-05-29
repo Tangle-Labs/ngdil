@@ -30,11 +30,30 @@
 					padding-bottom: 0px;
 				}
 
+				.bars {
+					width: 100%;
+					margin-top: 30px;
+
+					.bar {
+						height: 10px;
+						margin: 10px 20%;
+						box-sizing: border-box;
+						border-radius: 10px;
+						background-color: var(--white-900);
+
+						&:last-of-type {
+							margin: 10px 25%;
+						}
+					}
+				}
+
 				img {
 					padding: 0;
 					width: 100%;
 					border-top-right-radius: 20px;
 					border-top-left-radius: 20px;
+					height: 175px;
+					object-fit: cover;
 				}
 			}
 		}
@@ -99,9 +118,11 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, BigBusinessCorp, Modal, Loading } from "$lib/components";
-	import { dominiqueSelectedCourse } from "$lib/stores/flows.store";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
+	import { dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
 
-	function handleClick() {
+	function handleClick(i: number) {
+		if ($dominiqueSelectedCourse !== i) return;
 		goto("/demo/journeys/dominique/finalize-application");
 	}
 </script>
@@ -109,8 +130,8 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>There are a few jobs available. Let’s select the job to apply for that is relevant to our new
-			credential.</Typography
+			>There are a few jobs available. <Highlight>Let’s select the job to apply</Highlight> for that
+			is relevant to our new credential.</Typography
 		>
 	</div>
 	<div class="sub-text">
@@ -121,40 +142,25 @@
 		<BigBusinessCorp>
 			<div class="content">
 				<div class="courses">
-					<div class="course">
-						<img src="/imgs/engineer.png" alt="" />
-						<div class="title">
-							<Typography variant="card-header" color="--bbc-blue">Future Engineer</Typography>
+					{#each dominqueCourses as course, i (course.name)}
+						<div class="course">
+							<img src="{course.img}" alt="" />
+							<div class="title">
+								<Typography variant="card-header" color="--bbc-blue">{course.jobName}</Typography>
+							</div>
+							<div class="bars">
+								<div class="bar"></div>
+								<div class="bar"></div>
+							</div>
+
+							<button
+								class="{`button ${$dominiqueSelectedCourse !== i && 'disabled'}`}"
+								on:click="{() => {
+									handleClick(i);
+								}}">Apply Now</button
+							>
 						</div>
-
-						<button
-							class="{`button ${$dominiqueSelectedCourse !== 'engineer' && 'disabled'}`}"
-							on:click="{handleClick}">Apply Now</button
-						>
-					</div>
-					<div class="course">
-						<img src="/imgs/dentist.png" alt="" />
-
-						<div class="title">
-							<Typography variant="card-header" color="--bbc-blue">Dental Assistant</Typography>
-						</div>
-
-						<button
-							class="{`button ${$dominiqueSelectedCourse !== 'dentist' && 'disabled'}`}"
-							on:click="{handleClick}">Apply Now</button
-						>
-					</div>
-
-					<div class="course">
-						<img src="/imgs/designer.png" alt="" />
-						<div class="title">
-							<Typography variant="card-header" color="--bbc-blue">Media Designer</Typography>
-						</div>
-						<button
-							class="{`button ${$dominiqueSelectedCourse !== 'designer' && 'disabled'}`}"
-							on:click="{handleClick}">Apply Now</button
-						>
-					</div>
+					{/each}
 				</div>
 			</div>
 		</BigBusinessCorp>

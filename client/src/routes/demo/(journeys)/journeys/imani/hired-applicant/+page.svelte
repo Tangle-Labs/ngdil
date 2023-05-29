@@ -5,7 +5,6 @@
 		}
 
 		.card {
-			background: white;
 			width: 100%;
 
 			.card-content {
@@ -58,7 +57,7 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, Card, Button } from "$lib/components";
+	import { Typography, Card, Button, Hightlight } from "$lib/components";
 	import { imaniHiredEmployee } from "$lib/stores/flows.store";
 
 	function handleFinishCourse() {
@@ -70,8 +69,8 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>You’ve already successfully verified and hired a new employee. Let’s get them trained up
-			next.</Typography
+			>You’ve already <Hightlight>successfully verified and hired</Hightlight> a new employee. Let’s
+			get them trained up next.</Typography
 		>
 	</div>
 	<div class="sub-text">
@@ -79,7 +78,7 @@
 		>
 	</div>
 	<div class="card">
-		<Card>
+		<Card withBorder="{true}">
 			<div class="card-content">
 				<div class="content">
 					<div class="list">

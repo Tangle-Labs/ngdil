@@ -94,6 +94,11 @@
 							width: 10%;
 						}
 
+						&:nth-of-type(5) {
+							padding: 0px 10px;
+							width: 30px;
+						}
+
 						.data,
 						.circle-container,
 						.button-container {
@@ -137,12 +142,12 @@
 		border: none;
 		background: var(--kw1c-red-900);
 		color: var(--white-300);
-		font-size: var(--button-text-size);
+		font-size: 20px;
+		font-weight: 500;
 		width: calc(100% - 40px);
-		margin: 20px;
 		box-sizing: border-box;
 		border-radius: 40px;
-		padding: 10px;
+		padding: 12px;
 		margin-bottom: 0;
 		transition: 0.5s all;
 
@@ -164,9 +169,14 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, Kw1c, Modal, Loading } from "$lib/components";
+	import { Typography, Kw1c, Modal, Loading, CredModal } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
+	import { credentials } from "$lib/stores/creds";
 	import {
 		dominiqueSelectedCourse,
+		dominqueCourses,
+		peterAssignecCompanyCountry,
+		peterAssignedCompany,
 		peterAssignedStudent,
 		peterChosenStudent
 	} from "$lib/stores/flows.store";
@@ -186,10 +196,13 @@
 	<div class="heading">
 		<Typography variant="heading">
 			{#if !receivedCreds}
-				To confirm {$peterAssignedStudent.split(" ")[0]}’s internship completion, let’s request the
-				credentials for verification.
+				To <Highlight
+					>confirm {$peterAssignedStudent.split(" ")[0]}’s internship completion,</Highlight
+				> let’s request the credentials for verification.
 			{:else}
-				It looks like {$peterAssignedStudent?.split(" ")[0]} had a very successful international internship.
+				It looks like {$peterAssignedStudent?.split(" ")[0]} had a very <Highlight
+					>successful international internship.</Highlight
+				>
 				Take a look at the verified credentials.
 			{/if}
 		</Typography>
@@ -216,12 +229,14 @@
 				<div class="card-header">
 					<div class="student">
 						<div class="name">
-							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>{$peterChosenStudent}</Typography
+							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
+								>{$peterAssignedStudent?.toUpperCase()}</Typography
 							>
 						</div>
 						<div class="course">
-							<Typography fontVariant="kw1c" color="--kw1c-red-900">3d Print Design</Typography>
+							<Typography fontVariant="kw1c" variant="kw1c-sub-text" color="--kw1c-red-900"
+								>3d Print Design</Typography
+							>
 						</div>
 					</div>
 					<div class="button-container">
@@ -251,7 +266,7 @@
 								{:else if !receivedCreds}
 									<div class="circle"></div>
 								{:else}
-									<img src="imgs/verified.png" alt="" class="circle" />
+									<img src="/imgs/verified.png" alt="" class="circle" />
 								{/if}
 							</div>
 						{/each}
@@ -261,18 +276,18 @@
 							<Typography variant="sub-text" fontVariant="kw1c">Credential Type</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c">National ID</Typography>
-						</div>
-						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c">College ID</Typography>
-						</div>
-						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c">Course Badge</Typography>
+							<Typography variant="card-header" fontVariant="kw1c">KW1C COLLEGE ID</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c"
-								>Internationalisation Badge</Typography
+								>INTERNATIONALISATION BADGE</Typography
 							>
+						</div>
+						<div class="data">
+							<Typography variant="card-header" fontVariant="kw1c">INTERNSHIP BADGE</Typography>
+						</div>
+						<div class="data">
+							<Typography variant="card-header" fontVariant="kw1c">INTERNSHIP REFERENCE</Typography>
 						</div>
 					</div>
 
@@ -281,16 +296,24 @@
 							<Typography variant="sub-text" fontVariant="kw1c">Issuer</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c">The Government</Typography>
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c"
+								>Koning Willem 1 College</Typography
+							>
 						</div>
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c">Konning Willem 1 College</Typography>
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c"
+								>Koning Willem 1 College</Typography
+							>
 						</div>
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c">Konning Willem 1 College</Typography>
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c"
+								>{$peterAssignedCompany}</Typography
+							>
 						</div>
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c">Konning Willem 1 College</Typography>
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c"
+								>{$peterAssignedCompany}</Typography
+							>
 						</div>
 					</div>
 
@@ -307,6 +330,61 @@
 								{/if}
 							</div>
 						{/each}
+					</div>
+
+					<div class="column">
+						{#if receivedCreds}
+							<div class="header">
+								<Typography variant="sub-text" fontVariant="kw1c" color="--white-300">_</Typography>
+							</div>
+							<div class="data">
+								<CredModal
+									name="College ID"
+									issuer="Koning Willem 1 College"
+									credential="{{
+										...credentials.collegeId,
+										'Student Name': $peterChosenStudent
+									}}"
+									logo="/imgs/kw1c-white.png"
+								/>
+							</div>
+							<div class="data">
+								<CredModal
+									name="Internationalisation Badge"
+									issuer="Koning Willem 1 College"
+									logo="/imgs/kw1c-white.png"
+									credential="{{ ...credentials.internationalisation }}"
+								/>
+							</div>
+							<div class="data">
+								<CredModal
+									name="Internship Badge"
+									issuer="{$peterAssignedCompany}"
+									logo="{dominqueCourses[2].internships.find(
+										(i) => i.name === $peterAssignedCompany
+									).img}"
+									credential="{{
+										...credentials.internshipBadge,
+										'Intern Name': $peterChosenStudent,
+										Issuer: $peterAssignedCompany,
+										Country: $peterAssignecCompanyCountry
+									}}"
+								/>
+							</div>
+							<div class="data">
+								<CredModal
+									name="Internship Reference"
+									issuer="{$peterAssignedCompany}"
+									logo="{dominqueCourses[2].internships.find(
+										(i) => i.name === $peterAssignedCompany
+									).img}"
+									credential="{{
+										...credentials.internshipReference,
+										Country: $peterAssignecCompanyCountry
+									}}"
+								/>
+							</div>
+						{/if}
 					</div>
 				</div>
 			</div>

@@ -31,11 +31,38 @@
 					.welcome {
 						padding-top: 20px;
 					}
+
+					.big-bar {
+						width: 70%;
+						height: 15px;
+						background: var(--black-300);
+						border-radius: 10px;
+						margin-top: 20px;
+					}
+
+					.bars {
+						width: 80%;
+						padding-left: 0 10%;
+						margin-top: 20px;
+
+						.bar {
+							width: 100%;
+							height: 10px;
+							background: var(--white-900);
+							margin: 10px 0;
+							border-radius: 10px;
+						}
+					}
 				}
 
 				.cards {
 					width: 50%;
 					margin: 0px 20px;
+					.header,
+					img,
+					.issued-by {
+						padding-bottom: 15px;
+					}
 					.card {
 						height: 30%;
 						width: 100%;
@@ -64,7 +91,7 @@
 						}
 
 						.pic {
-							height: 70px;
+							height: 100px;
 							width: 100px;
 							background: var(--white-700);
 							border-radius: 10px;
@@ -76,10 +103,10 @@
 
 							.bar {
 								width: 100%;
-								height: 10px;
+								height: 12.5px;
 								border-radius: 10px;
 								background: var(--white-900);
-								margin: 10px;
+								margin: 10px 0;
 
 								&:nth-of-type(1) {
 									width: 70%;
@@ -102,6 +129,10 @@
 					justify-content: center;
 					flex-wrap: wrap;
 					text-align: center;
+
+					.credential {
+						width: 100%;
+					}
 
 					img {
 						height: 80px;
@@ -171,15 +202,21 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, OpenJobsNetwork, Avatar, Modal, Loading } from "$lib/components";
-	import { dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
+	import { currNode, dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 	let showModal = false;
+
+	onMount(() => {
+		currNode.set(2);
+	});
 </script>
 
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>You shared your credential and an interested employer has messaged you after seeing your
-			skills.</Typography
+			>You <Highlight>shared your credential</Highlight> and an interested employer has messaged you
+			after seeing your skills.</Typography
 		>
 	</div>
 	<div class="sub-text">
@@ -221,6 +258,13 @@
 					<Avatar variant="small" image="/imgs/dominique.png" />
 					<div class="welcome">
 						<Typography variant="button">Welcome, Dominique Veritas</Typography>
+					</div>
+
+					<div class="big-bar"></div>
+					<div class="bars">
+						<div class="bar"></div>
+						<div class="bar"></div>
+						<div class="bar"></div>
 					</div>
 				</div>
 
@@ -281,6 +325,7 @@
 						class="button"
 						on:click="{() => {
 							showModal = true;
+							currNode.set(3);
 						}}">View Message</button
 					>
 				</div>

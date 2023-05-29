@@ -6,18 +6,21 @@
 
 		.dash {
 			.card {
-				margin: 20px 10%;
+				margin: 0px 10%;
 				background: white;
-				border: 1px solid var(--white-900);
 				border-radius: 20px;
 				display: flex;
+				transform: translateY(30px);
+				filter: drop-shadow(0px 8px 28px rgba(20, 20, 43, 0.1));
 
 				.left {
 					padding-right: 10px;
+					width: 50%;
 
 					img {
 						border-top-left-radius: 20px;
 						border-bottom-right-radius: 20px;
+						width: 100%;
 					}
 
 					.heading {
@@ -49,6 +52,26 @@
 		}
 	}
 
+	.modal-header {
+		background: var(--bbc-blue);
+		width: 100%;
+		padding: 20px;
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		box-sizing: border-box;
+
+		img {
+			height: 30px;
+			padding-bottom: 5px;
+		}
+
+		& > .logo-text {
+			width: 100%;
+			text-align: center;
+		}
+	}
+
 	.modal-content {
 		width: 400px;
 		background: white;
@@ -61,6 +84,10 @@
 
 		& > * {
 			padding: 10px 0;
+		}
+
+		.p {
+			color: var(--black-500);
 		}
 
 		img {
@@ -76,16 +103,25 @@
 		}
 	}
 
+	.button-container {
+		width: 50%;
+
+		.button {
+			margin: 20px 0;
+		}
+	}
+
 	.button {
 		border: none;
 		background: var(--bbc-blue);
 		color: var(--white-300);
 		font-size: var(--button-text-size);
 		width: calc(100% - 40px);
+		font-weight: 500;
 		margin: 20px;
 		box-sizing: border-box;
 		border-radius: 40px;
-		padding: 10px;
+		padding: 12px;
 		margin-bottom: 0;
 		transition: 0.5s all;
 
@@ -100,7 +136,6 @@
 
 		&:hover {
 			cursor: pointer;
-			background: var(--blue-900);
 		}
 	}
 </style>
@@ -108,6 +143,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, BigBusinessCorp, Modal, Loading } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
 
 	let showModal = false;
@@ -121,9 +157,14 @@
 </script>
 
 <div class="container">
-	<Modal bind:isOpen="{showModal}">
-		<div class="modal-content">
+	<Modal withoutPadding="{true}" bind:isOpen="{showModal}">
+		<div class="modal-header">
 			<img src="/imgs/bbc.png" alt="" class="logo" />
+			<div class="logo-text">
+				<Typography color="--white-300" variant="card-header">Big Business Corp</Typography>
+			</div>
+		</div>
+		<div class="modal-content">
 			<Typography variant="card-header"
 				>{receivedCreds
 					? "Your application via digital CV has been received by Big Business Corp!"
@@ -151,8 +192,10 @@
 	</Modal>
 	<div class="heading">
 		<Typography variant="heading"
-			>Looks like you have all the credentials required. Let’s apply for the position and share your
-			credentials.</Typography
+			>Looks like you have all the credentials required. Let’s apply for the position and <Highlight
+			>
+				share your credentials.</Highlight
+			></Typography
 		>
 	</div>
 	<div class="sub-text">
@@ -165,7 +208,7 @@
 		<BigBusinessCorp>
 			<div class="card">
 				<div class="left">
-					<img src="{`/imgs/${$dominiqueSelectedCourse}.png`}" alt="" />
+					<img src="{dominqueCourses[$dominiqueSelectedCourse].img}" alt="" />
 
 					<div class="details">
 						<div class="heading">
@@ -203,13 +246,15 @@
 						<Typography variant="list">Personal Statement</Typography>
 					</div>
 
-					<button
-						class="button"
-						on:click="{() => {
-							showModal = true;
-							handleWait();
-						}}">Apply Now</button
-					>
+					<div class="button-container">
+						<button
+							class="button"
+							on:click="{() => {
+								showModal = true;
+								handleWait();
+							}}">Apply Now</button
+						>
+					</div>
 				</div>
 			</div>
 		</BigBusinessCorp>

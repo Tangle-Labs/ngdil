@@ -6,18 +6,22 @@
 
 		.dash {
 			.card {
-				margin: 20px 10%;
+				margin: 0px 10%;
 				background: white;
-				border: 1px solid var(--white-900);
 				border-radius: 20px;
+				filter: drop-shadow(0px 8px 28px rgba(20, 20, 43, 0.1));
+
 				display: flex;
+				transform: translateY(30px);
 
 				.left {
 					padding-right: 10px;
+					width: 50%;
 
 					img {
 						border-top-left-radius: 20px;
 						border-bottom-right-radius: 20px;
+						width: 100%;
 					}
 
 					.heading {
@@ -49,6 +53,26 @@
 		}
 	}
 
+	.modal-header {
+		background: var(--bbc-blue);
+		width: 100%;
+		padding: 20px;
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		box-sizing: border-box;
+
+		img {
+			height: 30px;
+			padding-bottom: 5px;
+		}
+
+		& > .logo-text {
+			width: 100%;
+			text-align: center;
+		}
+	}
+
 	.modal-content {
 		width: 400px;
 		background: white;
@@ -67,12 +91,23 @@
 			height: 60px;
 		}
 
+		.p {
+			color: var(--black-500);
+		}
+
 		.subtext {
 			width: 100%;
 		}
 
 		.checked {
 			height: 60px;
+		}
+	}
+
+	.button-container {
+		width: 50%;
+		.button {
+			margin: 20px 0;
 		}
 	}
 
@@ -85,7 +120,8 @@
 		margin: 20px;
 		box-sizing: border-box;
 		border-radius: 40px;
-		padding: 10px;
+		font-weight: 500;
+		padding: 12px;
 		margin-bottom: 0;
 		transition: 0.5s all;
 
@@ -108,6 +144,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, BigBusinessCorp, Modal, Loading } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
 
 	let showModal = false;
@@ -121,9 +158,14 @@
 </script>
 
 <div class="container">
-	<Modal bind:isOpen="{showModal}">
-		<div class="modal-content">
+	<Modal withoutPadding="{true}" bind:isOpen="{showModal}">
+		<div class="modal-header">
 			<img src="/imgs/bbc.png" alt="" class="logo" />
+			<div class="logo-text">
+				<Typography color="--white-300" variant="card-header">Big Business Corp</Typography>
+			</div>
+		</div>
+		<div class="modal-content">
 			<Typography variant="card-header"
 				>{receivedCreds
 					? "You have accepted the following credential:"
@@ -151,8 +193,8 @@
 	</Modal>
 	<div class="heading">
 		<Typography variant="heading"
-			>You’ve got the job! Congratulations, Big Business Corp now wants to issue you with your staff
-			ID.</Typography
+			><Highlight>You’ve got the job! Congratulations,</Highlight> Big Business Corp now wants to issue
+			you with your staff ID.</Typography
 		>
 	</div>
 	<div class="sub-text">
@@ -165,7 +207,7 @@
 		<BigBusinessCorp>
 			<div class="card">
 				<div class="left">
-					<img src="{`/imgs/${$dominiqueSelectedCourse}.png`}" alt="" />
+					<img src="{dominqueCourses[$dominiqueSelectedCourse].img}" alt="" />
 
 					<div class="details">
 						<div class="heading">
@@ -196,13 +238,15 @@
 						<Typography variant="list">Big Business Corp Staff ID</Typography>
 					</div>
 
-					<button
-						class="button"
-						on:click="{() => {
-							showModal = true;
-							handleWait();
-						}}">Get Staff ID</button
-					>
+					<div class="button-container">
+						<button
+							class="button"
+							on:click="{() => {
+								showModal = true;
+								handleWait();
+							}}">Get Staff ID</button
+						>
+					</div>
 				</div>
 			</div>
 		</BigBusinessCorp>

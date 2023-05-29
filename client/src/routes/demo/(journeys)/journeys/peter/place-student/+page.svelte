@@ -72,6 +72,8 @@
 
 						img {
 							width: 100%;
+							border-top-right-radius: 20px;
+							border-top-left-radius: 20px;
 						}
 
 						.intern-content {
@@ -143,6 +145,11 @@
 			padding: 10px 0;
 		}
 
+		.p {
+			color: var(--black-500);
+			font-weight: 300;
+		}
+
 		img {
 			height: 120px;
 		}
@@ -189,7 +196,10 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Modal, Loading, Radio } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
+		dominqueCourses,
+		peterAssignecCompanyCountry,
 		peterAssignedBadges,
 		peterAssignedCompany,
 		peterAssignedStudent,
@@ -209,18 +219,18 @@
 	<Modal bind:isOpen="{showModal}">
 		<div class="modal-content">
 			<img src="/imgs/kw1c-white.png" alt="" class="logo" />
-			<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-red-900"
+			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"
 				>You are about to assign {$peterAssignedStudent?.split(" ")[0]}'s an internship placement
 				with:<br />
 			</Typography>
-			<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
+			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
 				>{$peterAssignedCompany}</Typography
 			>
 			<div class="p">
 				Click the ASSIGN INTERNSHIP button to assign your student internship placement.
 			</div>
 			<button class="button" on:click="{() => goto('/demo/journeys/peter/student-placed')}"
-				>ISSUE BADGES</button
+				>ASSIGN PLACEMENT</button
 			>
 			<div class="subtext">
 				<Typography variant="sub-text" />
@@ -230,19 +240,19 @@
 
 	<div class="heading">
 		<Typography variant="heading">
-			Exciting times. You have successfully enrolled your students onto the internationalisation
-			course.
+			{$peterAssignedStudent?.split(" ")[0]} has <Highlight
+				>two relevant internship opportunities.</Highlight
+			> Let’s assign their placement.
 		</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography>
-			Click the continue button to proceed and see what you have achieved so far with self-sovereign
-			identity.
+			Click the assign placement button on the internship you wish to assign to the student.
 		</Typography>
 	</div>
 
 	<div class="dash">
-		<Kw1c variant="white">
+		<Kw1c variant="white" title="STUDENT INTERNSHIP PLACEMENT">
 			<div class="sidebar">
 				{#each Array(5) as i}
 					<div class="menu-item">
@@ -259,8 +269,8 @@
 								<Typography fontVariant="kw1c" variant="sub-text">Student Applicant</Typography>
 							</div>
 							<div class="content">
-								<Typography fontVariant="kw1c" variant="heading" color="--kw1c-blue-900"
-									>{$peterAssignedStudent}</Typography
+								<Typography fontVariant="kw1c" variant="kw1c-header" color="--kw1c-blue-900"
+									>{$peterAssignedStudent?.toUpperCase()}</Typography
 								>
 							</div>
 						</div>
@@ -270,58 +280,38 @@
 								<Typography fontVariant="kw1c" variant="sub-text">Internship Category</Typography>
 							</div>
 							<div class="content">
-								<Typography fontVariant="kw1c" variant="list" color="--kw1c-red-900"
+								<Typography fontVariant="kw1c" variant="kw1c-sub-text" color="--kw1c-red-900"
 									>3D Print Design</Typography
 								>
 							</div>
 						</div>
 					</div>
 
-					<div class="card internship">
-						<img src="/imgs/engineer.png" alt="" />
-						<div class="intern-content">
-							<div class="location">
-								<Typography variant="status" fontVariant="kw1c" color="--kw1c-red-900"
-									>Cork, Ireland</Typography
+					{#each dominqueCourses[2].internships as internship}
+						<div class="card internship">
+							<img src="/imgs/engineer.png" alt="" />
+							<div class="intern-content">
+								<div class="location">
+									<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
+										>{internship.location}</Typography
+									>
+								</div>
+								<div class="org">
+									<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
+										>{internship.name}</Typography
+									>
+								</div>
+								<button
+									class="button"
+									on:click="{() => {
+										peterAssignedCompany.set(internship.name);
+										peterAssignecCompanyCountry.set(internship.location.split(',')[1]);
+										showModal = true;
+									}}">ASSIGN PLACEMENT</button
 								>
 							</div>
-							<div class="org">
-								<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>Irish Future Print Co.</Typography
-								>
-							</div>
-							<button
-								class="button"
-								on:click="{() => {
-									peterAssignedCompany.set('Irish Future Print Co.');
-									showModal = true;
-								}}">ASSIGN PLACEMENT</button
-							>
 						</div>
-					</div>
-
-					<div class="card internship">
-						<img src="/imgs/engineer.png" alt="" />
-						<div class="intern-content">
-							<div class="location">
-								<Typography variant="status" fontVariant="kw1c" color="--kw1c-red-900"
-									>Oslo, Norway</Typography
-								>
-							</div>
-							<div class="org">
-								<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>3D Printers Norge</Typography
-								>
-							</div>
-							<button
-								class="button"
-								on:click="{() => {
-									peterAssignedCompany.set('3D Printers Norge');
-									showModal = true;
-								}}">ASSIGN PLACEMENT</button
-							>
-						</div>
-					</div>
+					{/each}
 				</div>
 			</div>
 		</Kw1c>

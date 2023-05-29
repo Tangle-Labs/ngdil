@@ -74,6 +74,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Button, Loading, Modal, Radio } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { imaniBadgeName, imaniChosenStaff, imaniIssuedStaff } from "$lib/stores/flows.store";
 
 	let staff = $imaniChosenStaff.map((s) => ({ ...s, selected: false }));
@@ -111,7 +112,8 @@
 	</Modal>
 	<div class="heading">
 		<Typography variant="heading"
-			>Not bad at all, the staff were successful in their training. Let’s issue them their badges.</Typography
+			>Not bad at all, the <Highlight>staff were successful in their training.</Highlight> Let’s issue
+			them their badges.</Typography
 		>
 	</div>
 	<div class="sub-text">

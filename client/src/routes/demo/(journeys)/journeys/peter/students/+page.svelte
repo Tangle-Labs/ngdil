@@ -91,6 +91,12 @@
 						.header {
 							padding-bottom: 20px;
 						}
+
+						&:last-of-type {
+							.data {
+								justify-content: center;
+							}
+						}
 					}
 				}
 			}
@@ -161,7 +167,8 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, Kw1c, Modal, Loading, Radio } from "$lib/components";
+	import { Typography, Kw1c, Button } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
 		peterAssignedBadges,
 		peterAssignedStudent,
@@ -180,19 +187,18 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading">
-			Exciting times. You have successfully enrolled your students onto the internationalisation
-			course.
+			Three students are ready to go. <Highlight>Choose the student you want</Highlight> to assign an
+			internship placement for.
 		</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography>
-			Click the continue button to proceed and see what you have achieved so far with self-sovereign
-			identity.
+			Click the assign placement button to choose the internship for the student.
 		</Typography>
 	</div>
 
 	<div class="dash">
-		<Kw1c variant="white">
+		<Kw1c variant="white" title="INERNSHIP APPLICANTS">
 			<div class="sidebar">
 				{#each Array(5) as i}
 					<div class="menu-item">
@@ -209,8 +215,8 @@
 						</div>
 						{#each $peterAssignedBadges as student (student)}
 							<div class="data">
-								<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>{student}</Typography
+								<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
+									>{student.toUpperCase()}</Typography
 								>
 							</div>
 						{/each}
@@ -223,7 +229,7 @@
 
 						{#each $peterAssignedBadges as student (student)}
 							<div class="data">
-								<Typography variant="list" fontVariant="kw1c" color="--kw1c-red-900"
+								<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
 									>3D Print Design</Typography
 								>
 							</div>
@@ -237,13 +243,14 @@
 
 						{#each $peterAssignedBadges as student (student)}
 							<div class="data">
-								<button
-									class="button"
-									on:click="{() => {
+								<Button
+									variant="kw1c"
+									label="ASSIGN PLACEMENT"
+									onClick="{() => {
 										peterAssignedStudent.set(student);
 										goto('/demo/journeys/peter/place-student');
-									}}">ASSIGN PLACEMENT</button
-								>
+									}}"
+								/>
 							</div>
 						{/each}
 					</div>

@@ -7,3 +7,4 @@ export { default as Typography } from "./Typography/Typography.svelte";
 export { default as ProgressBar } from "./ProgressBar/ProgressBar.svelte";
 export { default as Loading } from "./Loading/Loading.svelte";
 export { default as Radio } from "./Radio/Radio.svelte";
+export { default as Hightlight } from "./Highlight/Highlight.svelte";

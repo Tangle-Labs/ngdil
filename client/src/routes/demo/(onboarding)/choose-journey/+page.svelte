@@ -11,6 +11,7 @@
 
 		.desc {
 			padding-bottom: 5px;
+			width: 100%;
 		}
 		.sub-title {
 			padding-top: 0;
@@ -51,22 +52,22 @@
 			display: flex;
 			flex-wrap: wrap;
 			justify-content: center;
-			max-width: 500px;
+			max-width: 400px;
 		}
 
 		.right {
 			display: flex;
 			justify-content: center;
-			width: 500px;
+			width: 400px;
 			flex-wrap: wrap;
-			align-items: center;
-			align-content: center;
+			align-items: flex-start;
+			align-content: flex-start;
 			text-align: center;
 			padding: 10px 20px;
 
 			.qr {
-				height: 150px;
-				width: 150px;
+				height: 145px;
+				width: 145px;
 			}
 
 			.sub-text {
@@ -81,6 +82,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Loading, Card, Avatar, Button, Modal } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currentJourney } from "$lib/stores/flows.store";
 	import { currStep } from "$lib/stores/onboarding.store";
 
@@ -114,7 +116,7 @@
 </script>
 
 <div class="modal">
-	<Modal bind:isOpen="{isOpen}">
+	<Modal withBorder="{true}" bind:isOpen="{isOpen}">
 		{#if journey}
 			<div class="modal-content">
 				<div class="left">
@@ -184,7 +186,8 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>You’re all set! Let’s choose the user journey you would like to explore first.</Typography
+			>You’re all set! <Highlight>Let’s choose the user journey</Highlight> you would like to explore
+			first.</Typography
 		>
 	</div>
 	<div class="desc">
@@ -199,7 +202,7 @@
 	</div>
 	<div class="cards">
 		<div class="card">
-			<Card>
+			<Card withBorder="{true}">
 				<div class="card-content">
 					<Avatar image="/imgs/dominique.png" />
 					<div class="text">
@@ -226,7 +229,7 @@
 			</Card>
 		</div>
 		<div class="card">
-			<Card>
+			<Card withBorder="{true}">
 				<div class="card-content">
 					<Avatar image="/imgs/peter.png" />
 					<div class="text">
@@ -253,7 +256,7 @@
 			</Card>
 		</div>
 		<div class="card">
-			<Card>
+			<Card withBorder="{true}">
 				<div class="card-content">
 					<Avatar image="/imgs/imani.png" />
 					<div class="text">

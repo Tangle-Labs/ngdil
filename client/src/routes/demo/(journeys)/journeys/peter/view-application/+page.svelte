@@ -78,6 +78,14 @@
 						flex-wrap: wrap;
 						width: 20%;
 
+						&.badge {
+							width: 30px;
+						}
+
+						&:last-of-type {
+							padding-left: 10px;
+						}
+
 						&:nth-of-type(1) {
 							max-width: 60px;
 						}
@@ -137,12 +145,12 @@
 		border: none;
 		background: var(--kw1c-red-900);
 		color: var(--white-300);
-		font-size: var(--button-text-size);
+		font-size: 20px;
 		width: calc(100% - 40px);
-		margin: 20px;
 		box-sizing: border-box;
 		border-radius: 40px;
-		padding: 10px;
+		padding: 12px;
+		font-weight: 500;
 		margin-bottom: 0;
 		transition: 0.5s all;
 
@@ -164,7 +172,9 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, Kw1c, Modal, Loading } from "$lib/components";
+	import { Typography, Kw1c, Modal, Loading, CredModal } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
+	import { credentials } from "$lib/stores/creds";
 	import { dominiqueSelectedCourse, peterChosenStudent } from "$lib/stores/flows.store";
 	let receivedCreds = false;
 	let loading = false;
@@ -182,7 +192,9 @@
 	<div class="heading">
 		<Typography variant="heading">
 			{#if !receivedCreds}
-				To evaluate {$peterChosenStudent?.split(" ")[0]}’s eligibility let’s request the credentials
+				To evaluate {$peterChosenStudent?.split(" ")[0]}’s eligibility <Highlight>
+					let’s request the credentials</Highlight
+				>
 				required to participate in the internship.
 			{:else}
 				It appears {$peterChosenStudent?.split(" ")[0]} is missing an internationalisation badge. Let’s
@@ -199,7 +211,7 @@
 	</div>
 
 	<div class="dash">
-		<Kw1c variant="white">
+		<Kw1c variant="white" title="STUDENT APPLICANT">
 			<div class="sidebar">
 				{#each Array(5) as i}
 					<div class="menu-item">
@@ -212,12 +224,14 @@
 				<div class="card-header">
 					<div class="student">
 						<div class="name">
-							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>{$peterChosenStudent}</Typography
+							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
+								>{$peterChosenStudent?.toLocaleUpperCase()}</Typography
 							>
 						</div>
 						<div class="course">
-							<Typography fontVariant="kw1c" color="--kw1c-red-900">3d Print Design</Typography>
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
+								>3D PRINT DESIGN</Typography
+							>
 						</div>
 					</div>
 					<div class="button-container">
@@ -261,17 +275,17 @@
 							<Typography variant="sub-text" fontVariant="kw1c">Credential Type</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c">National ID</Typography>
+							<Typography variant="card-header" fontVariant="kw1c">NATIONAL ID</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c">College ID</Typography>
+							<Typography variant="card-header" fontVariant="kw1c">COLLEGE ID</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c">Course Badge</Typography>
+							<Typography variant="card-header" fontVariant="kw1c">COURSE BADGE</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c"
-								>Internationalisation Badge</Typography
+								>INTERNATIONALISATION BADGE</Typography
 							>
 						</div>
 					</div>
@@ -284,13 +298,13 @@
 							<Typography variant="list" fontVariant="kw1c">The Government</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c">Konning Willem 1 College</Typography>
+							<Typography variant="list" fontVariant="kw1c">Koning Willem 1 College</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c">Konning Willem 1 College</Typography>
+							<Typography variant="list" fontVariant="kw1c">Koning Willem 1 College</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c">Konning Willem 1 College</Typography>
+							<Typography variant="list" fontVariant="kw1c">Koning Willem 1 College</Typography>
 						</div>
 					</div>
 
@@ -311,6 +325,44 @@
 								{/if}
 							</div>
 						{/each}
+					</div>
+					<div class="column badge">
+						{#if receivedCreds}
+							<div class="header">
+								<Typography variant="sub-text" fontVariant="kw1c" color="--white-300">_</Typography>
+							</div>
+							<div class="data">
+								<CredModal
+									name="National ID"
+									issuer="The Government"
+									credential="{{ ...credentials.nationalId, 'Full Name': $peterChosenStudent }}"
+									logo="/imgs/gov.svg"
+								/>
+							</div>
+							<div class="data">
+								<CredModal
+									name="College ID"
+									issuer="Koning Willem 1 College"
+									credential="{{
+										...credentials.collegeId,
+										'Student Name': $peterChosenStudent
+									}}"
+									logo="/imgs/kw1c-white.png"
+								/>
+							</div>
+							<div class="data">
+								<CredModal
+									name="Course Badge"
+									issuer="Koning Willem 1 College"
+									logo="/imgs/kw1c-white.png"
+									credential="{{
+										...credentials.courseCred,
+										'Student Name': $peterChosenStudent
+									}}"
+								/>
+							</div>
+							<div class="data"></div>
+						{/if}
 					</div>
 				</div>
 			</div>

@@ -9,6 +9,7 @@ module.exports = {
 		"@storybook/addon-svelte-csf",
 		"storybook-dark-mode"
 	],
+	staticDirs: ["../static"],
 	framework: "@storybook/svelte",
 	core: {
 		builder: "@storybook/builder-vite"

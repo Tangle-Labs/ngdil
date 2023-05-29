@@ -163,7 +163,8 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, Kw1c, Modal, Loading, Radio } from "$lib/components";
+	import { Typography, Kw1c, Button } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
 		peterAssignedBadges,
 		peterAssignedStudent,
@@ -182,7 +183,7 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading">
-			Exciting times. You have successfully enrolled your students onto the internationalisation
+			Exciting times. <Highlight>You have successfully enrolled</Highlight> your students onto the internationalisation
 			course.
 		</Typography>
 	</div>
@@ -194,7 +195,7 @@
 	</div>
 
 	<div class="dash">
-		<Kw1c variant="white">
+		<Kw1c variant="white" title="INTERNATIONALISATION COURSE STUDENTS">
 			<div class="sidebar">
 				{#each Array(5) as i}
 					<div class="menu-item">
@@ -211,8 +212,8 @@
 						</div>
 						{#each $peterChosenStudents as student (student)}
 							<div class="data">
-								<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>{student}</Typography
+								<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
+									>{student.toUpperCase()}</Typography
 								>
 							</div>
 						{/each}
@@ -225,7 +226,7 @@
 
 						{#each $peterChosenStudents as student (student)}
 							<div class="data">
-								<Typography variant="list" fontVariant="kw1c" color="--kw1c-red-900"
+								<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
 									>3D Print Design</Typography
 								>
 							</div>
@@ -245,12 +246,13 @@
 					</div>
 				</div>
 				<div class="button-continue">
-					<button
-						class="button"
-						on:click="{() => {
+					<Button
+						label="CONTINUE"
+						variant="kw1c"
+						onClick="{() => {
 							goto('/demo/journeys/peter/enrolled-students');
-						}}">Continue</button
-					>
+						}}"
+					/>
 				</div>
 			</div>
 		</Kw1c>

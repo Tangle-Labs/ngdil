@@ -74,6 +74,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Button, Loading, Modal, Radio } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { imaniBadgeName, imaniChosenApplicant, imaniChosenStaff } from "$lib/stores/flows.store";
 
 	let staff = [
@@ -109,7 +110,8 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>There are four staff available for the new badge training. Select the staff to train.</Typography
+			>There are four staff <Highlight>available for the new badge training.</Highlight> Select the staff
+			to train.</Typography
 		>
 	</div>
 	<div class="sub-text">

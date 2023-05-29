@@ -73,6 +73,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Button, Loading, Modal, Badge } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
 		imaniBadgeColor,
 		imaniBadgeDesc,
@@ -85,14 +86,12 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>Future Tech Co. is big on employee development. Let’s create a new badge so we can train
-			staff.</Typography
+			>Your badge template is looking great. <Highlight>Let’s create the badge</Highlight> template so
+			it is available for trainees.</Typography
 		>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>Click the Create New Badge button to continue and create a new open badge template.</Typography
-		>
+		<Typography>Click the create badge button to confirm the badge template.</Typography>
 	</div>
 	<div class="dash">
 		<FutureTech header="COMPANY BADGES">

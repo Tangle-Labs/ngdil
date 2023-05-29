@@ -42,6 +42,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Avatar, Button } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { imaniHiredEmployee, imaniIssuedBadge } from "$lib/stores/flows.store";
 	import { currStep } from "$lib/stores/onboarding.store";
 </script>
@@ -49,8 +50,8 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>Hi Imani. Let’s get you hiring some experienced staff. Select your first experience to get
-			started.</Typography
+			>Hi Imani. Let’s <Highlight>get you hiring some experienced staff</Highlight>. Select your
+			first experience to get started.</Typography
 		>
 	</div>
 	<div class="desc">
@@ -61,7 +62,7 @@
 
 	<div class="cards">
 		<div class="card">
-			<Card>
+			<Card withBorder="{true}">
 				<div class="card-content">
 					<Avatar image="/imgs/pic-placeholder.png" />
 					<div class="text">
@@ -87,7 +88,7 @@
 		</div>
 
 		<div class="card">
-			<Card>
+			<Card withBorder="{true}">
 				<div class="card-content">
 					<Avatar image="/imgs/pic-placeholder.png" />
 					<div class="text">
@@ -115,5 +116,14 @@
 				</div>
 			</Card>
 		</div>
+		{#if $imaniHiredEmployee && $imaniIssuedBadge}
+			<div class="other">
+				<Button
+					variant="secondary"
+					onClick="{() => goto('/demo/choose-journey')}"
+					label="Try Another Journey"
+				/>
+			</div>
+		{/if}
 	</div>
 </div>

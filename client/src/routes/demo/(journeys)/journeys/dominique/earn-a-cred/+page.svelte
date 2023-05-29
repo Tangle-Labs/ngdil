@@ -7,18 +7,23 @@
 		.card {
 			width: 50%;
 			background: white;
-			width: 300px;
-			transform: translate(112.5%, 10%);
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
 
+			width: 250px;
 			.card-content {
-				padding: 20px;
+				padding: 10px;
 				display: flex;
-				justify-content: center;
+				justify-content: flex-start;
+
 				flex-wrap: wrap;
-				text-align: center;
+				text-align: left;
 
 				img {
 					padding: 20px 0;
+					width: 200px;
 				}
 			}
 		}
@@ -27,13 +32,32 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, Kw1c, Card } from "$lib/components";
+	import { Typography, Kw1c, Card, Hightlight, Phone } from "$lib/components";
+	import { currNode, nodeCount } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
+
+	let animatePhone = false;
+
+	const handleClick = () => {
+		animatePhone = true;
+		setTimeout(() => {
+			currNode.set(1);
+			goto("/demo/journeys/dominique/choose-course");
+		}, 12_000);
+	};
+
+	onMount(() => {
+		currNode.set(0);
+		nodeCount.set(5);
+	});
 </script>
 
 <div class="container">
+	<Phone variant="kw1c" bind:animatePhone="{animatePhone}" />
 	<div class="heading">
 		<Typography variant="heading"
-			>You've made it to the KW1C website, let's log in to enrol on your course of choice.</Typography
+			>You've made it to the <Hightlight>KW1C website, let's log in</Hightlight> to enrol on your course
+			of choice.</Typography
 		>
 	</div>
 	<div class="sub-text">
@@ -48,15 +72,11 @@
 				<Card>
 					<div class="card-content">
 						<div class="heading">
-							<Typography variant="heading" fontVariant="kw1c">LOGIN TO KW1C</Typography>
+							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
+								>LOGIN TO KW1C</Typography
+							>
 						</div>
-						<img
-							src="/imgs/qr.png"
-							on:click="{() => {
-								goto('/demo/journeys/dominique/choose-course');
-							}}"
-							alt=""
-						/>
+						<img src="/imgs/qr.png" on:click="{handleClick}" alt="" />
 						<div class="desc">
 							<Typography variant="button"
 								>Scan the QR to access the KW1C learners portal.</Typography

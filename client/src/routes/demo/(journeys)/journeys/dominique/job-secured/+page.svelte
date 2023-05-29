@@ -5,7 +5,6 @@
 		}
 
 		.card {
-			background: white;
 			width: 100%;
 
 			.card-content {
@@ -59,6 +58,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Button } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { dominiqueAppliedForJob, dominiqueEarnedCourseCred } from "$lib/stores/flows.store";
 
 	function handleFinishCourse() {
@@ -70,7 +70,8 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>You are now an employee of the Big Business Corp. Let’s see what you have achieved.</Typography
+			><Highlight>You are now an employee of the Big Business Corp.</Highlight> Let’s see what you have
+			achieved.</Typography
 		>
 	</div>
 	<div class="sub-text">
@@ -78,7 +79,7 @@
 		>
 	</div>
 	<div class="card">
-		<Card>
+		<Card withBorder="{true}">
 			<div class="card-content">
 				<div class="content">
 					<div class="list">

@@ -73,7 +73,7 @@
 							align-items: center;
 							align-content: center;
 							padding-bottom: 10px;
-							justify-content: center;
+							text-align: left;
 						}
 
 						.blue-bar {
@@ -126,12 +126,12 @@
 		border: none;
 		background: var(--kw1c-red-900);
 		color: var(--white-300);
-		font-size: var(--button-text-size);
+		font-size: 20px;
 		width: calc(100% - 40px);
-		margin: 20px;
 		box-sizing: border-box;
 		border-radius: 40px;
 		padding: 10px;
+		font-weight: 500;
 		margin-bottom: 0;
 		transition: 0.5s all;
 
@@ -144,7 +144,8 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, Kw1c, Modal, Loading } from "$lib/components";
+	import { Typography, Kw1c, Button } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { dominiqueSelectedCourse, peterChosenStudent } from "$lib/stores/flows.store";
 	let receivedCreds = false;
 
@@ -160,7 +161,8 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading">
-			Your students have competed their course. Let’s check their results and issue their badges.
+			Your <Highlight>students have competed their course.</Highlight> Let’s check their results and
+			issue their badges.
 		</Typography>
 	</div>
 	<div class="sub-text">
@@ -171,7 +173,7 @@
 	</div>
 
 	<div class="dash">
-		<Kw1c variant="white">
+		<Kw1c variant="white" title="ACTIVE COURSES">
 			<div class="sidebar">
 				{#each Array(5) as i}
 					<div class="menu-item">
@@ -187,7 +189,7 @@
 							<Typography variant="sub-text" fontVariant="kw1c">Course Name</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
+							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
 								>Internationalisation</Typography
 							>
 						</div>
@@ -223,12 +225,13 @@
 							>
 						</div>
 						<div class="button-container">
-							<button
-								class="button"
-								on:click="{() => {
+							<Button
+								label="VIEW RESULTS"
+								variant="kw1c"
+								onClick="{() => {
 									goto('/demo/journeys/peter/course-results');
-								}}">VIEW RESULTS</button
-							>
+								}}"
+							/>
 						</div>
 
 						<div class="button-container">

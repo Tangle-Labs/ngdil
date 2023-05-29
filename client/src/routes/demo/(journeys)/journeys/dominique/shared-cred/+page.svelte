@@ -5,7 +5,6 @@
 		}
 
 		.card {
-			background: white;
 			width: 100%;
 
 			.card-content {
@@ -59,18 +58,25 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Button } from "$lib/components";
-	import { dominiqueSharedCred } from "$lib/stores/flows.store";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
+	import { currNode, dominiqueSharedCred } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 
 	function handleFinishShare() {
 		dominiqueSharedCred.set(true);
 		goto("/demo/journeys/dominique");
 	}
+
+	onMount(() => {
+		currNode.set(4);
+	});
 </script>
 
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>A new credential, a job invite, all that’s left to do now is to land that job.</Typography
+			><Highlight>A new credential, a job invite,</Highlight> all that’s left to do now is to land that
+			job.</Typography
 		>
 	</div>
 	<div class="sub-text">
@@ -78,7 +84,7 @@
 		>
 	</div>
 	<div class="card">
-		<Card>
+		<Card withBorder="{true}">
 			<div class="card-content">
 				<div class="content">
 					<div class="list">

@@ -78,7 +78,9 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Button, Loading, Modal } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { imaniChosenApplicant } from "$lib/stores/flows.store";
+	import { Confetti } from "svelte-confetti";
 
 	let currStage: "init" | "loading" | "issued" = "init";
 	let showModal = false;
@@ -117,9 +119,14 @@
 	</Modal>
 	<div class="heading">
 		<Typography variant="heading"
-			>{currStage === "issued"
-				? "Great work. Gillian has received their employee ID card. Let’s continue to see what’s next."
-				: "Gillian has accepted your job offer and joined the system. Let’s issue their employee ID credential."}</Typography
+			>{#if currStage === "issued"}
+				Great work. {$imaniChosenApplicant?.split(" ")[0]} has <Highlight
+					>received their employee ID card.</Highlight
+				> Let’s continue to see what’s next.
+			{:else}
+				<Highlight>{$imaniChosenApplicant?.split(" ")[0]} has accepted your job offer</Highlight> and
+				joined the system. Let’s issue their employee ID credential.
+			{/if}</Typography
 		>
 	</div>
 	<div class="sub-text">
@@ -128,6 +135,18 @@
 				? "Click the continue button to proceed and see what you have achieved so far."
 				: "Click the issue ID button to issue Gillian with an employee ID credential from the company."}</Typography
 		>
+	</div>
+	<div
+		style="position: fixed; top: -50px; left: 0; height: 100vh; width: 100vw; display: flex; justify-content: center; overflow: hidden; pointer-events: none;"
+	>
+		<Confetti
+			x="{[-5, 5]}"
+			y="{[0, 0.1]}"
+			delay="{[500, 5000]}"
+			duration="2000"
+			amount="500"
+			fallDistance="100vh"
+		/>
 	</div>
 	<div class="dash">
 		<FutureTech header="COMPANY EMPLOYEES">

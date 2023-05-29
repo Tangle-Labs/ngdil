@@ -42,19 +42,27 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Avatar, Button } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
+		currNode,
 		dominiqueAppliedForJob,
 		dominiqueEarnedCourseCred,
-		dominiqueSharedCred
+		dominiqueSharedCred,
+		nodeCount
 	} from "$lib/stores/flows.store";
-	import { currStep } from "$lib/stores/onboarding.store";
+	import { onMount } from "svelte";
+
+	onMount(() => {
+		nodeCount.set(0);
+		currNode.set(0);
+	});
 </script>
 
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>Hi Dominique. Let’s get you started on your learning journey. Select your first experience to
-			get started.</Typography
+			>Hi Dominique. <Highlight>Let’s get you started on your learning journey.</Highlight>Select
+			your experienceto get started.</Typography
 		>
 	</div>
 	<div class="desc">
@@ -66,7 +74,7 @@
 
 	<div class="cards">
 		<div class="card">
-			<Card>
+			<Card withBorder="{true}">
 				<div class="card-content">
 					<Avatar image="/imgs/pic-placeholder.png" />
 					<div class="text">
@@ -85,6 +93,7 @@
 					<Button
 						variant="{$dominiqueEarnedCourseCred ? 'completed' : 'secondary'}"
 						onClick="{() => {
+							nodeCount.set(5);
 							goto('/demo/journeys/dominique/earn-a-cred');
 						}}"
 						label="{$dominiqueEarnedCourseCred ? 'Retry' : 'Get Started'}"
@@ -93,7 +102,7 @@
 			</Card>
 		</div>
 		<div class="card">
-			<Card>
+			<Card withBorder="{true}">
 				<div class="card-content">
 					<Avatar image="/imgs/pic-placeholder.png" />
 					<div class="text">
@@ -116,6 +125,7 @@
 							? 'secondary'
 							: 'disabled'}"
 						onClick="{() => {
+							nodeCount.set(4);
 							goto('/demo/journeys/dominique/share-a-cred');
 						}}"
 						label="{$dominiqueSharedCred ? 'Retry' : 'Get Started'}"
@@ -124,7 +134,7 @@
 			</Card>
 		</div>
 		<div class="card">
-			<Card>
+			<Card withBorder="{true}">
 				<div class="card-content">
 					<Avatar image="/imgs/pic-placeholder.png" />
 					<div class="text">
@@ -145,6 +155,7 @@
 							? 'secondary'
 							: 'disabled'}"
 						onClick="{() => {
+							nodeCount.set(5);
 							goto('/demo/journeys/dominique/apply-for-job');
 						}}"
 						label="{$dominiqueAppliedForJob ? 'Retry' : 'Get Started'}"
@@ -152,5 +163,14 @@
 				</div>
 			</Card>
 		</div>
+		{#if $dominiqueAppliedForJob && $dominiqueEarnedCourseCred && $dominiqueSharedCred}
+			<div class="other" style="{'padding-top: 20px'}">
+				<Button
+					variant="secondary"
+					onClick="{() => goto('/demo/choose-journey')}"
+					label="Try Another Journey"
+				/>
+			</div>
+		{/if}
 	</div>
 </div>

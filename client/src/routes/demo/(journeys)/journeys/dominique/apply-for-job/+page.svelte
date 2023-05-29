@@ -6,19 +6,28 @@
 
 		.card {
 			width: 50%;
-			background: white;
 			width: 300px;
-			transform: translate(112.5%, 10%);
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+
+			.text {
+				width: 100%;
+				text-align: center;
+				padding-bottom: 5px;
+			}
 
 			.card-content {
-				padding: 20px;
+				padding: 10px;
 				display: flex;
 				justify-content: center;
 				flex-wrap: wrap;
 				text-align: center;
-
 				img {
 					padding: 20px 0;
+					width: 250px;
+					padding-top: 0;
 				}
 			}
 		}
@@ -27,13 +36,24 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, BigBusinessCorp, Card } from "$lib/components";
+	import { Phone, Typography, BigBusinessCorp, Card } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
+
+	let animatePhone = false;
+	const handleClick = () => {
+		animatePhone = true;
+		setTimeout(() => {
+			goto("/demo/journeys/dominique/view-jobs");
+		}, 12_000);
+	};
 </script>
 
+<Phone variant="bbc" bind:animatePhone="{animatePhone}" />
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading">
-			You made it to the Big Business Corp website. Let’s login to view their jobs board.
+			You made it to the <Highlight>Big Business Corp website. Let’s login</Highlight> to view their
+			jobs board.
 		</Typography>
 	</div>
 	<div class="sub-text">
@@ -45,17 +65,14 @@
 	<div class="dash">
 		<BigBusinessCorp>
 			<div class="card">
+				<div class="text">
+					<Typography variant="card-header" color="--bbc-blue">Passwordless Login</Typography>
+				</div>
 				<Card>
 					<div class="card-content">
-						<img
-							src="/imgs/qr.png"
-							on:click="{() => {
-								goto('/demo/journeys/dominique/view-jobs');
-							}}"
-							alt=""
-						/>
+						<img src="/imgs/qr.png" on:click="{handleClick}" alt="" />
 						<div class="heading">
-							<Typography variant="card-header">Passwordless Login</Typography>
+							<Typography variant="card-header" color="--bbc-blue">Scan QR to Login</Typography>
 						</div>
 						<div class="desc">
 							<Typography variant="sub-text"

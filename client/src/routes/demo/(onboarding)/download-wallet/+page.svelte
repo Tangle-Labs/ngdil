@@ -60,7 +60,7 @@
 
 	<div class="cards">
 		<div class="card tl-wallet">
-			<Card>
+			<Card withBorder="{true}">
 				<div class="card-content">
 					<img src="/imgs/vira.png" />
 					<div class="wallet-name">
@@ -80,7 +80,7 @@
 			</Card>
 		</div>
 		<div class="card impierce-wallet">
-			<Card>
+			<Card withBorder="{true}">
 				<div class="card-content">
 					<img src="/imgs/impierce.png" />
 					<div class="wallet-name">

@@ -29,14 +29,15 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Button } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { imaniChosenApplicant } from "$lib/stores/flows.store";
 </script>
 
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>You’re in, and it appears you have three new applications. View applicants to choose who to
-			hire.</Typography
+			>You’re in, and it appears you have <Highlight>three new applications</Highlight>. View
+			applicants to choose who to hire.</Typography
 		>
 	</div>
 	<div class="sub-text">

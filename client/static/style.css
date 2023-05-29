@@ -1,8 +1,44 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Oswald:wght@300;400;500;600;700&display=swap");
 
+@font-face {
+	font-family: "TWK";
+	src: url("/fonts/TWKLausannePan-300.woff2") format("woff2");
+	font-weight: 300;
+}
+
+@font-face {
+	font-family: "TWK";
+	src: url("/fonts/TWKLausannePan-400.woff2") format("woff2");
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: "TWK";
+	src: url("/fonts/TWKLausannePan-500.woff2") format("woff2");
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: "TWK";
+	src: url("/fonts/TWKLausannePan-600.woff2") format("woff2");
+	font-weight: 600;
+}
+
+@font-face {
+	font-family: "TWK";
+	src: url("/fonts/TWKLausannePan-700.woff2") format("woff2");
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: "TWK";
+	src: url("/fonts/TWKLausannePan-800.woff2") format("woff2");
+	font-weight: 800;
+}
+
 :root {
-	--header-font: "Open Sans", sans-serif;
-	--body-font: "Open Sans", sans-serif;
+	--header-font: "TWK", sans-serif;
+	--body-font: "TWK", sans-serif;
 	--kw1c-font: "Oswald", sans-serif;
 
 	--box-shadow: 2px 2px 0px #001d49;
@@ -13,7 +49,7 @@
 		#ffffff;
 
 	--header-text-size: 2.25rem;
-	--card-header-size: 1.5rem;
+	--card-header-size: 1.375rem;
 	--button-text-size: 1.125rem;
 	--status-text-size: 1.125rem;
 	--list-text-size: 1.125rem;

@@ -25,11 +25,33 @@
 					padding: 20px;
 					box-sizing: border-box;
 					border-radius: 10px;
-					border: 1px solid var(--black-300);
+					border: 1px solid var(--white-700);
 					background: white;
 
 					.welcome {
 						padding-top: 20px;
+					}
+
+					.big-bar {
+						width: 70%;
+						height: 15px;
+						background: var(--black-300);
+						border-radius: 10px;
+						margin-top: 20px;
+					}
+
+					.bars {
+						width: 80%;
+						padding-left: 0 10%;
+						margin-top: 20px;
+
+						.bar {
+							width: 100%;
+							height: 10px;
+							background: var(--white-900);
+							margin: 10px 0;
+							border-radius: 10px;
+						}
 					}
 				}
 
@@ -44,28 +66,28 @@
 						border-radius: 10px;
 						box-sizing: border-box;
 						margin-bottom: 20px;
-						border: 1px solid var(--black-300);
+						border: 1px solid var(--white-700);
 						display: flex;
 						align-items: center;
 						align-content: center;
 
 						.pic {
-							height: 70px;
+							height: 100px;
 							width: 100px;
 							background: var(--white-700);
 							border-radius: 10px;
 						}
 
 						.bars {
-							padding: 0 15px;
+							padding: 0 12.5px;
 							width: calc(100% - 115px);
 
 							.bar {
 								width: 100%;
-								height: 10px;
+								height: 12.5px;
 								border-radius: 10px;
 								background: var(--white-900);
-								margin: 10px;
+								margin: 15px 10px;
 
 								&:nth-of-type(1) {
 									width: 70%;
@@ -82,12 +104,22 @@
 					width: 35%;
 					padding: 20px;
 					background: white;
-					border: 1px solid var(--black-300);
+					border: 1px solid var(--white-700);
 					border-radius: 10px;
 					display: flex;
 					justify-content: center;
 					flex-wrap: wrap;
 					text-align: center;
+
+					.header,
+					img,
+					.issued-by {
+						padding-bottom: 15px;
+					}
+
+					.credential {
+						width: 100%;
+					}
 
 					img {
 						height: 100px;
@@ -108,11 +140,12 @@
 		text-align: center;
 
 		& > * {
-			padding: 10px 0;
+			padding: 20px 0;
 		}
 
 		img {
-			height: 120px;
+			height: 80px;
+			padding-bottom: 20px;
 		}
 
 		.subtext {
@@ -147,7 +180,9 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, OpenJobsNetwork, Avatar, Modal, Loading } from "$lib/components";
-	import { dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
+	import { currNode, dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 	let receivedCreds = false;
 
 	function handleWait() {
@@ -156,14 +191,18 @@
 		}, 8000);
 	}
 
+	onMount(() => {
+		currNode.set(1);
+	});
+
 	let showModal = false;
 </script>
 
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>You’re all logged in to the Open Jobs Network. Now, share your credential with potential
-			employers.</Typography
+			>You’re all <Highlight>logged in to the Open Jobs Network.</Highlight> Now, share your credential
+			with potential employers.</Typography
 		>
 	</div>
 	<div class="sub-text">
@@ -207,6 +246,13 @@
 					<div class="welcome">
 						<Typography variant="button">Welcome, Dominique Veritas</Typography>
 					</div>
+					<div class="big-bar"></div>
+
+					<div class="bars">
+						<div class="bar"></div>
+						<div class="bar"></div>
+						<div class="bar"></div>
+					</div>
 				</div>
 
 				<div class="cards">
@@ -239,6 +285,9 @@
 				</div>
 
 				<div class="share">
+					<div class="header">
+						<Typography variant="list">Your Latest Credentials</Typography>
+					</div>
 					<img src="/imgs/kw1c-white.png" alt="" class="logo" />
 					<div class="credential">
 						<Typography variant="card-header"

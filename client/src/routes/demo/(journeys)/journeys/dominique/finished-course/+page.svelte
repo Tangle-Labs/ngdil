@@ -5,7 +5,6 @@
 		}
 
 		.card {
-			background: white;
 			width: 100%;
 
 			.card-content {
@@ -59,18 +58,25 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Button } from "$lib/components";
-	import { dominiqueEarnedCourseCred } from "$lib/stores/flows.store";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
+	import { currNode, dominiqueEarnedCourseCred, nodeCount } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 
 	function handleFinishCourse() {
+		currNode.set(0);
+		nodeCount.set(0);
 		dominiqueEarnedCourseCred.set(true);
 		goto("/demo/journeys/dominique");
 	}
+
+	onMount(() => currNode.set(5));
 </script>
 
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>Amazing, you’ve successfully enrolled with KW1C and earned your course credential.</Typography
+			>Amazing, <Highlight>you’ve successfully enrolled with KW1C</Highlight> and earned your course
+			credential.</Typography
 		>
 	</div>
 	<div class="sub-text">
@@ -78,7 +84,7 @@
 		>
 	</div>
 	<div class="card">
-		<Card>
+		<Card withBorder="{true}">
 			<div class="card-content">
 				<div class="content">
 					<div class="list">

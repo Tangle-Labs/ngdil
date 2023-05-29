@@ -111,6 +111,11 @@
 			padding: 10px 0;
 		}
 
+		.p {
+			color: var(--black-500);
+			font-weight: 300;
+		}
+
 		img {
 			height: 120px;
 		}
@@ -129,12 +134,14 @@
 		border: none;
 		background: var(--kw1c-red-900);
 		color: var(--white-300);
-		font-size: var(--button-text-size);
+		font-size: 20px;
 		width: calc(100% - 40px);
 		margin: 20px;
 		box-sizing: border-box;
 		border-radius: 40px;
-		padding: 10px;
+		padding: 12px;
+		font-weight: 500;
+
 		margin-bottom: 0;
 		transition: 0.5s all;
 
@@ -157,6 +164,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Modal, Loading, Radio } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { peterAssignedBadges, peterChosenStudents } from "$lib/stores/flows.store";
 
 	let students = {
@@ -181,7 +189,7 @@
 	<Modal bind:isOpen="{showModal}">
 		<div class="modal-content">
 			<img src="/imgs/kw1c-white.png" alt="" class="logo" />
-			<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-red-900"
+			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"
 				>YOU ARE ABOUT TO ISSUE {selected.length} STUDENT INTERNATIONALISATION COURSE BADGES</Typography
 			>
 			<div class="p">Click ISSUE BADGES button to issue the selected students.</div>
@@ -196,7 +204,8 @@
 
 	<div class="heading">
 		<Typography variant="heading">
-			All the students have passed! That’s great news. Let’s issue their course badges.
+			<Highlight>All the students have passed!</Highlight> That’s great news. Let’s issue their course
+			badges.
 		</Typography>
 	</div>
 	<div class="sub-text">
@@ -207,7 +216,7 @@
 	</div>
 
 	<div class="dash">
-		<Kw1c variant="white">
+		<Kw1c variant="white" title="INTERNATIONALISATION COURSE STUDENTS">
 			<div class="sidebar">
 				{#each Array(5) as i}
 					<div class="menu-item">
@@ -238,18 +247,18 @@
 							<Typography variant="sub-text" fontVariant="kw1c">Student Applicant</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Sarah Jones</Typography
+							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
+								>SARAH JONES</Typography
 							>
 						</div>
 						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Ivar Leifsson</Typography
+							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
+								>IVAR LEIFSSON</Typography
 							>
 						</div>
 						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Lagertha Bonde</Typography
+							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
+								>LAGERTHA BONDE</Typography
 							>
 						</div>
 					</div>
@@ -259,17 +268,17 @@
 							<Typography variant="sub-text" fontVariant="kw1c">Internship Category</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c" color="--kw1c-red-900"
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
 								>3D Print Design</Typography
 							>
 						</div>
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c" color="--kw1c-red-900"
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
 								>3D Print Design</Typography
 							>
 						</div>
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c" color="--kw1c-red-900"
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
 								>3D Print Design</Typography
 							>
 						</div>
@@ -281,15 +290,21 @@
 						</div>
 
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c" color="--green-900">PASS</Typography>
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--green-900"
+								>PASS</Typography
+							>
 						</div>
 
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c" color="--green-900">PASS</Typography>
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--green-900"
+								>PASS</Typography
+							>
 						</div>
 
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c" color="--green-900">PASS</Typography>
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--green-900"
+								>PASS</Typography
+							>
 						</div>
 					</div>
 				</div>
