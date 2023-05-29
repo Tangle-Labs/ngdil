@@ -44,11 +44,18 @@
 	import { Typography, Card, Avatar, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
+		currNode,
 		dominiqueAppliedForJob,
 		dominiqueEarnedCourseCred,
-		dominiqueSharedCred
+		dominiqueSharedCred,
+		nodeCount
 	} from "$lib/stores/flows.store";
-	import { currStep } from "$lib/stores/onboarding.store";
+	import { onMount } from "svelte";
+
+	onMount(() => {
+		nodeCount.set(0);
+		currNode.set(0);
+	});
 </script>
 
 <div class="container">
@@ -86,6 +93,7 @@
 					<Button
 						variant="{$dominiqueEarnedCourseCred ? 'completed' : 'secondary'}"
 						onClick="{() => {
+							nodeCount.set(5);
 							goto('/demo/journeys/dominique/earn-a-cred');
 						}}"
 						label="{$dominiqueEarnedCourseCred ? 'Retry' : 'Get Started'}"
@@ -117,6 +125,7 @@
 							? 'secondary'
 							: 'disabled'}"
 						onClick="{() => {
+							nodeCount.set(4);
 							goto('/demo/journeys/dominique/share-a-cred');
 						}}"
 						label="{$dominiqueSharedCred ? 'Retry' : 'Get Started'}"
@@ -146,6 +155,7 @@
 							? 'secondary'
 							: 'disabled'}"
 						onClick="{() => {
+							nodeCount.set(5);
 							goto('/demo/journeys/dominique/apply-for-job');
 						}}"
 						label="{$dominiqueAppliedForJob ? 'Retry' : 'Get Started'}"

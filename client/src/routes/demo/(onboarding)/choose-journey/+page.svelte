@@ -60,14 +60,14 @@
 			justify-content: center;
 			width: 400px;
 			flex-wrap: wrap;
-			align-items: center;
-			align-content: center;
+			align-items: flex-start;
+			align-content: flex-start;
 			text-align: center;
 			padding: 10px 20px;
 
 			.qr {
-				height: 150px;
-				width: 150px;
+				height: 145px;
+				width: 145px;
 			}
 
 			.sub-text {

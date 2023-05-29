@@ -3,6 +3,7 @@
 	import Kw1cWhite from "./variants/Kw1cWhite.svelte";
 
 	export let variant: "blue" | "white";
+	export let title = "";
 </script>
 
 {#if variant === "blue"}
@@ -10,7 +11,7 @@
 		<slot />
 	</Kw1cBlue>
 {:else}
-	<Kw1cWhite>
+	<Kw1cWhite title="{title}">
 		<slot />
 	</Kw1cWhite>
 {/if}

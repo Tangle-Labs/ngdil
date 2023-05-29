@@ -32,10 +32,28 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, Kw1c, Card, Hightlight } from "$lib/components";
+	import { Typography, Kw1c, Card, Hightlight, Phone } from "$lib/components";
+	import { currNode, nodeCount } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
+
+	let animatePhone = false;
+
+	const handleClick = () => {
+		animatePhone = true;
+		setTimeout(() => {
+			currNode.set(1);
+			goto("/demo/journeys/dominique/choose-course");
+		}, 12_000);
+	};
+
+	onMount(() => {
+		currNode.set(0);
+		nodeCount.set(5);
+	});
 </script>
 
 <div class="container">
+	<Phone variant="kw1c" bind:animatePhone="{animatePhone}" />
 	<div class="heading">
 		<Typography variant="heading"
 			>You've made it to the <Hightlight>KW1C website, let's log in</Hightlight> to enrol on your course
@@ -58,13 +76,7 @@
 								>LOGIN TO KW1C</Typography
 							>
 						</div>
-						<img
-							src="/imgs/qr.png"
-							on:click="{() => {
-								goto('/demo/journeys/dominique/choose-course');
-							}}"
-							alt=""
-						/>
+						<img src="/imgs/qr.png" on:click="{handleClick}" alt="" />
 						<div class="desc">
 							<Typography variant="button"
 								>Scan the QR to access the KW1C learners portal.</Typography

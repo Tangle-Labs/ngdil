@@ -43,6 +43,22 @@
 			}
 		}
 
+		&.kw1c {
+			background: var(--kw1c-red-900);
+			width: calc(100% - 40px);
+			box-sizing: border-box;
+			border-radius: 40px;
+			padding: 12px;
+			transition: 0.5s all;
+			border: none;
+			box-shadow: unset;
+
+			&:hover {
+				cursor: pointer;
+				background: var(--red-700);
+			}
+		}
+
 		&.completed {
 			background: var(--green-900);
 
@@ -80,6 +96,7 @@
 		| "white"
 		| "completed"
 		| "disabled"
+		| "kw1c"
 		| "future-tech"
 		| "future-tech-disabled" = "primary";
 	import Typography from "../Typography/Typography.svelte";
@@ -89,9 +106,9 @@
 
 <button class="{`button ${variant}`}" on:click="{onClick}">
 	<Typography
-		variant="button"
+		variant="{['kw1c'].includes(variant) ? 'kw1c-impact' : 'button'}"
 		fontVariant="{['future-tech', 'future-tech-disabled'].includes(variant) ? 'kw1c' : 'main'}"
-		color="{['primary', 'future-tech', 'future-tech-disabled'].includes(variant)
+		color="{['primary', 'future-tech', 'future-tech-disabled', 'kw1c'].includes(variant)
 			? '--white-300'
 			: ''}">{label}</Typography
 	>

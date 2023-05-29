@@ -63,7 +63,11 @@
 					.column {
 						display: flex;
 						flex-wrap: wrap;
-						width: 32%;
+						width: 30%;
+
+						&:last-of-type {
+							width: 40%;
+						}
 
 						.data,
 						.button-container {
@@ -77,6 +81,7 @@
 
 						.button-container {
 							transform: translateY(-10px);
+							justify-content: center;
 						}
 
 						.header {
@@ -98,12 +103,12 @@
 		border: none;
 		background: var(--kw1c-red-900);
 		color: var(--white-300);
-		font-size: var(--button-text-size);
-		width: calc(100% - 40px);
+		font-size: 20px;
 		margin: 20px;
 		box-sizing: border-box;
+		font-weight: 500;
 		border-radius: 40px;
-		padding: 10px;
+		padding: 12px 30px;
 		margin-bottom: 0;
 		transition: 0.5s all;
 
@@ -129,6 +134,7 @@
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
 		dominiqueSelectedCourse,
+		peterAssignedCompany,
 		peterAssignedStudent,
 		peterChosenStudent
 	} from "$lib/stores/flows.store";
@@ -158,7 +164,7 @@
 	</div>
 
 	<div class="dash">
-		<Kw1c variant="white">
+		<Kw1c variant="white" title="INTERNSHIP STUDENTS">
 			<div class="sidebar">
 				{#each Array(5) as i}
 					<div class="menu-item">
@@ -174,39 +180,39 @@
 							<Typography variant="sub-text" fontVariant="kw1c">Student Applicant</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Sarah Jones</Typography
+							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
+								>SARAH JONES</Typography
 							>
 						</div>
 						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Ivar Leifsson</Typography
+							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
+								>IVAR LEIFSSON</Typography
 							>
 						</div>
 						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Lagertha Bonde</Typography
+							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
+								>LAGERTHA BONDE</Typography
 							>
 						</div>
 					</div>
 
 					<div class="column">
 						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c">Internship Category</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c">Internship Placement</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="status" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
+								>{$peterAssignedCompany}</Typography
 							>
 						</div>
 						<div class="data">
-							<Typography variant="status" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
+								>{$peterAssignedCompany}</Typography
 							>
 						</div>
 						<div class="data">
-							<Typography variant="status" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
+								>{$peterAssignedCompany}</Typography
 							>
 						</div>
 					</div>

@@ -3,6 +3,8 @@ import { persisted } from "svelte-local-storage-store";
 export type Journeys = "dominique" | "peter" | "imani";
 
 export const currentJourney = persisted<Journeys | null>("journeySelected", null);
+export const nodeCount = persisted<number>("node-count", 0);
+export const currNode = persisted<number>("curr-node", 0);
 
 /**
  * Dominique Courses
@@ -26,7 +28,7 @@ export const dominqueCourses = [
 	},
 	{
 		category: "Marketing and Communications",
-		name: "Marketing Communications",
+		name: "Marketing",
 		jobName: "Marketing Assistant",
 		img: "/imgs/marketing.png",
 		internships: [
@@ -41,7 +43,7 @@ export const dominqueCourses = [
 		img: "/imgs/engineer.png",
 		internships: [
 			{ name: "3d Print Norge", location: "Oslo, Norway", img: "/imgs/norge.svg" },
-			{ name: "Irish Future Print Co.", location: "Dublin, Ireland", img: "/img/irish.svg" }
+			{ name: "Irish Future Print Co.", location: "Dublin, Ireland", img: "/imgs/irish.svg" }
 		]
 	}
 ];

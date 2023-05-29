@@ -117,6 +117,10 @@
 						padding-bottom: 15px;
 					}
 
+					.credential {
+						width: 100%;
+					}
+
 					img {
 						height: 100px;
 					}
@@ -177,7 +181,8 @@
 	import { goto } from "$app/navigation";
 	import { Typography, OpenJobsNetwork, Avatar, Modal, Loading } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
+	import { currNode, dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 	let receivedCreds = false;
 
 	function handleWait() {
@@ -185,6 +190,10 @@
 			receivedCreds = true;
 		}, 8000);
 	}
+
+	onMount(() => {
+		currNode.set(1);
+	});
 
 	let showModal = false;
 </script>

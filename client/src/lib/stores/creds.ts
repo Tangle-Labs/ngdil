@@ -44,5 +44,19 @@ export const credentials = {
 		"Passport Number": Math.random().toString(36).slice(2).toString().toUpperCase(),
 		Statement: "lorem ipsum dolor sit amet",
 		"Date Issued": new Date(Date.now() - 1_000_000_000).toDateString()
+	},
+	internationalisation: {
+		"Course Name": "Internationalisation",
+		Language: "Dutch",
+		"Activity Start": "07/01/2023",
+		"Activity End": "27/03/2023",
+		"Date Issued": new Date(Date.now()).toDateString()
+	},
+	internshipReference: {
+		"Badge Name": "Professional Reference",
+		Country: "",
+		Language: "English",
+		Description: "Lorem ipsum dolor sit amet.",
+		"Date Issued": new Date(Date.now()).toDateString()
 	}
 };

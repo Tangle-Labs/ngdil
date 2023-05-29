@@ -6,11 +6,12 @@
 
 		.dash {
 			.card {
-				margin: 20px 10%;
+				margin: 0px 10%;
 				background: white;
-				border: 1px solid var(--white-900);
 				border-radius: 20px;
 				display: flex;
+				transform: translateY(30px);
+				filter: drop-shadow(0px 8px 28px rgba(20, 20, 43, 0.1));
 
 				.left {
 					padding-right: 10px;
@@ -85,6 +86,10 @@
 			padding: 10px 0;
 		}
 
+		.p {
+			color: var(--black-500);
+		}
+
 		img {
 			height: 60px;
 		}
@@ -112,10 +117,11 @@
 		color: var(--white-300);
 		font-size: var(--button-text-size);
 		width: calc(100% - 40px);
+		font-weight: 500;
 		margin: 20px;
 		box-sizing: border-box;
 		border-radius: 40px;
-		padding: 10px;
+		padding: 12px;
 		margin-bottom: 0;
 		transition: 0.5s all;
 
@@ -130,7 +136,6 @@
 
 		&:hover {
 			cursor: pointer;
-			background: var(--blue-900);
 		}
 	}
 </style>

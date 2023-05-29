@@ -59,23 +59,29 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { dominiqueEarnedCourseCred } from "$lib/stores/flows.store";
+	import { currNode, dominiqueEarnedCourseCred, nodeCount } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 
 	function handleFinishCourse() {
+		currNode.set(0);
+		nodeCount.set(0);
 		dominiqueEarnedCourseCred.set(true);
 		goto("/demo/journeys/dominique");
 	}
+
+	onMount(() => currNode.set(5));
 </script>
 
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
 			>Amazing, <Highlight>you’ve successfully enrolled with KW1C</Highlight> and earned your course
-			credential.</Typography>
+			credential.</Typography
+		>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>Here is what you have achieved so far with your self-sovereign identity:</Typography>
+		<Typography>Here is what you have achieved so far with your self-sovereign identity:</Typography
+		>
 	</div>
 	<div class="card">
 		<Card withBorder="{true}">

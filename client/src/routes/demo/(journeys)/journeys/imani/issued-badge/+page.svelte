@@ -59,7 +59,7 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { imaniHiredEmployee, imaniIssuedBadge } from "$lib/stores/flows.store";
+	import { imaniIssuedBadge } from "$lib/stores/flows.store";
 
 	function handleFinishCourse() {
 		imaniIssuedBadge.set(true);
@@ -79,7 +79,7 @@
 		>
 	</div>
 	<div class="card">
-		<Card>
+		<Card withBorder="{true}">
 			<div class="card-content">
 				<div class="content">
 					<div class="list">

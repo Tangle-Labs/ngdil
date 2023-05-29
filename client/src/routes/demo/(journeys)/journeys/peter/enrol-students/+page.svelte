@@ -111,6 +111,11 @@
 			padding: 10px 0;
 		}
 
+		.p {
+			color: var(--black-500);
+			font-weight: 300;
+		}
+
 		img {
 			height: 120px;
 		}
@@ -129,12 +134,13 @@
 		border: none;
 		background: var(--kw1c-red-900);
 		color: var(--white-300);
-		font-size: var(--button-text-size);
+		font-size: 20px;
 		width: calc(100% - 40px);
 		margin: 20px;
+		font-weight: 500;
 		box-sizing: border-box;
 		border-radius: 40px;
-		padding: 10px;
+		padding: 12px;
 		margin-bottom: 0;
 		transition: 0.5s all;
 
@@ -182,7 +188,7 @@
 	<Modal bind:isOpen="{showModal}">
 		<div class="modal-content">
 			<img src="/imgs/kw1c-white.png" alt="" class="logo" />
-			<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-red-900"
+			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"
 				>YOU ARE ABOUT TO INVITE {selected.length} STUDENTS ON THE COURSE: INTERNATIONALISATION</Typography
 			>
 			<div class="p">Click send invitations to confirm the invites.</div>
@@ -210,7 +216,7 @@
 	</div>
 
 	<div class="dash">
-		<Kw1c variant="white">
+		<Kw1c variant="white" title="INTERNATIONALISATION COURSE APPLICANTS">
 			<div class="sidebar">
 				{#each Array(5) as i}
 					<div class="menu-item">
@@ -241,17 +247,17 @@
 							<Typography variant="sub-text" fontVariant="kw1c">Student Applicant</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
+							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
 								>Sarah Jones</Typography
 							>
 						</div>
 						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
+							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
 								>Ivar Leifsson</Typography
 							>
 						</div>
 						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
+							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
 								>Lagertha Bonde</Typography
 							>
 						</div>
@@ -262,17 +268,17 @@
 							<Typography variant="sub-text" fontVariant="kw1c">Internship Category</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c" color="--kw1c-red-900"
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
 								>3D Print Design</Typography
 							>
 						</div>
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c" color="--kw1c-red-900"
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
 								>3D Print Design</Typography
 							>
 						</div>
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c" color="--kw1c-red-900"
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
 								>3D Print Design</Typography
 							>
 						</div>
@@ -284,19 +290,19 @@
 						</div>
 
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c" color="--kw1c-red-900"
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
 								>Internationalisation Course</Typography
 							>
 						</div>
 
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c" color="--kw1c-red-900"
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
 								>Internationalisation Course</Typography
 							>
 						</div>
 
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c" color="--kw1c-red-900"
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
 								>Internationalisation Course</Typography
 							>
 						</div>

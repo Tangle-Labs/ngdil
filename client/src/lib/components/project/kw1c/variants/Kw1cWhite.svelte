@@ -22,37 +22,12 @@
 				width: 60%;
 				position: absolute;
 				height: 15px;
-				background: var(--kw1c-red-900);
-				bottom: 0;
-				left: 20%;
+				bottom: 22px;
+				left: 175px;
 				border-top-right-radius: 12.5px;
 				border-top-left-radius: 12.5px;
 				padding: 10px;
 				display: flex;
-
-				.white-rect {
-					width: 15%;
-					height: 100%;
-					background: var(--white-300);
-					border-radius: 5px;
-				}
-
-				.translucent-rect {
-					width: 70%;
-					background: var(--white-300);
-					height: 100%;
-					margin-left: 17%;
-					border-radius: 20px;
-					opacity: 0.2;
-				}
-
-				.white-circle {
-					width: 15px;
-					height: 15px;
-					border-radius: 20px;
-					background: var(--white-300);
-					margin-left: 10px;
-				}
 			}
 
 			.links {
@@ -102,6 +77,12 @@
 	}
 </style>
 
+<script lang="ts">
+	import { Typography } from "$lib/components/";
+
+	export let title = "";
+</script>
+
 <div class="container">
 	<div class="nav">
 		<img src="/imgs/kw1c-white.png" alt="" class="logo" />
@@ -116,9 +97,8 @@
 			<div class="login"></div>
 		</div>
 		<div class="bottom-bar">
-			<div class="white-rect"></div>
-			<div class="translucent-rect"></div>
-			<div class="white-circle"></div>
+			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"
+				>{title}</Typography>
 		</div>
 	</div>
 	<div class="content">

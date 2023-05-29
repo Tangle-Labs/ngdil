@@ -17,9 +17,24 @@
 		font-weight: 500;
 	}
 
+	.kw1c-impact {
+		font-size: 20px;
+		font-family: var(--kw1c-font) !important;
+		font-weight: 500;
+	}
+
+	.kw1c-header {
+		font-size: 1.625rem;
+		font-weight: 500;
+	}
+
+	.kw1c-sub-text {
+		font-size: 14px;
+		font-weight: 500;
+	}
 	.card-header {
 		font-size: var(--card-header-size);
-		font-weight: 600;
+		font-weight: 500;
 	}
 
 	.status {

@@ -203,8 +203,13 @@
 	import { goto } from "$app/navigation";
 	import { Typography, OpenJobsNetwork, Avatar, Modal, Loading } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
+	import { currNode, dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 	let showModal = false;
+
+	onMount(() => {
+		currNode.set(2);
+	});
 </script>
 
 <div class="container">
@@ -320,6 +325,7 @@
 						class="button"
 						on:click="{() => {
 							showModal = true;
+							currNode.set(3);
 						}}">View Message</button
 					>
 				</div>

@@ -76,7 +76,8 @@
 						}
 
 						.button-container {
-							transform: translateY(-10px);
+							display: flex;
+							justify-content: center;
 						}
 
 						.header {
@@ -117,6 +118,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Modal, Loading } from "$lib/components";
+	import Button from "$lib/components/ui/Button/Button.svelte";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { dominiqueSelectedCourse, peterChosenStudent } from "$lib/stores/flows.store";
 	let receivedCreds = false;
@@ -143,7 +145,7 @@
 	</div>
 
 	<div class="dash">
-		<Kw1c variant="white">
+		<Kw1c variant="white" title="INTERNSHIP APPLICATIONS">
 			<div class="sidebar">
 				{#each Array(5) as i}
 					<div class="menu-item">
@@ -159,18 +161,18 @@
 							<Typography variant="sub-text" fontVariant="kw1c">Student Applicant</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Sarah Jones</Typography
+							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
+								>SARAH JONES</Typography
 							>
 						</div>
 						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Ivar Leifsson</Typography
+							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
+								>IVAR LEIFSSON</Typography
 							>
 						</div>
 						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Lagertha Bonde</Typography
+							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
+								>LAGERTHA BONDE</Typography
 							>
 						</div>
 					</div>
@@ -180,17 +182,17 @@
 							<Typography variant="sub-text" fontVariant="kw1c">Internship Category</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="status" fontVariant="kw1c" color="--kw1c-red-900"
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
 								>3D Print Design</Typography
 							>
 						</div>
 						<div class="data">
-							<Typography variant="status" fontVariant="kw1c" color="--kw1c-red-900"
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
 								>3D Print Design</Typography
 							>
 						</div>
 						<div class="data">
-							<Typography variant="status" fontVariant="kw1c" color="--kw1c-red-900"
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
 								>3D Print Design</Typography
 							>
 						</div>
@@ -201,33 +203,36 @@
 							<Typography variant="sub-text" fontVariant="kw1c">Action</Typography>
 						</div>
 						<div class="button-container">
-							<button
-								class="button"
-								on:click="{() => {
+							<Button
+								onClick="{() => {
 									peterChosenStudent.set('Sarah Jones');
 									goto('/demo/journeys/peter/view-application');
-								}}">VIEW APPLICATION</button
-							>
+								}}"
+								variant="kw1c"
+								label="VIEW APPLICATION"
+							/>
 						</div>
 
 						<div class="button-container">
-							<button
-								on:click="{() => {
+							<Button
+								onClick="{() => {
 									peterChosenStudent.set('Ivar Leifsson');
 									goto('/demo/journeys/peter/view-application');
 								}}"
-								class="button">VIEW APPLICATION</button
-							>
+								variant="kw1c"
+								label="VIEW APPLICATION"
+							/>
 						</div>
 
 						<div class="button-container">
-							<button
-								on:click="{() => {
+							<Button
+								onClick="{() => {
 									peterChosenStudent.set('Lagertha Bonde');
 									goto('/demo/journeys/peter/view-application');
 								}}"
-								class="button">VIEW APPLICATION</button
-							>
+								variant="kw1c"
+								label="VIEW APPLICATION"
+							/>
 						</div>
 					</div>
 				</div>

@@ -59,23 +59,29 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { dominiqueSharedCred } from "$lib/stores/flows.store";
+	import { currNode, dominiqueSharedCred } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 
 	function handleFinishShare() {
 		dominiqueSharedCred.set(true);
 		goto("/demo/journeys/dominique");
 	}
+
+	onMount(() => {
+		currNode.set(4);
+	});
 </script>
 
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
 			><Highlight>A new credential, a job invite,</Highlight> all that’s left to do now is to land that
-			job.</Typography>
+			job.</Typography
+		>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>Here is what you have achieved so far with your self-sovereign identity:</Typography>
+		<Typography>Here is what you have achieved so far with your self-sovereign identity:</Typography
+		>
 	</div>
 	<div class="card">
 		<Card withBorder="{true}">

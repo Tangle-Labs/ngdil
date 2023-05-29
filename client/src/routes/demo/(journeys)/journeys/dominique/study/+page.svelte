@@ -62,20 +62,9 @@
 	}
 
 	.button {
-		font-family: var(--kw1c-font);
-		border: none;
-		background: var(--kw1c-red-900);
-		color: var(--white-300);
-		font-size: var(--button-text-size);
-		box-sizing: border-box;
-		border-radius: 40px;
-		padding: 10px 40px;
-		transition: 0.5s all;
-
-		&:hover {
-			cursor: pointer;
-			background: var(--red-700);
-		}
+		width: 250px;
+		display: flex;
+		justify-content: flex-end;
 	}
 
 	.modal-content {
@@ -90,6 +79,11 @@
 
 		& > * {
 			padding: 10px 0;
+		}
+
+		.p {
+			color: var(--black-500);
+			font-weight: 300;
 		}
 
 		img {
@@ -108,26 +102,35 @@
 		.checked {
 			height: 60px;
 		}
+
+		.button {
+			justify-content: center;
+		}
 	}
 </style>
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, Kw1c, Modal, Loading, Hightlight } from "$lib/components";
-	import { dominqueCourses, dominiqueSelectedCourse } from "$lib/stores/flows.store";
+	import { Typography, Kw1c, Modal, Loading, Hightlight, Button } from "$lib/components";
+	import { dominqueCourses, dominiqueSelectedCourse, currNode } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 	import { Confetti } from "svelte-confetti";
 
 	let progress = 0;
 	let studied = false;
 	let showModal = false;
 	let receivedCreds = false;
+
+	onMount(() => {
+		currNode.set(2);
+	});
 </script>
 
 <div class="container">
 	<Modal bind:isOpen="{showModal}">
 		<div class="modal-content">
 			<img src="/imgs/kw1c-white.png" alt="" class="logo" />
-			<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-red-900"
+			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"
 				>{receivedCreds
 					? "YOU HAVE RECEIVED & ACCEPTED YOUR NEW COURSE CREDENTIAL."
 					: "KW1C HAS SENT YOU A NEW COURSE CREDENTIAL"}</Typography
@@ -139,9 +142,13 @@
 			</div>
 			{#if receivedCreds}
 				<img class="checked" src="/imgs/checked.png" alt="" />
-				<button class="button" on:click="{() => goto('/demo/journeys/dominique/finished-course')}"
-					>CONTINUE</button
-				>
+				<div class="button">
+					<Button
+						label="CONTINUE"
+						variant="kw1c"
+						onClick="{() => goto('/demo/journeys/dominique/finished-course')}"
+					/>
+				</div>
 			{:else}
 				<Loading img="/imgs/blue-loading.png" />
 			{/if}
@@ -194,7 +201,7 @@
 		<Kw1c variant="blue">
 			<div class="dashboard">
 				<div class="title">
-					<Typography variant="card-header" fontVariant="kw1c"
+					<Typography variant="kw1c-header" fontVariant="kw1c"
 						>{studied
 							? "CONGRATULATIONS DOMINIQUE, YOU HAVE COMPLETED YOUR COURSE!"
 							: "HELLO DOMINIQUE, WELCOME TO YOUR NEW COURSE"}</Typography
@@ -203,35 +210,41 @@
 				<div class="details">
 					<div class="text">
 						<div class="category">
-							<Typography variant="status" fontVariant="kw1c" color="--kw1c-red-900"
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
 								>{dominqueCourses[$dominiqueSelectedCourse].category.toUpperCase()}</Typography
 							>
 						</div>
 						<div class="course">
-							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
+							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
 								>{dominqueCourses[$dominiqueSelectedCourse].name.toUpperCase()}</Typography
 							>
 						</div>
 					</div>
-					{#if studied}
-						<button
-							class="button"
-							on:click="{() => {
-								showModal = true;
-								setTimeout(() => {
-									receivedCreds = true;
-								}, 9000);
-							}}">GET CREDENTIAL</button
-						>
-					{:else}
-						<button
-							class="button"
-							on:click="{() => {
-								studied = true;
-								progress = 100;
-							}}">START STUDYING</button
-						>
-					{/if}
+					<div class="button">
+						{#if studied}
+							<Button
+								variant="kw1c"
+								label="GET CREDENTIAL"
+								onClick="{() => {
+									showModal = true;
+									setTimeout(() => {
+										currNode.set(4);
+										receivedCreds = true;
+									}, 9000);
+								}}"
+							/>
+						{:else}
+							<Button
+								variant="kw1c"
+								label="START STUDYING"
+								onClick="{() => {
+									currNode.set(3);
+									studied = true;
+									progress = 100;
+								}}"
+							/>
+						{/if}
+					</div>
 				</div>
 				<div class="cards">
 					{#each Array(4) as i}

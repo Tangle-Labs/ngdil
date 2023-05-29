@@ -36,10 +36,19 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, BigBusinessCorp, Card } from "$lib/components";
+	import { Phone, Typography, BigBusinessCorp, Card } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
+
+	let animatePhone = false;
+	const handleClick = () => {
+		animatePhone = true;
+		setTimeout(() => {
+			goto("/demo/journeys/dominique/view-jobs");
+		}, 12_000);
+	};
 </script>
 
+<Phone variant="bbc" bind:animatePhone="{animatePhone}" />
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading">
@@ -50,7 +59,8 @@
 	<div class="sub-text">
 		<Typography
 			>In your mobile wallet, scan the QR code & accept the connection request to login privately to
-			the Big Business Corp website.</Typography>
+			the Big Business Corp website.</Typography
+		>
 	</div>
 	<div class="dash">
 		<BigBusinessCorp>
@@ -60,18 +70,14 @@
 				</div>
 				<Card>
 					<div class="card-content">
-						<img
-							src="/imgs/qr.png"
-							on:click="{() => {
-								goto('/demo/journeys/dominique/view-jobs');
-							}}"
-							alt="" />
+						<img src="/imgs/qr.png" on:click="{handleClick}" alt="" />
 						<div class="heading">
 							<Typography variant="card-header" color="--bbc-blue">Scan QR to Login</Typography>
 						</div>
 						<div class="desc">
 							<Typography variant="sub-text"
-								>Scan the QR to access the KW1C learners portal.</Typography>
+								>Scan the QR to access the KW1C learners portal.</Typography
+							>
 						</div>
 					</div>
 				</Card>

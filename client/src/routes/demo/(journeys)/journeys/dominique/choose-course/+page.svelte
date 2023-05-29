@@ -37,6 +37,12 @@
 					border-top-right-radius: 20px;
 					border-top-left-radius: 20px;
 				}
+
+				.button {
+					width: 100%;
+					display: flex;
+					justify-content: center;
+				}
 			}
 		}
 	}
@@ -50,6 +56,11 @@
 		box-sizing: border-box;
 		justify-content: center;
 		text-align: center;
+
+		.p {
+			color: var(--black-500);
+			font-weight: 300;
+		}
 
 		& > * {
 			padding: 10px 0;
@@ -67,33 +78,14 @@
 			height: 60px;
 		}
 	}
-
-	.button {
-		font-family: var(--kw1c-font);
-		border: none;
-		background: var(--kw1c-red-900);
-		color: var(--white-300);
-		font-size: var(--button-text-size);
-		width: calc(100% - 40px);
-		margin: 20px;
-		box-sizing: border-box;
-		border-radius: 40px;
-		padding: 10px;
-		margin-bottom: 0;
-		transition: 0.5s all;
-
-		&:hover {
-			cursor: pointer;
-			background: var(--red-700);
-		}
-	}
 </style>
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, Kw1c, Modal, Loading } from "$lib/components";
+	import { Typography, Kw1c, Modal, Loading, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
+	import { currNode, dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 	let receivedCreds = false;
 
 	function handleWait() {
@@ -103,6 +95,10 @@
 	}
 
 	let showModal = false;
+
+	onMount(() => {
+		currNode.set(1);
+	});
 </script>
 
 <div class="container">
@@ -121,7 +117,7 @@
 	<Modal bind:isOpen="{showModal}">
 		<div class="modal-content">
 			<img src="/imgs/kw1c-white.png" alt="" class="logo" />
-			<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-red-900"
+			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"
 				>{receivedCreds
 					? "KW1C HAS RECEIVED YOUR APPLICATION CREDENTIALS."
 					: "KW1C IS REQUESTING YOU SHARE YOUR CREDENTIALS FOR COURSE APPLICATION"}</Typography
@@ -133,9 +129,14 @@
 			</div>
 			{#if receivedCreds}
 				<img class="checked" src="/imgs/checked.png" alt="" />
-				<button class="button" on:click="{() => goto('/demo/journeys/dominique/study')}"
-					>CONTINUE</button
-				>
+				<Button
+					label="CONTINUE"
+					variant="kw1c"
+					onClick="{() => {
+						currNode.set(2);
+						goto('/demo/journeys/dominique/study');
+					}}"
+				/>
 			{:else}
 				<Loading img="/imgs/blue-loading.png" />
 			{/if}
@@ -147,31 +148,34 @@
 		</div>
 	</Modal>
 	<div class="dash">
-		<Kw1c variant="white">
+		<Kw1c variant="white" title="{'AVAILABLE COURSES'}">
 			<div class="content">
 				<div class="courses">
 					{#each dominqueCourses as course, i (course.name)}
 						<div class="course">
 							<img src="{course.img}" alt="" />
 							<div class="subtext">
-								<Typography variant="sub-text" fontVariant="kw1c" color="--kw1c-red-900"
+								<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
 									>{course.category.toUpperCase()}</Typography
 								>
 							</div>
 							<div class="title">
-								<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
+								<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
 									>{course.name.toUpperCase()}</Typography
 								>
 							</div>
 
-							<button
-								class="button"
-								on:click="{() => {
-									showModal = true;
-									dominiqueSelectedCourse.set(i);
-									handleWait();
-								}}">ENROL NOW</button
-							>
+							<div class="button">
+								<Button
+									onClick="{() => {
+										showModal = true;
+										dominiqueSelectedCourse.set(i);
+										handleWait();
+									}}"
+									variant="kw1c"
+									label="ENROL NOW"
+								/>
+							</div>
 						</div>
 					{/each}
 				</div>

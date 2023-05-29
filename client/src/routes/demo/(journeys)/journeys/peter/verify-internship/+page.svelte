@@ -142,12 +142,12 @@
 		border: none;
 		background: var(--kw1c-red-900);
 		color: var(--white-300);
-		font-size: var(--button-text-size);
+		font-size: 20px;
+		font-weight: 500;
 		width: calc(100% - 40px);
-		margin: 20px;
 		box-sizing: border-box;
 		border-radius: 40px;
-		padding: 10px;
+		padding: 12px;
 		margin-bottom: 0;
 		transition: 0.5s all;
 
@@ -229,12 +229,14 @@
 				<div class="card-header">
 					<div class="student">
 						<div class="name">
-							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>{$peterChosenStudent}</Typography
+							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
+								>{$peterAssignedStudent?.toUpperCase()}</Typography
 							>
 						</div>
 						<div class="course">
-							<Typography fontVariant="kw1c" color="--kw1c-red-900">3d Print Design</Typography>
+							<Typography fontVariant="kw1c" variant="kw1c-sub-text" color="--kw1c-red-900"
+								>3d Print Design</Typography
+							>
 						</div>
 					</div>
 					<div class="button-container">
@@ -274,16 +276,18 @@
 							<Typography variant="sub-text" fontVariant="kw1c">Credential Type</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c">National ID</Typography>
+							<Typography variant="card-header" fontVariant="kw1c">KW1C COLLEGE ID</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c">College ID</Typography>
+							<Typography variant="card-header" fontVariant="kw1c"
+								>INTERNATIONALISATION BADGE</Typography
+							>
 						</div>
 						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c">Course Badge</Typography>
+							<Typography variant="card-header" fontVariant="kw1c">INTERNSHIP BADGE</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c">Internship Badge</Typography>
+							<Typography variant="card-header" fontVariant="kw1c">INTERNSHIP REFERENCE</Typography>
 						</div>
 					</div>
 
@@ -292,16 +296,24 @@
 							<Typography variant="sub-text" fontVariant="kw1c">Issuer</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c">The Government</Typography>
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c"
+								>Koning Willem 1 College</Typography
+							>
 						</div>
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c">Koning Willem 1 College</Typography>
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c"
+								>Koning Willem 1 College</Typography
+							>
 						</div>
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c">Koning Willem 1 College</Typography>
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c"
+								>{$peterAssignedCompany}</Typography
+							>
 						</div>
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c">{$peterAssignedCompany}</Typography>
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c"
+								>{$peterAssignedCompany}</Typography
+							>
 						</div>
 					</div>
 
@@ -327,14 +339,6 @@
 							</div>
 							<div class="data">
 								<CredModal
-									name="National ID"
-									issuer="The Government"
-									credential="{{ ...credentials.nationalId, 'Full Name': $peterChosenStudent }}"
-									logo="{'/imgs/gov.svg'}"
-								/>
-							</div>
-							<div class="data">
-								<CredModal
 									name="College ID"
 									issuer="Koning Willem 1 College"
 									credential="{{
@@ -346,19 +350,16 @@
 							</div>
 							<div class="data">
 								<CredModal
-									name="Course Badge"
+									name="Internationalisation Badge"
 									issuer="Koning Willem 1 College"
-									credential="{{
-										...credentials.collegeId,
-										'Student Name': $peterChosenStudent
-									}}"
 									logo="/imgs/kw1c-white.png"
+									credential="{{ ...credentials.internationalisation }}"
 								/>
 							</div>
 							<div class="data">
 								<CredModal
-									name="National ID"
-									issuer="The Government"
+									name="Internship Badge"
+									issuer="{$peterAssignedCompany}"
 									logo="{dominqueCourses[2].internships.find(
 										(i) => i.name === $peterAssignedCompany
 									).img}"
@@ -366,6 +367,19 @@
 										...credentials.internshipBadge,
 										'Intern Name': $peterChosenStudent,
 										Issuer: $peterAssignedCompany,
+										Country: $peterAssignecCompanyCountry
+									}}"
+								/>
+							</div>
+							<div class="data">
+								<CredModal
+									name="Internship Reference"
+									issuer="{$peterAssignedCompany}"
+									logo="{dominqueCourses[2].internships.find(
+										(i) => i.name === $peterAssignedCompany
+									).img}"
+									credential="{{
+										...credentials.internshipReference,
 										Country: $peterAssignecCompanyCountry
 									}}"
 								/>
