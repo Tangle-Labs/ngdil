@@ -98,7 +98,8 @@
 		</div>
 		<div class="bottom-bar">
 			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"
-				>{title}</Typography>
+				>{title}</Typography
+			>
 		</div>
 	</div>
 	<div class="content">
