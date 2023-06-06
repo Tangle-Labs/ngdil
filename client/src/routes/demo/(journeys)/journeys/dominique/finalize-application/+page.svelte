@@ -174,7 +174,8 @@
 			<Typography variant="card-header" color="--bbc-blue"
 				>{receivedCreds
 					? "Your application via digital CV has been received by Big Business Corp!"
-					: "Big Business Corp is requesting you share your digital CV."}</Typography>
+					: "Big Business Corp is requesting you share your digital CV."}</Typography
+			>
 			<div class="p">
 				{receivedCreds
 					? "You may continue further in your browser."
@@ -188,25 +189,30 @@
 			{#if receivedCreds}
 				<img class="checked" src="/imgs/check-circle.png" alt="" />
 				<button class="button" on:click="{() => goto('/demo/journeys/dominique/get-staff-id')}"
-					>Continue</button>
+					>Continue</button
+				>
 			{:else}
 				<Loading img="/imgs/blue-loading.png" />
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text"
-					>{receivedCreds ? "Click continue to proceed" : "Waiting for credentials"}</Typography>
+					>{receivedCreds ? "Click continue to proceed" : "Waiting for credentials"}</Typography
+				>
 			</div>
 		</div>
 	</Modal>
 	<div class="heading">
 		<Typography variant="heading"
-			>Looks like you have all the credentials required. Let’s apply for the position and <Highlight>
+			>Looks like you have all the credentials required. Let’s apply for the position and <Highlight
+			>
 				share your credentials.</Highlight
-			></Typography>
+			></Typography
+		>
 	</div>
 	<div class="sub-text">
 		<Typography
-			>Click the apply now button to share multiple credentials as your digital CV.</Typography>
+			>Click the apply now button to share multiple credentials as your digital CV.</Typography
+		>
 	</div>
 
 	<div class="dash">
@@ -218,7 +224,8 @@
 					<div class="details">
 						<div class="heading">
 							<Typography variant="card-header" color="--bbc-blue"
-								>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography>
+								>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography
+							>
 						</div>
 
 						<div class="bars">
@@ -232,11 +239,13 @@
 				<div class="right">
 					<div class="heading">
 						<Typography variant="card-header" color="--bbc-blue"
-							>Application Requirements</Typography>
+							>Application Requirements</Typography
+						>
 					</div>
 					<div class="sub-text">
 						<Typography
-							>To apply for this role, applicants are required to share the following credentials</Typography>
+							>To apply for this role, applicants are required to share the following credentials</Typography
+						>
 					</div>
 					<div class="list">
 						<Typography variant="list">National ID</Typography>
@@ -254,7 +263,8 @@
 							on:click="{() => {
 								showModal = true;
 								handleWait();
-							}}">Apply Now</button>
+							}}">Apply Now</button
+						>
 					</div>
 				</div>
 			</div>

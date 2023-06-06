@@ -183,11 +183,13 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>Future Tech Co. <Highlight>is big on employee development.</Highlight> Let’s create a new badge
-			so we can train staff.</Typography>
+			so we can train staff.</Typography
+		>
 	</div>
 	<div class="sub-text">
 		<Typography
-			>Click the Create New Badge button to continue and create a new open badge template.</Typography>
+			>Click the Create New Badge button to continue and create a new open badge template.</Typography
+		>
 	</div>
 	<div class="dash">
 		<FutureTech header="COMPANY BADGES">
@@ -195,7 +197,8 @@
 				<Typography variant="card-header"
 					>{creatingBadgeImage
 						? "Select your badge shape & color"
-						: "Add Badge Information"}</Typography>
+						: "Add Badge Information"}</Typography
+				>
 			</div>
 
 			{#if creatingBadgeImage}
@@ -220,7 +223,8 @@
 						</div>
 						<Radio
 							checked="{variant === 'rounded-hexagon'}"
-							onClick="{() => (variant = 'rounded-hexagon')}" />
+							onClick="{() => (variant = 'rounded-hexagon')}"
+						/>
 					</div>
 
 					<div class="badge">
@@ -277,7 +281,8 @@
 					variant="{(creatingBadgeImage && !(variant && color)) ||
 					(!creatingBadgeImage && !(badgeDesc && badgeName))
 						? 'future-tech-disabled'
-						: 'future-tech'}" />
+						: 'future-tech'}"
+				/>
 			</div>
 		</FutureTech>
 	</div>

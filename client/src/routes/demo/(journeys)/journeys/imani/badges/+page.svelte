@@ -106,7 +106,8 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You’ve successfully <Highlight>created a new badge template.</Highlight> Let’s continue to get
-			training the staff.</Typography>
+			training the staff.</Typography
+		>
 	</div>
 	<div class="sub-text">
 		<Typography>Click continue to proceed to staff training.</Typography>
@@ -129,7 +130,8 @@
 							<Loading size="16px" />
 						{/if}
 						<Typography variant="status" color="{loading ? '--secondary-900' : '--green-900'}"
-							>{loading ? "Pending" : "Active"}</Typography>
+							>{loading ? "Pending" : "Active"}</Typography
+						>
 					</td>
 				</tr>
 
@@ -180,7 +182,8 @@
 					label="Continue"
 					onClick="{() => {
 						goto('/demo/journeys/imani/train-staff');
-					}}" />
+					}}"
+				/>
 			</div>
 		</FutureTech>
 	</div>

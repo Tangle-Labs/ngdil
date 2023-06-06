@@ -219,11 +219,13 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You’re all <Highlight>logged in to the Open Jobs Network.</Highlight> Now, share your credential
-			with potential employers.</Typography>
+			with potential employers.</Typography
+		>
 	</div>
 	<div class="sub-text">
 		<Typography
-			>Click the share credential button to share your credential on your Open Jobs Network profile.</Typography>
+			>Click the share credential button to share your credential on your Open Jobs Network profile.</Typography
+		>
 	</div>
 	<Modal bind:isOpen="{showModal}" borderRadius="{16}">
 		<div class="modal-content">
@@ -231,7 +233,8 @@
 			<Typography variant="card-header" color="--bbc-blue"
 				>{receivedCreds
 					? "The Open Jobs Network has received your confirmation to share your credential!"
-					: "Allow the Open Jobs Network to share your credential "}</Typography>
+					: "Allow the Open Jobs Network to share your credential "}</Typography
+			>
 			<div class="p">
 				{receivedCreds
 					? "You may continue further in the browser. "
@@ -240,13 +243,15 @@
 			{#if receivedCreds}
 				<img class="checked" src="/imgs/open-jobs-check.png" alt="" />
 				<button class="button" on:click="{() => goto('/demo/journeys/dominique/new-message')}"
-					>Continue</button>
+					>Continue</button
+				>
 			{:else}
 				<Loading img="/imgs/blue-loading.png" />
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text"
-					>{receivedCreds ? "Click continue to proceed" : "Waiting for credentials"}</Typography>
+					>{receivedCreds ? "Click continue to proceed" : "Waiting for credentials"}</Typography
+				>
 			</div>
 		</div>
 	</Modal>
@@ -303,7 +308,8 @@
 					<img src="/imgs/kw1c-white.png" alt="" class="logo" />
 					<div class="credential">
 						<Typography variant="card-header"
-							>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography>
+							>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography
+						>
 					</div>
 					<div class="issued-by">
 						<Typography variant="sub-text">Issued by<br /> Konning Willem 1 College</Typography>
@@ -313,7 +319,8 @@
 						on:click="{() => {
 							showModal = true;
 							handleWait();
-						}}">Share Credential</button>
+						}}">Share Credential</button
+					>
 				</div>
 			</div>
 		</OpenJobsNetwork>

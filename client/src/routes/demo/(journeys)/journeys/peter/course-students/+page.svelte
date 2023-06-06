@@ -220,7 +220,8 @@
 						{#each $peterChosenStudents as student (student)}
 							<div class="data">
 								<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>{student.toUpperCase()}</Typography>
+									>{student.toUpperCase()}</Typography
+								>
 							</div>
 						{/each}
 					</div>
@@ -233,7 +234,8 @@
 						{#each $peterChosenStudents as student (student)}
 							<div class="data">
 								<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-									>3D Print Design</Typography>
+									>3D Print Design</Typography
+								>
 							</div>
 						{/each}
 					</div>
@@ -247,7 +249,8 @@
 							<div class="data action">
 								<span style:padding-right="5px">
 									<Typography variant="status" color="{loading ? '--secondary-900' : '--green-900'}"
-										>{loading ? "Pending" : "Accepted"}</Typography>
+										>{loading ? "Pending" : "Accepted"}</Typography
+									>
 								</span>
 								{#if loading}
 									<Loading size="20px" />
@@ -263,7 +266,8 @@
 						variant="kw1c"
 						onClick="{() => {
 							goto('/demo/journeys/peter/enrolled-students');
-						}}" />
+						}}"
+					/>
 				</div>
 			</div>
 		</Kw1c>

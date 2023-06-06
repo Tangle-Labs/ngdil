@@ -132,7 +132,8 @@
 	<div
 		class="phone"
 		in:fly="{{ y: 300, duration: 1100, x: 100 }}"
-		out:fly="{{ y: 300, duration: 1100, x: 100 }}">
+		out:fly="{{ y: 300, duration: 1100, x: 100 }}"
+	>
 		<img class="phone__img" src="/imgs/phone.png" />
 		{#if animateFlash}
 			<div class="bg"></div>
@@ -146,7 +147,8 @@
 					{#if variant === "futureTech"}
 						<div class="content__corp">
 							<Typography variant="kw1c-impact" color="--future-tech-green"
-								>FUTURE TECH CO.</Typography>
+								>FUTURE TECH CO.</Typography
+							>
 						</div>
 					{/if}
 					<div class="content__title">

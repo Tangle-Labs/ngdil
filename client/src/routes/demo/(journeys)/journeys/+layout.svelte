@@ -100,7 +100,8 @@
 			<Avatar
 				variant="small"
 				onClick="{() => (expanded = true)}"
-				image="{`/imgs/${$currentJourney}.png`}" />
+				image="{`/imgs/${$currentJourney}.png`}"
+			/>
 			{#if expanded}
 				<div class="dropdown">
 					<div class="Name">
@@ -116,7 +117,8 @@
 					<Button
 						variant="white"
 						onClick="{() => goto('/demo/choose-journey')}"
-						label="{'Change'}" />
+						label="{'Change'}"
+					/>
 				</div>
 			{/if}
 		</div>
@@ -125,7 +127,8 @@
 				window.open('https://ngdil.com/contact', '_blank');
 			}}"
 			label="Contact Us"
-			variant="white" />
+			variant="white"
+		/>
 	</div>
 </div>
 
@@ -139,7 +142,8 @@
 			class="back"
 			on:click="{() => {
 				goto($previousPath);
-			}}">
+			}}"
+		>
 			<img src="/imgs/back.svg" alt="" class="icon" />
 			<Typography variant="button" color="--black-300">Back</Typography>
 		</div>

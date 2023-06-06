@@ -250,10 +250,12 @@
 					</Typography>
 				{:else}
 					<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"
-						>You are about to assign {$peterAssignedStudent?.split(" ")[0]} an internship placement with:<br />
+						>You are about to assign {$peterAssignedStudent?.split(" ")[0]} an internship placement with:<br
+						/>
 					</Typography>
 					<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-						>{$peterAssignedCompany}</Typography>
+						>{$peterAssignedCompany}</Typography
+					>
 				{/if}
 			</span>
 			<div class="p">
@@ -270,7 +272,8 @@
 				</div>
 			{:else}
 				<button class="button" on:click="{handleModalClick}"
-					>{state === "loaded" ? "CONTINUE" : "ASSIGN PLACEMENT"}</button>
+					>{state === "loaded" ? "CONTINUE" : "ASSIGN PLACEMENT"}</button
+				>
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text" />
@@ -281,7 +284,8 @@
 	<div class="heading">
 		<Typography variant="heading">
 			{$peterAssignedStudent?.split(" ")[0]} has <Highlight
-				>two relevant internship opportunities.</Highlight> Let’s assign their placement.
+				>two relevant internship opportunities.</Highlight
+			> Let’s assign their placement.
 		</Typography>
 	</div>
 	<div class="sub-text">
@@ -309,7 +313,8 @@
 							</div>
 							<div class="content">
 								<Typography fontVariant="kw1c" variant="kw1c-header" color="--kw1c-blue-900"
-									>{$peterAssignedStudent?.toUpperCase()}</Typography>
+									>{$peterAssignedStudent?.toUpperCase()}</Typography
+								>
 							</div>
 						</div>
 
@@ -319,7 +324,8 @@
 							</div>
 							<div class="content">
 								<Typography fontVariant="kw1c" variant="kw1c-sub-text" color="--kw1c-red-900"
-									>3D Print Design</Typography>
+									>3D Print Design</Typography
+								>
 							</div>
 						</div>
 					</div>
@@ -330,11 +336,13 @@
 							<div class="intern-content">
 								<div class="location">
 									<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-										>{internship.location}</Typography>
+										>{internship.location}</Typography
+									>
 								</div>
 								<div class="org">
 									<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-										>{internship.name}</Typography>
+										>{internship.name}</Typography
+									>
 								</div>
 								<button
 									class="button"
@@ -342,7 +350,8 @@
 										peterAssignedCompany.set(internship.name);
 										peterAssignecCompanyCountry.set(internship.location.split(',')[1]);
 										showModal = true;
-									}}">ASSIGN PLACEMENT</button>
+									}}">ASSIGN PLACEMENT</button
+								>
 							</div>
 						</div>
 					{/each}

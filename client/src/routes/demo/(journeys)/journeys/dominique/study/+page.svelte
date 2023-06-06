@@ -133,7 +133,8 @@
 			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"
 				>{receivedCreds
 					? "YOU HAVE RECEIVED & ACCEPTED YOUR NEW COURSE CREDENTIAL."
-					: "KW1C HAS SENT YOU A NEW COURSE CREDENTIAL"}</Typography>
+					: "KW1C HAS SENT YOU A NEW COURSE CREDENTIAL"}</Typography
+			>
 			<div class="p">
 				{receivedCreds
 					? "This is now visible in your wallet and free for you to share with anyone, at any time. "
@@ -145,7 +146,8 @@
 					<Button
 						label="CONTINUE"
 						variant="kw1c"
-						onClick="{() => goto('/demo/journeys/dominique/finished-course')}" />
+						onClick="{() => goto('/demo/journeys/dominique/finished-course')}"
+					/>
 				</div>
 			{:else}
 				<Loading img="/imgs/blue-loading.png" />
@@ -154,7 +156,8 @@
 				<Typography variant="sub-text"
 					>{receivedCreds
 						? "Click Continue to proceed"
-						: "Awaiting credential acceptance..."}</Typography>
+						: "Awaiting credential acceptance..."}</Typography
+				>
 			</div>
 		</div>
 	</Modal>
@@ -167,7 +170,8 @@
 		{:else}
 			<Typography variant="heading">
 				Congratulations. <Hightlight>You have been accepted</Hightlight> on the course. Now you need
-				to complete your studies.</Typography>
+				to complete your studies.</Typography
+			>
 		{/if}
 	</div>
 	<div class="sub-text">
@@ -176,18 +180,21 @@
 				Click the get credential button to receive your credential from KW1C.
 			{:else}
 				Click the start studying button to continue and complete the course.
-			{/if}</Typography>
+			{/if}</Typography
+		>
 	</div>
 	{#if studied}
 		<div
-			style="position: fixed; top: -50px; left: 0; height: 100vh; width: 100vw; display: flex; justify-content: center; overflow: hidden; pointer-events: none;">
+			style="position: fixed; top: -50px; left: 0; height: 100vh; width: 100vw; display: flex; justify-content: center; overflow: hidden; pointer-events: none;"
+		>
 			<Confetti
 				x="{[-5, 5]}"
 				y="{[0, 0.1]}"
 				delay="{[500, 5000]}"
 				duration="2000"
 				amount="500"
-				fallDistance="100vh" />
+				fallDistance="100vh"
+			/>
 		</div>
 	{/if}
 	<div class="dash-outer">
@@ -197,17 +204,20 @@
 					<Typography variant="kw1c-header" fontVariant="kw1c"
 						>{studied
 							? "CONGRATULATIONS DOMINIQUE, YOU HAVE COMPLETED YOUR COURSE!"
-							: "HELLO DOMINIQUE, WELCOME TO YOUR NEW COURSE"}</Typography>
+							: "HELLO DOMINIQUE, WELCOME TO YOUR NEW COURSE"}</Typography
+					>
 				</div>
 				<div class="details">
 					<div class="text">
 						<div class="category">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>{dominqueCourses[$dominiqueSelectedCourse].category.toUpperCase()}</Typography>
+								>{dominqueCourses[$dominiqueSelectedCourse].category.toUpperCase()}</Typography
+							>
 						</div>
 						<div class="course">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>{dominqueCourses[$dominiqueSelectedCourse].name.toUpperCase()}</Typography>
+								>{dominqueCourses[$dominiqueSelectedCourse].name.toUpperCase()}</Typography
+							>
 						</div>
 					</div>
 					<div class="button">
@@ -221,7 +231,8 @@
 										currNode.set(4);
 										receivedCreds = true;
 									}, 9000);
-								}}" />
+								}}"
+							/>
 						{:else}
 							<Button
 								variant="kw1c"
@@ -230,7 +241,8 @@
 									currNode.set(3);
 									studied = true;
 									progress = 100;
-								}}" />
+								}}"
+							/>
 						{/if}
 					</div>
 				</div>
@@ -243,7 +255,8 @@
 							<div class="dash gray-dash"></div>
 							<div class="progress">
 								<Typography variant="status" fontVariant="kw1c" color="--kw1c-blue-900"
-									>{progress}%</Typography>
+									>{progress}%</Typography
+								>
 							</div>
 						</div>
 					{/each}

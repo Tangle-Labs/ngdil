@@ -212,7 +212,8 @@
 					YOU HAVE SUCCESSFULLY ISSUED {selected.length} STUDENT INTERNATIONALISATION COURSE BADGES
 				{:else}
 					YOU ARE ABOUT TO ISSUE {selected.length} STUDENT INTERNATIONALISATION COURSE BADGES
-				{/if}</Typography>
+				{/if}</Typography
+			>
 			<div class="p">
 				{#if state === "loaded"}
 					Click the CONTINUE button to continue and assign student internship placements.
@@ -222,7 +223,8 @@
 				<Loading img="/imgs/blue-loading.png" />
 			{:else}
 				<button class="button" on:click="{handleModalClick}"
-					>{state === "init" ? "ISSUE BADGES" : "CONTINUE"}</button>
+					>{state === "init" ? "ISSUE BADGES" : "CONTINUE"}</button
+				>
 			{/if}
 
 			<div class="subtext">
@@ -277,15 +279,18 @@
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>SARAH JONES</Typography>
+								>SARAH JONES</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>IVAR LEIFSSON</Typography>
+								>IVAR LEIFSSON</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>LAGERTHA BONDE</Typography>
+								>LAGERTHA BONDE</Typography
+							>
 						</div>
 					</div>
 
@@ -295,15 +300,18 @@
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography>
+								>3D Print Design</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography>
+								>3D Print Design</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography>
+								>3D Print Design</Typography
+							>
 						</div>
 					</div>
 
@@ -314,17 +322,20 @@
 
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--green-900"
-								>PASS</Typography>
+								>PASS</Typography
+							>
 						</div>
 
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--green-900"
-								>PASS</Typography>
+								>PASS</Typography
+							>
 						</div>
 
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--green-900"
-								>PASS</Typography>
+								>PASS</Typography
+							>
 						</div>
 					</div>
 				</div>
@@ -332,7 +343,8 @@
 				<div class="button-container">
 					<button
 						class="{`button ${selected.length <= 0 && 'disabled'}`}"
-						on:click="{handleIssueCourseBadges}">ISSUE COURSE BADGES</button>
+						on:click="{handleIssueCourseBadges}">ISSUE COURSE BADGES</button
+					>
 				</div>
 			</div>
 		</Kw1c>

@@ -103,7 +103,8 @@
 			<img src="/imgs/qr.png" alt="" class="qr" />
 			<div class="title">
 				<Typography variant="card-header"
-					>Scan the QR code to download the vira identity wallet</Typography>
+					>Scan the QR code to download the vira identity wallet</Typography
+				>
 			</div>
 			<div class="caption">Or click the icon to download for desktop</div>
 			<div class="icons">
@@ -114,7 +115,8 @@
 			<Button variant="secondary" onClick="{() => goto('/demo/choose-journey')}" label="Continue" />
 			<div class="subtitle">
 				<Typography variant="sub-text"
-					>Click to continue once you have downloaded your wallet</Typography>
+					>Click to continue once you have downloaded your wallet</Typography
+				>
 			</div>
 		</div>
 		<img src="/imgs/vira-side.png" alt="" class="side" />
@@ -124,7 +126,8 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>To begin with self-sovereign identity you must first have an identity wallet app.</Typography>
+			>To begin with self-sovereign identity you must first have an identity wallet app.</Typography
+		>
 	</div>
 
 	<div class="desc">
@@ -150,7 +153,8 @@
 						onClick="{() => {
 							modalVisible = true;
 						}}"
-						label="Download" />
+						label="Download"
+					/>
 				</div>
 			</Card>
 		</div>
@@ -170,7 +174,8 @@
 						onClick="{() => {
 							modalVisible = true;
 						}}"
-						label="Download" />
+						label="Download"
+					/>
 				</div>
 			</Card>
 		</div>

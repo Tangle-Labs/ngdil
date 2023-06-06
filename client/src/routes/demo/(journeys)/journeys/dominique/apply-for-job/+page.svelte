@@ -59,7 +59,8 @@
 	<div class="sub-text">
 		<Typography
 			>In your mobile wallet, scan the QR code & accept the connection request to login privately to
-			the Big Business Corp website.</Typography>
+			the Big Business Corp website.</Typography
+		>
 	</div>
 	<div class="dash">
 		<BigBusinessCorp>
@@ -75,7 +76,8 @@
 						</div>
 						<div class="desc">
 							<Typography variant="sub-text"
-								>Scan the QR to login to the Big Business Corp website.</Typography>
+								>Scan the QR to login to the Big Business Corp website.</Typography
+							>
 						</div>
 					</div>
 				</Card>

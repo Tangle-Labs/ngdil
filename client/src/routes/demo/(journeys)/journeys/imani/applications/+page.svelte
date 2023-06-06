@@ -42,7 +42,8 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You’re in, and it appears you have <Highlight>three new applications</Highlight>. View
-			applicants to choose who to hire.</Typography>
+			applicants to choose who to hire.</Typography
+		>
 	</div>
 	<div class="sub-text">
 		<Typography>Click the view applicant button next to the applicant you want to hire.</Typography>
@@ -53,7 +54,8 @@
 				<div class="info">
 					<div class="name">
 						<Typography variant="list" fontVariant="kw1c" color="--future-tech-green"
-							>Gilian O'Leary</Typography>
+							>Gilian O'Leary</Typography
+						>
 					</div>
 					<div class="bar"></div>
 				</div>
@@ -64,7 +66,8 @@
 						onClick="{() => {
 							imaniChosenApplicant.set("Gilian O'Leary");
 							goto('/demo/journeys/imani/applicant');
-						}}" />
+						}}"
+					/>
 				</div>
 			</div>
 
@@ -72,7 +75,8 @@
 				<div class="info">
 					<div class="name">
 						<Typography variant="list" fontVariant="kw1c" color="--future-tech-green"
-							>Marcus Erikson</Typography>
+							>Marcus Erikson</Typography
+						>
 					</div>
 					<div class="bar"></div>
 				</div>
@@ -83,7 +87,8 @@
 						onClick="{() => {
 							imaniChosenApplicant.set('Marcus Erikson');
 							goto('/demo/journeys/imani/applicant');
-						}}" />
+						}}"
+					/>
 				</div>
 			</div>
 
@@ -91,7 +96,8 @@
 				<div class="info">
 					<div class="name">
 						<Typography variant="list" fontVariant="kw1c" color="--future-tech-green"
-							>Cassandra Blanc</Typography>
+							>Cassandra Blanc</Typography
+						>
 					</div>
 					<div class="bar"></div>
 				</div>
@@ -102,7 +108,8 @@
 						onClick="{() => {
 							imaniChosenApplicant.set('Cassandra Blanc');
 							goto('/demo/journeys/imani/applicant');
-						}}" />
+						}}"
+					/>
 				</div>
 			</div>
 		</FutureTech>

@@ -64,12 +64,14 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You've made it to the KW1C website, <Highlight>let's log in to enrol on your</Highlight> course
-			of choice.</Typography>
+			of choice.</Typography
+		>
 	</div>
 	<div class="sub-text">
 		<Typography
 			>In your identity wallet, scan the QR code and accept the connection request to the KW1C
-			learners portal.</Typography>
+			learners portal.</Typography
+		>
 	</div>
 	<div class="dash">
 		<Kw1c variant="blue">
@@ -80,13 +82,15 @@
 							<img src="/imgs/kw1c-crowns.png" alt="" class="crowns" />
 							<div class="heading-text">
 								<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>LOGIN TO KW1C</Typography>
+									>LOGIN TO KW1C</Typography
+								>
 							</div>
 						</div>
 						<img src="/imgs/qr.png" on:click="{handleClick}" alt="" />
 						<div class="desc">
 							<Typography variant="kw1c-sub-text"
-								>Scan the QR to access the KW1C learners portal.</Typography>
+								>Scan the QR to access the KW1C learners portal.</Typography
+							>
 						</div>
 					</div>
 				</Card>

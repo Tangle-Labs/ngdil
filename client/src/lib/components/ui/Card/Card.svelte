@@ -27,6 +27,7 @@
 
 <div
 	style:border-radius="{`${borderRadius}px`}"
-	class="{`card ${withBorder && 'with-border'} ${withoutPadding && 'without-padding'}`}">
+	class="{`card ${withBorder && 'with-border'} ${withoutPadding && 'without-padding'}`}"
+>
 	<slot />
 </div>

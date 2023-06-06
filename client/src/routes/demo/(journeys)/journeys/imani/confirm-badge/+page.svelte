@@ -92,7 +92,8 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>Your badge template is looking great. <Highlight>Let’s create the badge</Highlight> template so
-			it is available for trainees.</Typography>
+			it is available for trainees.</Typography
+		>
 	</div>
 	<div class="sub-text">
 		<Typography>Click the create badge button to confirm the badge template.</Typography>
@@ -144,7 +145,8 @@
 					label="Create Badge"
 					onClick="{() => {
 						goto('/demo/journeys/imani/badges');
-					}}" />
+					}}"
+				/>
 			</div>
 		</FutureTech>
 	</div>

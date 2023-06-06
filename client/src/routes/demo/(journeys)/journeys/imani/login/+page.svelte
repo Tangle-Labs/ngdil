@@ -64,11 +64,13 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>It’s a new day, so <Highlight>let’s get started by logging in</Highlight> to the Future Tech Co.
-			staff dashboard using your SSI.</Typography>
+			staff dashboard using your SSI.</Typography
+		>
 	</div>
 	<div class="sub-text">
 		<Typography
-			>Scan the QR code in your mobile wallet to connect to the Future Tech Co. dashboard.</Typography>
+			>Scan the QR code in your mobile wallet to connect to the Future Tech Co. dashboard.</Typography
+		>
 	</div>
 	<div class="dash">
 		<FutureTech withSidebar="{false}">
@@ -84,7 +86,8 @@
 
 					<div class="p">
 						<Typography color="--white-300"
-							>Scan the QR to login to connect to Future Tech Co.</Typography>
+							>Scan the QR to login to connect to Future Tech Co.</Typography
+						>
 					</div>
 				</div>
 			</div>

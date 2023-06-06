@@ -54,12 +54,14 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>It’s time to spread the word. <Hightlight>Let’s connect to the Open Jobs Network</Hightlight>
-			to share your credential.</Typography>
+			to share your credential.</Typography
+		>
 	</div>
 	<div class="sub-text">
 		<Typography
 			>In your mobile wallet, scan the QR code & accept the connection request to login privately to
-			the Open Jobs Network.</Typography>
+			the Open Jobs Network.</Typography
+		>
 	</div>
 	<div class="dash">
 		<OpenJobsNetwork>
@@ -69,11 +71,12 @@
 						<img src="/imgs/qr.png" on:click="{handleClick}" alt="" />
 						<div class="heading">
 							<Typography variant="card-header" color="--bbc-blue"
-								>Login to Open Jobs Network</Typography>
+								>Login to Open Jobs Network</Typography
+							>
 						</div>
 						<div class="desc">
-							<Typography variant="sub-text"
-								>Scan the QR to access the Open Jobs Network</Typography>
+							<Typography variant="sub-text">Scan the QR to access the Open Jobs Network</Typography
+							>
 						</div>
 					</div>
 				</Card>

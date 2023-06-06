@@ -175,7 +175,8 @@
 			<Typography variant="card-header" color="--bbc-blue"
 				>{receivedCreds
 					? "You have accepted the following credential:"
-					: "Big Business Corp Staff ID"}</Typography>
+					: "Big Business Corp Staff ID"}</Typography
+			>
 			<div class="p">
 				{receivedCreds
 					? "Big Business Corp Staff ID"
@@ -184,24 +185,28 @@
 			{#if receivedCreds}
 				<img class="checked" src="/imgs/check-circle.png" alt="" />
 				<button class="button" on:click="{() => goto('/demo/journeys/dominique/job-secured')}"
-					>Continue</button>
+					>Continue</button
+				>
 			{:else}
 				<Loading img="/imgs/blue-loading.png" />
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text"
-					>{receivedCreds ? "Click continue to proceed" : "Awaiting on confirmation"}</Typography>
+					>{receivedCreds ? "Click continue to proceed" : "Awaiting on confirmation"}</Typography
+				>
 			</div>
 		</div>
 	</Modal>
 	<div class="heading">
 		<Typography variant="heading"
 			><Highlight>You’ve got the job! Congratulations,</Highlight> Big Business Corp now wants to issue
-			you with your staff ID.</Typography>
+			you with your staff ID.</Typography
+		>
 	</div>
 	<div class="sub-text">
 		<Typography
-			>Click the get staff ID button to receive your staff ID credential from Big Business Corp.</Typography>
+			>Click the get staff ID button to receive your staff ID credential from Big Business Corp.</Typography
+		>
 	</div>
 
 	<div class="dash">
@@ -226,12 +231,14 @@
 				<div class="right">
 					<div class="heading">
 						<Typography variant="card-header" color="--bbc-blue"
-							>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography>
+							>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography
+						>
 					</div>
 					<div class="sub-text">
 						<Typography
 							>Big Business Corp would like to welcome you to the team and send you the following
-							credential:</Typography>
+							credential:</Typography
+						>
 					</div>
 					<div class="list">
 						<Typography variant="list">Big Business Corp Staff ID</Typography>
@@ -243,7 +250,8 @@
 							on:click="{() => {
 								showModal = true;
 								handleWait();
-							}}">Get Staff ID</button>
+							}}">Get Staff ID</button
+						>
 					</div>
 				</div>
 			</div>

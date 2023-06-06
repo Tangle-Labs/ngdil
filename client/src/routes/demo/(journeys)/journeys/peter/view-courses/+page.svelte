@@ -179,7 +179,8 @@
 	<div class="sub-text">
 		<Typography
 			>Click the view results button to see the outcome for the internationalisation course
-			students.</Typography>
+			students.</Typography
+		>
 	</div>
 
 	<div class="dash">
@@ -200,7 +201,8 @@
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Internationalisation</Typography>
+								>Internationalisation</Typography
+							>
 						</div>
 						<div class="data">
 							<div class="blue-bar"></div>
@@ -216,7 +218,8 @@
 						</div>
 						<div class="data">
 							<Typography variant="status" fontVariant="kw1c" color="--green-900"
-								>Complete</Typography>
+								>Complete</Typography
+							>
 						</div>
 						<div class="data">
 							<div class="red-bar"></div>
@@ -229,7 +232,8 @@
 					<div class="column">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c" color="--white-300"
-								>Action</Typography>
+								>Action</Typography
+							>
 						</div>
 						<div class="button-container">
 							<Button
@@ -237,7 +241,8 @@
 								variant="kw1c"
 								onClick="{() => {
 									goto('/demo/journeys/peter/course-results');
-								}}" />
+								}}"
+							/>
 						</div>
 
 						<div class="button-container">
