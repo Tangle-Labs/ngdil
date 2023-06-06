@@ -163,9 +163,10 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, Kw1c, Button } from "$lib/components";
+	import { Typography, Kw1c, Button, Loading } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
+		currNode,
 		peterAssignedBadges,
 		peterAssignedStudent,
 		peterChosenStudents
@@ -177,7 +178,13 @@
 		"Lagertha Bonde": false
 	};
 
+	let loading = true;
 	let showModal = false;
+
+	setTimeout(() => {
+		currNode.set(5);
+		loading = false;
+	}, 2_000);
 </script>
 
 <div class="container">
@@ -240,7 +247,15 @@
 
 						{#each $peterChosenStudents as student (student)}
 							<div class="data action">
-								<Typography variant="status" color="--secondary-900">Pending</Typography>
+								<span style:padding-right="5px">
+									<Typography variant="status" color="{loading ? '--secondary-900' : '--green-900'}"
+										>{loading ? "Pending" : "Accepted"}</Typography
+									>
+								</span>
+								{#if loading}
+									<Loading size="20px" />
+								{:else}
+									<img src="/imgs/verified.png" alt="" style:height="20px" class="accepted" />{/if}
 							</div>
 						{/each}
 					</div>

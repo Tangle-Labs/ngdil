@@ -68,7 +68,7 @@
 				<div class="text">
 					<Typography variant="card-header" color="--bbc-blue">Passwordless Login</Typography>
 				</div>
-				<Card>
+				<Card borderRadius="{16}">
 					<div class="card-content">
 						<img src="/imgs/qr.png" on:click="{handleClick}" alt="" />
 						<div class="heading">
@@ -76,7 +76,7 @@
 						</div>
 						<div class="desc">
 							<Typography variant="sub-text"
-								>Scan the QR to access the KW1C learners portal.</Typography
+								>Scan the QR to login to the Big Business Corp website.</Typography
 							>
 						</div>
 					</div>

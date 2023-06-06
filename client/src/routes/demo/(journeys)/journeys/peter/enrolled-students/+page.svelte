@@ -59,7 +59,8 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { peterEnrolledStudent } from "$lib/stores/flows.store";
+	import { currNode, nodeCount, peterEnrolledStudent } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 
 	function handleFinishCourse() {
 		peterEnrolledStudent.set(true);

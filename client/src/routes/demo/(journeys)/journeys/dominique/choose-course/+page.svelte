@@ -49,7 +49,6 @@
 
 	.modal-content {
 		width: 400px;
-		background: white;
 		display: flex;
 		flex-wrap: wrap;
 		padding: 30px;
@@ -114,7 +113,7 @@
 			process.</Typography
 		>
 	</div>
-	<Modal bind:isOpen="{showModal}">
+	<Modal bind:isOpen="{showModal}" borderRadius="{16}">
 		<div class="modal-content">
 			<img src="/imgs/kw1c-white.png" alt="" class="logo" />
 			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"

@@ -175,7 +175,8 @@
 	import { Typography, Kw1c, Modal, Loading, CredModal } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { credentials } from "$lib/stores/creds";
-	import { dominiqueSelectedCourse, peterChosenStudent } from "$lib/stores/flows.store";
+	import { currNode, dominiqueSelectedCourse, peterChosenStudent } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 	let receivedCreds = false;
 	let loading = false;
 
@@ -184,8 +185,13 @@
 		setTimeout(() => {
 			receivedCreds = true;
 			loading = false;
+			currNode.set(3);
 		}, 8000);
 	}
+
+	onMount(() => {
+		currNode.set(2);
+	});
 </script>
 
 <div class="container">

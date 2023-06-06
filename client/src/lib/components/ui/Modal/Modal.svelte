@@ -18,7 +18,6 @@
 		transform: translate(-50%, -50%);
 		z-index: 10;
 		background: var(--white-300);
-		border-radius: 5px;
 		width: max-content;
 		max-width: 90vw;
 		.modal-header {
@@ -41,13 +40,18 @@
 	export let isOpen = false;
 	export let withBorder = false;
 	export let withoutPadding = false;
+	export let borderRadius = 0;
 </script>
 
 {#if isOpen}
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div class="backdrop" on:click="{() => (isOpen = false)}" transition:fade></div>
-	<div class="modal" transition:fly="{{ y: 50, duration: 400 }}">
-		<Card withBorder="{withBorder}" withoutPadding="{withoutPadding}">
+	<div
+		class="modal"
+		transition:fly="{{ y: 50, duration: 400 }}"
+		style:border-radius="{`${borderRadius}px`}"
+	>
+		<Card withBorder="{withBorder}" withoutPadding="{withoutPadding}" borderRadius="{borderRadius}">
 			<slot />
 		</Card>
 	</div>

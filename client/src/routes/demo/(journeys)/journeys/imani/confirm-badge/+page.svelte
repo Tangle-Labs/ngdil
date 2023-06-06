@@ -8,12 +8,12 @@
 			width: 100%;
 			display: flex;
 			justify-content: space-between;
-			padding: 20px 0;
+			padding: 10px 15px;
 		}
 
 		.badge {
 			display: flex;
-			padding: 20px;
+			padding: 10px 20px;
 
 			& > .badge {
 				padding: 0;
@@ -75,12 +75,17 @@
 	import { Typography, FutureTech, Button, Loading, Modal, Badge } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
+		currNode,
 		imaniBadgeColor,
 		imaniBadgeDesc,
 		imaniBadgeName,
-		imaniBadgeVariant,
-		imaniChosenApplicant
+		imaniBadgeVariant
 	} from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
+
+	onMount(() => {
+		currNode.set(3);
+	});
 </script>
 
 <div class="container">

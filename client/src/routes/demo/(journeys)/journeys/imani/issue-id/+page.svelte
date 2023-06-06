@@ -13,6 +13,14 @@
 		.table {
 			width: 100%;
 
+			th {
+				text-align: left;
+
+				&:last-of-type {
+					text-align: center;
+				}
+			}
+
 			td {
 				height: 50px;
 
@@ -79,7 +87,8 @@
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Button, Loading, Modal } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { imaniChosenApplicant } from "$lib/stores/flows.store";
+	import { currNode, imaniChosenApplicant } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 	import { Confetti } from "svelte-confetti";
 
 	let currStage: "init" | "loading" | "issued" = "init";
@@ -89,13 +98,18 @@
 		showModal = false;
 		currStage = "loading";
 		setTimeout(() => {
+			currNode.set(5);
 			currStage = "issued";
 		}, 8000);
 	}
+
+	onMount(() => {
+		currNode.set(4);
+	});
 </script>
 
 <div class="container">
-	<Modal bind:isOpen="{showModal}">
+	<Modal bind:isOpen="{showModal}" borderRadius="16">
 		<div class="modal-content">
 			<img src="/imgs/future-tech.png" alt="" class="logo" />
 			<div class="heading">
@@ -151,6 +165,17 @@
 	<div class="dash">
 		<FutureTech header="COMPANY EMPLOYEES">
 			<table class="table">
+				<tr>
+					<th>
+						<Typography variant="sub-text">Employee Name</Typography>
+					</th>
+					<th>
+						<Typography variant="sub-text">Designation</Typography>
+					</th>
+					<th>
+						<Typography variant="sub-text">Action</Typography>
+					</th>
+				</tr>
 				<tr>
 					<td>
 						<Typography variant="list">{$imaniChosenApplicant}</Typography>

@@ -30,7 +30,12 @@
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { imaniChosenApplicant } from "$lib/stores/flows.store";
+	import { currNode, imaniChosenApplicant } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
+
+	onMount(() => {
+		currNode.set(1);
+	});
 </script>
 
 <div class="container">

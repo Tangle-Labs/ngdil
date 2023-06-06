@@ -52,6 +52,12 @@
 			}
 		}
 
+		.heading {
+			width: 100%;
+			text-align: center;
+			padding-top: 30px;
+		}
+
 		.content {
 			min-height: 50vh;
 			background: var(--bbc-background);
@@ -62,6 +68,8 @@
 
 <script lang="ts">
 	import { Typography } from "$lib/components";
+
+	export let heading = "";
 </script>
 
 <div class="container">
@@ -80,6 +88,11 @@
 		</div>
 	</div>
 	<div class="content">
+		{#if heading}
+			<div class="heading">
+				<Typography variant="kw1c-header" color="--bbc-blue">{heading}</Typography>
+			</div>
+		{/if}
 		<slot />
 	</div>
 </div>

@@ -137,11 +137,13 @@
 	import { Typography, FutureTech, Button, Loading, Modal, Badge, Radio } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
+		currNode,
 		imaniBadgeColor,
 		imaniBadgeDesc,
 		imaniBadgeName,
 		imaniBadgeVariant
 	} from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 
 	let color: "red" | "blue" | "green" | "yellow" | null = null;
 	let variant: "hexagon" | "crest" | "rounded-hexagon" | "circle" | null = null;
@@ -163,6 +165,7 @@
 				imaniBadgeVariant.set(variant);
 				imaniBadgeColor.set(colors[color]);
 				creatingBadgeImage = false;
+				currNode.set(2);
 			}
 		} else {
 			imaniBadgeName.set(badgeName);
@@ -170,6 +173,10 @@
 			goto("/demo/journeys/imani/confirm-badge");
 		}
 	}
+
+	onMount(() => {
+		currNode.set(1);
+	});
 </script>
 
 <div class="container">
@@ -252,7 +259,7 @@
 			{:else}
 				<div class="input">
 					<div class="label"><Typography variant="list">Badge Name</Typography></div>
-					<input type="text" bind:value="{badgeName}" />
+					<input type="text" placeholder="3d Print Engineer" bind:value="{badgeName}" />
 					<div class="sub-text">
 						<Typography variant="sub-text">Enter Badge name here</Typography>
 					</div>
@@ -260,7 +267,8 @@
 
 				<div class="input">
 					<div class="label"><Typography variant="list">Badge Description</Typography></div>
-					<textarea bind:value="{badgeDesc}"></textarea>
+					<textarea bind:value="{badgeDesc}" placeholder="3d Print Engineer Badge Description"
+					></textarea>
 					<div class="sub-text">
 						<Typography variant="sub-text">Enter Badge description here</Typography>
 					</div>

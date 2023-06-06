@@ -6,7 +6,6 @@
 
 		.card {
 			width: 50%;
-			background: white;
 			position: absolute;
 			top: 50%;
 			left: 50%;
@@ -67,7 +66,7 @@
 	<div class="dash">
 		<OpenJobsNetwork>
 			<div class="card">
-				<Card>
+				<Card borderRadius="{16}">
 					<div class="card-content">
 						<img src="/imgs/qr.png" on:click="{handleClick}" alt="" />
 						<div class="heading">

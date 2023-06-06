@@ -12,6 +12,7 @@
 
 		& > .cards {
 			display: flex;
+			width: 40vw;
 			justify-content: space-between;
 
 			& > .card {
@@ -30,19 +31,97 @@
 		.subtitle {
 			padding-bottom: 10px;
 		}
+
+		.heading,
+		.desc {
+			width: 40vw;
+		}
+	}
+
+	.modal {
+		display: flex;
+
+		.content {
+			padding: 20px;
+			display: flex;
+			flex-wrap: wrap;
+			width: 30vw;
+			align-items: center;
+			align-content: center;
+			justify-content: center;
+			text-align: center;
+
+			.qr {
+				height: 200px;
+				margin-bottom: 20px;
+			}
+
+			.title,
+			.caption {
+				width: 100%;
+				padding: 10px 0;
+			}
+
+			.icons {
+				width: 100%;
+				padding: 20px 0;
+
+				.icon {
+					height: 50px;
+				}
+			}
+
+			.subtitle {
+				padding-top: 20px;
+				width: 100%;
+			}
+		}
+
+		.side {
+			height: 60vh;
+			transform: translateX(15px);
+		}
 	}
 </style>
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, Card, Button } from "$lib/components";
+	import { Typography, Card, Button, Modal } from "$lib/components";
 	import { currStep } from "$lib/stores/onboarding.store";
+
+	let modalVisible = false;
 
 	function handleContinue() {
 		currStep.set(2);
 		goto("/demo/choose-journey");
 	}
 </script>
+
+<Modal bind:isOpen="{modalVisible}" withBorder="{true}" borderRadius="8">
+	<div class="modal">
+		<div class="content">
+			<img src="/imgs/qr.png" alt="" class="qr" />
+			<div class="title">
+				<Typography variant="card-header"
+					>Scan the QR code to download the vira identity wallet</Typography
+				>
+			</div>
+			<div class="caption">Or click the icon to download for desktop</div>
+			<div class="icons">
+				<img src="/imgs/apple.png" alt="" class="icon" />
+				<img src="/imgs/linux.png" alt="" class="icon" />
+				<img src="/imgs/windows.png" alt="" class="icon" />
+			</div>
+			<Button variant="secondary" onClick="{() => goto('/demo/choose-journey')}" label="Continue" />
+			<div class="subtitle">
+				<Typography variant="sub-text"
+					>Click to continue once you have downloaded your wallet</Typography
+				>
+			</div>
+		</div>
+		<img src="/imgs/vira-side.png" alt="" class="side" />
+	</div>
+</Modal>
 
 <div class="container">
 	<div class="heading">
@@ -52,7 +131,7 @@
 	</div>
 
 	<div class="desc">
-		<Typography variant="button">
+		<Typography variant="body">
 			Select the application you wish to download by clicking the button and follow the onscreen
 			installation instructions to get started.
 		</Typography>
@@ -60,7 +139,7 @@
 
 	<div class="cards">
 		<div class="card tl-wallet">
-			<Card withBorder="{true}">
+			<Card borderRadius="8" withBorder="{true}">
 				<div class="card-content">
 					<img src="/imgs/vira.png" />
 					<div class="wallet-name">
@@ -72,7 +151,7 @@
 					<Button
 						variant="secondary"
 						onClick="{() => {
-							null;
+							modalVisible = true;
 						}}"
 						label="Download"
 					/>
@@ -80,7 +159,7 @@
 			</Card>
 		</div>
 		<div class="card impierce-wallet">
-			<Card withBorder="{true}">
+			<Card borderRadius="8" withBorder="{true}">
 				<div class="card-content">
 					<img src="/imgs/impierce.png" />
 					<div class="wallet-name">
@@ -93,7 +172,7 @@
 					<Button
 						variant="secondary"
 						onClick="{() => {
-							null;
+							modalVisible = true;
 						}}"
 						label="Download"
 					/>

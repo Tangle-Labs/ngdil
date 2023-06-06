@@ -146,7 +146,13 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { dominiqueSelectedCourse, peterChosenStudent } from "$lib/stores/flows.store";
+	import {
+		currNode,
+		dominiqueSelectedCourse,
+		nodeCount,
+		peterChosenStudent
+	} from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 	let receivedCreds = false;
 
 	function handleWait() {
@@ -156,6 +162,11 @@
 	}
 
 	let showModal = false;
+
+	onMount(() => {
+		nodeCount.set(5);
+		currNode.set(0);
+	});
 </script>
 
 <div class="container">

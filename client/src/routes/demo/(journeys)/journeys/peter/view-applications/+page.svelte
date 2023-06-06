@@ -120,7 +120,8 @@
 	import { Typography, Kw1c, Modal, Loading } from "$lib/components";
 	import Button from "$lib/components/ui/Button/Button.svelte";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { dominiqueSelectedCourse, peterChosenStudent } from "$lib/stores/flows.store";
+	import { currNode, dominiqueSelectedCourse, peterChosenStudent } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 	let receivedCreds = false;
 
 	function handleWait() {
@@ -128,6 +129,10 @@
 			receivedCreds = true;
 		}, 8000);
 	}
+
+	onMount(() => {
+		currNode.set(1);
+	});
 
 	let showModal = false;
 </script>

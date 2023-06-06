@@ -103,7 +103,7 @@
 						.circle-container,
 						.button-container {
 							width: 100%;
-							height: 60px !important;
+							height: 50px !important;
 							display: flex;
 							align-items: center;
 							align-content: center;
@@ -134,6 +134,33 @@
 					}
 				}
 			}
+		}
+	}
+
+	.modal-content {
+		width: 400px;
+		background: white;
+		display: flex;
+		flex-wrap: wrap;
+		padding: 30px;
+		box-sizing: border-box;
+		justify-content: center;
+		text-align: center;
+
+		& > * {
+			padding: 10px 0;
+		}
+
+		img {
+			height: 120px;
+		}
+
+		.subtext {
+			width: 100%;
+		}
+
+		.checked {
+			height: 60px;
 		}
 	}
 
@@ -173,6 +200,7 @@
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { credentials } from "$lib/stores/creds";
 	import {
+		currNode,
 		dominiqueSelectedCourse,
 		dominqueCourses,
 		peterAssignecCompanyCountry,
@@ -180,18 +208,52 @@
 		peterAssignedStudent,
 		peterChosenStudent
 	} from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 	let receivedCreds = false;
 	let loading = false;
+	let showModal = false;
 
 	function handleWait() {
+		showModal = false;
 		loading = true;
+		currNode.set(2);
 		setTimeout(() => {
 			receivedCreds = true;
 			loading = false;
+			currNode.set(3);
 		}, 8000);
 	}
+
+	onMount(() => {
+		currNode.set(1);
+	});
 </script>
 
+<Modal bind:isOpen="{showModal}" borderRadius="{16}">
+	<div class="modal-content">
+		<img src="/imgs/kw1c-white.png" alt="" class="logo" />
+		<span style:text-transform="uppercase">
+			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"
+				>you have successfully assigned {$peterAssignedStudent?.split(" ")[0]} their internship placement.
+			</Typography>
+		</span>
+		<div class="credentials">
+			<Typography variant="kw1c-sub-text">
+				KW1C College ID <br />
+				Internationalisation Badge <br />
+				Internship Completion Badge <br />
+				Internship Reference <br />
+			</Typography>
+		</div>
+		<div class="p">
+			<Typography variant="sub-text">Click the CONTINUE button to proceed</Typography>
+		</div>
+		<button class="button" on:click="{handleWait}">REQUEST CREDENTIALS</button>
+		<div class="subtext">
+			<Typography variant="sub-text" />
+		</div>
+	</div>
+</Modal>
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading">
@@ -216,7 +278,7 @@
 	</div>
 
 	<div class="dash">
-		<Kw1c variant="white">
+		<Kw1c variant="white" title="STUDENT INTERNSHIP PROGRESS">
 			<div class="sidebar">
 				{#each Array(5) as i}
 					<div class="menu-item">
@@ -234,9 +296,9 @@
 							>
 						</div>
 						<div class="course">
-							<Typography fontVariant="kw1c" variant="kw1c-sub-text" color="--kw1c-red-900"
-								>3d Print Design</Typography
-							>
+							<Typography fontVariant="kw1c" variant="kw1c-sub-text" color="--kw1c-red-900">
+								{$peterAssignedCompany}, {$peterAssignecCompanyCountry}
+							</Typography>
 						</div>
 					</div>
 					<div class="button-container">
@@ -248,7 +310,12 @@
 								CONTINUE
 							</button>
 						{:else}
-							<button class="{`button ${loading && 'loading'}`}" on:click="{handleWait}">
+							<button
+								class="{`button ${loading && 'loading'}`}"
+								on:click="{() => {
+									showModal = true;
+								}}"
+							>
 								{loading ? "VERIFYING" : "REQUEST CREDENTIALS"}
 							</button>
 						{/if}
@@ -293,25 +360,27 @@
 
 					<div class="column">
 						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c">Issuer</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c" color="--black-500"
+								>Issuer</Typography
+							>
 						</div>
 						<div class="data">
-							<Typography variant="kw1c-sub-text" fontVariant="kw1c"
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--black-500"
 								>Koning Willem 1 College</Typography
 							>
 						</div>
 						<div class="data">
-							<Typography variant="kw1c-sub-text" fontVariant="kw1c"
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--black-500"
 								>Koning Willem 1 College</Typography
 							>
 						</div>
 						<div class="data">
-							<Typography variant="kw1c-sub-text" fontVariant="kw1c"
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--black-500"
 								>{$peterAssignedCompany}</Typography
 							>
 						</div>
 						<div class="data">
-							<Typography variant="kw1c-sub-text" fontVariant="kw1c"
+							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--black-500"
 								>{$peterAssignedCompany}</Typography
 							>
 						</div>

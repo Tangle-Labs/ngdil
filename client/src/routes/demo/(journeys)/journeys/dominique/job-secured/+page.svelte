@@ -59,12 +59,25 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { dominiqueAppliedForJob, dominiqueEarnedCourseCred } from "$lib/stores/flows.store";
+	import {
+		completedJourneys,
+		dominiqueAppliedForJob,
+		dominiqueEarnedCourseCred
+	} from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 
 	function handleFinishCourse() {
-		dominiqueAppliedForJob.set(true);
-		goto("/demo/journeys/dominique");
+		goto("/demo/choose-journey");
 	}
+
+	onMount(() => {
+		completedJourneys.update((u) => {
+			const _unique = u.filter((_u) => _u !== "dominique");
+			_unique.push("dominique");
+			return _unique;
+		});
+		dominiqueAppliedForJob.set(true);
+	});
 </script>
 
 <div class="container">
@@ -107,7 +120,12 @@
 							To explore other journeys for employers and educators click continue.
 						</Typography>
 					</div>
-					<Button variant="secondary" label="continue" onClick="{handleFinishCourse}" />
+					<Button variant="secondary" label="Continue" onClick="{handleFinishCourse}" />
+					<Button
+						variant="white"
+						label="Contact NGDIL"
+						onClick="{() => window.open('https://ngdil.com/contact', '_blank')}"
+					/>
 				</div>
 				<div class="img">
 					<img src="/imgs/pic-placeholder.png" alt="" />

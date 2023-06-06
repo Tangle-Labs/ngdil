@@ -16,7 +16,7 @@
 
 				.left {
 					padding-right: 10px;
-					width: 50%;
+					width: 70%;
 
 					img {
 						border-top-left-radius: 20px;
@@ -93,6 +93,7 @@
 
 		.p {
 			color: var(--black-500);
+			width: 100%;
 		}
 
 		.subtext {
@@ -121,7 +122,7 @@
 		box-sizing: border-box;
 		border-radius: 40px;
 		font-weight: 500;
-		padding: 12px;
+		padding: 15px;
 		margin-bottom: 0;
 		transition: 0.5s all;
 
@@ -136,7 +137,6 @@
 
 		&:hover {
 			cursor: pointer;
-			background: var(--blue-900);
 		}
 	}
 </style>
@@ -145,20 +145,26 @@
 	import { goto } from "$app/navigation";
 	import { Typography, BigBusinessCorp, Modal, Loading } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
+	import { currNode, dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 
 	let showModal = false;
 	let receivedCreds = false;
 
 	function handleWait() {
 		setTimeout(() => {
+			currNode.set(5);
 			receivedCreds = true;
 		}, 9000);
 	}
+
+	onMount(() => {
+		currNode.set(4);
+	});
 </script>
 
 <div class="container">
-	<Modal withoutPadding="{true}" bind:isOpen="{showModal}">
+	<Modal withoutPadding="{true}" bind:isOpen="{showModal}" borderRadius="{16}">
 		<div class="modal-header">
 			<img src="/imgs/bbc.png" alt="" class="logo" />
 			<div class="logo-text">
@@ -166,20 +172,20 @@
 			</div>
 		</div>
 		<div class="modal-content">
-			<Typography variant="card-header"
+			<Typography variant="card-header" color="--bbc-blue"
 				>{receivedCreds
 					? "You have accepted the following credential:"
 					: "Big Business Corp Staff ID"}</Typography
 			>
 			<div class="p">
 				{receivedCreds
-					? "You may continue further in your browser."
+					? "Big Business Corp Staff ID"
 					: "In your mobile wallet accept the credential from Big Business Corp."}
 			</div>
 			{#if receivedCreds}
 				<img class="checked" src="/imgs/check-circle.png" alt="" />
 				<button class="button" on:click="{() => goto('/demo/journeys/dominique/job-secured')}"
-					>CONTINUE</button
+					>Continue</button
 				>
 			{:else}
 				<Loading img="/imgs/blue-loading.png" />
@@ -204,16 +210,14 @@
 	</div>
 
 	<div class="dash">
-		<BigBusinessCorp>
+		<BigBusinessCorp heading="Congratulations! You got the job">
 			<div class="card">
 				<div class="left">
 					<img src="{dominqueCourses[$dominiqueSelectedCourse].img}" alt="" />
 
 					<div class="details">
 						<div class="heading">
-							<Typography variant="card-header" color="--bbc-blue"
-								>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography
-							>
+							<Typography variant="card-header" color="--bbc-blue">Dominique Veritas</Typography>
 						</div>
 
 						<div class="bars">
@@ -226,7 +230,9 @@
 
 				<div class="right">
 					<div class="heading">
-						<Typography variant="card-header" color="--bbc-blue">Dominique Veritas</Typography>
+						<Typography variant="card-header" color="--bbc-blue"
+							>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography
+						>
 					</div>
 					<div class="sub-text">
 						<Typography

@@ -13,6 +13,14 @@
 		.table {
 			width: 100%;
 
+			th {
+				text-align: left;
+
+				&:last-of-type {
+					text-align: center;
+				}
+			}
+
 			td {
 				height: 50px;
 
@@ -79,7 +87,19 @@
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Button, Loading, Modal } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { imaniBadgeName, imaniChosenApplicant } from "$lib/stores/flows.store";
+	import { currNode, imaniBadgeName, imaniChosenApplicant } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
+
+	let loading = true;
+
+	setTimeout(() => {
+		loading = false;
+		currNode.set(5);
+	}, 5_000);
+
+	onMount(() => {
+		currNode.set(4);
+	});
 </script>
 
 <div class="container">
@@ -96,12 +116,22 @@
 		<FutureTech header="COMPANY BADGES">
 			<table class="table">
 				<tr>
+					<th><Typography variant="sub-text">Badge Name</Typography></th>
+					<th></th>
+					<th><Typography variant="sub-text">Badge Status</Typography></th>
+				</tr>
+				<tr>
 					<td>
 						<Typography variant="list">{$imaniBadgeName}</Typography>
 					</td>
 					<td> </td>
 					<td>
-						<Typography variant="status">Active</Typography>
+						{#if loading}
+							<Loading size="16px" />
+						{/if}
+						<Typography variant="status" color="{loading ? '--secondary-900' : '--green-900'}"
+							>{loading ? "Pending" : "Active"}</Typography
+						>
 					</td>
 				</tr>
 
