@@ -29,8 +29,25 @@
 					justify-content: space-between;
 					align-items: center;
 					text-align: left;
+
+					.text {
+						width: calc(100% - 300px);
+					}
+
+					& > * {
+						margin-right: 20px;
+
+						&:last-of-type {
+							margin-right: 0;
+						}
+					}
 				}
 			}
+		}
+
+		& > .heading,
+		& > .desc {
+			width: 40vw;
 		}
 	}
 
@@ -83,7 +100,7 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Loading, Card, Avatar, Button, Modal } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { currentJourney } from "$lib/stores/flows.store";
+	import { completedJourneys, currentJourney } from "$lib/stores/flows.store";
 	import { currStep } from "$lib/stores/onboarding.store";
 
 	const journeys = {
@@ -116,7 +133,7 @@
 </script>
 
 <div class="modal">
-	<Modal withBorder="{true}" bind:isOpen="{isOpen}">
+	<Modal withBorder="{true}" bind:isOpen="{isOpen}" borderRadius="8">
 		{#if journey}
 			<div class="modal-content">
 				<div class="left">
@@ -144,8 +161,7 @@
 										currStep.set(5);
 									}, 8000);
 									qrVisible = true;
-								}}"
-							/>
+								}}" />
 						</div>
 					{/if}
 				</div>
@@ -156,8 +172,7 @@
 							<Typography variant="card-header"
 								>{buttonVisible
 									? "Your credentials are confirmed!"
-									: "Scan QR code to connect to NGDIL & receive your credentials."}</Typography
-							>
+									: "Scan QR code to connect to NGDIL & receive your credentials."}</Typography>
 						</div>
 						<div class="sub-text">
 							<Typography variant="sub-text">
@@ -172,8 +187,7 @@
 								onClick="{() => {
 									goto(`/demo/journeys/${selectedJourney}`);
 								}}"
-								variant="secondary"
-							/>
+								variant="secondary" />
 						{:else}
 							<Loading />
 						{/if}
@@ -187,8 +201,7 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You’re all set! <Highlight>Let’s choose the user journey</Highlight> you would like to explore
-			first.</Typography
-		>
+			{$completedJourneys.length > 0 ? "next" : "first"}.</Typography>
 	</div>
 	<div class="desc">
 		<Typography variant="button"
@@ -202,7 +215,7 @@
 	</div>
 	<div class="cards">
 		<div class="card">
-			<Card withBorder="{true}">
+			<Card withBorder="{true}" borderRadius="8">
 				<div class="card-content">
 					<Avatar image="/imgs/dominique.png" />
 					<div class="text">
@@ -212,24 +225,22 @@
 						<div class="desc">
 							<Typography
 								>Dominique is a school graduate, excited to enrol as a student at Koning Willem I
-								College.</Typography
-							>
+								College.</Typography>
 						</div>
 					</div>
 					<Button
-						variant="secondary"
+						variant="{$completedJourneys.includes('dominique') ? 'completed' : 'secondary'}"
 						onClick="{() => {
 							selectedJourney = 'dominique';
 							currStep.set(3);
 							isOpen = true;
 						}}"
-						label="Get Started"
-					/>
+						label="{$completedJourneys.includes('dominique') ? 'Complete' : 'Get Started'}" />
 				</div>
 			</Card>
 		</div>
 		<div class="card">
-			<Card withBorder="{true}">
+			<Card withBorder="{true}" borderRadius="8">
 				<div class="card-content">
 					<Avatar image="/imgs/peter.png" />
 					<div class="text">
@@ -244,19 +255,18 @@
 						</div>
 					</div>
 					<Button
-						variant="secondary"
+						variant="{$completedJourneys.includes('peter') ? 'completed' : 'secondary'}"
 						onClick="{() => {
 							selectedJourney = 'peter';
 							currStep.set(3);
 							isOpen = true;
 						}}"
-						label="Get Started"
-					/>
+						label="{$completedJourneys.includes('peter') ? 'Complete' : 'Get Started'}" />
 				</div>
 			</Card>
 		</div>
 		<div class="card">
-			<Card withBorder="{true}">
+			<Card withBorder="{true}" borderRadius="8">
 				<div class="card-content">
 					<Avatar image="/imgs/imani.png" />
 					<div class="text">
@@ -271,14 +281,13 @@
 						</div>
 					</div>
 					<Button
-						variant="secondary"
+						variant="{$completedJourneys.includes('imani') ? 'completed' : 'secondary'}"
 						onClick="{() => {
 							selectedJourney = 'imani';
 							currStep.set(3);
 							isOpen = true;
 						}}"
-						label="Get Started"
-					/>
+						label="{$completedJourneys.includes('imani') ? 'Complete' : 'Get Started'}" />
 				</div>
 			</Card>
 		</div>

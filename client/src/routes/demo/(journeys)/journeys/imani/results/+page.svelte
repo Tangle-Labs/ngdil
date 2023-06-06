@@ -13,6 +13,10 @@
 		.table {
 			width: 100%;
 
+			th {
+				text-align: left;
+			}
+
 			td {
 				height: 50px;
 
@@ -75,9 +79,16 @@
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Button, Loading, Modal, Radio } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { imaniBadgeName, imaniChosenStaff, imaniIssuedStaff } from "$lib/stores/flows.store";
+	import {
+		currNode,
+		imaniBadgeName,
+		imaniChosenStaff,
+		imaniIssuedStaff
+	} from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 
 	let staff = $imaniChosenStaff.map((s) => ({ ...s, selected: false }));
+	let staffCount = staff.length;
 
 	let showModal = false;
 
@@ -85,20 +96,22 @@
 		imaniIssuedStaff.set(staff.filter((s) => s.selected));
 		goto("/demo/journeys/imani/badge-holders");
 	}
+
+	onMount(() => {
+		currNode.set(7);
+	});
 </script>
 
 <div class="container">
-	<Modal bind:isOpen="{showModal}">
+	<Modal bind:isOpen="{showModal}" borderRadius="16">
 		<div class="modal-content">
 			<img src="/imgs/future-tech.png" alt="" class="logo" />
 			<div class="heading">
 				<Typography variant="card-header" fontVariant="kw1c" color="--future-tech-green"
-					>FUTURE TECH CO.</Typography
-				>
+					>FUTURE TECH CO.</Typography>
 			</div>
 			<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-red-900"
-				>You are about to issue {$imaniChosenStaff.length} badges - {$imaniBadgeName}</Typography
-			>
+				>You are about to issue {staffCount} badges - {$imaniBadgeName}</Typography>
 			<div class="p">
 				<Typography color="--black-500">
 					To continue and issue the badges click the issue badges button.
@@ -113,18 +126,22 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>Not bad at all, the <Highlight>staff were successful in their training.</Highlight> Let’s issue
-			them their badges.</Typography
-		>
+			them their badges.</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography
 			>Select the check boxes next to the employees that passed, then click the issue badges button
-			to continue.</Typography
-		>
+			to continue.</Typography>
 	</div>
 	<div class="dash">
 		<FutureTech header="{`${$imaniBadgeName.toUpperCase()} TRAINEES`}">
 			<table class="table">
+				<tr>
+					<th></th>
+					<th><Typography variant="sub-text">Employee Name</Typography></th>
+					<th><Typography variant="sub-text">Designation</Typography></th>
+					<th><Typography variant="sub-text">Course Result</Typography></th>
+				</tr>
 				{#each staff as emp (emp.name)}
 					<tr>
 						<td>
@@ -144,7 +161,13 @@
 			</table>
 
 			<div class="button-container">
-				<Button variant="future-tech" label="Issue Badges" onClick="{() => (showModal = true)}" />
+				<Button
+					variant="future-tech"
+					label="Issue Badges"
+					onClick="{() => {
+						showModal = true;
+						staffCount = staff.filter((e) => e.selected).length;
+					}}" />
 			</div>
 		</FutureTech>
 	</div>

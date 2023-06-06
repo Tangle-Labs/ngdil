@@ -11,6 +11,10 @@
 			transform: translate(-50%, -50%);
 			text-align: center;
 
+			.header {
+				padding-bottom: 10px;
+			}
+
 			.login-card {
 				background: var(--future-tech-green);
 				width: 200px;
@@ -36,6 +40,8 @@
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Phone } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
+	import { currNode, nodeCount } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 
 	let animatePhone = false;
 
@@ -45,6 +51,11 @@
 			goto("/demo/journeys/imani/applications");
 		}, 12_000);
 	};
+
+	onMount(() => {
+		currNode.set(0);
+		nodeCount.set(5);
+	});
 </script>
 
 <Phone variant="futureTech" bind:animatePhone="{animatePhone}" />
@@ -63,8 +74,7 @@
 		<FutureTech withSidebar="{false}">
 			<div class="card-container">
 				<div class="header">
-					<Typography variant="card-header" fontVariant="kw1c" color="--future-tech-green"
-						>STAFF CONNECT</Typography>
+					<Typography variant="kw1c-header" fontVariant="kw1c">STAFF CONNECT</Typography>
 				</div>
 				<div class="login-card">
 					<img src="/imgs/qr.png" alt="" on:click="{handleClick}" />

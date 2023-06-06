@@ -76,6 +76,10 @@
 			title: "You have successfully logged in to the Open Jobs Network.",
 			logo: "/imgs/openjobs.png"
 		},
+		kw1cStaff: {
+			title: "You have successfully logged in to the KW1C Staff Portal.",
+			logo: "/imgs/kw1c-white.png"
+		},
 		kw1c: {
 			title: "You have successfully logged in to the KW1C Learner Portal.",
 			logo: "/imgs/kw1c-white.png"
@@ -90,7 +94,7 @@
 		}
 	};
 
-	export let variant: "openJobs" | "kw1c" | "bbc" | "futureTech";
+	export let variant: "openJobs" | "kw1c" | "kw1cStaff" | "bbc" | "futureTech";
 	const provider = variants[variant];
 
 	let animateDrawer = false;
@@ -128,8 +132,7 @@
 	<div
 		class="phone"
 		in:fly="{{ y: 300, duration: 1100, x: 100 }}"
-		out:fly="{{ y: 300, duration: 1100, x: 100 }}"
-	>
+		out:fly="{{ y: 300, duration: 1100, x: 100 }}">
 		<img class="phone__img" src="/imgs/phone.png" />
 		{#if animateFlash}
 			<div class="bg"></div>
@@ -143,8 +146,7 @@
 					{#if variant === "futureTech"}
 						<div class="content__corp">
 							<Typography variant="kw1c-impact" color="--future-tech-green"
-								>FUTURE TECH CO.</Typography
-							>
+								>FUTURE TECH CO.</Typography>
 						</div>
 					{/if}
 					<div class="content__title">

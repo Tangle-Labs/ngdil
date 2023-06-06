@@ -119,27 +119,31 @@
 	import { goto } from "$app/navigation";
 	import { Typography, BigBusinessCorp, Modal, Loading } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
+	import { currNode, dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 
 	function handleClick(i: number) {
 		if ($dominiqueSelectedCourse !== i) return;
 		goto("/demo/journeys/dominique/finalize-application");
 	}
+
+	onMount(() => {
+		currNode.set(2);
+	});
 </script>
 
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
 			>There are a few jobs available. <Highlight>Let’s select the job to apply</Highlight> for that
-			is relevant to our new credential.</Typography
-		>
+			is relevant to our new credential.</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography>Select the job you can now apply for with your new credential</Typography>
 	</div>
 
 	<div class="dash">
-		<BigBusinessCorp>
+		<BigBusinessCorp heading="Big Business Corp Jobs Board">
 			<div class="content">
 				<div class="courses">
 					{#each dominqueCourses as course, i (course.name)}
@@ -157,8 +161,7 @@
 								class="{`button ${$dominiqueSelectedCourse !== i && 'disabled'}`}"
 								on:click="{() => {
 									handleClick(i);
-								}}">Apply Now</button
-							>
+								}}">Apply Now</button>
 						</div>
 					{/each}
 				</div>

@@ -170,16 +170,22 @@
 	import { Typography, Kw1c, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
+		currNode,
 		peterAssignedBadges,
 		peterAssignedStudent,
 		peterChosenStudents
 	} from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 
 	let students = {
 		"Sarah Jones": false,
 		"Ivar Leifsson": false,
 		"Lagertha Bonde": false
 	};
+
+	onMount(() => {
+		currNode.set(3);
+	});
 
 	let showModal = false;
 </script>
@@ -216,8 +222,7 @@
 						{#each $peterAssignedBadges as student (student)}
 							<div class="data">
 								<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>{student.toUpperCase()}</Typography
-								>
+									>{student.toUpperCase()}</Typography>
 							</div>
 						{/each}
 					</div>
@@ -230,15 +235,14 @@
 						{#each $peterAssignedBadges as student (student)}
 							<div class="data">
 								<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-									>3D Print Design</Typography
-								>
+									>3D Print Design</Typography>
 							</div>
 						{/each}
 					</div>
 
 					<div class="column action">
 						<div class="header action">
-							<Typography variant="sub-text" fontVariant="kw1c">Course Status</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c">Action</Typography>
 						</div>
 
 						{#each $peterAssignedBadges as student (student)}
@@ -249,8 +253,7 @@
 									onClick="{() => {
 										peterAssignedStudent.set(student);
 										goto('/demo/journeys/peter/place-student');
-									}}"
-								/>
+									}}" />
 							</div>
 						{/each}
 					</div>

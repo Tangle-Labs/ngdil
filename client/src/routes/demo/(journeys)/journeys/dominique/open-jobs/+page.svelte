@@ -15,7 +15,7 @@
 				align-items: flex-start;
 
 				.avatar {
-					width: 30%;
+					width: 25%;
 					display: flex;
 					flex-wrap: wrap;
 					align-items: flex-start;
@@ -24,7 +24,7 @@
 					text-align: center;
 					padding: 20px;
 					box-sizing: border-box;
-					border-radius: 10px;
+					border-radius: 20px;
 					border: 1px solid var(--white-700);
 					background: white;
 
@@ -49,30 +49,31 @@
 							width: 100%;
 							height: 10px;
 							background: var(--white-900);
-							margin: 10px 0;
+							margin: 30px 0;
 							border-radius: 10px;
 						}
 					}
 				}
 
 				.cards {
-					width: 50%;
+					width: 40%;
 					margin: 0px 20px;
 					.card {
 						height: 30%;
 						width: 100%;
 						padding: 15px;
 						background: white;
-						border-radius: 10px;
+						border-radius: 20px;
 						box-sizing: border-box;
 						margin-bottom: 20px;
 						border: 1px solid var(--white-700);
 						display: flex;
 						align-items: center;
+						padding: 20px 30px;
 						align-content: center;
 
 						.pic {
-							height: 100px;
+							height: 80px;
 							width: 100px;
 							background: var(--white-700);
 							border-radius: 10px;
@@ -86,7 +87,7 @@
 								width: 100%;
 								height: 12.5px;
 								border-radius: 10px;
-								background: var(--white-900);
+								background: var(--black-300);
 								margin: 15px 10px;
 
 								&:nth-of-type(1) {
@@ -101,19 +102,28 @@
 					}
 				}
 				.share {
-					width: 35%;
+					width: 25%;
 					padding: 20px;
 					background: white;
 					border: 1px solid var(--white-700);
-					border-radius: 10px;
+					border-radius: 20px;
 					display: flex;
 					justify-content: center;
 					flex-wrap: wrap;
 					text-align: center;
 
+					.button {
+						margin-bottom: 50px;
+					}
+
+					.header {
+						margin-bottom: 20px;
+					}
+
 					.header,
 					img,
 					.issued-by {
+						width: 100%;
 						padding-bottom: 15px;
 					}
 
@@ -122,7 +132,8 @@
 					}
 
 					img {
-						height: 100px;
+						height: 60px;
+						width: unset;
 					}
 				}
 			}
@@ -143,6 +154,11 @@
 			padding: 20px 0;
 		}
 
+		.p {
+			color: var(--black-500);
+			font-weight: 300;
+		}
+
 		img {
 			height: 80px;
 			padding-bottom: 20px;
@@ -161,12 +177,13 @@
 		border: none;
 		background: var(--open-jobs-blue-900);
 		color: var(--white-300);
-		font-size: var(--button-text-size);
+		font-size: 1.15rem;
 		width: calc(100% - 40px);
 		margin: 20px;
 		box-sizing: border-box;
 		border-radius: 40px;
-		padding: 10px;
+		padding: 15px;
+		font-weight: 500;
 		margin-bottom: 0;
 		transition: 0.5s all;
 
@@ -202,22 +219,19 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You’re all <Highlight>logged in to the Open Jobs Network.</Highlight> Now, share your credential
-			with potential employers.</Typography
-		>
+			with potential employers.</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography
-			>Click the share credential button to share your credential on your Open Jobs Network profile.</Typography
-		>
+			>Click the share credential button to share your credential on your Open Jobs Network profile.</Typography>
 	</div>
-	<Modal bind:isOpen="{showModal}">
+	<Modal bind:isOpen="{showModal}" borderRadius="{16}">
 		<div class="modal-content">
 			<img src="/imgs/openjobs.png" alt="" class="logo" />
-			<Typography variant="card-header"
+			<Typography variant="card-header" color="--bbc-blue"
 				>{receivedCreds
 					? "The Open Jobs Network has received your confirmation to share your credential!"
-					: "Allow the Open Jobs Network to share your credential "}</Typography
-			>
+					: "Allow the Open Jobs Network to share your credential "}</Typography>
 			<div class="p">
 				{receivedCreds
 					? "You may continue further in the browser. "
@@ -226,15 +240,13 @@
 			{#if receivedCreds}
 				<img class="checked" src="/imgs/open-jobs-check.png" alt="" />
 				<button class="button" on:click="{() => goto('/demo/journeys/dominique/new-message')}"
-					>CONTINUE</button
-				>
+					>Continue</button>
 			{:else}
 				<Loading img="/imgs/blue-loading.png" />
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text"
-					>{receivedCreds ? "Click continue to proceed" : "Waiting for credentials"}</Typography
-				>
+					>{receivedCreds ? "Click continue to proceed" : "Waiting for credentials"}</Typography>
 			</div>
 		</div>
 	</Modal>
@@ -291,19 +303,17 @@
 					<img src="/imgs/kw1c-white.png" alt="" class="logo" />
 					<div class="credential">
 						<Typography variant="card-header"
-							>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography
-						>
+							>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography>
 					</div>
 					<div class="issued-by">
-						<Typography variant="sub-text">Issued by Konning Willem 1 College</Typography>
+						<Typography variant="sub-text">Issued by<br /> Konning Willem 1 College</Typography>
 					</div>
 					<button
 						class="button"
 						on:click="{() => {
 							showModal = true;
 							handleWait();
-						}}">Share Credential</button
-					>
+						}}">Share Credential</button>
 				</div>
 			</div>
 		</OpenJobsNetwork>

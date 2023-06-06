@@ -13,6 +13,10 @@
 		.table {
 			width: 100%;
 
+			th {
+				text-align: left;
+			}
+
 			td {
 				height: 50px;
 
@@ -75,7 +79,13 @@
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Button, Loading, Modal, Radio } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { imaniBadgeName, imaniChosenApplicant, imaniChosenStaff } from "$lib/stores/flows.store";
+	import {
+		currNode,
+		imaniBadgeName,
+		imaniChosenApplicant,
+		imaniChosenStaff
+	} from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 
 	let staff = [
 		{
@@ -101,28 +111,57 @@
 		}
 	];
 
+	let showModal = false;
+
 	function handleTrainStaff() {
 		imaniChosenStaff.set(staff.filter((s) => s.selected));
 		goto("/demo/journeys/imani/results");
 	}
+
+	onMount(() => {
+		currNode.set(6);
+	});
 </script>
 
+<Modal bind:isOpen="{showModal}" borderRadius="16">
+	<div class="modal-content">
+		<img src="/imgs/future-tech.png" alt="" class="logo" />
+		<div class="heading">
+			<Typography variant="card-header" fontVariant="kw1c" color="--future-tech-green"
+				>FUTURE TECH CO.</Typography>
+		</div>
+		<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-red-900"
+			>Your staff have attended training. Continue to see results.</Typography>
+		<div class="p">
+			<Typography color="--black-500">
+				To view the staff results from training click the continue to results button.
+			</Typography>
+		</div>
+		<Button variant="future-tech" label="Continue To Results" onClick="{handleTrainStaff}" />
+		<div class="subtext">
+			<Typography variant="sub-text">Cancel</Typography>
+		</div>
+	</div>
+</Modal>
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
 			>There are four staff <Highlight>available for the new badge training.</Highlight> Select the staff
-			to train.</Typography
-		>
+			to train.</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography
 			>Select the check boxes next to the employees you wish to train, then click the train staff
-			button to continue.</Typography
-		>
+			button to continue.</Typography>
 	</div>
 	<div class="dash">
-		<FutureTech header="{`${$imaniBadgeName.toUpperCase()} TRAINEES`}">
+		<FutureTech header="COMPANY EMPLOYEES">
 			<table class="table">
+				<tr>
+					<th></th>
+					<th><Typography variant="sub-text">Employee Name</Typography></th>
+					<th><Typography variant="sub-text">Desingation</Typography></th>
+				</tr>
 				{#each staff as emp (emp.name)}
 					<tr>
 						<td>
@@ -140,7 +179,7 @@
 			</table>
 
 			<div class="button-container">
-				<Button variant="future-tech" label="Train Staff" onClick="{handleTrainStaff}" />
+				<Button variant="future-tech" label="Train Staff" onClick="{() => (showModal = true)}" />
 			</div>
 		</FutureTech>
 	</div>

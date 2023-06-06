@@ -165,7 +165,8 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Modal, Loading, Radio } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { peterAssignedBadges, peterChosenStudents } from "$lib/stores/flows.store";
+	import { currNode, peterAssignedBadges, peterChosenStudents } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 
 	let students = {
 		"Sarah Jones": false,
@@ -174,6 +175,7 @@
 	};
 
 	let showModal = false;
+	let state: "init" | "loading" | "loaded" = "init";
 
 	function handleIssueCourseBadges() {
 		if (selected.length > 0) {
@@ -182,20 +184,47 @@
 		}
 	}
 
+	function handleModalClick() {
+		if (state === "loaded") {
+			goto("/demo/journeys/peter/students");
+		} else {
+			state = "loading";
+			setTimeout(() => {
+				state = "loaded";
+				currNode.set(2);
+			}, 3_000);
+		}
+	}
+
+	onMount(() => {
+		currNode.set(1);
+	});
+
 	$: selected = Object.keys(students).filter((s) => students[s]);
 </script>
 
 <div class="container">
-	<Modal bind:isOpen="{showModal}">
+	<Modal bind:isOpen="{showModal}" borderRadius="{16}">
 		<div class="modal-content">
 			<img src="/imgs/kw1c-white.png" alt="" class="logo" />
 			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"
-				>YOU ARE ABOUT TO ISSUE {selected.length} STUDENT INTERNATIONALISATION COURSE BADGES</Typography
-			>
-			<div class="p">Click ISSUE BADGES button to issue the selected students.</div>
-			<button class="button" on:click="{() => goto('/demo/journeys/peter/students')}"
-				>ISSUE BADGES</button
-			>
+				>{#if state === "loaded"}
+					YOU HAVE SUCCESSFULLY ISSUED {selected.length} STUDENT INTERNATIONALISATION COURSE BADGES
+				{:else}
+					YOU ARE ABOUT TO ISSUE {selected.length} STUDENT INTERNATIONALISATION COURSE BADGES
+				{/if}</Typography>
+			<div class="p">
+				{#if state === "loaded"}
+					Click the CONTINUE button to continue and assign student internship placements.
+				{:else}Click ISSUE BADGES button to issue the selected students.{/if}
+			</div>
+			{#if state === "loading"}
+				<Loading img="/imgs/blue-loading.png" />
+			{:else}
+				<button class="button" on:click="{handleModalClick}"
+					>{state === "init" ? "ISSUE BADGES" : "CONTINUE"}</button>
+			{/if}
+
 			<div class="subtext">
 				<Typography variant="sub-text" />
 			</div>
@@ -248,18 +277,15 @@
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>SARAH JONES</Typography
-							>
+								>SARAH JONES</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>IVAR LEIFSSON</Typography
-							>
+								>IVAR LEIFSSON</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>LAGERTHA BONDE</Typography
-							>
+								>LAGERTHA BONDE</Typography>
 						</div>
 					</div>
 
@@ -269,18 +295,15 @@
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography
-							>
+								>3D Print Design</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography
-							>
+								>3D Print Design</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography
-							>
+								>3D Print Design</Typography>
 						</div>
 					</div>
 
@@ -291,20 +314,17 @@
 
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--green-900"
-								>PASS</Typography
-							>
+								>PASS</Typography>
 						</div>
 
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--green-900"
-								>PASS</Typography
-							>
+								>PASS</Typography>
 						</div>
 
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--green-900"
-								>PASS</Typography
-							>
+								>PASS</Typography>
 						</div>
 					</div>
 				</div>
@@ -312,8 +332,7 @@
 				<div class="button-container">
 					<button
 						class="{`button ${selected.length <= 0 && 'disabled'}`}"
-						on:click="{handleIssueCourseBadges}">ISSUE COURSE BADGES</button
-					>
+						on:click="{handleIssueCourseBadges}">ISSUE COURSE BADGES</button>
 				</div>
 			</div>
 		</Kw1c>

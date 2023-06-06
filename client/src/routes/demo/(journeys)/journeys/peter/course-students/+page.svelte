@@ -163,9 +163,10 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, Kw1c, Button } from "$lib/components";
+	import { Typography, Kw1c, Button, Loading } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
+		currNode,
 		peterAssignedBadges,
 		peterAssignedStudent,
 		peterChosenStudents
@@ -177,7 +178,13 @@
 		"Lagertha Bonde": false
 	};
 
+	let loading = true;
 	let showModal = false;
+
+	setTimeout(() => {
+		currNode.set(5);
+		loading = false;
+	}, 2_000);
 </script>
 
 <div class="container">
@@ -213,8 +220,7 @@
 						{#each $peterChosenStudents as student (student)}
 							<div class="data">
 								<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>{student.toUpperCase()}</Typography
-								>
+									>{student.toUpperCase()}</Typography>
 							</div>
 						{/each}
 					</div>
@@ -227,8 +233,7 @@
 						{#each $peterChosenStudents as student (student)}
 							<div class="data">
 								<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-									>3D Print Design</Typography
-								>
+									>3D Print Design</Typography>
 							</div>
 						{/each}
 					</div>
@@ -240,7 +245,14 @@
 
 						{#each $peterChosenStudents as student (student)}
 							<div class="data action">
-								<Typography variant="status" color="--secondary-900">Pending</Typography>
+								<span style:padding-right="5px">
+									<Typography variant="status" color="{loading ? '--secondary-900' : '--green-900'}"
+										>{loading ? "Pending" : "Accepted"}</Typography>
+								</span>
+								{#if loading}
+									<Loading size="20px" />
+								{:else}
+									<img src="/imgs/verified.png" alt="" style:height="20px" class="accepted" />{/if}
 							</div>
 						{/each}
 					</div>
@@ -251,8 +263,7 @@
 						variant="kw1c"
 						onClick="{() => {
 							goto('/demo/journeys/peter/enrolled-students');
-						}}"
-					/>
+						}}" />
 				</div>
 			</div>
 		</Kw1c>

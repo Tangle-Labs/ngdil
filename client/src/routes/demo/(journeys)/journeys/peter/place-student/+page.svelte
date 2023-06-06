@@ -64,6 +64,10 @@
 
 					.meta {
 						width: 25%;
+
+						.header {
+							padding-bottom: 7.5px;
+						}
 					}
 
 					.internship {
@@ -198,6 +202,7 @@
 	import { Typography, Kw1c, Modal, Loading, Radio } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
+		currNode,
 		dominqueCourses,
 		peterAssignecCompanyCountry,
 		peterAssignedBadges,
@@ -205,6 +210,7 @@
 		peterAssignedStudent,
 		peterChosenStudents
 	} from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 
 	let students = {
 		"Sarah Jones": false,
@@ -212,26 +218,60 @@
 		"Lagertha Bonde": false
 	};
 
+	let state: "init" | "loading" | "loaded" = "init";
+
+	function handleModalClick() {
+		if (state === "loaded") {
+			goto("/demo/journeys/peter/student-placed");
+		} else {
+			state = "loading";
+			setTimeout(() => {
+				currNode.set(5);
+				state = "loaded";
+			}, 5_000);
+		}
+	}
+
+	onMount(() => {
+		currNode.set(4);
+	});
+
 	let showModal = false;
 </script>
 
 <div class="container">
-	<Modal bind:isOpen="{showModal}">
+	<Modal bind:isOpen="{showModal}" borderRadius="{16}">
 		<div class="modal-content">
 			<img src="/imgs/kw1c-white.png" alt="" class="logo" />
-			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"
-				>You are about to assign {$peterAssignedStudent?.split(" ")[0]}'s an internship placement
-				with:<br />
-			</Typography>
-			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-				>{$peterAssignedCompany}</Typography
-			>
+			<span style:text-transform="uppercase">
+				{#if state === "loaded"}
+					<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"
+						>you have successfully assigned {$peterAssignedStudent?.split(" ")[0]} their internship placement.
+					</Typography>
+				{:else}
+					<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"
+						>You are about to assign {$peterAssignedStudent?.split(" ")[0]} an internship placement with:<br />
+					</Typography>
+					<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
+						>{$peterAssignedCompany}</Typography>
+				{/if}
+			</span>
 			<div class="p">
-				Click the ASSIGN INTERNSHIP button to assign your student internship placement.
+				{#if state === "loaded"}
+					Click the CONTINUE button to proceed
+				{:else}
+					Click the ASSIGN INTERNSHIP button to assign your student internship placement.
+				{/if}
 			</div>
-			<button class="button" on:click="{() => goto('/demo/journeys/peter/student-placed')}"
-				>ASSIGN PLACEMENT</button
-			>
+			{#if state === "loading"}
+				<Loading img="/imgs/blue-loading.png" />
+				<div class="subtext">
+					<Typography variant="sub-text">Awaiting confirmation...</Typography>
+				</div>
+			{:else}
+				<button class="button" on:click="{handleModalClick}"
+					>{state === "loaded" ? "CONTINUE" : "ASSIGN PLACEMENT"}</button>
+			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text" />
 			</div>
@@ -241,8 +281,7 @@
 	<div class="heading">
 		<Typography variant="heading">
 			{$peterAssignedStudent?.split(" ")[0]} has <Highlight
-				>two relevant internship opportunities.</Highlight
-			> Let’s assign their placement.
+				>two relevant internship opportunities.</Highlight> Let’s assign their placement.
 		</Typography>
 	</div>
 	<div class="sub-text">
@@ -270,8 +309,7 @@
 							</div>
 							<div class="content">
 								<Typography fontVariant="kw1c" variant="kw1c-header" color="--kw1c-blue-900"
-									>{$peterAssignedStudent?.toUpperCase()}</Typography
-								>
+									>{$peterAssignedStudent?.toUpperCase()}</Typography>
 							</div>
 						</div>
 
@@ -281,8 +319,7 @@
 							</div>
 							<div class="content">
 								<Typography fontVariant="kw1c" variant="kw1c-sub-text" color="--kw1c-red-900"
-									>3D Print Design</Typography
-								>
+									>3D Print Design</Typography>
 							</div>
 						</div>
 					</div>
@@ -293,13 +330,11 @@
 							<div class="intern-content">
 								<div class="location">
 									<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-										>{internship.location}</Typography
-									>
+										>{internship.location}</Typography>
 								</div>
 								<div class="org">
 									<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-										>{internship.name}</Typography
-									>
+										>{internship.name}</Typography>
 								</div>
 								<button
 									class="button"
@@ -307,8 +342,7 @@
 										peterAssignedCompany.set(internship.name);
 										peterAssignecCompanyCountry.set(internship.location.split(',')[1]);
 										showModal = true;
-									}}">ASSIGN PLACEMENT</button
-								>
+									}}">ASSIGN PLACEMENT</button>
 							</div>
 						</div>
 					{/each}

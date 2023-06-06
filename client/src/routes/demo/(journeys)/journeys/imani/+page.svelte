@@ -43,16 +43,26 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Avatar, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { imaniHiredEmployee, imaniIssuedBadge } from "$lib/stores/flows.store";
+	import {
+		currNode,
+		imaniHiredEmployee,
+		imaniIssuedBadge,
+		nodeCount
+	} from "$lib/stores/flows.store";
 	import { currStep } from "$lib/stores/onboarding.store";
+	import { onMount } from "svelte";
+
+	onMount(() => {
+		nodeCount.set(0);
+		currNode.set(0);
+	});
 </script>
 
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
 			>Hi Imani. Let’s <Highlight>get you hiring some experienced staff</Highlight>. Select your
-			first experience to get started.</Typography
-		>
+			first experience to get started.</Typography>
 	</div>
 	<div class="desc">
 		<Typography variant="button">
@@ -81,8 +91,7 @@
 						onClick="{() => {
 							goto('/demo/journeys/imani/login');
 						}}"
-						label="{$imaniHiredEmployee ? 'Retry' : 'Get Started'}"
-					/>
+						label="{$imaniHiredEmployee ? 'Retry' : 'Get Started'}" />
 				</div>
 			</Card>
 		</div>
@@ -111,8 +120,7 @@
 						onClick="{() => {
 							goto('/demo/journeys/imani/company-badges');
 						}}"
-						label="{$imaniIssuedBadge ? 'Retry' : 'Get Started'}"
-					/>
+						label="{$imaniIssuedBadge ? 'Retry' : 'Get Started'}" />
 				</div>
 			</Card>
 		</div>
@@ -121,8 +129,7 @@
 				<Button
 					variant="secondary"
 					onClick="{() => goto('/demo/choose-journey')}"
-					label="Try Another Journey"
-				/>
+					label="Try Another Journey" />
 			</div>
 		{/if}
 	</div>

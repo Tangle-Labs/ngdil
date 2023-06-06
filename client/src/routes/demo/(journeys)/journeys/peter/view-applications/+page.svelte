@@ -120,7 +120,8 @@
 	import { Typography, Kw1c, Modal, Loading } from "$lib/components";
 	import Button from "$lib/components/ui/Button/Button.svelte";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { dominiqueSelectedCourse, peterChosenStudent } from "$lib/stores/flows.store";
+	import { currNode, dominiqueSelectedCourse, peterChosenStudent } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 	let receivedCreds = false;
 
 	function handleWait() {
@@ -129,6 +130,10 @@
 		}, 8000);
 	}
 
+	onMount(() => {
+		currNode.set(1);
+	});
+
 	let showModal = false;
 </script>
 
@@ -136,8 +141,7 @@
 	<div class="heading">
 		<Typography variant="heading">
 			The students are keen to get on their international internships. Let’s see<Highlight>
-				if they meet the requirements.</Highlight
-			>
+				if they meet the requirements.</Highlight>
 		</Typography>
 	</div>
 	<div class="sub-text">
@@ -162,18 +166,15 @@
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>SARAH JONES</Typography
-							>
+								>SARAH JONES</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>IVAR LEIFSSON</Typography
-							>
+								>IVAR LEIFSSON</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>LAGERTHA BONDE</Typography
-							>
+								>LAGERTHA BONDE</Typography>
 						</div>
 					</div>
 
@@ -183,18 +184,15 @@
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography
-							>
+								>3D Print Design</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography
-							>
+								>3D Print Design</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography
-							>
+								>3D Print Design</Typography>
 						</div>
 					</div>
 
@@ -209,8 +207,7 @@
 									goto('/demo/journeys/peter/view-application');
 								}}"
 								variant="kw1c"
-								label="VIEW APPLICATION"
-							/>
+								label="VIEW APPLICATION" />
 						</div>
 
 						<div class="button-container">
@@ -220,8 +217,7 @@
 									goto('/demo/journeys/peter/view-application');
 								}}"
 								variant="kw1c"
-								label="VIEW APPLICATION"
-							/>
+								label="VIEW APPLICATION" />
 						</div>
 
 						<div class="button-container">
@@ -231,8 +227,7 @@
 									goto('/demo/journeys/peter/view-application');
 								}}"
 								variant="kw1c"
-								label="VIEW APPLICATION"
-							/>
+								label="VIEW APPLICATION" />
 						</div>
 					</div>
 				</div>

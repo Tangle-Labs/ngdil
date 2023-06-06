@@ -59,24 +59,36 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { dominiqueAppliedForJob, dominiqueEarnedCourseCred } from "$lib/stores/flows.store";
+	import {
+		completedJourneys,
+		dominiqueAppliedForJob,
+		dominiqueEarnedCourseCred
+	} from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 
 	function handleFinishCourse() {
-		dominiqueAppliedForJob.set(true);
-		goto("/demo/journeys/dominique");
+		goto("/demo/choose-journey");
 	}
+
+	onMount(() => {
+		completedJourneys.update((u) => {
+			const _unique = u.filter((_u) => _u !== "dominique");
+			_unique.push("dominique");
+			return _unique;
+		});
+		dominiqueAppliedForJob.set(true);
+	});
 </script>
 
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
 			><Highlight>You are now an employee of the Big Business Corp.</Highlight> Let’s see what you have
-			achieved.</Typography
-		>
+			achieved.</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography>Here is what you have achieved so far with your self-sovereign identity:</Typography
-		>
+		<Typography
+			>Here is what you have achieved so far with your self-sovereign identity:</Typography>
 	</div>
 	<div class="card">
 		<Card withBorder="{true}">
@@ -107,7 +119,11 @@
 							To explore other journeys for employers and educators click continue.
 						</Typography>
 					</div>
-					<Button variant="secondary" label="continue" onClick="{handleFinishCourse}" />
+					<Button variant="secondary" label="Continue" onClick="{handleFinishCourse}" />
+					<Button
+						variant="white"
+						label="Contact NGDIL"
+						onClick="{() => window.open('https://ngdil.com/contact', '_blank')}" />
 				</div>
 				<div class="img">
 					<img src="/imgs/pic-placeholder.png" alt="" />

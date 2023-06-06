@@ -59,24 +59,32 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { peterVerifiedInternship } from "$lib/stores/flows.store";
+	import { completedJourneys, peterVerifiedInternship } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 
 	function handleFinishCourse() {
-		peterVerifiedInternship.set(true);
-		goto("/demo/journeys/peter");
+		goto("/demo/choose-journey");
 	}
+
+	onMount(() => {
+		peterVerifiedInternship.set(true);
+		completedJourneys.update((u) => {
+			const _unique = u.filter((_u) => _u !== "peter");
+			_unique.push("peter");
+			return _unique;
+		});
+	});
 </script>
 
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
 			>You’ve successfully <Highlight>evaluate, enrolled, trained, & verified</Highlight> your students
-			international internships.</Typography
-		>
+			international internships.</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography>Here is what you have achieved so far with your self-sovereign identity:</Typography
-		>
+		<Typography
+			>Here is what you have achieved so far with your self-sovereign identity:</Typography>
 	</div>
 	<div class="card">
 		<Card withBorder="{true}">
@@ -89,8 +97,7 @@
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
 						<Typography variant="list"
-							>Securely verified and confirmed student internships</Typography
-						>
+							>Securely verified and confirmed student internships</Typography>
 					</div>
 					<div class="p">
 						<Typography>
@@ -106,6 +113,10 @@
 						</Typography>
 					</div>
 					<Button variant="secondary" label="continue" onClick="{handleFinishCourse}" />
+					<Button
+						variant="white"
+						label="Contact NGDIL"
+						onClick="{() => window.open('https://ngdil.com/contact', '_blank')}" />
 				</div>
 				<div class="img">
 					<img src="/imgs/pic-placeholder.png" alt="" />

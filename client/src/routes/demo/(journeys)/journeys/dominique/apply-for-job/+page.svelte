@@ -59,8 +59,7 @@
 	<div class="sub-text">
 		<Typography
 			>In your mobile wallet, scan the QR code & accept the connection request to login privately to
-			the Big Business Corp website.</Typography
-		>
+			the Big Business Corp website.</Typography>
 	</div>
 	<div class="dash">
 		<BigBusinessCorp>
@@ -68,7 +67,7 @@
 				<div class="text">
 					<Typography variant="card-header" color="--bbc-blue">Passwordless Login</Typography>
 				</div>
-				<Card>
+				<Card borderRadius="{16}">
 					<div class="card-content">
 						<img src="/imgs/qr.png" on:click="{handleClick}" alt="" />
 						<div class="heading">
@@ -76,8 +75,7 @@
 						</div>
 						<div class="desc">
 							<Typography variant="sub-text"
-								>Scan the QR to access the KW1C learners portal.</Typography
-							>
+								>Scan the QR to login to the Big Business Corp website.</Typography>
 						</div>
 					</div>
 				</Card>

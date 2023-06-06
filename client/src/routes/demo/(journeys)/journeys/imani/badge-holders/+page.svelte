@@ -13,6 +13,10 @@
 		.table {
 			width: 100%;
 
+			th {
+				text-align: left;
+			}
+
 			td {
 				height: 50px;
 
@@ -75,7 +79,7 @@
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Button, Loading, Modal, Radio } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { imaniBadgeName, imaniIssuedStaff } from "$lib/stores/flows.store";
+	import { currNode, imaniBadgeName, imaniIssuedStaff } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
 
 	let staff = $imaniIssuedStaff.map((s) => ({ ...s, selected: false }));
@@ -84,6 +88,7 @@
 	onMount(() => {
 		setTimeout(() => {
 			pending = false;
+			currNode.set(8);
 		}, 9000);
 	});
 </script>
@@ -92,8 +97,7 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>Almost there! <Highlight>Just confirm the issuing of the badges</Highlight>to the successful
-			employees.</Typography
-		>
+			employees.</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography>Click the Issue Badges button to confirm and issue the open badges.</Typography>
@@ -101,6 +105,11 @@
 	<div class="dash">
 		<FutureTech header="{`${$imaniBadgeName.toUpperCase()} BADGE HOLDERS`}">
 			<table class="table">
+				<tr>
+					<th><Typography variant="sub-text">Employee Name</Typography></th>
+					<th><Typography variant="sub-text">Designation</Typography></th>
+					<th><Typography variant="sub-text">Badge Status</Typography></th>
+				</tr>
 				{#each staff as emp (emp.name)}
 					<tr>
 						<td>
@@ -129,8 +138,7 @@
 				<Button
 					variant="{pending ? 'future-tech-disabled' : 'future-tech'}"
 					label="Continue"
-					onClick="{() => goto('/demo/journeys/imani/issued-badge')}"
-				/>
+					onClick="{() => goto('/demo/journeys/imani/issued-badge')}" />
 			</div>
 		</FutureTech>
 	</div>
