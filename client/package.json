@@ -48,6 +48,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@sveltejs/adapter-node": "^1.2.4",
+		"@sveltejs/adapter-static": "^2.0.2",
 		"axios": "^1.2.0",
 		"svelte-confetti": "^1.2.2",
 		"svelte-local-storage-store": "^0.4.0"
