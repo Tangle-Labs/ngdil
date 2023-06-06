@@ -43,8 +43,19 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Avatar, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { imaniHiredEmployee, imaniIssuedBadge } from "$lib/stores/flows.store";
+	import {
+		currNode,
+		imaniHiredEmployee,
+		imaniIssuedBadge,
+		nodeCount
+	} from "$lib/stores/flows.store";
 	import { currStep } from "$lib/stores/onboarding.store";
+	import { onMount } from "svelte";
+
+	onMount(() => {
+		nodeCount.set(0);
+		currNode.set(0);
+	});
 </script>
 
 <div class="container">

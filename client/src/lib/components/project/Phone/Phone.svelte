@@ -76,6 +76,10 @@
 			title: "You have successfully logged in to the Open Jobs Network.",
 			logo: "/imgs/openjobs.png"
 		},
+		kw1cStaff: {
+			title: "You have successfully logged in to the KW1C Staff Portal.",
+			logo: "/imgs/kw1c-white.png"
+		},
 		kw1c: {
 			title: "You have successfully logged in to the KW1C Learner Portal.",
 			logo: "/imgs/kw1c-white.png"
@@ -90,7 +94,7 @@
 		}
 	};
 
-	export let variant: "openJobs" | "kw1c" | "bbc" | "futureTech";
+	export let variant: "openJobs" | "kw1c" | "kw1cStaff" | "bbc" | "futureTech";
 	const provider = variants[variant];
 
 	let animateDrawer = false;

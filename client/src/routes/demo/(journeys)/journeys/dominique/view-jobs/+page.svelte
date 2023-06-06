@@ -119,12 +119,17 @@
 	import { goto } from "$app/navigation";
 	import { Typography, BigBusinessCorp, Modal, Loading } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
+	import { currNode, dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 
 	function handleClick(i: number) {
 		if ($dominiqueSelectedCourse !== i) return;
 		goto("/demo/journeys/dominique/finalize-application");
 	}
+
+	onMount(() => {
+		currNode.set(2);
+	});
 </script>
 
 <div class="container">
@@ -139,7 +144,7 @@
 	</div>
 
 	<div class="dash">
-		<BigBusinessCorp>
+		<BigBusinessCorp heading="Big Business Corp Jobs Board">
 			<div class="content">
 				<div class="courses">
 					{#each dominqueCourses as course, i (course.name)}

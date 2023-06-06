@@ -133,11 +133,14 @@
 	import { Typography, Kw1c, Modal, Loading } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
+		currNode,
 		dominiqueSelectedCourse,
+		nodeCount,
 		peterAssignedCompany,
 		peterAssignedStudent,
 		peterChosenStudent
 	} from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 	let receivedCreds = false;
 
 	function handleWait() {
@@ -145,6 +148,11 @@
 			receivedCreds = true;
 		}, 8000);
 	}
+
+	onMount(() => {
+		currNode.set(0);
+		nodeCount.set(3);
+	});
 
 	let showModal = false;
 </script>

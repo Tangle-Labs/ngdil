@@ -15,7 +15,7 @@
 				align-items: flex-start;
 
 				.avatar {
-					width: 30%;
+					width: 25%;
 					display: flex;
 					flex-wrap: wrap;
 					align-items: flex-start;
@@ -24,8 +24,9 @@
 					text-align: center;
 					padding: 20px;
 					box-sizing: border-box;
-					border-radius: 10px;
-					border: 1px solid var(--black-300);
+					border-radius: 20px;
+					border: 1px solid var(--white-700);
+
 					background: white;
 
 					.welcome {
@@ -49,14 +50,14 @@
 							width: 100%;
 							height: 10px;
 							background: var(--white-900);
-							margin: 10px 0;
+							margin: 30px 0;
 							border-radius: 10px;
 						}
 					}
 				}
 
 				.cards {
-					width: 50%;
+					width: 40%;
 					margin: 0px 20px;
 					.header,
 					img,
@@ -66,12 +67,12 @@
 					.card {
 						height: 30%;
 						width: 100%;
-						padding: 15px;
+						padding: 20px 30px;
 						background: white;
-						border-radius: 10px;
+						border-radius: 20px;
 						box-sizing: border-box;
 						margin-bottom: 20px;
-						border: 1px solid var(--black-300);
+						border: 1px solid var(--white-700);
 						display: flex;
 						align-items: center;
 						align-content: center;
@@ -91,7 +92,7 @@
 						}
 
 						.pic {
-							height: 100px;
+							height: 80px;
 							width: 100px;
 							background: var(--white-700);
 							border-radius: 10px;
@@ -105,8 +106,8 @@
 								width: 100%;
 								height: 12.5px;
 								border-radius: 10px;
-								background: var(--white-900);
-								margin: 10px 0;
+								background: var(--black-300);
+								margin: 15px 0;
 
 								&:nth-of-type(1) {
 									width: 70%;
@@ -120,11 +121,11 @@
 					}
 				}
 				.share {
-					width: 35%;
+					width: 25%;
 					padding: 20px;
 					background: white;
-					border: 1px solid var(--black-300);
-					border-radius: 10px;
+					border: 1px solid var(--white-700);
+					border-radius: 20px;
 					display: flex;
 					justify-content: center;
 					flex-wrap: wrap;
@@ -137,6 +138,11 @@
 					img {
 						height: 80px;
 						padding: 15px 0;
+					}
+
+					.button {
+						margin-top: 30px;
+						margin-bottom: 50px;
 					}
 				}
 			}
@@ -188,7 +194,8 @@
 		margin: 20px;
 		box-sizing: border-box;
 		border-radius: 40px;
-		padding: 10px;
+		font-weight: 500;
+		padding: 15px;
 		margin-bottom: 0;
 		transition: 0.5s all;
 
@@ -222,12 +229,10 @@
 	<div class="sub-text">
 		<Typography>Click view message to see what the employer has to say.</Typography>
 	</div>
-	<Modal bind:isOpen="{showModal}">
+	<Modal bind:isOpen="{showModal}" borderRadius="{16}">
 		<div class="modal-content">
 			<div class="heading">
-				<Typography variant="card-header" color="--open-jobs-blue-900"
-					>from Big Business Corp.</Typography
-				>
+				<Typography variant="card-header" color="--bbc-blue">from Big Business Corp.</Typography>
 			</div>
 			<div class="message">
 				<Typography>
@@ -235,8 +240,8 @@
 
 					Congratulations on your new qualification. <br /><br />
 
-					We saw your skills on your profile and would like to invite you to apply for a role at the
-					Big Business Corp.
+					We saw your skills on your profile and would like to
+					<b>invite you to apply for a role at the Big Business Corp.</b>
 					<br /><br />
 					Looking forward to your application. <br /><br />
 
@@ -244,7 +249,7 @@
 				</Typography>
 			</div>
 			<button class="button" on:click="{() => goto('/demo/journeys/dominique/shared-cred')}"
-				>CONTINUE</button
+				>Continue</button
 			>
 			<div class="subtext">
 				<Typography variant="sub-text">Click continue to proceed</Typography>
@@ -311,12 +316,11 @@
 
 				<div class="share">
 					<div class="credential">
-						<Typography variant="card-header" color="--open-jobs-blue-900">Your Messages</Typography
-						>
+						<Typography variant="card-header">Your Messages</Typography>
 					</div>
 					<img src="/imgs/inbox.png" alt="" class="logo" />
 					<div class="credential">
-						<Typography variant="button">You have a new message</Typography>
+						<Typography variant="button" color="--bbc-blue">You have a new message</Typography>
 					</div>
 					<div class="issued-by">
 						<Typography variant="sub-text">from Big Business Corp.</Typography>

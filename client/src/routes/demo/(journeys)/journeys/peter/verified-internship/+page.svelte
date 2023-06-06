@@ -59,12 +59,21 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { peterVerifiedInternship } from "$lib/stores/flows.store";
+	import { completedJourneys, peterVerifiedInternship } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 
 	function handleFinishCourse() {
-		peterVerifiedInternship.set(true);
-		goto("/demo/journeys/peter");
+		goto("/demo/choose-journey");
 	}
+
+	onMount(() => {
+		peterVerifiedInternship.set(true);
+		completedJourneys.update((u) => {
+			const _unique = u.filter((_u) => _u !== "peter");
+			_unique.push("peter");
+			return _unique;
+		});
+	});
 </script>
 
 <div class="container">
@@ -106,6 +115,11 @@
 						</Typography>
 					</div>
 					<Button variant="secondary" label="continue" onClick="{handleFinishCourse}" />
+					<Button
+						variant="white"
+						label="Contact NGDIL"
+						onClick="{() => window.open('https://ngdil.com/contact', '_blank')}"
+					/>
 				</div>
 				<div class="img">
 					<img src="/imgs/pic-placeholder.png" alt="" />

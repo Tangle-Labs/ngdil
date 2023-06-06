@@ -6,7 +6,6 @@
 
 		.card {
 			width: 50%;
-			background: white;
 			position: absolute;
 			top: 50%;
 			left: 50%;
@@ -20,6 +19,14 @@
 
 				flex-wrap: wrap;
 				text-align: left;
+
+				.heading {
+					.crowns {
+						height: 15px;
+						width: unset;
+						padding: 0;
+					}
+				}
 
 				img {
 					padding: 20px 0;
@@ -69,16 +76,19 @@
 	<div class="dash">
 		<Kw1c variant="blue">
 			<div class="card">
-				<Card>
+				<Card borderRadius="{16}">
 					<div class="card-content">
 						<div class="heading">
-							<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>LOGIN TO KW1C</Typography
-							>
+							<img src="/imgs/kw1c-crowns.png" alt="" class="crowns" />
+							<div class="heading-text">
+								<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
+									>LOGIN TO KW1C</Typography
+								>
+							</div>
 						</div>
 						<img src="/imgs/qr.png" on:click="{handleClick}" alt="" />
 						<div class="desc">
-							<Typography variant="button"
+							<Typography variant="kw1c-sub-text"
 								>Scan the QR to access the KW1C learners portal.</Typography
 							>
 						</div>

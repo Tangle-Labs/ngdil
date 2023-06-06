@@ -59,12 +59,21 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { imaniIssuedBadge } from "$lib/stores/flows.store";
+	import { completedJourneys, imaniIssuedBadge } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 
 	function handleFinishCourse() {
-		imaniIssuedBadge.set(true);
-		goto("/demo/journeys/imani");
+		goto("/demo/choose-journey");
 	}
+
+	onMount(() => {
+		imaniIssuedBadge.set(true);
+		completedJourneys.update((u) => {
+			const _unique = u.filter((_u) => _u !== "imani");
+			_unique.push("imani");
+			return _unique;
+		});
+	});
 </script>
 
 <div class="container">
@@ -105,6 +114,11 @@
 						</Typography>
 					</div>
 					<Button variant="secondary" label="continue" onClick="{handleFinishCourse}" />
+					<Button
+						variant="white"
+						label="Contact NGDIL"
+						onClick="{() => window.open('https://ngdil.com/contact', '_blank')}"
+					/>
 				</div>
 				<div class="img">
 					<img src="/imgs/pic-placeholder.png" alt="" />

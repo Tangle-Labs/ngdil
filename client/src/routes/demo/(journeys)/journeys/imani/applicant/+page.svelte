@@ -26,14 +26,16 @@
 				display: flex;
 				padding: 10px 0;
 				align-content: center;
+				align-items: center;
 
 				.circle-container {
 					height: 100%;
 					padding-right: 20px;
+					display: flex;
 
 					.circle {
-						width: 50px;
-						height: 50px;
+						width: 30px;
+						height: 30px;
 						background: var(--white-500);
 						border-radius: 25px;
 						border: 1px solid var(--white-900);
@@ -49,16 +51,22 @@
 	import { Typography, FutureTech, Button, Loading, CredModal } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { credentials } from "$lib/stores/creds";
-	import { imaniChosenApplicant } from "$lib/stores/flows.store";
+	import { currNode, imaniChosenApplicant } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 
 	let currStatus: "init" | "loading" | "loaded" = "init";
 
 	function handleVerify() {
 		currStatus = "loading";
 		setTimeout(() => {
+			currNode.set(3);
 			currStatus = "loaded";
 		}, 8000);
 	}
+
+	onMount(() => {
+		currNode.set(2);
+	});
 </script>
 
 <div class="container">
@@ -121,7 +129,7 @@
 							{#if currStatus === "init"}
 								<div class="circle"></div>
 							{:else if currStatus === "loading"}
-								<Loading />
+								<Loading size="30px" />
 							{:else}
 								<img class="circle" src="/imgs/checked.png" alt="" />
 							{/if}
@@ -153,7 +161,7 @@
 							{#if currStatus === "init"}
 								<div class="circle"></div>
 							{:else if currStatus === "loading"}
-								<Loading />
+								<Loading size="30px" />
 							{:else}
 								<img class="circle" src="/imgs/checked.png" alt="" />
 							{/if}
@@ -189,7 +197,7 @@
 							{#if currStatus === "init"}
 								<div class="circle"></div>
 							{:else if currStatus === "loading"}
-								<Loading />
+								<Loading size="30px" />
 							{:else}
 								<img class="circle" src="/imgs/checked.png" alt="" />
 							{/if}
@@ -224,7 +232,7 @@
 							{#if currStatus === "init"}
 								<div class="circle"></div>
 							{:else if currStatus === "loading"}
-								<Loading />
+								<Loading size="30px" />
 							{:else}
 								<img class="circle" src="/imgs/checked.png" alt="" />
 							{/if}

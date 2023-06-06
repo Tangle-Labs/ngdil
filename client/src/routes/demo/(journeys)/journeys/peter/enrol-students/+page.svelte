@@ -164,7 +164,8 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Modal, Loading, Radio } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { peterChosenStudents } from "$lib/stores/flows.store";
+	import { currNode, peterChosenStudents } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 
 	let students = {
 		"Sarah Jones": false,
@@ -181,11 +182,15 @@
 		}
 	}
 
+	onMount(() => {
+		currNode.set(4);
+	});
+
 	$: selected = Object.keys(students).filter((s) => students[s]);
 </script>
 
 <div class="container">
-	<Modal bind:isOpen="{showModal}">
+	<Modal borderRadius="{16}" bind:isOpen="{showModal}">
 		<div class="modal-content">
 			<img src="/imgs/kw1c-white.png" alt="" class="logo" />
 			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"

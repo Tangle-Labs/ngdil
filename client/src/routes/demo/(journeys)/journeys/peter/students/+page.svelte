@@ -170,16 +170,22 @@
 	import { Typography, Kw1c, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
+		currNode,
 		peterAssignedBadges,
 		peterAssignedStudent,
 		peterChosenStudents
 	} from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
 
 	let students = {
 		"Sarah Jones": false,
 		"Ivar Leifsson": false,
 		"Lagertha Bonde": false
 	};
+
+	onMount(() => {
+		currNode.set(3);
+	});
 
 	let showModal = false;
 </script>
@@ -238,7 +244,7 @@
 
 					<div class="column action">
 						<div class="header action">
-							<Typography variant="sub-text" fontVariant="kw1c">Course Status</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c">Action</Typography>
 						</div>
 
 						{#each $peterAssignedBadges as student (student)}

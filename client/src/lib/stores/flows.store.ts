@@ -1,10 +1,29 @@
 import { persisted } from "svelte-local-storage-store";
+import { writable } from "svelte/store";
 
 export type Journeys = "dominique" | "peter" | "imani";
+export const JourneyInfo = {
+	dominique: {
+		name: "Dominique Veritas",
+		desc: "Student"
+	},
+	peter: {
+		name: "Peter v.d. Meijden",
+		desc: "Enrollment Officer"
+	},
+	imani: {
+		name: "Imani Jameson",
+		desc: "HR Manager"
+	}
+};
+
+export const previousPath = writable<string>(window.location.href);
 
 export const currentJourney = persisted<Journeys | null>("journeySelected", null);
 export const nodeCount = persisted<number>("node-count", 0);
 export const currNode = persisted<number>("curr-node", 0);
+
+export const completedJourneys = persisted<string[]>("completedJourneys", []);
 
 /**
  * Dominique Courses

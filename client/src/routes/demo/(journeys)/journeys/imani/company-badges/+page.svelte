@@ -13,6 +13,14 @@
 		.table {
 			width: 100%;
 
+			th {
+				text-align: left;
+
+				&:last-of-type {
+					text-align: center;
+				}
+			}
+
 			td {
 				height: 50px;
 
@@ -79,7 +87,13 @@
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Button, Loading, Modal } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { imaniChosenApplicant } from "$lib/stores/flows.store";
+	import { currNode, nodeCount } from "$lib/stores/flows.store";
+	import { onMount } from "svelte";
+
+	onMount(() => {
+		currNode.set(1);
+		nodeCount.set(8);
+	});
 </script>
 
 <div class="container">
@@ -97,6 +111,11 @@
 	<div class="dash">
 		<FutureTech header="COMPANY BADGES">
 			<table class="table">
+				<tr>
+					<th><Typography variant="sub-text">Badge Name</Typography></th>
+					<th></th>
+					<th><Typography variant="sub-text">Badge Status</Typography></th>
+				</tr>
 				<tr>
 					<td>
 						<Typography variant="list">Health & Safety</Typography>

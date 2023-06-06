@@ -13,6 +13,10 @@
 		.table {
 			width: 100%;
 
+			th {
+				text-align: left;
+			}
+
 			td {
 				height: 50px;
 
@@ -75,7 +79,7 @@
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Button, Loading, Modal, Radio } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { imaniBadgeName, imaniIssuedStaff } from "$lib/stores/flows.store";
+	import { currNode, imaniBadgeName, imaniIssuedStaff } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
 
 	let staff = $imaniIssuedStaff.map((s) => ({ ...s, selected: false }));
@@ -84,6 +88,7 @@
 	onMount(() => {
 		setTimeout(() => {
 			pending = false;
+			currNode.set(8);
 		}, 9000);
 	});
 </script>
@@ -101,6 +106,11 @@
 	<div class="dash">
 		<FutureTech header="{`${$imaniBadgeName.toUpperCase()} BADGE HOLDERS`}">
 			<table class="table">
+				<tr>
+					<th><Typography variant="sub-text">Employee Name</Typography></th>
+					<th><Typography variant="sub-text">Designation</Typography></th>
+					<th><Typography variant="sub-text">Badge Status</Typography></th>
+				</tr>
 				{#each staff as emp (emp.name)}
 					<tr>
 						<td>
