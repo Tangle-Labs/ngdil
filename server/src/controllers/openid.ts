@@ -9,9 +9,9 @@ import { wsServer } from "@/server";
 import { ServiceFactory } from "@/services/servicefactory";
 import { IdentityService } from "@/services/identity.service";
 import { nanoid } from "nanoid";
-import { validateJsonWebToken } from "@/utils";
 import * as didJWT from "did-jwt";
 import { presentationDefinitions } from "./presentationDefinitions";
+import { credentialDefs } from "./credentials";
 
 const clientConfig = {
 	permanodes: [{ url: "https://chrysalis-chronicle.iota.org/api/mainnet/" }]
@@ -166,29 +166,51 @@ export const startingOffer = expressAsyncHandler(async (req: Request, res: Respo
 
 	const credOffer = await issuer.createCredentialOffer(
 		{
-			credentials: [...req.body.credentials],
-			pinRequired: true
+			credentials: [...req.body.credentials]
 		},
 		{ sessionId: req.session.id }
 	);
 	res.json(credOffer);
 });
 
-export const offer = expressAsyncHandler(async (req: Request, res: Response) => {});
+export const singleOffer = expressAsyncHandler(async (req: Request, res: Response) => {
+	const { credential } = req.body;
+	const credDef = credentialDefs[credential];
+	if (!credDef) throw new Error("definition not found");
+
+	const identityService = ServiceFactory.get<IdentityService>("identity");
+	const cred = await identityService.createCredential({
+		recipient: req.session.did,
+		type: credDef.type,
+		body: credDef.body
+	});
+	req.session.credentials = [cred.cred];
+	await req.session.save();
+	const offer = await issuer.createCredentialOffer(
+		{ credentials: [credDef.type] },
+		{ sessionId: req.session.id }
+	);
+	res.json(offer);
+});
 
 export const credentialEndpoint = expressAsyncHandler(async (req: Request, res: Response) => {
 	const token = req.headers.authorization?.split("Bearer ")[1];
-	const response = await issuer.createSendCredentialsResponse({
-		token: token,
-		credentials: [
-			"eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTA0NDIxMDYsImF1ZCI6ImRpZDppb3RhOkVmZXk5eWFCQ2d2TG1XSjhIaFJBOXVmYlNDYXR5OExKeUMxZjdlWFhwVkMiLCJuYmYiOjE2OTA0NDIxMDYsImp0aSI6Imh0dHA6Ly9jcmVkLmNvbS93YV9kcml2aW5nX2xpY2Vuc2UiLCJzdWIiOiJkaWQ6aW90YTpFZmV5OXlhQkNndkxtV0o4SGhSQTl1ZmJTQ2F0eThMSnlDMWY3ZVhYcFZDIiwidmMiOnsiQGNvbnRleHQiOiJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSIsImlkIjoiaHR0cDovL2NyZWQuY29tL3dhX2RyaXZpbmdfbGljZW5zZSIsInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJWb2x1bnRlZXJpbmcgQmFkZ2UiXSwiY3JlZGVudGlhbFN1YmplY3QiOnsiaWQiOiJkaWQ6aW90YTpFZmV5OXlhQkNndkxtV0o4SGhSQTl1ZmJTQ2F0eThMSnlDMWY3ZVhYcFZDIiwiTWFyaXRpYWwgU3RhdHVzIjoiU2luZ2xlIiwiU1NOIjo0MjA2OSwiVm9sdW50ZWVyZWQgQXQiOiJDYXBlIENhbmV2cmFsIiwiZGF0ZSBvZiBiaXJ0aCI6IjI0LTEyLTIwMDIiLCJuYW1lIjoiSm9lIFNjaG1vZSJ9LCJpc3N1ZXIiOiJkaWQ6aW90YToyVVBVdkdKa0h1b0p3Rm9GdVpZcWhtQ2lwRVJOZWNkdnFYZWJwZkQ3bUtTQiIsImlzc3VhbmNlRGF0ZSI6IjIwMjMtMDctMjdUMDc6MTU6MDZaIn0sImlzcyI6ImRpZDppb3RhOjJVUFV2R0prSHVvSndGb0Z1WllxaG1DaXBFUk5lY2R2cVhlYnBmRDdtS1NCIn0.EIOhVhBI0fiC22CeDK_9fwV6hXPIe6OF91gD8XQzzttQKFVarjjWj0Scnwu5Wldf3dq4wfmecUiVSUyf10-XAw"
-		]
+	if (!token) throw new Error("401::missing token");
+	const { payload } = await didJWT.verifyJWT(token, {
+		policies: { aud: false },
+		resolver: new IotaDIDResolver()
 	});
+	const { credentials } = await SessionsService.findById(payload.sessionId);
+
+	const response = await issuer.createSendCredentialsResponse({
+		token,
+		credentials
+	});
+	wsServer.broadcast(payload.sessionId, { creds: true });
 	res.json(response);
 });
 
 export const batchCredentialEndpoint = expressAsyncHandler(async (req: Request, res: Response) => {
-	console.log("batch here?");
 	const token = req.headers.authorization?.split("Bearer ")[1];
 	if (!token) throw new Error("401::missing token");
 	const { payload } = await didJWT.verifyJWT(token, {

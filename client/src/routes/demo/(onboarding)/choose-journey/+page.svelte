@@ -82,10 +82,6 @@
 			text-align: center;
 			padding: 10px 20px;
 
-			.pin {
-				width: 100%;
-			}
-
 			.qr {
 				height: 145px;
 				width: 145px;
@@ -110,7 +106,6 @@
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { websocketClient } from "$lib/utils/ws.util";
 	let qr: string;
-	let pin: number;
 
 	const journeys = {
 		dominique: {
@@ -176,8 +171,7 @@
 									if (selectedJourney) currentJourney.set(selectedJourney);
 
 									qrVisible = true;
-								}}"
-							/>
+								}}" />
 						</div>
 					{/if}
 				</div>
@@ -190,14 +184,13 @@
 							<Typography variant="card-header"
 								>{buttonVisible
 									? "Your credentials are confirmed!"
-									: "Scan QR code to connect to NGDIL & receive your credentials."}</Typography
-							>
+									: "Scan QR code to connect to NGDIL & receive your credentials."}</Typography>
 						</div>
 						<div class="sub-text">
 							<Typography variant="sub-text">
 								{buttonVisible
 									? `Click to begin ${selectedJourney}'s journey.`
-									: `In your mobile wallet, scan the QR code and enter the following pin to connect to NGDIL, then accept receipt of ${selectedJourney}’s verifiable credentials.`}
+									: `In your mobile wallet, scan the QR code to connect to NGDIL, then accept receipt of ${selectedJourney}’s verifiable credentials.`}
 							</Typography>
 						</div>
 
@@ -207,12 +200,7 @@
 								onClick="{() => {
 									goto(`/demo/journeys/${selectedJourney}`);
 								}}"
-								variant="secondary"
-							/>
-						{:else}
-							<div class="pin"><Typography variant="card-header">{pin}</Typography></div>
-
-							<Loading />
+								variant="secondary" />
 						{/if}
 					</div>
 				{/if}
@@ -224,8 +212,7 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You’re all set! <Highlight>Let’s choose the user journey</Highlight> you would like to explore
-			{$completedJourneys.length > 0 ? "next" : "first"}.</Typography
-		>
+			{$completedJourneys.length > 0 ? "next" : "first"}.</Typography>
 	</div>
 	<div class="desc">
 		<Typography variant="button"
@@ -249,8 +236,7 @@
 						<div class="desc">
 							<Typography
 								>Dominique is a school graduate, excited to enrol as a student at Koning Willem I
-								College.</Typography
-							>
+								College.</Typography>
 						</div>
 					</div>
 					<Button
@@ -263,12 +249,10 @@
 							});
 
 							qr = data.request;
-							pin = data.pin;
 
 							isOpen = true;
 						}}"
-						label="{$completedJourneys.includes('dominique') ? 'Complete' : 'Get Started'}"
-					/>
+						label="{$completedJourneys.includes('dominique') ? 'Complete' : 'Get Started'}" />
 				</div>
 			</Card>
 		</div>
@@ -297,12 +281,10 @@
 							});
 
 							qr = data.request;
-							pin = data.pin;
 
 							isOpen = true;
 						}}"
-						label="{$completedJourneys.includes('peter') ? 'Complete' : 'Get Started'}"
-					/>
+						label="{$completedJourneys.includes('peter') ? 'Complete' : 'Get Started'}" />
 				</div>
 			</Card>
 		</div>
@@ -331,11 +313,9 @@
 							});
 
 							qr = data.request;
-							pin = data.pin;
 							isOpen = true;
 						}}"
-						label="{$completedJourneys.includes('imani') ? 'Complete' : 'Get Started'}"
-					/>
+						label="{$completedJourneys.includes('imani') ? 'Complete' : 'Get Started'}" />
 				</div>
 			</Card>
 		</div>

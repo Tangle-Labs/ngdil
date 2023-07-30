@@ -3,7 +3,7 @@ export const presentationDefinitions = {
 		id: "32f54163-7166-48f1-93d8-ff217bdb0653",
 		input_descriptors: [
 			{
-				id: "nationa-id",
+				id: "national-id",
 				constraints: {
 					fields: [
 						{
