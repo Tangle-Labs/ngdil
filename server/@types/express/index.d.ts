@@ -7,8 +7,8 @@ declare global {
 		interface Session extends SessionModel {}
 
 		interface Request {
-			user?: User;
-			session?: Session;
+			user: User;
+			session: Session;
 		}
 	}
 }

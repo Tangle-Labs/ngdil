@@ -84,19 +84,39 @@
 	import { Typography, Kw1c, Modal, Loading, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
+	import { apiClient } from "$lib/utils/axios.utils";
+	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { onMount } from "svelte";
+	import { websocketClient } from "$lib/utils/ws.util";
 	let receivedCreds = false;
+	let qr: string;
 
-	function handleWait() {
-		setTimeout(() => {
+	// function handleWait() {
+	// 	// setTimeout(() => {
+	// 	// 	receivedCreds = true;
+	// 	// }, 8000);
+	// }
+
+	websocketClient.onmessage = (event) => {
+		const data = JSON.parse(event.data);
+		console.log(data);
+		if (data.received) {
 			receivedCreds = true;
-		}, 8000);
-	}
+		} else {
+			console.log(data.login);
+			console.log("WTF");
+		}
+	};
 
 	let showModal = false;
 
-	onMount(() => {
+	onMount(async () => {
 		currNode.set(1);
+
+		const {
+			data: { request }
+		} = await apiClient.post("/api/oid4vp", { presentationStage: "dominiqueEnrolCourse" });
+		qr = request;
 	});
 </script>
 
@@ -126,6 +146,9 @@
 					? "You may continue further in the browser. "
 					: "In your mobile wallet accept the request to share the credentials with KW1C to privately send the credentials required."}
 			</div>
+			{#if !receivedCreds}
+				<Qr data="{qr}" size="{320}" />
+			{/if}
 			{#if receivedCreds}
 				<img class="checked" src="/imgs/checked.png" alt="" />
 				<Button

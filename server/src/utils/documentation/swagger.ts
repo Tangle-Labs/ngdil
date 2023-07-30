@@ -1,12 +1,11 @@
 import swaggerJsdoc from "swagger-jsdoc";
-import { version, name } from "../../../package.json";
 
 const swaggerOptions: swaggerJsdoc.Options = {
 	definition: {
 		openapi: "3.0.0",
 		info: {
-			title: name,
-			version
+			title: "app",
+			version: "1.3.3"
 		},
 		components: {
 			securitySchemas: {

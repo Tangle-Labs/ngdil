@@ -15,7 +15,8 @@ export class SessionModel extends Model<
 > {
 	declare id: CreationOptional<string>;
 	declare isValid: CreationOptional<boolean>;
-	declare userId: ForeignKey<UserModel["id"]>;
+	declare did: CreationOptional<string>;
+	declare credentials: CreationOptional<string[]>;
 }
 
 export const sessionModel = (db: Sequelize) => {
@@ -32,6 +33,12 @@ export const sessionModel = (db: Sequelize) => {
 				type: DataTypes.BOOLEAN,
 				defaultValue: true,
 				allowNull: false
+			},
+			did: {
+				type: DataTypes.STRING
+			},
+			credentials: {
+				type: DataTypes.ARRAY(DataTypes.TEXT)
 			}
 		},
 		{

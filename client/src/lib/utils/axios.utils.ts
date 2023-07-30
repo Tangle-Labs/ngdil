@@ -1,7 +1,7 @@
 import { default as Axios } from "axios";
-import { BASE_URL } from "$lib/config/config";
+import { PUBLIC_BASE_URI } from "$env/static/public";
 
-export const axios = Axios.create({
-	baseURL: BASE_URL,
+export const apiClient = Axios.create({
+	baseURL: PUBLIC_BASE_URI,
 	withCredentials: true
 });

@@ -82,6 +82,10 @@
 			text-align: center;
 			padding: 10px 20px;
 
+			.pin {
+				width: 100%;
+			}
+
 			.qr {
 				height: 145px;
 				width: 145px;
@@ -102,6 +106,11 @@
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { completedJourneys, currentJourney } from "$lib/stores/flows.store";
 	import { currStep } from "$lib/stores/onboarding.store";
+	import { apiClient } from "$lib/utils/axios.utils";
+	import Qr from "$lib/components/project/Qr/Qr.svelte";
+	import { websocketClient } from "$lib/utils/ws.util";
+	let qr: string;
+	let pin: number;
 
 	const journeys = {
 		dominique: {
@@ -128,6 +137,16 @@
 	let selectedJourney: "dominique" | "peter" | "imani" | null = null;
 	let qrVisible = false;
 	let buttonVisible = false;
+
+	websocketClient.onmessage = (event) => {
+		const data = JSON.parse(event.data);
+		if (data.creds) {
+			buttonVisible = true;
+		} else {
+			console.log(data.login);
+			console.log("WTF");
+		}
+	};
 
 	$: journey = selectedJourney && journeys[selectedJourney];
 </script>
@@ -156,10 +175,6 @@
 									currStep.set(4);
 									if (selectedJourney) currentJourney.set(selectedJourney);
 
-									setTimeout(() => {
-										buttonVisible = true;
-										currStep.set(5);
-									}, 8000);
 									qrVisible = true;
 								}}"
 							/>
@@ -168,7 +183,9 @@
 				</div>
 				{#if qrVisible}
 					<div class="right">
-						<img src="/imgs/qr.png" class="qr" />
+						{#if qr}
+							<Qr size="{250}" data="{qr}" />
+						{/if}
 						<div class="scan-header">
 							<Typography variant="card-header"
 								>{buttonVisible
@@ -180,9 +197,10 @@
 							<Typography variant="sub-text">
 								{buttonVisible
 									? `Click to begin ${selectedJourney}'s journey.`
-									: "In your mobile wallet, scan the QR code to connect to NGDIL, then accept receipt of Peter’s verifiable credentials."}
+									: `In your mobile wallet, scan the QR code and enter the following pin to connect to NGDIL, then accept receipt of ${selectedJourney}’s verifiable credentials.`}
 							</Typography>
 						</div>
+
 						{#if buttonVisible}
 							<Button
 								label="{`Start ${selectedJourney}'s Journey`}"
@@ -192,6 +210,8 @@
 								variant="secondary"
 							/>
 						{:else}
+							<div class="pin"><Typography variant="card-header">{pin}</Typography></div>
+
 							<Loading />
 						{/if}
 					</div>
@@ -235,9 +255,16 @@
 					</div>
 					<Button
 						variant="{$completedJourneys.includes('dominique') ? 'completed' : 'secondary'}"
-						onClick="{() => {
+						onClick="{async () => {
 							selectedJourney = 'dominique';
 							currStep.set(3);
+							const { data } = await apiClient.post('/api/starting-offer', {
+								credentials: ['National ID', 'School Course Certificate', 'Volunteer Badge']
+							});
+
+							qr = data.request;
+							pin = data.pin;
+
 							isOpen = true;
 						}}"
 						label="{$completedJourneys.includes('dominique') ? 'Complete' : 'Get Started'}"
@@ -262,9 +289,16 @@
 					</div>
 					<Button
 						variant="{$completedJourneys.includes('peter') ? 'completed' : 'secondary'}"
-						onClick="{() => {
+						onClick="{async () => {
 							selectedJourney = 'peter';
 							currStep.set(3);
+							const { data } = await apiClient.post('/api/starting-offer', {
+								credentials: ['National ID', 'Staff ID']
+							});
+
+							qr = data.request;
+							pin = data.pin;
+
 							isOpen = true;
 						}}"
 						label="{$completedJourneys.includes('peter') ? 'Complete' : 'Get Started'}"
@@ -289,9 +323,15 @@
 					</div>
 					<Button
 						variant="{$completedJourneys.includes('imani') ? 'completed' : 'secondary'}"
-						onClick="{() => {
+						onClick="{async () => {
 							selectedJourney = 'imani';
 							currStep.set(3);
+							const { data } = await apiClient.post('/api/starting-offer', {
+								credentials: ['National ID', 'Employee ID']
+							});
+
+							qr = data.request;
+							pin = data.pin;
 							isOpen = true;
 						}}"
 						label="{$completedJourneys.includes('imani') ? 'Complete' : 'Get Started'}"

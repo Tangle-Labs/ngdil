@@ -2,13 +2,26 @@ import { FILTER_KEYS } from "@/config";
 import { sanitizeObject } from "@/utils";
 import { responseHandler } from "express-intercept";
 
-export const AppInterceptor = responseHandler().replaceBuffer((body, req) => {
-	if (!req.headers.accept.includes("application/json")) return body;
+function isValidJSON(jsonString: string): boolean {
+	try {
+		JSON.parse(jsonString);
+		return true;
+	} catch (error) {
+		return false;
+	}
+}
 
-	const sanitizedObject = sanitizeObject(
-		JSON.parse(body.toString()),
-		FILTER_KEYS.split(",").map((e) => e.trim())
-	);
+export const AppInterceptor = responseHandler()
+	.if((res) => {
+		return !["video/mp4"].includes(res.getHeaders()["content-type"] as string);
+	})
+	.replaceBuffer((body, req) => {
+		if (!isValidJSON(body.toString())) return body;
 
-	return Buffer.from(JSON.stringify(sanitizedObject));
-});
+		const sanitizedObject = sanitizeObject(
+			JSON.parse(body.toString()),
+			FILTER_KEYS.split(",").map((e) => e.trim())
+		);
+
+		return Buffer.from(JSON.stringify(sanitizedObject));
+	});

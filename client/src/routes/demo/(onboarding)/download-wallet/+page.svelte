@@ -88,12 +88,18 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Button, Modal } from "$lib/components";
 	import { currStep } from "$lib/stores/onboarding.store";
+	import { apiClient } from "$lib/utils/axios.utils";
 
 	let modalVisible = false;
 
+	const loadQr = async function () {
+		const { data } = await apiClient.get("/siop");
+	};
+
+	loadQr();
 	function handleContinue() {
 		currStep.set(2);
-		goto("/demo/choose-journey");
+		goto("/demo/connect");
 	}
 </script>
 

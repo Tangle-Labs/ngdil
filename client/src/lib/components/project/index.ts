@@ -5,3 +5,4 @@ export { default as OpenJobsNetwork } from "./open-jobs-network/OpenJobsNetwork.
 export { default as Badge } from "./Badge/Badge.svelte";
 export { default as CredModal } from "./CredModal/CredModal.svelte";
 export { default as Phone } from "./Phone/Phone.svelte";
+export { default as Qr } from "./Qr/Qr.svelte";

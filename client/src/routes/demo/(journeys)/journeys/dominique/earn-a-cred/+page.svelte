@@ -11,7 +11,7 @@
 			left: 50%;
 			transform: translate(-50%, -50%);
 
-			width: 250px;
+			width: 300px;
 			.card-content {
 				padding: 10px;
 				display: flex;
@@ -42,8 +42,15 @@
 	import { Typography, Kw1c, Card, Hightlight, Phone } from "$lib/components";
 	import { currNode, nodeCount } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
+	import Qr from "$lib/components/project/Qr/Qr.svelte";
+	import { apiClient } from "$lib/utils/axios.utils";
+	import { websocketClient } from "$lib/utils/ws.util";
+
+	let channel;
+	let messages: any[] = [];
 
 	let animatePhone = false;
+	let qr: string;
 
 	const handleClick = () => {
 		animatePhone = true;
@@ -53,10 +60,30 @@
 		}, 12_000);
 	};
 
-	onMount(() => {
-		currNode.set(0);
-		nodeCount.set(5);
-	});
+	const loadQr = async function () {
+		const { data } = await apiClient.get("/siop");
+		qr = data.request;
+	};
+	currNode.set(0);
+	nodeCount.set(5);
+
+	loadQr();
+
+	// ws.onopen = () => {
+	// 	// ws.send(JSON.stringify({ action: "join" }));
+	// };
+
+	websocketClient.onmessage = (event) => {
+		const data = JSON.parse(event.data);
+		if (data.login) {
+			goto("/demo/journeys/dominique/choose-course");
+		} else {
+			console.log(data.login);
+			console.log("WTF");
+		}
+	};
+
+	onMount(() => {});
 </script>
 
 <div class="container">
@@ -86,7 +113,9 @@
 								>
 							</div>
 						</div>
-						<img src="/imgs/qr.png" on:click="{handleClick}" alt="" />
+						{#if qr}
+							<Qr size="{250}" data="{qr}" />
+						{/if}
 						<div class="desc">
 							<Typography variant="kw1c-sub-text"
 								>Scan the QR to access the KW1C learners portal.</Typography

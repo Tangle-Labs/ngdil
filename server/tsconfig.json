@@ -1,19 +1,19 @@
 {
-	"ts-node": {
-		"require": ["tsconfig-paths/register"]
-	},
 	"compilerOptions": {
-		"rootDir": "./",
-		"module": "CommonJS",
-		"target": "ES2021",
+		"target": "ESNext",
+		"module": "ESNext",
+		"lib": ["ES2020"],
 		"outDir": "./dist",
-		"baseUrl": "src/",
-		"resolveJsonModule": true,
-		"paths": {
-			"@/*": ["./*"]
-		},
+		"rootDir": "./src",
+		"strict": true,
+		"moduleResolution": "node",
+		"allowSyntheticDefaultImports": true,
 		"esModuleInterop": true,
-		"typeRoots": ["./@types", "./node_modules/@types"]
-	},
-	"include": ["src/**/*.ts"]
+		"skipLibCheck": true,
+		"paths": {
+			"@/*": ["./src/*"]
+		},
+		"typeRoots": ["./@types", "./node_modules/@types"],
+		"forceConsistentCasingInFileNames": true
+	}
 }

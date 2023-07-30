@@ -3,22 +3,29 @@
 	"version": "1.0.0",
 	"main": "index.js",
 	"license": "MIT",
+	"type": "module",
 	"scripts": {
-		"dev": "nodemon ./src/server.ts | pino-pretty",
+		"dev": "node --watch --loader=tsx src/server.ts | pino-pretty",
 		"lint": "prettier --plugin-search-dir . --check . && eslint \"src/**/*.{ts,json}\"",
 		"format": "prettier --plugin-search-dir . --write .",
 		"format-check": "prettier -c \"**/*.{ts,js,json}\"",
 		"build": "echo set me up dude"
 	},
 	"dependencies": {
+		"@iota/identity-node": "file:../node_modules/@iota/identity-wasm/node",
+		"@iota/identity-wasm": "0.6.0",
+		"@tanglelabs/identity-manager": "^0.4.4",
+		"@tanglelabs/oid4vc": "file:../../oid4vc",
 		"bcryptjs": "^2.4.3",
 		"cookie-parser": "1.4.6",
 		"cors": "^2.8.5",
+		"did-resolver": "^4.1.0",
 		"dotenv": "^16.0.3",
 		"express": "^4.18.2",
 		"express-async-handler": "^1.2.0",
 		"express-intercept": "1.0.0",
 		"jsonwebtoken": "8.5.1",
+		"nanoid": "^4.0.2",
 		"pg": "^8.8.0",
 		"pino": "^8.7.0",
 		"prom-client": "^14.1.0",
@@ -26,7 +33,8 @@
 		"sequelize": "^6.25.7",
 		"swagger-jsdoc": "^6.2.5",
 		"swagger-ui-express": "^4.6.0",
-		"ts-transformer-keys": "^0.4.3"
+		"ts-transformer-keys": "^0.4.3",
+		"tsx": "^3.12.7"
 	},
 	"devDependencies": {
 		"@types/bcryptjs": "^2.4.2",
@@ -38,6 +46,7 @@
 		"@types/response-time": "^2.3.5",
 		"@types/swagger-jsdoc": "^6.0.1",
 		"@types/swagger-ui-express": "^4.1.3",
+		"@types/ws": "^8.5.5",
 		"@typescript-eslint/eslint-plugin": "^5.44.0",
 		"@typescript-eslint/parser": "^5.44.0",
 		"eslint": "^8.28.0",
