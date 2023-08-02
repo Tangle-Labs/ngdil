@@ -1413,9 +1413,6 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@iota/identity-node@file:node_modules/@iota/identity-wasm/node":
-  version "0.6.0"
-
 "@iota/identity-wasm@0.6.0":
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/@iota/identity-wasm/-/identity-wasm-0.6.0.tgz#b9ea147e99d5191a822bacd599a300668e9444d7"
