@@ -2,7 +2,7 @@ import { issuer, rp } from "@/services/oid4vc";
 import { Request, Response } from "express";
 import expressAsyncHandler from "express-async-handler";
 import { DIDResolutionOptions, DIDResolutionResult, Resolver } from "did-resolver";
-import { Client } from "@iota/identity-node";
+import * as iotaIdentity from "@iota/identity-wasm";
 import { init } from "@tanglelabs/oid4vc";
 import { SessionsService } from "@/services";
 import { wsServer } from "@/server";
@@ -23,7 +23,7 @@ class IotaDIDResolver extends Resolver {
 		did: string,
 		options?: DIDResolutionOptions | undefined
 	): Promise<DIDResolutionResult> {
-		const client = await Client.fromConfig(clientConfig);
+		const client = await iotaIdentity.Client.fromConfig(clientConfig);
 		const doc = await client.resolve(did);
 		return {
 			didResolutionMetadata: {

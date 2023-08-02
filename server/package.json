@@ -9,10 +9,10 @@
 		"lint": "prettier --plugin-search-dir . --check . && eslint \"src/**/*.{ts,json}\"",
 		"format": "prettier --plugin-search-dir . --write .",
 		"format-check": "prettier -c \"**/*.{ts,js,json}\"",
-		"build": "tsc && resolve-tspaths"
+		"build": "tsc && resolve-tspaths",
+		"postinstall": "patch-package"
 	},
 	"dependencies": {
-		"@iota/identity-node": "file:../node_modules/@iota/identity-wasm/node",
 		"@iota/identity-wasm": "0.6.0",
 		"@tanglelabs/identity-manager": "^0.4.4",
 		"@tanglelabs/oid4vc": "file:../../oid4vc",
@@ -26,8 +26,10 @@
 		"express-intercept": "1.0.0",
 		"jsonwebtoken": "8.5.1",
 		"nanoid": "^4.0.2",
+		"patch-package": "^8.0.0",
 		"pg": "^8.8.0",
 		"pino": "^8.7.0",
+		"postinstall-postinstall": "^2.1.0",
 		"prom-client": "^14.1.0",
 		"resolve-tspaths": "^0.8.14",
 		"response-time": "^2.3.2",
