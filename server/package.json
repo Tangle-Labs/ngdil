@@ -37,7 +37,8 @@
 		"swagger-jsdoc": "^6.2.5",
 		"swagger-ui-express": "^4.6.0",
 		"ts-transformer-keys": "^0.4.3",
-		"tsx": "^3.12.7"
+		"tsx": "^3.12.7",
+		"ws": "^8.13.0"
 	},
 	"devDependencies": {
 		"@types/bcryptjs": "^2.4.2",
