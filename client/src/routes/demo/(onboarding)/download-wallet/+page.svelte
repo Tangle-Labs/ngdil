@@ -92,11 +92,6 @@
 
 	let modalVisible = false;
 
-	const loadQr = async function () {
-		const { data } = await apiClient.get("/siop");
-	};
-
-	loadQr();
 	function handleContinue() {
 		currStep.set(2);
 		goto("/demo/choose-journey");

@@ -5,15 +5,6 @@
 
 	let siopv2: string;
 	let oid4vci: string;
-
-	async function loadQr() {
-		const { data: oid4vc } = await apiClient.get("/offer");
-		const { data: siop } = await apiClient.get("/siop");
-		siopv2 = siop.request;
-		oid4vci = oid4vc.request;
-	}
-
-	onMount(() => loadQr());
 </script>
 
 {#if siopv2 && oid4vci}
