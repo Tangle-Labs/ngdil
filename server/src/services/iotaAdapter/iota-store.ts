@@ -11,6 +11,7 @@ import {
 	EncryptionAlgorithm,
 	CekAlgorithm,
 	EncryptedData
+	// @ts-ignore
 } from "@iota/identity-wasm";
 import { StorageSpec, IdentityConfig } from "@tanglelabs/identity-manager";
 

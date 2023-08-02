@@ -2,6 +2,7 @@ import { issuer, rp } from "@/services/oid4vc";
 import { Request, Response } from "express";
 import expressAsyncHandler from "express-async-handler";
 import { DIDResolutionOptions, DIDResolutionResult, Resolver } from "did-resolver";
+// @ts-ignore
 import * as iotaIdentity from "@iota/identity-wasm";
 import { init } from "oid4vc";
 import { SessionsService } from "@/services";

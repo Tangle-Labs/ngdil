@@ -28,6 +28,7 @@ import {
 	CredentialValidationOptions,
 	FailFast,
 	MethodScope
+	// @ts-ignore
 } from "@iota/identity-wasm";
 
 import * as didJWT from "did-jwt";
