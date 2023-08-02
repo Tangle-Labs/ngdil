@@ -5,7 +5,7 @@ import {
 	SigningAlgs,
 	SimpleStore,
 	VcIssuer
-} from "../../../../oid4vc/src/index";
+} from "@tanglelabs/oid4vc";
 import { readFile, writeFile } from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";

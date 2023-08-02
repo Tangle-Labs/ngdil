@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import expressAsyncHandler from "express-async-handler";
 import { DIDResolutionOptions, DIDResolutionResult, Resolver } from "did-resolver";
 import { Client } from "@iota/identity-node";
-import { init } from "../../../../oid4vc/src";
+import { init } from "@tanglelabs/oid4vc";
 import { SessionsService } from "@/services";
 import { wsServer } from "@/server";
 import { ServiceFactory } from "@/services/servicefactory";
