@@ -25,7 +25,7 @@
 		"@storybook/svelte": "^6.5.13",
 		"@storybook/testing-library": "^0.0.13",
 		"@sveltejs/adapter-auto": "next",
-		"@sveltejs/kit": "next",
+		"@sveltejs/kit": "1.22.4",
 		"@typescript-eslint/eslint-plugin": "^5.27.0",
 		"@typescript-eslint/parser": "^5.27.0",
 		"babel-loader": "^8.3.0",
@@ -44,12 +44,12 @@
 		"svelte-preprocess": "^4.10.6",
 		"tslib": "^2.3.1",
 		"typescript": "^4.7.4",
-		"vite": "^3.1.0"
+		"vite": "latest"
 	},
 	"type": "module",
 	"dependencies": {
 		"@sveltejs/adapter-node": "^1.2.4",
-		"@sveltejs/adapter-static": "^2.0.3",
+		"@sveltejs/adapter-static": "1.0.6",
 		"axios": "^1.2.0",
 		"buffer": "^6.0.3",
 		"qr-code-styling": "^1.6.0-rc.1",
