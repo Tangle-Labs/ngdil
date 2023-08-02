@@ -9,7 +9,7 @@
 		"lint": "prettier --plugin-search-dir . --check . && eslint \"src/**/*.{ts,json}\"",
 		"format": "prettier --plugin-search-dir . --write .",
 		"format-check": "prettier -c \"**/*.{ts,js,json}\"",
-		"build": "tsc"
+		"build": "tsc && resolve-tspaths"
 	},
 	"dependencies": {
 		"@iota/identity-node": "file:../node_modules/@iota/identity-wasm/node",
@@ -29,6 +29,7 @@
 		"pg": "^8.8.0",
 		"pino": "^8.7.0",
 		"prom-client": "^14.1.0",
+		"resolve-tspaths": "^0.8.14",
 		"response-time": "^2.3.2",
 		"sequelize": "^6.25.7",
 		"swagger-jsdoc": "^6.2.5",
