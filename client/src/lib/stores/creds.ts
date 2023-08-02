@@ -58,5 +58,16 @@ export const credentials = {
 		Language: "English",
 		Description: "Lorem ipsum dolor sit amet.",
 		"Date Issued": new Date(Date.now()).toDateString()
+	},
+	volunteerBadge: {
+		Issuer: "Volunteer Corps",
+		"Holder Name": "",
+		"Badge Name": "Community Volunteer",
+		Description:
+			"This is to certify that the named badge holder has participated with and supported the Volunteer Org. through volunteer practices within the local community over a three month period.",
+		Country: "Netherlands",
+		Language: "Dutch",
+		"Activity Start": "07/01/2023",
+		"Activity End": "27/03/2023"
 	}
 };

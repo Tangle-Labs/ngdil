@@ -53,5 +53,8 @@ export const issuer = new VcIssuer({
 	cryptographicSuitesSupported: ["EdDSA"],
 	proofTypesSupported: ["jwt"],
 	store: new SimpleStore<IssuerStoreData>({ reader, writer }),
+	client_name: "NGDIL",
+	logo_uri:
+		"https://uploads-ssl.webflow.com/6440ceac338a9203b5100c47/6440ceac338a920197100e60_NGDIL%20Logo%20Dark.svg",
 	...rpKeys
 });

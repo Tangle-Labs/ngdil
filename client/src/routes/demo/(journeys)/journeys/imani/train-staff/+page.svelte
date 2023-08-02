@@ -118,6 +118,8 @@
 		goto("/demo/journeys/imani/results");
 	}
 
+	$: disabled = staff.filter((s) => s.selected).length < 1;
+
 	onMount(() => {
 		currNode.set(6);
 	});
@@ -128,12 +130,10 @@
 		<img src="/imgs/future-tech.png" alt="" class="logo" />
 		<div class="heading">
 			<Typography variant="card-header" fontVariant="kw1c" color="--future-tech-green"
-				>FUTURE TECH CO.</Typography
-			>
+				>FUTURE TECH CO.</Typography>
 		</div>
 		<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-red-900"
-			>Your staff have attended training. Continue to see results.</Typography
-		>
+			>Your staff have attended training. Continue to see results.</Typography>
 		<div class="p">
 			<Typography color="--black-500">
 				To view the staff results from training click the continue to results button.
@@ -149,14 +149,12 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>There are four staff <Highlight>available for the new badge training.</Highlight> Select the staff
-			to train.</Typography
-		>
+			to train.</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography
 			>Select the check boxes next to the employees you wish to train, then click the train staff
-			button to continue.</Typography
-		>
+			button to continue.</Typography>
 	</div>
 	<div class="dash">
 		<FutureTech header="COMPANY EMPLOYEES">
@@ -183,7 +181,10 @@
 			</table>
 
 			<div class="button-container">
-				<Button variant="future-tech" label="Train Staff" onClick="{() => (showModal = true)}" />
+				<Button
+					variant="{disabled ? 'future-tech-disabled' : 'future-tech'}"
+					label="Train Staff"
+					onClick="{() => (showModal = true)}" />
 			</div>
 		</FutureTech>
 	</div>

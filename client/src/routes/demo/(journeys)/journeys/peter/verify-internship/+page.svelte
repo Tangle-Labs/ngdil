@@ -234,7 +234,7 @@
 		<img src="/imgs/kw1c-white.png" alt="" class="logo" />
 		<span style:text-transform="uppercase">
 			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"
-				>you have successfully assigned {$peterAssignedStudent?.split(" ")[0]} their internship placement.
+				>YOU ARE ABOUT TO REQUEST THE FOLLOWING CREDENTIALS:
 			</Typography>
 		</span>
 		<div class="credentials">
@@ -246,7 +246,8 @@
 			</Typography>
 		</div>
 		<div class="p">
-			<Typography variant="sub-text">Click the CONTINUE button to proceed</Typography>
+			<Typography variant="sub-text"
+				>Click the REQUEST CREDENTIALS button to confirm and issue the request.</Typography>
 		</div>
 		<button class="button" on:click="{handleWait}">REQUEST CREDENTIALS</button>
 		<div class="subtext">
@@ -259,22 +260,20 @@
 		<Typography variant="heading">
 			{#if !receivedCreds}
 				To <Highlight
-					>confirm {$peterAssignedStudent.split(" ")[0]}’s internship completion,</Highlight
-				> let’s request the credentials for verification.
+					>confirm {$peterAssignedStudent.split(" ")[0]}’s internship completion,</Highlight> let’s request
+				the credentials for verification.
 			{:else}
 				It looks like {$peterAssignedStudent?.split(" ")[0]} had a very <Highlight
-					>successful international internship.</Highlight
-				>
+					>successful international internship.</Highlight>
 				Take a look at the verified credentials.
 			{/if}
 		</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography
-			>{receivedCreds
-				? "Click the request credentials button to see verify the student credentials."
-				: "Make sure to check the credentials, and click continue to proceed"}</Typography
-		>
+			>{!receivedCreds
+				? "Click the request credentials button to verify the student credentials."
+				: "Click the eye icons next to each credential to view the credentials. Click continue to proceed."}</Typography>
 	</div>
 
 	<div class="dash">
@@ -292,8 +291,7 @@
 					<div class="student">
 						<div class="name">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>{$peterAssignedStudent?.toUpperCase()}</Typography
-							>
+								>{$peterAssignedStudent?.toUpperCase()}</Typography>
 						</div>
 						<div class="course">
 							<Typography fontVariant="kw1c" variant="kw1c-sub-text" color="--kw1c-red-900">
@@ -305,8 +303,7 @@
 						{#if receivedCreds}
 							<button
 								class="{`button ${loading && 'loading'}`}"
-								on:click="{() => goto('/demo/journeys/peter/verified-internship')}"
-							>
+								on:click="{() => goto('/demo/journeys/peter/verified-internship')}">
 								CONTINUE
 							</button>
 						{:else}
@@ -314,8 +311,7 @@
 								class="{`button ${loading && 'loading'}`}"
 								on:click="{() => {
 									showModal = true;
-								}}"
-							>
+								}}">
 								{loading ? "VERIFYING" : "REQUEST CREDENTIALS"}
 							</button>
 						{/if}
@@ -347,8 +343,7 @@
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c"
-								>INTERNATIONALISATION BADGE</Typography
-							>
+								>INTERNATIONALISATION BADGE</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c">INTERNSHIP BADGE</Typography>
@@ -361,28 +356,23 @@
 					<div class="column">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c" color="--black-500"
-								>Issuer</Typography
-							>
+								>Issuer</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--black-500"
-								>Koning Willem 1 College</Typography
-							>
+								>Koning Willem 1 College</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--black-500"
-								>Koning Willem 1 College</Typography
-							>
+								>Koning Willem 1 College</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--black-500"
-								>{$peterAssignedCompany}</Typography
-							>
+								>{$peterAssignedCompany}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--black-500"
-								>{$peterAssignedCompany}</Typography
-							>
+								>{$peterAssignedCompany}</Typography>
 						</div>
 					</div>
 
@@ -414,16 +404,14 @@
 										...credentials.collegeId,
 										'Student Name': $peterChosenStudent
 									}}"
-									logo="/imgs/kw1c-white.png"
-								/>
+									logo="/imgs/kw1c-white.png" />
 							</div>
 							<div class="data">
 								<CredModal
 									name="Internationalisation Badge"
 									issuer="Koning Willem 1 College"
 									logo="/imgs/kw1c-white.png"
-									credential="{{ ...credentials.internationalisation }}"
-								/>
+									credential="{{ ...credentials.internationalisation }}" />
 							</div>
 							<div class="data">
 								<CredModal
@@ -437,8 +425,7 @@
 										'Intern Name': $peterChosenStudent,
 										Issuer: $peterAssignedCompany,
 										Country: $peterAssignecCompanyCountry
-									}}"
-								/>
+									}}" />
 							</div>
 							<div class="data">
 								<CredModal
@@ -450,8 +437,7 @@
 									credential="{{
 										...credentials.internshipReference,
 										Country: $peterAssignecCompanyCountry
-									}}"
-								/>
+									}}" />
 							</div>
 						{/if}
 					</div>

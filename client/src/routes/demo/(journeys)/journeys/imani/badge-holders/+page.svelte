@@ -81,6 +81,7 @@
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, imaniBadgeName, imaniIssuedStaff } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
+	import { Confetti } from "svelte-confetti";
 
 	let staff = $imaniIssuedStaff.map((s) => ({ ...s, selected: false }));
 	let pending = true;
@@ -93,15 +94,29 @@
 	});
 </script>
 
+{#if !pending}
+	<div
+		style="position: fixed; top: -50px; left: 0; height: 100vh; width: 100vw; display: flex; justify-content: center; overflow: hidden; pointer-events: none;">
+		<Confetti
+			x="{[-5, 5]}"
+			y="{[0, 0.1]}"
+			delay="{[500, 5000]}"
+			duration="2000"
+			amount="500"
+			fallDistance="100vh" />
+	</div>
+{/if}
+
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>Almost there! <Highlight>Just confirm the issuing of the badges</Highlight>to the successful
-			employees.</Typography
-		>
+			>And they’re away. <Highlight>You have successfully trained and issued</Highlight> open badges
+			to your employees.</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography>Click the Issue Badges button to confirm and issue the open badges.</Typography>
+		<Typography
+			>Click the continue button to proceed and see what you have achieved with self-sovereign
+			identity.</Typography>
 	</div>
 	<div class="dash">
 		<FutureTech header="{`${$imaniBadgeName.toUpperCase()} BADGE HOLDERS`}">
@@ -139,8 +154,7 @@
 				<Button
 					variant="{pending ? 'future-tech-disabled' : 'future-tech'}"
 					label="Continue"
-					onClick="{() => goto('/demo/journeys/imani/issued-badge')}"
-				/>
+					onClick="{() => goto('/demo/journeys/imani/issued-badge')}" />
 			</div>
 		</FutureTech>
 	</div>

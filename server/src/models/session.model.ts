@@ -4,10 +4,8 @@ import {
 	Sequelize,
 	InferAttributes,
 	InferCreationAttributes,
-	CreationOptional,
-	ForeignKey
+	CreationOptional
 } from "sequelize";
-import { UserModel } from "./user.model";
 
 export class SessionModel extends Model<
 	InferAttributes<SessionModel>,
@@ -16,7 +14,7 @@ export class SessionModel extends Model<
 	declare id: CreationOptional<string>;
 	declare isValid: CreationOptional<boolean>;
 	declare did: CreationOptional<string>;
-	declare credentials: CreationOptional<string[]>;
+	declare credentialDef: CreationOptional<string>;
 }
 
 export const sessionModel = (db: Sequelize) => {
@@ -37,8 +35,8 @@ export const sessionModel = (db: Sequelize) => {
 			did: {
 				type: DataTypes.STRING
 			},
-			credentials: {
-				type: DataTypes.ARRAY(DataTypes.TEXT)
+			credentialDef: {
+				type: DataTypes.STRING
 			}
 		},
 		{

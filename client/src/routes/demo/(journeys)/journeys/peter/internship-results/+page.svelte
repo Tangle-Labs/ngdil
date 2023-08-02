@@ -166,9 +166,8 @@
 	</div>
 	<div class="sub-text">
 		<Typography
-			>Click the view results button to see the outcome for the internationalisation course
-			students.</Typography
-		>
+			>Click the verify completion button to proceed to verify the credentials for your internship
+			students.</Typography>
 	</div>
 
 	<div class="dash">
@@ -189,18 +188,15 @@
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>SARAH JONES</Typography
-							>
+								>SARAH JONES</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>IVAR LEIFSSON</Typography
-							>
+								>IVAR LEIFSSON</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>LAGERTHA BONDE</Typography
-							>
+								>LAGERTHA BONDE</Typography>
 						</div>
 					</div>
 
@@ -210,18 +206,15 @@
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>{$peterAssignedCompany}</Typography
-							>
+								>{$peterAssignedCompany}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>{$peterAssignedCompany}</Typography
-							>
+								>{$peterAssignedCompany}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>{$peterAssignedCompany}</Typography
-							>
+								>{$peterAssignedCompany}</Typography>
 						</div>
 					</div>
 
@@ -234,8 +227,7 @@
 								class="{`button ${$peterAssignedStudent !== 'Sarah Jones' && 'disabled'}`}"
 								on:click="{() => {
 									goto('/demo/journeys/peter/verify-internship');
-								}}">VERIFY COMPLETION</button
-							>
+								}}">VERIFY COMPLETION</button>
 						</div>
 
 						<div class="button-container">
@@ -243,16 +235,14 @@
 								class="{`button ${$peterAssignedStudent !== 'Ivar Leifsson' && 'disabled'}`}"
 								on:click="{() => {
 									goto('/demo/journeys/peter/verify-internship');
-								}}">VERIFY COMPLETION</button
-							>
+								}}">VERIFY COMPLETION</button>
 						</div>
 						<div class="button-container">
 							<button
 								class="{`button ${$peterAssignedStudent !== 'Lagertha Bonde' && 'disabled'}`}"
 								on:click="{() => {
 									goto('/demo/journeys/peter/verify-internship');
-								}}">VERIFY COMPLETION</button
-							>
+								}}">VERIFY COMPLETION</button>
 						</div>
 					</div>
 				</div>

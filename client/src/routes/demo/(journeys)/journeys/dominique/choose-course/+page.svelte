@@ -102,9 +102,6 @@
 		console.log(data);
 		if (data.received) {
 			receivedCreds = true;
-		} else {
-			console.log(data.login);
-			console.log("WTF");
 		}
 	};
 
@@ -124,14 +121,12 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You’re in! Now let’s <Highlight>take a look at the courses</Highlight>available and select
-			the course you wish to study.</Typography
-		>
+			the course you wish to study.</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography
 			>Click the enrol now button to select the course you wish to study to begin the application
-			process.</Typography
-		>
+			process.</Typography>
 	</div>
 	<Modal bind:isOpen="{showModal}" borderRadius="{16}">
 		<div class="modal-content">
@@ -139,12 +134,11 @@
 			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"
 				>{receivedCreds
 					? "KW1C HAS RECEIVED YOUR APPLICATION CREDENTIALS."
-					: "KW1C IS REQUESTING YOU SHARE YOUR CREDENTIALS FOR COURSE APPLICATION"}</Typography
-			>
+					: "KW1C IS REQUESTING YOU SHARE YOUR CREDENTIALS FOR COURSE APPLICATION"}</Typography>
 			<div class="p">
 				{receivedCreds
 					? "You may continue further in the browser. "
-					: "In your mobile wallet accept the request to share the credentials with KW1C to privately send the credentials required."}
+					: "In your mobile wallet scan the QR Code and accept the request to share the credentials with KW1C to privately send the credentials required."}
 			</div>
 			{#if !receivedCreds}
 				<Qr data="{qr}" size="{320}" />
@@ -157,15 +151,13 @@
 					onClick="{() => {
 						currNode.set(2);
 						goto('/demo/journeys/dominique/study');
-					}}"
-				/>
+					}}" />
 			{:else}
 				<Loading img="/imgs/blue-loading.png" />
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text"
-					>{receivedCreds ? "Click continue to proceed" : "Waiting for credentials"}</Typography
-				>
+					>{receivedCreds ? "Click continue to proceed" : "Waiting for credentials"}</Typography>
 			</div>
 		</div>
 	</Modal>
@@ -178,13 +170,11 @@
 							<img src="{course.img}" alt="" />
 							<div class="subtext">
 								<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-									>{course.category.toUpperCase()}</Typography
-								>
+									>{course.category.toUpperCase()}</Typography>
 							</div>
 							<div class="title">
 								<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>{course.name.toUpperCase()}</Typography
-								>
+									>{course.name.toUpperCase()}</Typography>
 							</div>
 
 							<div class="button">
@@ -195,8 +185,7 @@
 										handleWait();
 									}}"
 									variant="kw1c"
-									label="ENROL NOW"
-								/>
+									label="ENROL NOW" />
 							</div>
 						</div>
 					{/each}

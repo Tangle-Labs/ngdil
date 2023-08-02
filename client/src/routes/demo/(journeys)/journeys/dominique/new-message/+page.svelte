@@ -52,6 +52,14 @@
 							background: var(--white-900);
 							margin: 30px 0;
 							border-radius: 10px;
+
+							&:nth-of-type(2) {
+								width: 80%;
+							}
+
+							&:nth-of-type(4) {
+								width: 70%;
+							}
 						}
 					}
 				}
@@ -223,8 +231,7 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You <Highlight>shared your credential</Highlight> and an interested employer has messaged you
-			after seeing your skills.</Typography
-		>
+			after seeing your skills.</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography>Click view message to see what the employer has to say.</Typography>
@@ -249,8 +256,7 @@
 				</Typography>
 			</div>
 			<button class="button" on:click="{() => goto('/demo/journeys/dominique/shared-cred')}"
-				>Continue</button
-			>
+				>Continue</button>
 			<div class="subtext">
 				<Typography variant="sub-text">Click continue to proceed</Typography>
 			</div>
@@ -270,6 +276,7 @@
 						<div class="bar"></div>
 						<div class="bar"></div>
 						<div class="bar"></div>
+						<div class="bar"></div>
 					</div>
 				</div>
 
@@ -277,16 +284,14 @@
 					<div class="card card-1">
 						<div class="sub-text">
 							<Typography variant="sub-text"
-								>Dominique Veritas just shared a new credential</Typography
-							>
+								>Dominique Veritas just shared a new credential</Typography>
 						</div>
 						<div class="details">
 							<img src="/imgs/kw1c-white.png" class="logo" alt="" />
 							<div class="text">
 								<div class="heading">
 									<Typography variant="button"
-										>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography
-									>
+										>{dominqueCourses[$dominiqueSelectedCourse].name} Certificate</Typography>
 								</div>
 								<div class="sub-text">
 									<Typography variant="sub-text">Issued by Konning Willem 1 College</Typography>
@@ -330,8 +335,7 @@
 						on:click="{() => {
 							showModal = true;
 							currNode.set(3);
-						}}">View Message</button
-					>
+						}}">View Message</button>
 				</div>
 			</div>
 		</OpenJobsNetwork>

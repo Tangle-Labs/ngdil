@@ -105,11 +105,12 @@
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { onMount } from "svelte";
 	import { websocketClient } from "$lib/utils/ws.util";
+	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 
 	let qr: string;
 
 	const loadQr = async function () {
-		const { data } = await apiClient.get("/siop");
+		const { data } = await apiClient.post("/siop");
 		qr = data.request;
 	};
 
@@ -137,8 +138,7 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You’re all set! <Highlight>Let’s choose the user journey</Highlight> you would like to explore
-			{$completedJourneys.length > 0 ? "next" : "first"}.</Typography
-		>
+			{$completedJourneys.length > 0 ? "next" : "first"}.</Typography>
 	</div>
 	<div class="desc">
 		<Typography variant="button"

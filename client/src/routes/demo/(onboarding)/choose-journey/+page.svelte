@@ -211,8 +211,13 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>You’re all set! <Highlight>Let’s choose the user journey</Highlight> you would like to explore
-			{$completedJourneys.length > 0 ? "next" : "first"}.</Typography>
+			>{#if $completedJourneys.length === 0}
+				You’re all set! <Highlight>Let’s choose the user journey</Highlight> you would like to explore
+				first
+			{:else}
+				Welcome back! <Highlight>Choose the user journey</Highlight> you would like to explore next.
+			{/if}
+		</Typography>
 	</div>
 	<div class="desc">
 		<Typography variant="button"

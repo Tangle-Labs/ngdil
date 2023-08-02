@@ -146,21 +146,31 @@
 	import { Typography, BigBusinessCorp, Modal, Loading } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
+	import { apiClient } from "$lib/utils/axios.utils";
+	import { websocketClient } from "$lib/utils/ws.util";
 	import { onMount } from "svelte";
+	import Qr from "$lib/components/project/Qr/Qr.svelte";
+	import { qrcode } from "svelte-qrcode-action";
 
 	let showModal = false;
 	let receivedCreds = false;
+	let qr: string;
 
-	function handleWait() {
-		setTimeout(() => {
+	onMount(async () => {
+		currNode.set(4);
+		const { data } = await apiClient.post("/api/credential-offer", {
+			credential: "Staff ID"
+		});
+		qr = data.request;
+	});
+
+	websocketClient.onmessage = (event) => {
+		const data = JSON.parse(event.data);
+		if (data.creds) {
 			currNode.set(5);
 			receivedCreds = true;
-		}, 9000);
-	}
-
-	onMount(() => {
-		currNode.set(4);
-	});
+		}
+	};
 </script>
 
 <div class="container">
@@ -175,38 +185,33 @@
 			<Typography variant="card-header" color="--bbc-blue"
 				>{receivedCreds
 					? "You have accepted the following credential:"
-					: "Big Business Corp Staff ID"}</Typography
-			>
+					: "Big Business Corp Staff ID"}</Typography>
 			<div class="p">
 				{receivedCreds
 					? "Big Business Corp Staff ID"
-					: "In your mobile wallet accept the credential from Big Business Corp."}
+					: "In your mobile wallet scan the QR and accept the credential from Big Business Corp."}
 			</div>
 			{#if receivedCreds}
 				<img class="checked" src="/imgs/check-circle.png" alt="" />
 				<button class="button" on:click="{() => goto('/demo/journeys/dominique/job-secured')}"
-					>Continue</button
-				>
-			{:else}
-				<Loading img="/imgs/blue-loading.png" />
+					>Continue</button>
+			{:else if qr}
+				<Qr data="{qr}" size="{260}" />
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text"
-					>{receivedCreds ? "Click continue to proceed" : "Awaiting on confirmation"}</Typography
-				>
+					>{receivedCreds ? "Click continue to proceed" : "Awaiting on confirmation"}</Typography>
 			</div>
 		</div>
 	</Modal>
 	<div class="heading">
 		<Typography variant="heading"
 			><Highlight>You’ve got the job! Congratulations,</Highlight> Big Business Corp now wants to issue
-			you with your staff ID.</Typography
-		>
+			you with your staff ID.</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography
-			>Click the get staff ID button to receive your staff ID credential from Big Business Corp.</Typography
-		>
+			>Click the get staff ID button to receive your staff ID credential from Big Business Corp.</Typography>
 	</div>
 
 	<div class="dash">
@@ -231,14 +236,12 @@
 				<div class="right">
 					<div class="heading">
 						<Typography variant="card-header" color="--bbc-blue"
-							>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography
-						>
+							>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography>
 					</div>
 					<div class="sub-text">
 						<Typography
 							>Big Business Corp would like to welcome you to the team and send you the following
-							credential:</Typography
-						>
+							credential:</Typography>
 					</div>
 					<div class="list">
 						<Typography variant="list">Big Business Corp Staff ID</Typography>
@@ -249,9 +252,7 @@
 							class="button"
 							on:click="{() => {
 								showModal = true;
-								handleWait();
-							}}">Get Staff ID</button
-						>
+							}}">Get Staff ID</button>
 					</div>
 				</div>
 			</div>

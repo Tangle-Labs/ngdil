@@ -51,6 +51,14 @@
 							background: var(--white-900);
 							margin: 30px 0;
 							border-radius: 10px;
+
+							&:nth-of-type(2) {
+								width: 80%;
+							}
+
+							&:nth-of-type(4) {
+								width: 70%;
+							}
 						}
 					}
 				}
@@ -199,18 +207,30 @@
 	import { Typography, OpenJobsNetwork, Avatar, Modal, Loading } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
+	import { apiClient } from "$lib/utils/axios.utils";
+	import { websocketClient } from "$lib/utils/ws.util";
 	import { onMount } from "svelte";
 	let receivedCreds = false;
+	import Qr from "$lib/components/project/Qr/Qr.svelte";
+	import { qrcode } from "svelte-qrcode-action";
+	let qr: string;
 
-	function handleWait() {
-		setTimeout(() => {
-			receivedCreds = true;
-		}, 8000);
-	}
-
-	onMount(() => {
+	onMount(async () => {
 		currNode.set(1);
+
+		const {
+			data: { request }
+		} = await apiClient.post("/api/oid4vp", { presentationStage: "dominiqueShareCred" });
+		qr = request;
 	});
+
+	websocketClient.onmessage = (event) => {
+		const data = JSON.parse(event.data);
+		console.log(data);
+		if (data.received) {
+			receivedCreds = true;
+		}
+	};
 
 	let showModal = false;
 </script>
@@ -219,13 +239,11 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You’re all <Highlight>logged in to the Open Jobs Network.</Highlight> Now, share your credential
-			with potential employers.</Typography
-		>
+			with potential employers.</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography
-			>Click the share credential button to share your credential on your Open Jobs Network profile.</Typography
-		>
+			>Click the share credential button to share your credential on your Open Jobs Network profile.</Typography>
 	</div>
 	<Modal bind:isOpen="{showModal}" borderRadius="{16}">
 		<div class="modal-content">
@@ -233,25 +251,22 @@
 			<Typography variant="card-header" color="--bbc-blue"
 				>{receivedCreds
 					? "The Open Jobs Network has received your confirmation to share your credential!"
-					: "Allow the Open Jobs Network to share your credential "}</Typography
-			>
+					: "Allow the Open Jobs Network to share your credential "}</Typography>
 			<div class="p">
 				{receivedCreds
 					? "You may continue further in the browser. "
-					: "In your mobile wallet accept the request to share the credentials with Open Jobs Network to get share your credentials to employers."}
+					: "In your mobile wallet scan the QR and accept the request to share the credentials with Open Jobs Network to get share your credentials to employers."}
 			</div>
 			{#if receivedCreds}
 				<img class="checked" src="/imgs/open-jobs-check.png" alt="" />
 				<button class="button" on:click="{() => goto('/demo/journeys/dominique/new-message')}"
-					>Continue</button
-				>
-			{:else}
-				<Loading img="/imgs/blue-loading.png" />
+					>Continue</button>
+			{:else if qr}
+				<Qr data="{qr}" size="{260}" />
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text"
-					>{receivedCreds ? "Click continue to proceed" : "Waiting for credentials"}</Typography
-				>
+					>{receivedCreds ? "Click continue to proceed" : "Waiting for credentials"}</Typography>
 			</div>
 		</div>
 	</Modal>
@@ -266,6 +281,7 @@
 					<div class="big-bar"></div>
 
 					<div class="bars">
+						<div class="bar"></div>
 						<div class="bar"></div>
 						<div class="bar"></div>
 						<div class="bar"></div>
@@ -308,8 +324,7 @@
 					<img src="/imgs/kw1c-white.png" alt="" class="logo" />
 					<div class="credential">
 						<Typography variant="card-header"
-							>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography
-						>
+							>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography>
 					</div>
 					<div class="issued-by">
 						<Typography variant="sub-text">Issued by<br /> Konning Willem 1 College</Typography>
@@ -318,9 +333,7 @@
 						class="button"
 						on:click="{() => {
 							showModal = true;
-							handleWait();
-						}}">Share Credential</button
-					>
+						}}">Share Credential</button>
 				</div>
 			</div>
 		</OpenJobsNetwork>

@@ -24,7 +24,7 @@ router.route("/api/oid4vp").post(vpRequest);
 router.route("/token").post(tokeEndpoint);
 router.route("/api/credential-offer").post(singleOffer);
 router.route("/api/starting-offer").post(startingOffer);
-router.route("/siop").get(siopRequest);
+router.route("/siop").post(siopRequest);
 router.route("/auth").post(auth);
 
 export { router };

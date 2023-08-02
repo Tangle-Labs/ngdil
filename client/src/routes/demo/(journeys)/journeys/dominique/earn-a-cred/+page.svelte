@@ -11,7 +11,7 @@
 			left: 50%;
 			transform: translate(-50%, -50%);
 
-			width: 300px;
+			width: 240px;
 			.card-content {
 				padding: 10px;
 				display: flex;
@@ -45,33 +45,18 @@
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { apiClient } from "$lib/utils/axios.utils";
 	import { websocketClient } from "$lib/utils/ws.util";
-
-	let channel;
-	let messages: any[] = [];
+	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 
 	let animatePhone = false;
 	let qr: string;
 
-	const handleClick = () => {
-		animatePhone = true;
-		setTimeout(() => {
-			currNode.set(1);
-			goto("/demo/journeys/dominique/choose-course");
-		}, 12_000);
-	};
-
 	const loadQr = async function () {
-		const { data } = await apiClient.get("/siop");
+		const { data } = await apiClient.post("/siop", {
+			overrideLogo: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`,
+			overrideClientName: "KW1C"
+		});
 		qr = data.request;
 	};
-	currNode.set(0);
-	nodeCount.set(5);
-
-	loadQr();
-
-	// ws.onopen = () => {
-	// 	// ws.send(JSON.stringify({ action: "join" }));
-	// };
 
 	websocketClient.onmessage = (event) => {
 		const data = JSON.parse(event.data);
@@ -83,6 +68,14 @@
 		}
 	};
 
+	loadQr();
+	currNode.set(0);
+	nodeCount.set(5);
+
+	// ws.onopen = () => {
+	// 	// ws.send(JSON.stringify({ action: "join" }));
+	// };
+
 	onMount(() => {});
 </script>
 
@@ -91,14 +84,12 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You've made it to the <Hightlight>KW1C website, let's log in</Hightlight> to enrol on your course
-			of choice.</Typography
-		>
+			of choice.</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography
 			>In your identity wallet, scan the QR code and accept the connection request to the KW1C
-			learners portal.</Typography
-		>
+			learners portal.</Typography>
 	</div>
 	<div class="dash">
 		<Kw1c variant="blue">
@@ -109,17 +100,15 @@
 							<img src="/imgs/kw1c-crowns.png" alt="" class="crowns" />
 							<div class="heading-text">
 								<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>LOGIN TO KW1C</Typography
-								>
+									>LOGIN TO KW1C</Typography>
 							</div>
 						</div>
 						{#if qr}
-							<Qr size="{250}" data="{qr}" />
+							<Qr size="{200}" data="{qr}" />
 						{/if}
 						<div class="desc">
 							<Typography variant="kw1c-sub-text"
-								>Scan the QR to access the KW1C learners portal.</Typography
-							>
+								>Scan the QR to access the KW1C learners portal.</Typography>
 						</div>
 					</div>
 				</Card>

@@ -149,8 +149,9 @@
 	let variant: "hexagon" | "crest" | "rounded-hexagon" | "circle" | null = null;
 	let creatingBadgeImage = true;
 
-	let badgeName: string;
-	let badgeDesc: string;
+	let badgeName: string = "3d Print Team Management";
+	let badgeDesc: string =
+		"This badge is to certify the holder demonstrates the ability to operate as a team manager within an advanced technology 3d print environment.";
 
 	const colors = {
 		red: "var(--red-900)",
@@ -182,23 +183,20 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>Future Tech Co. <Highlight>is big on employee development.</Highlight> Let’s create a new badge
-			so we can train staff.</Typography
-		>
+			>A badge needs to look the part. <Highlight>Let’s create an image template</Highlight>for the
+			badge in the creator.</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography
-			>Click the Create New Badge button to continue and create a new open badge template.</Typography
-		>
+			>Select the shape and color for your badge and click continue to proceed.</Typography>
 	</div>
 	<div class="dash">
-		<FutureTech header="COMPANY BADGES">
+		<FutureTech header="NEW BADGE">
 			<div class="heading">
 				<Typography variant="card-header"
 					>{creatingBadgeImage
 						? "Select your badge shape & color"
-						: "Add Badge Information"}</Typography
-				>
+						: "Add Badge Information"}</Typography>
 			</div>
 
 			{#if creatingBadgeImage}
@@ -223,8 +221,7 @@
 						</div>
 						<Radio
 							checked="{variant === 'rounded-hexagon'}"
-							onClick="{() => (variant = 'rounded-hexagon')}"
-						/>
+							onClick="{() => (variant = 'rounded-hexagon')}" />
 					</div>
 
 					<div class="badge">
@@ -267,8 +264,10 @@
 
 				<div class="input">
 					<div class="label"><Typography variant="list">Badge Description</Typography></div>
-					<textarea bind:value="{badgeDesc}" placeholder="3d Print Engineer Badge Description"
-					></textarea>
+					<textarea
+						rows="{5}"
+						bind:value="{badgeDesc}"
+						placeholder="3d Print Engineer Badge Description"></textarea>
 					<div class="sub-text">
 						<Typography variant="sub-text">Enter Badge description here</Typography>
 					</div>
@@ -281,8 +280,7 @@
 					variant="{(creatingBadgeImage && !(variant && color)) ||
 					(!creatingBadgeImage && !(badgeDesc && badgeName))
 						? 'future-tech-disabled'
-						: 'future-tech'}"
-				/>
+						: 'future-tech'}" />
 			</div>
 		</FutureTech>
 	</div>

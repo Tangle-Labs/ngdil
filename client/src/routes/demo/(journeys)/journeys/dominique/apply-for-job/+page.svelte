@@ -6,7 +6,7 @@
 
 		.card {
 			width: 50%;
-			width: 300px;
+			width: 240px;
 			position: absolute;
 			top: 50%;
 			left: 50%;
@@ -15,20 +15,15 @@
 			.text {
 				width: 100%;
 				text-align: center;
-				padding-bottom: 5px;
+				padding-bottom: 15px;
 			}
 
 			.card-content {
-				padding: 10px;
+				// padding: 10px;
 				display: flex;
 				justify-content: center;
 				flex-wrap: wrap;
 				text-align: center;
-				img {
-					padding: 20px 0;
-					width: 250px;
-					padding-top: 0;
-				}
 			}
 		}
 	}
@@ -38,14 +33,34 @@
 	import { goto } from "$app/navigation";
 	import { Phone, Typography, BigBusinessCorp, Card } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
+	import { PUBLIC_CLIENT_URI } from "$env/static/public";
+	import { apiClient } from "$lib/utils/axios.utils";
+	import { websocketClient } from "$lib/utils/ws.util";
+	import Qr from "$lib/components/project/Qr/Qr.svelte";
 
 	let animatePhone = false;
-	const handleClick = () => {
-		animatePhone = true;
-		setTimeout(() => {
-			goto("/demo/journeys/dominique/view-jobs");
-		}, 12_000);
+
+	let qr: string;
+
+	const loadQr = async function () {
+		const { data } = await apiClient.post("/siop", {
+			overrideLogo: `${PUBLIC_CLIENT_URI}/imgs/bbc.png`,
+			overrideClientName: "Big Business Corp"
+		});
+		qr = data.request;
 	};
+
+	websocketClient.onmessage = (event) => {
+		const data = JSON.parse(event.data);
+		if (data.login) {
+			goto("/demo/journeys/dominique/view-jobs");
+		} else {
+			console.log(data.login);
+			console.log("WTF");
+		}
+	};
+
+	loadQr();
 </script>
 
 <Phone variant="bbc" bind:animatePhone="{animatePhone}" />
@@ -59,8 +74,7 @@
 	<div class="sub-text">
 		<Typography
 			>In your mobile wallet, scan the QR code & accept the connection request to login privately to
-			the Big Business Corp website.</Typography
-		>
+			the Big Business Corp website.</Typography>
 	</div>
 	<div class="dash">
 		<BigBusinessCorp>
@@ -70,14 +84,16 @@
 				</div>
 				<Card borderRadius="{16}">
 					<div class="card-content">
-						<img src="/imgs/qr.png" on:click="{handleClick}" alt="" />
+						{#if qr}
+							<Qr data="{qr}" size="{200}" />
+						{/if}
+
 						<div class="heading">
 							<Typography variant="card-header" color="--bbc-blue">Scan QR to Login</Typography>
 						</div>
 						<div class="desc">
 							<Typography variant="sub-text"
-								>Scan the QR to login to the Big Business Corp website.</Typography
-							>
+								>Scan the QR to login to the Big Business Corp website.</Typography>
 						</div>
 					</div>
 				</Card>

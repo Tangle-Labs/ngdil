@@ -61,14 +61,16 @@ export class IdentityService {
 	async createCredential({
 		recipient,
 		body,
-		type
+		type,
+		domain
 	}: {
 		recipient: string;
 		body: Record<string, any>;
 		type: string;
+		domain: string;
 	}) {
 		const credential = await this.did.credentials.create({
-			id: `http://cred.com/${nanoid()}`,
+			id: `http://${domain}/${nanoid()}`,
 			body,
 			keyIndex: 0,
 			recipientDid: recipient,

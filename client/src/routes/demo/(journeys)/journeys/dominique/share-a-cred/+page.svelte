@@ -10,7 +10,7 @@
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
-			width: 300px;
+			width: 240px;
 
 			.card-content {
 				padding: 10px;
@@ -33,18 +33,36 @@
 	import { goto } from "$app/navigation";
 	import { Typography, OpenJobsNetwork, Phone, Card, Hightlight } from "$lib/components";
 	import { currNode, nodeCount } from "$lib/stores/flows.store";
+	import { apiClient } from "$lib/utils/axios.utils";
+	import { websocketClient } from "$lib/utils/ws.util";
 	import { onMount } from "svelte";
+	import Qr from "$lib/components/project/Qr/Qr.svelte";
+	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 
 	let animatePhone = false;
 
-	const handleClick = () => {
-		animatePhone = true;
-		setTimeout(() => {
+	let qr: string;
+
+	const loadQr = async function () {
+		const { data } = await apiClient.post("/siop", {
+			overrideLogo: `${PUBLIC_CLIENT_URI}/imgs/openjobs.png`,
+			overrideClientName: "Open Jobs"
+		});
+		qr = data.request;
+	};
+
+	websocketClient.onmessage = (event) => {
+		const data = JSON.parse(event.data);
+		if (data.login) {
 			goto("/demo/journeys/dominique/open-jobs");
-		}, 12_000);
+		} else {
+			console.log(data.login);
+			console.log("WTF");
+		}
 	};
 
 	onMount(() => {
+		loadQr();
 		currNode.set(0);
 	});
 </script>
@@ -54,29 +72,28 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>It’s time to spread the word. <Hightlight>Let’s connect to the Open Jobs Network</Hightlight>
-			to share your credential.</Typography
-		>
+			to share your credential.</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography
 			>In your mobile wallet, scan the QR code & accept the connection request to login privately to
-			the Open Jobs Network.</Typography
-		>
+			the Open Jobs Network.</Typography>
 	</div>
 	<div class="dash">
 		<OpenJobsNetwork>
 			<div class="card">
 				<Card borderRadius="{16}">
 					<div class="card-content">
-						<img src="/imgs/qr.png" on:click="{handleClick}" alt="" />
+						{#if qr}
+							<Qr data="{qr}" size="{200}" />
+						{/if}
 						<div class="heading">
 							<Typography variant="card-header" color="--bbc-blue"
-								>Login to Open Jobs Network</Typography
-							>
+								>Login to Open Jobs Network</Typography>
 						</div>
 						<div class="desc">
-							<Typography variant="sub-text">Scan the QR to access the Open Jobs Network</Typography
-							>
+							<Typography variant="sub-text"
+								>Scan the QR code to login to the Open Jobs Network website</Typography>
 						</div>
 					</div>
 				</Card>

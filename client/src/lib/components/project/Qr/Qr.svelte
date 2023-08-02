@@ -15,19 +15,18 @@
 
 	let options: Options = {
 		data,
-		type: "svg",
-		height: size,
 		width: size,
+		height: size,
+		margin: 0,
+		type: "svg",
+		qrOptions: {
+			errorCorrectionLevel: "M"
+		},
 		dotsOptions: {
 			color: "#3d3d3d",
 			type: "classy-rounded"
 		}
 	};
-	onMount(() => {
-		setTimeout(() => {
-			// @ts-ignore
-		}, 2_000);
-	});
 </script>
 
 <div class="qr">

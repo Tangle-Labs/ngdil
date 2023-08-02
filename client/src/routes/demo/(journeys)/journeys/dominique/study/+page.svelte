@@ -156,7 +156,7 @@
 			<div class="p">
 				{receivedCreds
 					? "This is now visible in your wallet and free for you to share with anyone, at any time. "
-					: "In your mobile wallet accept the credential from KW1C to receive your new qualification."}
+					: "In your mobile wallet scan the QR and accept the credential from KW1C to receive your new qualification."}
 			</div>
 			{#if receivedCreds}
 				<img class="checked" src="/imgs/checked.png" alt="" />

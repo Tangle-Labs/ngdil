@@ -12,6 +12,7 @@ import { nanoid } from "nanoid";
 import * as didJWT from "did-jwt";
 import { presentationDefinitions } from "./presentationDefinitions";
 import { credentialDefs } from "./credentials";
+import { PUBLIC_CLIENT_URI } from "@/config";
 
 const clientConfig = {
 	permanodes: [{ url: "https://chrysalis-chronicle.iota.org/api/mainnet/" }]
@@ -42,26 +43,34 @@ const getPersonaCreds = async (persona: "imani" | "peter" | "dominique", recipie
 	if (persona === "imani") {
 		creds.push(
 			await identityService.createCredential({
+				domain: "gov.ngdil.com",
 				recipient,
 				type: "National ID",
 				body: {
 					Surname: "Jameson",
 					"Given Name": "Imani",
 					"Passport Number": nanoid().toUpperCase(),
-					"Date of Birth": "24/12/1997"
+					"Date of Birth": "24/12/1997",
+					enrichment: {
+						logo_uri: `${PUBLIC_CLIENT_URI}/imgs/gov.svg`
+					}
 				}
 			})
 		);
 		creds.push(
 			await identityService.createCredential({
 				recipient,
+				domain: "futuretech.ngdil.com",
 				type: "Employee ID",
 				body: {
 					Issuer: "Future Tech Co.",
 					"Staff Name": "Imani Jameson",
 					"Job Title": "Senior Manager",
 					Department: "Human Resources",
-					"Staff Number": nanoid().toUpperCase()
+					"Staff Number": nanoid().toUpperCase(),
+					enrichment: {
+						logo_uri: `${PUBLIC_CLIENT_URI}/imgs/future-tech.png`
+					}
 				}
 			})
 		);
@@ -69,25 +78,33 @@ const getPersonaCreds = async (persona: "imani" | "peter" | "dominique", recipie
 		creds.push(
 			await identityService.createCredential({
 				recipient,
+				domain: "gov.ngdil.com",
 				type: "National ID",
 				body: {
 					Surname: "van de Meijden",
 					"Given Name": "Peter",
 					"Passport Number": nanoid().toUpperCase(),
-					"Date of Birth": "08/08/1978"
+					"Date of Birth": "08/08/1978",
+					enrichment: {
+						logo_uri: `${PUBLIC_CLIENT_URI}/imgs/gov.svg`
+					}
 				}
 			})
 		);
 		creds.push(
 			await identityService.createCredential({
 				recipient,
+				domain: "kw1c.ngdil.com",
 				type: "Staff ID",
 				body: {
 					Issuer: "Koning Willem I College",
 					"Staff Name": "Peter van de Meijden",
 					"Job Title": "Chief Enrolment Officer",
 					Department: "Human Resources",
-					"Staff Number": nanoid().toUpperCase()
+					"Staff Number": nanoid().toUpperCase(),
+					enrichment: {
+						logo_uri: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+					}
 				}
 			})
 		);
@@ -96,17 +113,22 @@ const getPersonaCreds = async (persona: "imani" | "peter" | "dominique", recipie
 			await identityService.createCredential({
 				recipient,
 				type: "National ID",
+				domain: "gov.ngdil.com",
 				body: {
 					Surname: "Veritas",
 					"Given Name": "Dominique",
 					"Passport Number": nanoid().toUpperCase(),
-					"Date of Birth": "22/12/2001"
+					"Date of Birth": "22/12/2001",
+					enrichment: {
+						logo_uri: `${PUBLIC_CLIENT_URI}/imgs/gov.svg`
+					}
 				}
 			})
 		);
 		creds.push(
 			await identityService.createCredential({
 				recipient,
+				domain: "kw1c.ngdil.com",
 				type: "School Course Certificate",
 				body: {
 					"Course Name": "Certificate of Secondary Education",
@@ -116,16 +138,20 @@ const getPersonaCreds = async (persona: "imani" | "peter" | "dominique", recipie
 					Duration: "2 Years",
 					Description:
 						"Finalisation of standard national education to a National Certificate level passed with distinction in Dutch, English, Sciences, Geography, Technology, and Mathematics",
-					Language: "Dutch"
+					Language: "Dutch",
+					enrichment: {
+						logo_uri: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+					}
 				}
 			})
 		);
 		creds.push(
 			await identityService.createCredential({
 				recipient,
+				domain: "volunteercorps.ngdil.com",
 				type: "Volunteer Badge",
 				body: {
-					Issuer: "Volunteer Org",
+					Issuer: "Volunteer Corps",
 					"Holder Name": "Dominique Veritas",
 					"Badge Name": "Community Volunteer",
 					Description:
@@ -133,7 +159,10 @@ const getPersonaCreds = async (persona: "imani" | "peter" | "dominique", recipie
 					Country: "Netherlands",
 					Language: "Dutch",
 					"Activity Start": "07/01/2023",
-					"Activity End": "27/03/2023"
+					"Activity End": "27/03/2023",
+					enrichment: {
+						logo_uri: `${PUBLIC_CLIENT_URI}/imgs/volunteer.svg`
+					}
 				}
 			})
 		);
@@ -161,7 +190,7 @@ export const startingOffer = expressAsyncHandler(async (req: Request, res: Respo
 		: "imani";
 
 	const credentials = await getPersonaCreds(persona, req.session.did);
-	req.session.credentials = credentials;
+	req.session.credentialDef = persona;
 	await req.session.save();
 
 	const credOffer = await issuer.createCredentialOffer(
@@ -175,16 +204,10 @@ export const startingOffer = expressAsyncHandler(async (req: Request, res: Respo
 
 export const singleOffer = expressAsyncHandler(async (req: Request, res: Response) => {
 	const { credential } = req.body;
-	const credDef = credentialDefs[credential];
-	if (!credDef) throw new Error("definition not found");
 
-	const identityService = ServiceFactory.get<IdentityService>("identity");
-	const cred = await identityService.createCredential({
-		recipient: req.session.did,
-		type: credDef.type,
-		body: credDef.body
-	});
-	req.session.credentials = [cred.cred];
+	const credDef = credentialDefs[credential];
+
+	req.session.credentialDef = credential;
 	await req.session.save();
 	const offer = await issuer.createCredentialOffer(
 		{ credentials: [credDef.type] },
@@ -200,11 +223,21 @@ export const credentialEndpoint = expressAsyncHandler(async (req: Request, res: 
 		policies: { aud: false },
 		resolver: new IotaDIDResolver()
 	});
-	const { credentials } = await SessionsService.findById(payload.sessionId);
+	const did = await issuer.validateCredentialsResponse({ token, proof: req.body.proof.jwt });
+
+	const identityService = ServiceFactory.get<IdentityService>("identity");
+	const session = await SessionsService.findById(payload.sessionId);
+	const credDef = credentialDefs[session.credentialDef];
+	if (!credDef) throw new Error("definition not found");
+	const cred = await identityService.createCredential({
+		recipient: did,
+		type: credDef.type,
+		body: credDef.body,
+		domain: credDef.domain
+	});
 
 	const response = await issuer.createSendCredentialsResponse({
-		token,
-		credentials
+		credentials: [cred.cred]
 	});
 	wsServer.broadcast(payload.sessionId, { creds: true });
 	res.json(response);
@@ -217,10 +250,15 @@ export const batchCredentialEndpoint = expressAsyncHandler(async (req: Request, 
 		policies: { aud: false },
 		resolver: new IotaDIDResolver()
 	});
-	const { credentials } = await SessionsService.findById(payload.sessionId);
+
+	const did = await issuer.validateCredentialsResponse({ token, proof: req.body.proof.jwt });
+
+	const credentials = await getPersonaCreds(
+		req.session.credentialDef as "peter" | "imani" | "dominique",
+		did
+	);
 
 	const response = await issuer.createSendCredentialsResponse({
-		token,
 		credentials
 	});
 	wsServer.broadcast(payload.sessionId, { creds: true });
@@ -229,23 +267,27 @@ export const batchCredentialEndpoint = expressAsyncHandler(async (req: Request, 
 
 export const siopRequest = expressAsyncHandler(async (req: Request, res: Response) => {
 	const id = req.session.id;
+	const { overrideLogo, overrideClientName } = req.body;
 	const request = rp.createRequest({
 		requestBy: "value",
 		responseType: "id_token",
-		nonce: id
+		nonce: id,
+		overrideLogo,
+		overrideClientName
 	});
 	res.json({ request });
 });
 
 export const vpRequest = expressAsyncHandler(async (req: Request, res: Response) => {
 	const id = req.session.id;
-	const { presentationStage } = req.body;
+	const { presentationStage, overrideLogo } = req.body;
 	const request = rp.createRequest({
 		requestBy: "value",
 		responseType: "vp_token",
 		// @ts-ignore
 		presentationDefinition: presentationDefinitions[presentationStage],
-		nonce: `${presentationStage}::${id}`
+		nonce: `${presentationStage}::${id}`,
+		overrideLogo
 	});
 	res.json({ request });
 });

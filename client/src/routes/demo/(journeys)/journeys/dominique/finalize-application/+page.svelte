@@ -145,21 +145,36 @@
 	import { goto } from "$app/navigation";
 	import { Typography, BigBusinessCorp, Modal, Loading } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { currNode, dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
+	import {
+		currNode,
+		dominiqueEarnedCourseCred,
+		dominiqueSelectedCourse,
+		dominqueCourses
+	} from "$lib/stores/flows.store";
+	import { apiClient } from "$lib/utils/axios.utils";
+	import { websocketClient } from "$lib/utils/ws.util";
 	import { onMount } from "svelte";
+	import Qr from "$lib/components/project/Qr/Qr.svelte";
 
 	let showModal = false;
 	let receivedCreds = false;
+	let qr: string;
 
-	function handleWait() {
-		setTimeout(() => {
-			receivedCreds = true;
-		}, 9000);
-	}
-
-	onMount(() => {
+	onMount(async () => {
 		currNode.set(3);
+		const {
+			data: { request }
+		} = await apiClient.post("/api/oid4vp", { presentationStage: "dominiqueApplyForJob" });
+		qr = request;
 	});
+
+	websocketClient.onmessage = (event) => {
+		const data = JSON.parse(event.data);
+		console.log(data);
+		if (data.received) {
+			receivedCreds = true;
+		}
+	};
 </script>
 
 <div class="container">
@@ -174,45 +189,35 @@
 			<Typography variant="card-header" color="--bbc-blue"
 				>{receivedCreds
 					? "Your application via digital CV has been received by Big Business Corp!"
-					: "Big Business Corp is requesting you share your digital CV."}</Typography
-			>
+					: "Big Business Corp is requesting you share your digital CV."}</Typography>
 			<div class="p">
 				{receivedCreds
 					? "You may continue further in your browser."
-					: "In your mobile wallet accept the request to share credentials with Big Business Corp "}
+					: "In your mobile wallet scan the QR accept the request to share credentials with Big Business Corp "}
 			</div>
-			{#if !receivedCreds}
-				<div class="p" style:color="var(--black-300)">
-					(you may also add additional credentials that you feel may boost your CV)
-				</div>
-			{/if}
+
 			{#if receivedCreds}
 				<img class="checked" src="/imgs/check-circle.png" alt="" />
 				<button class="button" on:click="{() => goto('/demo/journeys/dominique/get-staff-id')}"
-					>Continue</button
-				>
-			{:else}
-				<Loading img="/imgs/blue-loading.png" />
+					>Continue</button>
+			{:else if qr}
+				<Qr data="{qr}" size="{320}" />
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text"
-					>{receivedCreds ? "Click continue to proceed" : "Waiting for credentials"}</Typography
-				>
+					>{receivedCreds ? "Click continue to proceed" : "Waiting for credentials"}</Typography>
 			</div>
 		</div>
 	</Modal>
 	<div class="heading">
 		<Typography variant="heading"
-			>Looks like you have all the credentials required. Let’s apply for the position and <Highlight
-			>
+			>Looks like you have all the credentials required. Let’s apply for the position and <Highlight>
 				share your credentials.</Highlight
-			></Typography
-		>
+			></Typography>
 	</div>
 	<div class="sub-text">
 		<Typography
-			>Click the apply now button to share multiple credentials as your digital CV.</Typography
-		>
+			>Click the apply now button to share multiple credentials as your digital CV.</Typography>
 	</div>
 
 	<div class="dash">
@@ -224,8 +229,7 @@
 					<div class="details">
 						<div class="heading">
 							<Typography variant="card-header" color="--bbc-blue"
-								>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography
-							>
+								>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography>
 						</div>
 
 						<div class="bars">
@@ -239,13 +243,11 @@
 				<div class="right">
 					<div class="heading">
 						<Typography variant="card-header" color="--bbc-blue"
-							>Application Requirements</Typography
-						>
+							>Application Requirements</Typography>
 					</div>
 					<div class="sub-text">
 						<Typography
-							>To apply for this role, applicants are required to share the following credentials</Typography
-						>
+							>To apply for this role, applicants are required to share the following credentials:</Typography>
 					</div>
 					<div class="list">
 						<Typography variant="list">National ID</Typography>
@@ -254,7 +256,8 @@
 						<Typography variant="list">KW1C Diploma</Typography>
 					</div>
 					<div class="list">
-						<Typography variant="list">Personal Statement</Typography>
+						<Typography variant="list"
+							>{dominqueCourses[$dominiqueSelectedCourse].name} Certificate</Typography>
 					</div>
 
 					<div class="button-container">
@@ -262,9 +265,7 @@
 							class="button"
 							on:click="{() => {
 								showModal = true;
-								handleWait();
-							}}">Apply Now</button
-						>
+							}}">Apply Now</button>
 					</div>
 				</div>
 			</div>

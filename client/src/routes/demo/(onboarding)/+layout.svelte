@@ -39,6 +39,7 @@
 
 <script>
 	import { ProgressBar } from "$lib/components";
+	import { completedJourneys } from "$lib/stores/flows.store";
 	import { currStep } from "$lib/stores/onboarding.store";
 </script>
 
@@ -49,10 +50,12 @@
 		<div class="slot">
 			<slot />
 		</div>
-		<div class="progress">
-			<div class="bar">
-				<ProgressBar nodes="{5}" bind:current="{$currStep}" />
+		{#if $completedJourneys.length === 0}
+			<div class="progress">
+				<div class="bar">
+					<ProgressBar nodes="{5}" bind:current="{$currStep}" />
+				</div>
 			</div>
-		</div>
+		{/if}
 	</div>
 </div>

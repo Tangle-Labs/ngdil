@@ -17,7 +17,7 @@
 
 			.login-card {
 				background: var(--future-tech-green);
-				width: 200px;
+				width: 240px;
 				padding: 20px;
 
 				img {
@@ -41,20 +41,38 @@
 	import { Typography, FutureTech, Phone } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, nodeCount } from "$lib/stores/flows.store";
+	import { apiClient } from "$lib/utils/axios.utils";
+	import { websocketClient } from "$lib/utils/ws.util";
 	import { onMount } from "svelte";
+	import Qr from "$lib/components/project/Qr/Qr.svelte";
+	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 
 	let animatePhone = false;
+	let qr: string;
 
-	const handleClick = () => {
-		animatePhone = true;
-		setTimeout(() => {
+	const loadQr = async function () {
+		const { data } = await apiClient.post("/siop", {
+			overrideLogo: `${PUBLIC_CLIENT_URI}/imgs/future-tech.png`,
+			overrideClientName: "Future Tech Co."
+		});
+		qr = data.request;
+	};
+
+	websocketClient.onmessage = (event) => {
+		const data = JSON.parse(event.data);
+		if (data.login) {
 			goto("/demo/journeys/imani/applications");
-		}, 12_000);
+		} else {
+			console.log(data.login);
+			console.log("WTF");
+		}
 	};
 
 	onMount(() => {
 		currNode.set(0);
 		nodeCount.set(5);
+
+		loadQr();
 	});
 </script>
 
@@ -64,32 +82,30 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>It’s a new day, so <Highlight>let’s get started by logging in</Highlight> to the Future Tech Co.
-			staff dashboard using your SSI.</Typography
-		>
+			staff dashboard using your SSI.</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography
-			>Scan the QR code in your mobile wallet to connect to the Future Tech Co. dashboard.</Typography
-		>
+			>Scan the QR code in your mobile wallet to connect to the Future Tech Co. dashboard.</Typography>
 	</div>
 	<div class="dash">
 		<FutureTech withSidebar="{false}">
 			<div class="card-container">
 				<div class="header">
 					<Typography variant="card-header" fontVariant="kw1c" color="--future-tech-green"
-						>STAFF CONNECT</Typography
-					>
+						>STAFF CONNECT</Typography>
 				</div>
 				<div class="login-card">
-					<img src="/imgs/qr.png" alt="" on:click="{handleClick}" />
+					{#if qr}
+						<Qr data="{qr}" size="{220}" />
+					{/if}
 					<div class="heading">
 						<Typography variant="list" color="--future-tech-green-300">Scan QR to Login</Typography>
 					</div>
 
 					<div class="p">
 						<Typography color="--white-300"
-							>Scan the QR to login to connect to Future Tech Co.</Typography
-						>
+							>Scan the QR to login to connect to Future Tech Co.</Typography>
 					</div>
 				</div>
 			</div>

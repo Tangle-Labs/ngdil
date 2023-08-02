@@ -204,7 +204,7 @@
 	</div>
 
 	<div class="dash">
-		<Kw1c variant="white" title="INERNSHIP APPLICANTS">
+		<Kw1c variant="white" title="INERNSHIP APPLICATIONS">
 			<div class="sidebar">
 				{#each Array(5) as i}
 					<div class="menu-item">
@@ -222,8 +222,7 @@
 						{#each $peterAssignedBadges as student (student)}
 							<div class="data">
 								<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>{student.toUpperCase()}</Typography
-								>
+									>{student.toUpperCase()}</Typography>
 							</div>
 						{/each}
 					</div>
@@ -236,8 +235,7 @@
 						{#each $peterAssignedBadges as student (student)}
 							<div class="data">
 								<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-									>3D Print Design</Typography
-								>
+									>3D Print Design</Typography>
 							</div>
 						{/each}
 					</div>
@@ -255,8 +253,7 @@
 									onClick="{() => {
 										peterAssignedStudent.set(student);
 										goto('/demo/journeys/peter/place-student');
-									}}"
-								/>
+									}}" />
 							</div>
 						{/each}
 					</div>
