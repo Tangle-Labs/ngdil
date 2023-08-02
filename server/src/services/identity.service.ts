@@ -33,6 +33,7 @@ const constructFileStore = ({ path, password }: { path: string; password: string
 export class IdentityService {
 	//@ts-ignore
 	manager: IdentityManager<IotaAdapter>;
+	// @ts-ignore
 	did: IotaAccount<any>;
 
 	static async build() {
@@ -49,6 +50,7 @@ export class IdentityService {
 			password: "asdf"
 		});
 
+		// @ts-ignore
 		service.did = await service.manager
 			.getDid({
 				alias: "ngdil",

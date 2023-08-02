@@ -52,6 +52,7 @@ const dnsResolveTxt = promisify(resolveTxt);
 export class IotaAdapter<K extends StorageSpec<Record<string, any>, any>, T extends IotaAccount<K>>
 	implements NetworkAdapter<T>
 {
+	// @ts-ignore
 	store: StorageSpec<any, any>;
 
 	private constructor() {}
@@ -109,9 +110,13 @@ export class IotaAdapter<K extends StorageSpec<Record<string, any>, any>, T exte
 export class IotaAccount<T extends StorageSpec<Record<string, any>, any>>
 	implements IdentityAccount
 {
+	// @ts-ignore
 	credentials: IotaCredentialsManager<T>;
+	// @ts-ignore
 	keyPair: KeyPair;
+	// @ts-ignore
 	account: Account;
+	// @ts-ignore
 	private builder: AccountBuilder;
 	private constructor() {}
 
@@ -176,7 +181,9 @@ export class IotaAccount<T extends StorageSpec<Record<string, any>, any>>
 export class IotaCredentialsManager<T extends StorageSpec<Record<string, any>, any>>
 	implements CredentialsManager<T>
 {
+	// @ts-ignore
 	store: T;
+	// @ts-ignore
 	account: IotaAccount<T>;
 
 	public static async build<T extends StorageSpec<Record<string, any>, any>>(

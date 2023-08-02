@@ -26,6 +26,7 @@ export const userDeserializer = asyncHandler(
 			? validateJsonWebToken(newRefreshToken)
 			: { payload: null };
 		if (!refresh) return next();
+		// @ts-ignore
 		const session = await SessionsService.findOne({ id: refresh.sessionId });
 
 		req.session = session;

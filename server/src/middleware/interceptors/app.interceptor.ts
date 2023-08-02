@@ -20,6 +20,7 @@ export const AppInterceptor = responseHandler()
 
 		const sanitizedObject = sanitizeObject(
 			JSON.parse(body.toString()),
+			// @ts-ignore
 			FILTER_KEYS.split(",").map((e) => e.trim())
 		);
 

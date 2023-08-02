@@ -205,6 +205,7 @@ export const startingOffer = expressAsyncHandler(async (req: Request, res: Respo
 export const singleOffer = expressAsyncHandler(async (req: Request, res: Response) => {
 	const { credential } = req.body;
 
+	// @ts-ignore
 	const credDef = credentialDefs[credential];
 
 	req.session.credentialDef = credential;
@@ -227,6 +228,7 @@ export const credentialEndpoint = expressAsyncHandler(async (req: Request, res: 
 
 	const identityService = ServiceFactory.get<IdentityService>("identity");
 	const session = await SessionsService.findById(payload.sessionId);
+	// @ts-ignore
 	const credDef = credentialDefs[session.credentialDef];
 	if (!credDef) throw new Error("definition not found");
 	const cred = await identityService.createCredential({
@@ -295,6 +297,7 @@ export const vpRequest = expressAsyncHandler(async (req: Request, res: Response)
 export const auth = expressAsyncHandler(async (req: Request, res: Response) => {
 	const { nonce, vp_token, id_token } = req.body;
 	if (vp_token) {
+		// @ts-ignore
 		await rp.verifyAuthResponse(req.body, presentationDefinitions[nonce.split("::")[0]]);
 		console.log("verified?");
 		wsServer.broadcast(nonce.split("::")[1], { received: true });
@@ -302,6 +305,7 @@ export const auth = expressAsyncHandler(async (req: Request, res: Response) => {
 	} else if (id_token) {
 		await rp.verifyAuthResponse(req.body);
 		const { iss } = await rp.validateJwt(id_token);
+		// @ts-ignore
 		await SessionsService.findByIdAndUpdate(nonce, {
 			isValid: true,
 			did: iss

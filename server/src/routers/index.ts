@@ -1,7 +1,6 @@
 import { swaggerSpecification } from "@/utils";
 import { Router } from "express";
 import swaggerUi from "swagger-ui-express";
-import usersRouter from "./users.routers";
 import {
 	auth,
 	batchCredentialEndpoint,
@@ -16,7 +15,6 @@ import {
 
 const router = Router();
 
-router.use("/users", usersRouter);
 router.route("/.well-known/openid-credential-issuer").get(sendMetadata);
 router.route("/api/credential").post(credentialEndpoint);
 router.route("/api/credentials").post(batchCredentialEndpoint);

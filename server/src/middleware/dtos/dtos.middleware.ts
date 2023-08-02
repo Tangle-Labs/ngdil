@@ -14,6 +14,7 @@ export const useDto = <T extends IDto>(dto: T) => {
 		if (!isMissed) {
 			for (const key of Object.keys(dto.fields)) {
 				if (dto.fields[key](req.body[key])) {
+					// @ts-ignore
 					obj[key] = req.body[key];
 				} else if (req.body[key]) {
 					throw new Error(`400::Invalid value for "${key}"`);
