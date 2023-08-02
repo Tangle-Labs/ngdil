@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import expressAsyncHandler from "express-async-handler";
 import { DIDResolutionOptions, DIDResolutionResult, Resolver } from "did-resolver";
 import * as iotaIdentity from "@iota/identity-wasm";
-import { init } from "@tanglelabs/oid4vc";
+import { init } from "oid4vc";
 import { SessionsService } from "@/services";
 import { wsServer } from "@/server";
 import { ServiceFactory } from "@/services/servicefactory";
@@ -189,7 +189,6 @@ export const startingOffer = expressAsyncHandler(async (req: Request, res: Respo
 		? "peter"
 		: "imani";
 
-	const credentials = await getPersonaCreds(persona, req.session.did);
 	req.session.credentialDef = persona;
 	await req.session.save();
 
@@ -255,8 +254,9 @@ export const batchCredentialEndpoint = expressAsyncHandler(async (req: Request, 
 
 	const did = await issuer.validateCredentialsResponse({ token, proof: req.body.proof.jwt });
 
+	const session = await SessionsService.findById(payload.sessionId);
 	const credentials = await getPersonaCreds(
-		req.session.credentialDef as "peter" | "imani" | "dominique",
+		session.credentialDef as "peter" | "imani" | "dominique",
 		did
 	);
 

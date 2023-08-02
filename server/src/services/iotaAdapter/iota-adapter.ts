@@ -28,7 +28,7 @@ import {
 	CredentialValidationOptions,
 	FailFast,
 	MethodScope
-} from "@iota/identity-node";
+} from "@iota/identity-wasm";
 
 import * as didJWT from "did-jwt";
 import { resolveTxt } from "dns";

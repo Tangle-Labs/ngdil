@@ -1413,7 +1413,7 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@iota/identity-wasm@0.6.0":
+"@iota/identity-wasm@^0.6.0":
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/@iota/identity-wasm/-/identity-wasm-0.6.0.tgz#b9ea147e99d5191a822bacd599a300668e9444d7"
   integrity sha512-NRCJx8m1RmayBwz94Ais9YphCao6+5Q5CtCsOBpfMm1j+2Pgmeknq0uXG0CQSvG3lxtulmrr7qgYEPgf1j320g==
@@ -2859,19 +2859,6 @@
   integrity sha512-lCv6h/HRR2vZaXGdEoCBkd+telg7Ni6lQgHjFcbkLTKe6cirbAgi/ljLlDdPUSnNgagaRHbAwTxn7y4QUVlTTQ==
   dependencies:
     crypto-js "^4.1.1"
-
-"@tanglelabs/oid4vc@file:../oid4vc":
-  version "1.0.0"
-  dependencies:
-    "@sphereon/pex" "^2.1.0"
-    "@sphereon/pex-models" "^2.0.3"
-    axios "^1.4.0"
-    buffer "^6.0.3"
-    did-jwt "^7.2.4"
-    did-resolver "^4.1.0"
-    nanoid "^3.0.0"
-    tweetnacl "^1.0.3"
-    tweetnacl-util "^0.15.1"
 
 "@testing-library/dom@^8.3.0":
   version "8.19.0"
@@ -9656,6 +9643,20 @@ object.values@^1.1.0:
     call-bind "^1.0.2"
     define-properties "^1.1.4"
     es-abstract "^1.20.4"
+
+oid4vc@Tangle-Labs/oid4vc:
+  version "1.0.0"
+  resolved "https://codeload.github.com/Tangle-Labs/oid4vc/tar.gz/10006e85122bc72cb4266e4e5e7b36ba4fc14567"
+  dependencies:
+    "@sphereon/pex" "^2.1.0"
+    "@sphereon/pex-models" "^2.0.3"
+    axios "^1.4.0"
+    buffer "^6.0.3"
+    did-jwt "^7.2.4"
+    did-resolver "^4.1.0"
+    nanoid "^3.0.0"
+    tweetnacl "^1.0.3"
+    tweetnacl-util "^0.15.1"
 
 on-exit-leak-free@^2.1.0:
   version "2.1.0"

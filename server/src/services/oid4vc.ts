@@ -1,11 +1,5 @@
 import { PUBLIC_BASE_URI } from "@/config";
-import {
-	IssuerStoreData,
-	RelyingParty,
-	SigningAlgs,
-	SimpleStore,
-	VcIssuer
-} from "@tanglelabs/oid4vc";
+import { IssuerStoreData, RelyingParty, SigningAlgs, SimpleStore, VcIssuer } from "oid4vc";
 import { readFile, writeFile } from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
