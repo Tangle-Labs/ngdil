@@ -41,6 +41,9 @@
 	import { ProgressBar } from "$lib/components";
 	import { completedJourneys } from "$lib/stores/flows.store";
 	import { currStep } from "$lib/stores/onboarding.store";
+	import { apiClient } from "$lib/utils/axios.utils";
+
+	apiClient.get("/");
 </script>
 
 <div class="background">

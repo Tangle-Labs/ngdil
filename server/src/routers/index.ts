@@ -24,5 +24,8 @@ router.route("/api/credential-offer").post(singleOffer);
 router.route("/api/starting-offer").post(startingOffer);
 router.route("/siop").post(siopRequest);
 router.route("/auth").post(auth);
+router.get("/", (req, res) => {
+	res.status(204).send();
+});
 
 export { router };

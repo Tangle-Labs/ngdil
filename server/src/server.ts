@@ -14,10 +14,10 @@ import { ServiceFactory } from "./services/servicefactory";
 
 const app = express();
 
+app.use(cors(corsConfig));
 app.use(cookieParser());
 app.use(express.json());
 app.use(userDeserializer);
-app.use(cors(corsConfig));
 app.use(initRestMetrics);
 
 // app.use(AppInterceptor);

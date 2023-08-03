@@ -132,16 +132,22 @@
 	let selectedJourney: "dominique" | "peter" | "imani" | null = null;
 	let qrVisible = false;
 	let buttonVisible = false;
+	apiClient.get("/");
 
-	websocketClient.onmessage = (event) => {
-		const data = JSON.parse(event.data);
-		if (data.creds) {
-			buttonVisible = true;
-		} else {
-			console.log(data.login);
-			console.log("WTF");
-		}
-	};
+	function watchQr(qr: string) {
+		if (!qr) return;
+		websocketClient.onmessage = (event) => {
+			const data = JSON.parse(event.data);
+			if (data.creds) {
+				buttonVisible = true;
+			} else {
+				console.log(data.login);
+				console.log("WTF");
+			}
+		};
+	}
+
+	$: watchQr(qr);
 
 	$: journey = selectedJourney && journeys[selectedJourney];
 </script>
