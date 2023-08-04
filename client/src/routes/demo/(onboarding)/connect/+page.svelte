@@ -111,7 +111,7 @@
 
 	const loadQr = async function () {
 		const { data } = await apiClient.post("/siop");
-		qr = data.request;
+		qr = data.uri;
 	};
 
 	onMount(async () => {

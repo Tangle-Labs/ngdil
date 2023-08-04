@@ -130,7 +130,7 @@
 		const { data } = await apiClient.post("/api/credential-offer", {
 			credential: dominqueCourses[$dominiqueSelectedCourse].name
 		});
-		qr = data.request;
+		qr = data.uri;
 		currNode.set(2);
 	});
 

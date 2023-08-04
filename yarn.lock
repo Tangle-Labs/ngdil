@@ -2968,6 +2968,21 @@
   dependencies:
     crypto-js "^4.1.1"
 
+"@tanglelabs/oid4vc@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@tanglelabs/oid4vc/-/oid4vc-0.1.2.tgz#f0cd24295ba7ad1fda0812521dc288e215428eed"
+  integrity sha512-K8ulJbVNLCvAQhimqyTw5Ra8R3/PMd4d/7XIdKzl4IFy4KnUc6CuWhgcYhYfy8RPMB5vPkQGtaaGkS0wd+069w==
+  dependencies:
+    "@sphereon/pex" "^2.1.0"
+    "@sphereon/pex-models" "^2.0.3"
+    axios "^1.4.0"
+    buffer "^6.0.3"
+    did-jwt "^7.2.4"
+    did-resolver "^4.1.0"
+    nanoid "^3.0.0"
+    tweetnacl "^1.0.3"
+    tweetnacl-util "^0.15.1"
+
 "@testing-library/dom@^8.3.0":
   version "8.19.0"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-8.19.0.tgz#bd3f83c217ebac16694329e413d9ad5fdcfd785f"
@@ -9658,20 +9673,6 @@ object.values@^1.1.0:
     call-bind "^1.0.2"
     define-properties "^1.1.4"
     es-abstract "^1.20.4"
-
-oid4vc@Tangle-Labs/oid4vc:
-  version "1.0.0"
-  resolved "https://codeload.github.com/Tangle-Labs/oid4vc/tar.gz/10006e85122bc72cb4266e4e5e7b36ba4fc14567"
-  dependencies:
-    "@sphereon/pex" "^2.1.0"
-    "@sphereon/pex-models" "^2.0.3"
-    axios "^1.4.0"
-    buffer "^6.0.3"
-    did-jwt "^7.2.4"
-    did-resolver "^4.1.0"
-    nanoid "^3.0.0"
-    tweetnacl "^1.0.3"
-    tweetnacl-util "^0.15.1"
 
 on-exit-leak-free@^2.1.0:
   version "2.1.0"

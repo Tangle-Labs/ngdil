@@ -259,7 +259,7 @@
 								credentials: ['National ID', 'School Course Certificate', 'Volunteer Badge']
 							});
 
-							qr = data.request;
+							qr = data.uri;
 
 							isOpen = true;
 						}}"
@@ -291,7 +291,7 @@
 								credentials: ['National ID', 'Staff ID']
 							});
 
-							qr = data.request;
+							qr = data.uri;
 
 							isOpen = true;
 						}}"
@@ -323,7 +323,7 @@
 								credentials: ['National ID', 'Employee ID']
 							});
 
-							qr = data.request;
+							qr = data.uri;
 							isOpen = true;
 						}}"
 						label="{$completedJourneys.includes('imani') ? 'Complete' : 'Get Started'}" />

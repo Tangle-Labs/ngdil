@@ -1,8 +1,8 @@
 diff --git a/node_modules/@iota/identity-wasm/package.json b/node_modules/@iota/identity-wasm/package.json
-index 88e3ce2..d5a61e5 100644
+index 88e3ce2..3f5dc23 100644
 --- a/node_modules/@iota/identity-wasm/package.json
 +++ b/node_modules/@iota/identity-wasm/package.json
-@@ -47,10 +47,17 @@
+@@ -47,10 +47,33 @@
    "publishConfig": {
      "access": "public"
    },
@@ -18,6 +18,22 @@ index 88e3ce2..d5a61e5 100644
 +        "default": "./node/identity_wasm.js"
 +      },
 +      "default": "./node/identity_wasm.js"
++    },
++    "./node": {
++      "require": "./node/identity_wasm.js",
++      "import": {
++        "types": "./node/identity_wasm.d.ts",
++        "default": "./node/identity_wasm.js"
++      },
++      "default": "./node/identity_wasm.js"
++    },
++    "./web": {
++      "require": "./web/identity_wasm.js",
++      "import": {
++        "types": "./web/identity_wasm.d.ts",
++        "default": "./web/identity_wasm.js"
++      },
++      "default": "./web/identity_wasm.js"
 +    },
 +    "./package.json": "./package.json"
 +  },

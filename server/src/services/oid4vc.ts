@@ -1,5 +1,12 @@
 import { PUBLIC_BASE_URI } from "@/config";
-import { IssuerStoreData, RelyingParty, SigningAlgs, SimpleStore, VcIssuer } from "oid4vc";
+import { resolver } from "@/utils";
+import {
+	IssuerStoreData,
+	RelyingParty,
+	SigningAlgs,
+	SimpleStore,
+	VcIssuer
+} from "@tanglelabs/oid4vc";
 import { readFile, writeFile } from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -23,7 +30,8 @@ export const rp = new RelyingParty({
 		logo_uri:
 			"https://uploads-ssl.webflow.com/6440ceac338a9203b5100c47/6440ceac338a920197100e60_NGDIL%20Logo%20Dark.svg"
 	},
-	...rpKeys
+	...rpKeys,
+	resolver: resolver
 });
 
 const reader = async () => {
@@ -50,5 +58,6 @@ export const issuer = new VcIssuer({
 	client_name: "NGDIL",
 	logo_uri:
 		"https://uploads-ssl.webflow.com/6440ceac338a9203b5100c47/6440ceac338a920197100e60_NGDIL%20Logo%20Dark.svg",
-	...rpKeys
+	...rpKeys,
+	resolver
 });

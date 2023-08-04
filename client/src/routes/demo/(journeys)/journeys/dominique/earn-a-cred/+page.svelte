@@ -55,7 +55,7 @@
 			overrideLogo: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`,
 			overrideClientName: "KW1C"
 		});
-		qr = data.request;
+		qr = data.uri;
 	};
 
 	websocketClient.onmessage = (event) => {

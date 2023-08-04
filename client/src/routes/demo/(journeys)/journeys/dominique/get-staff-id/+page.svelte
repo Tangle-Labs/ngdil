@@ -161,7 +161,7 @@
 		const { data } = await apiClient.post("/api/credential-offer", {
 			credential: "Staff ID"
 		});
-		qr = data.request;
+		qr = data.uri;
 	});
 
 	websocketClient.onmessage = (event) => {

@@ -47,7 +47,7 @@
 			overrideLogo: `${PUBLIC_CLIENT_URI}/imgs/bbc.png`,
 			overrideClientName: "Big Business Corp"
 		});
-		qr = data.request;
+		qr = data.uri;
 	};
 
 	websocketClient.onmessage = (event) => {

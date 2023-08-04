@@ -55,7 +55,7 @@
 			overrideLogo: `${PUBLIC_CLIENT_URI}/imgs/future-tech.png`,
 			overrideClientName: "Future Tech Co."
 		});
-		qr = data.request;
+		qr = data.uri;
 	};
 
 	websocketClient.onmessage = (event) => {

@@ -10,7 +10,8 @@ import {
 	siopRequest,
 	startingOffer,
 	tokeEndpoint,
-	vpRequest
+	vpRequest,
+	getCredOffer
 } from "@/controllers/openid";
 
 const router = Router();
@@ -22,6 +23,7 @@ router.route("/api/oid4vp").post(vpRequest);
 router.route("/token").post(tokeEndpoint);
 router.route("/api/credential-offer").post(singleOffer);
 router.route("/api/starting-offer").post(startingOffer);
+router.route("/api/offers/creds/:id").get(getCredOffer);
 router.route("/siop").post(siopRequest);
 router.route("/auth").post(auth);
 router.get("/", (req, res) => {

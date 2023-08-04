@@ -48,7 +48,7 @@
 			overrideLogo: `${PUBLIC_CLIENT_URI}/imgs/openjobs.png`,
 			overrideClientName: "Open Jobs"
 		});
-		qr = data.request;
+		qr = data.uri;
 	};
 
 	websocketClient.onmessage = (event) => {
