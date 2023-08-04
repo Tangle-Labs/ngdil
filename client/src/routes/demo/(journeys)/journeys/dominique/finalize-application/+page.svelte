@@ -163,9 +163,9 @@
 	onMount(async () => {
 		currNode.set(3);
 		const {
-			data: { request }
+			data: { uri }
 		} = await apiClient.post("/api/oid4vp", { presentationStage: "dominiqueApplyForJob" });
-		qr = request;
+		qr = uri;
 	});
 
 	WebsocketClient.ws.onmessage = (event) => {
