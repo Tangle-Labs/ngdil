@@ -104,7 +104,7 @@
 	import { currStep } from "$lib/stores/onboarding.store";
 	import { apiClient } from "$lib/utils/axios.utils";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
-	import { websocketClient } from "$lib/utils/ws.util";
+	import { WebsocketClient } from "$lib/utils/ws.util";
 	let qr: string;
 
 	const journeys = {
@@ -136,7 +136,7 @@
 
 	function watchQr(qr: string) {
 		if (!qr) return;
-		websocketClient.onmessage = (event) => {
+		WebsocketClient.ws.onmessage = (event) => {
 			const data = JSON.parse(event.data);
 			if (data.creds) {
 				buttonVisible = true;

@@ -1,5 +1,5 @@
 import { issuer, rp } from "@/services/oid4vc";
-import { Request, Response } from "express";
+import { Request, Response, response } from "express";
 import expressAsyncHandler from "express-async-handler";
 import { DIDResolutionOptions, DIDResolutionResult, Resolver } from "did-resolver";
 // @ts-ignore
@@ -196,13 +196,20 @@ export const singleOffer = expressAsyncHandler(async (req: Request, res: Respons
 
 	// @ts-ignore
 	const credDef = credentialDefs[credential];
+	const id = nanoid();
 
 	req.session.credentialDef = credential;
 	await req.session.save();
 	const offer = await issuer.createCredentialOffer(
-		{ credentials: [credDef.type], requestBy: "reference", credentialOfferUri: "" },
+		{
+			credentials: [credDef.type],
+			requestBy: "reference",
+			credentialOfferUri: new URL(`/api/offers/creds/${id}`, PUBLIC_BASE_URI).toString()
+		},
 		{ sessionId: req.session.id }
 	);
+
+	await CredOfferService.create({ id, offer: offer.offer });
 	res.json(offer);
 });
 
@@ -258,42 +265,49 @@ export const batchCredentialEndpoint = expressAsyncHandler(async (req: Request, 
 });
 
 export const siopRequest = expressAsyncHandler(async (req: Request, res: Response) => {
-	const id = req.session.id;
-	const request = rp.createRequest({
+	const id = nanoid();
+	const request = await rp.createRequest({
 		requestBy: "reference",
-		requestUri: "",
+		requestUri: new URL(`/api/offers/siop/${id}`, PUBLIC_BASE_URI).toString(),
 		responseType: "id_token",
-		state: id
+		state: req.session.id
 	});
-	res.json({ request });
+	SiopOfferService.create({ id, request: request.request });
+
+	res.json({ ...request });
 });
 
 export const vpRequest = expressAsyncHandler(async (req: Request, res: Response) => {
-	const id = req.session.id;
+	const id = nanoid();
 	const { presentationStage, overrideLogo } = req.body;
-	const request = rp.createRequest({
-		requestBy: "value",
+	const request = await rp.createRequest({
+		requestBy: "reference",
+		requestUri: new URL(`/api/offers/siop/${id}`, PUBLIC_BASE_URI).toString(),
 		responseType: "vp_token",
 		// @ts-ignore
 		presentationDefinition: presentationDefinitions[presentationStage],
-		state: `${presentationStage}::${id}`
+		state: `${presentationStage}::${req.session.id}`
 	});
-	res.json({ request });
+
+	SiopOfferService.create({ id, request: request.request });
+	res.json({ ...request });
 });
 
 export const auth = expressAsyncHandler(async (req: Request, res: Response) => {
 	const { state, vp_token, id_token } = req.body;
 	if (vp_token) {
 		// @ts-ignore
-		await rp.verifyAuthResponse(req.body, presentationDefinitions[nonce.split("::")[0]]);
+		await rp.verifyAuthResponse(req.body, presentationDefinitions[state.split("::")[0]]);
 		console.log("verified?");
 		wsServer.broadcast(state.split("::")[1], { received: true });
 		res.status(200).send();
 	} else if (id_token) {
 		await rp.verifyAuthResponse(req.body);
 		const { iss } = await rp.validateJwt(id_token);
+
+		console.log(req.body);
 		// @ts-ignore
-		await SessionsService.findByIdAndUpdate(nonce, {
+		await SessionsService.findByIdAndUpdate(state, {
 			isValid: true,
 			did: iss
 		});
