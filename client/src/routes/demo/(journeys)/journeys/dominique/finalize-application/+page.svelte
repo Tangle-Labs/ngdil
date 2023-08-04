@@ -152,7 +152,7 @@
 		dominqueCourses
 	} from "$lib/stores/flows.store";
 	import { apiClient } from "$lib/utils/axios.utils";
-	import { websocketClient } from "$lib/utils/ws.util";
+	import { WebsocketClient } from "$lib/utils/ws.util";
 	import { onMount } from "svelte";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 
@@ -168,7 +168,7 @@
 		qr = request;
 	});
 
-	websocketClient.onmessage = (event) => {
+	WebsocketClient.ws.onmessage = (event) => {
 		const data = JSON.parse(event.data);
 		console.log(data);
 		if (data.received) {

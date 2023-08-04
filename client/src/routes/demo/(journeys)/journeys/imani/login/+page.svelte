@@ -42,7 +42,7 @@
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, nodeCount } from "$lib/stores/flows.store";
 	import { apiClient } from "$lib/utils/axios.utils";
-	import { websocketClient } from "$lib/utils/ws.util";
+	import { WebsocketClient } from "$lib/utils/ws.util";
 	import { onMount } from "svelte";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
@@ -55,10 +55,10 @@
 			overrideLogo: `${PUBLIC_CLIENT_URI}/imgs/future-tech.png`,
 			overrideClientName: "Future Tech Co."
 		});
-		qr = data.request;
+		qr = data.uri;
 	};
 
-	websocketClient.onmessage = (event) => {
+	WebsocketClient.ws.onmessage = (event) => {
 		const data = JSON.parse(event.data);
 		if (data.login) {
 			goto("/demo/journeys/imani/applications");

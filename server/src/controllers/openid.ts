@@ -1,11 +1,10 @@
 import { issuer, rp } from "@/services/oid4vc";
-import { Request, Response } from "express";
+import { Request, Response, response } from "express";
 import expressAsyncHandler from "express-async-handler";
 import { DIDResolutionOptions, DIDResolutionResult, Resolver } from "did-resolver";
 // @ts-ignore
 import * as iotaIdentity from "@iota/identity-wasm";
-import { init } from "oid4vc";
-import { SessionsService } from "@/services";
+import { CredOfferService, SessionsService, SiopOfferService } from "@/services";
 import { wsServer } from "@/server";
 import { ServiceFactory } from "@/services/servicefactory";
 import { IdentityService } from "@/services/identity.service";
@@ -13,30 +12,9 @@ import { nanoid } from "nanoid";
 import * as didJWT from "did-jwt";
 import { presentationDefinitions } from "./presentationDefinitions";
 import { credentialDefs } from "./credentials";
-import { PUBLIC_CLIENT_URI } from "@/config";
-
-const clientConfig = {
-	permanodes: [{ url: "https://chrysalis-chronicle.iota.org/api/mainnet/" }]
-};
-
-class IotaDIDResolver extends Resolver {
-	async resolve(
-		did: string,
-		options?: DIDResolutionOptions | undefined
-	): Promise<DIDResolutionResult> {
-		const client = await iotaIdentity.Client.fromConfig(clientConfig);
-		const doc = await client.resolve(did);
-		return {
-			didResolutionMetadata: {
-				contentType: "application/did+ld+json"
-			},
-			didDocument: doc.document().toJSON().doc,
-			didDocumentMetadata: {}
-		};
-	}
-}
-
-const reoslver = new IotaDIDResolver();
+import { PUBLIC_BASE_URI, PUBLIC_CLIENT_URI } from "@/config";
+import { resolver } from "@/utils";
+import { off } from "process";
 
 const getPersonaCreds = async (persona: "imani" | "peter" | "dominique", recipient: string) => {
 	const identityService = ServiceFactory.get<IdentityService>("identity");
@@ -172,8 +150,6 @@ const getPersonaCreds = async (persona: "imani" | "peter" | "dominique", recipie
 	return creds.map((c) => c.cred);
 };
 
-init(reoslver);
-
 export const sendMetadata = expressAsyncHandler(async (req: Request, res: Response) => {
 	res.json(issuer.getIssuerMetadata());
 });
@@ -183,6 +159,15 @@ export const tokeEndpoint = expressAsyncHandler(async (req: Request, res: Respon
 	res.json(response);
 });
 
+export const getCredOffer = expressAsyncHandler(async (req: Request, res: Response) => {
+	const { offer } = await CredOfferService.findById(req.params.id);
+	res.json(offer);
+});
+
+export const getSiopRequest = expressAsyncHandler(async (req: Request, res: Response) => {
+	const { request } = await SiopOfferService.findById(req.params.id);
+	res.send(request);
+});
 export const startingOffer = expressAsyncHandler(async (req: Request, res: Response) => {
 	const persona = req.body.credentials.includes("School Course Certificate")
 		? "dominique"
@@ -192,13 +177,17 @@ export const startingOffer = expressAsyncHandler(async (req: Request, res: Respo
 
 	req.session.credentialDef = persona;
 	await req.session.save();
+	const id = nanoid();
 
 	const credOffer = await issuer.createCredentialOffer(
 		{
+			requestBy: "reference",
+			credentialOfferUri: new URL(`/api/offers/creds/${id}`, PUBLIC_BASE_URI).toString(),
 			credentials: [...req.body.credentials]
 		},
 		{ sessionId: req.session.id }
 	);
+	await CredOfferService.create({ id, offer: credOffer.offer });
 	res.json(credOffer);
 });
 
@@ -207,13 +196,20 @@ export const singleOffer = expressAsyncHandler(async (req: Request, res: Respons
 
 	// @ts-ignore
 	const credDef = credentialDefs[credential];
+	const id = nanoid();
 
 	req.session.credentialDef = credential;
 	await req.session.save();
 	const offer = await issuer.createCredentialOffer(
-		{ credentials: [credDef.type] },
+		{
+			credentials: [credDef.type],
+			requestBy: "reference",
+			credentialOfferUri: new URL(`/api/offers/creds/${id}`, PUBLIC_BASE_URI).toString()
+		},
 		{ sessionId: req.session.id }
 	);
+
+	await CredOfferService.create({ id, offer: offer.offer });
 	res.json(offer);
 });
 
@@ -222,7 +218,7 @@ export const credentialEndpoint = expressAsyncHandler(async (req: Request, res: 
 	if (!token) throw new Error("401::missing token");
 	const { payload } = await didJWT.verifyJWT(token, {
 		policies: { aud: false },
-		resolver: new IotaDIDResolver()
+		resolver
 	});
 	const did = await issuer.validateCredentialsResponse({ token, proof: req.body.proof.jwt });
 
@@ -250,7 +246,7 @@ export const batchCredentialEndpoint = expressAsyncHandler(async (req: Request, 
 	if (!token) throw new Error("401::missing token");
 	const { payload } = await didJWT.verifyJWT(token, {
 		policies: { aud: false },
-		resolver: new IotaDIDResolver()
+		resolver
 	});
 
 	const did = await issuer.validateCredentialsResponse({ token, proof: req.body.proof.jwt });
@@ -269,50 +265,54 @@ export const batchCredentialEndpoint = expressAsyncHandler(async (req: Request, 
 });
 
 export const siopRequest = expressAsyncHandler(async (req: Request, res: Response) => {
-	const id = req.session.id;
-	const { overrideLogo, overrideClientName } = req.body;
-	const request = rp.createRequest({
-		requestBy: "value",
+	const id = nanoid();
+	const request = await rp.createRequest({
+		requestBy: "reference",
+		requestUri: new URL(`/api/offers/siop/${id}`, PUBLIC_BASE_URI).toString(),
 		responseType: "id_token",
-		nonce: id,
-		overrideLogo,
-		overrideClientName
+		state: req.session.id
 	});
-	res.json({ request });
+	SiopOfferService.create({ id, request: request.request });
+
+	res.json({ ...request });
 });
 
 export const vpRequest = expressAsyncHandler(async (req: Request, res: Response) => {
-	const id = req.session.id;
+	const id = nanoid();
 	const { presentationStage, overrideLogo } = req.body;
-	const request = rp.createRequest({
-		requestBy: "value",
+	const request = await rp.createRequest({
+		requestBy: "reference",
+		requestUri: new URL(`/api/offers/siop/${id}`, PUBLIC_BASE_URI).toString(),
 		responseType: "vp_token",
 		// @ts-ignore
 		presentationDefinition: presentationDefinitions[presentationStage],
-		nonce: `${presentationStage}::${id}`,
-		overrideLogo
+		state: `${presentationStage}::${req.session.id}`
 	});
-	res.json({ request });
+
+	SiopOfferService.create({ id, request: request.request });
+	res.json({ ...request });
 });
 
 export const auth = expressAsyncHandler(async (req: Request, res: Response) => {
-	const { nonce, vp_token, id_token } = req.body;
+	const { state, vp_token, id_token } = req.body;
 	if (vp_token) {
 		// @ts-ignore
-		await rp.verifyAuthResponse(req.body, presentationDefinitions[nonce.split("::")[0]]);
+		await rp.verifyAuthResponse(req.body, presentationDefinitions[state.split("::")[0]]);
 		console.log("verified?");
-		wsServer.broadcast(nonce.split("::")[1], { received: true });
+		wsServer.broadcast(state.split("::")[1], { received: true });
 		res.status(200).send();
 	} else if (id_token) {
 		await rp.verifyAuthResponse(req.body);
 		const { iss } = await rp.validateJwt(id_token);
+
+		console.log(req.body);
 		// @ts-ignore
-		await SessionsService.findByIdAndUpdate(nonce, {
+		await SessionsService.findByIdAndUpdate(state, {
 			isValid: true,
 			did: iss
 		});
 
-		wsServer.broadcast(nonce, { login: true });
+		wsServer.broadcast(state, { login: true });
 
 		res.status(200).send();
 	}

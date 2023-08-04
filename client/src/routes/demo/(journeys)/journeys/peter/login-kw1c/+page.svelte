@@ -45,7 +45,7 @@
 	import { onMount } from "svelte";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { apiClient } from "$lib/utils/axios.utils";
-	import { websocketClient } from "$lib/utils/ws.util";
+	import { WebsocketClient } from "$lib/utils/ws.util";
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 
 	let animatePhone = false;
@@ -56,10 +56,10 @@
 			overrideLogo: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`,
 			overrideClientName: "KW1C"
 		});
-		qr = data.request;
+		qr = data.uri;
 	};
 
-	websocketClient.onmessage = (event) => {
+	WebsocketClient.ws.onmessage = (event) => {
 		const data = JSON.parse(event.data);
 		if (data.login) {
 			goto("/demo/journeys/peter/view-applications");

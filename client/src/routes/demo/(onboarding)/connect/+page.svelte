@@ -104,14 +104,14 @@
 	import { apiClient } from "$lib/utils/axios.utils";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { onMount } from "svelte";
-	import { websocketClient } from "$lib/utils/ws.util";
+	import { WebsocketClient } from "$lib/utils/ws.util";
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 
 	let qr: string;
 
 	const loadQr = async function () {
 		const { data } = await apiClient.post("/siop");
-		qr = data.request;
+		qr = data.uri;
 	};
 
 	onMount(async () => {
@@ -121,7 +121,7 @@
 		// 	// ws.send(JSON.stringify({ action: "join" }));
 		// };
 
-		websocketClient.onmessage = (event) => {
+		WebsocketClient.ws.onmessage = (event) => {
 			const data = JSON.parse(event.data);
 			if (data.login) {
 				goto("/demo/choose-journey");

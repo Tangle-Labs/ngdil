@@ -34,7 +34,7 @@
 	import { Typography, OpenJobsNetwork, Phone, Card, Hightlight } from "$lib/components";
 	import { currNode, nodeCount } from "$lib/stores/flows.store";
 	import { apiClient } from "$lib/utils/axios.utils";
-	import { websocketClient } from "$lib/utils/ws.util";
+	import { WebsocketClient } from "$lib/utils/ws.util";
 	import { onMount } from "svelte";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
@@ -48,10 +48,10 @@
 			overrideLogo: `${PUBLIC_CLIENT_URI}/imgs/openjobs.png`,
 			overrideClientName: "Open Jobs"
 		});
-		qr = data.request;
+		qr = data.uri;
 	};
 
-	websocketClient.onmessage = (event) => {
+	WebsocketClient.ws.onmessage = (event) => {
 		const data = JSON.parse(event.data);
 		if (data.login) {
 			goto("/demo/journeys/dominique/open-jobs");

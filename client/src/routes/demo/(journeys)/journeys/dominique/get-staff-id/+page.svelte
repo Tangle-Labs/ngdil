@@ -147,7 +147,7 @@
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
 	import { apiClient } from "$lib/utils/axios.utils";
-	import { websocketClient } from "$lib/utils/ws.util";
+	import { WebsocketClient } from "$lib/utils/ws.util";
 	import { onMount } from "svelte";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { qrcode } from "svelte-qrcode-action";
@@ -161,10 +161,10 @@
 		const { data } = await apiClient.post("/api/credential-offer", {
 			credential: "Staff ID"
 		});
-		qr = data.request;
+		qr = data.uri;
 	});
 
-	websocketClient.onmessage = (event) => {
+	WebsocketClient.ws.onmessage = (event) => {
 		const data = JSON.parse(event.data);
 		if (data.creds) {
 			currNode.set(5);
