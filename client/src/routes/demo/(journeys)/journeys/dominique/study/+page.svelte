@@ -118,7 +118,7 @@
 	import { apiClient } from "$lib/utils/axios.utils";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { qrcode } from "svelte-qrcode-action";
-	import { WebsocketClient } from "$lib/utils/ws.util";
+	import { createWebsocket } from "$lib/utils/sse.util";
 
 	let progress = 0;
 	let studied = false;
@@ -134,7 +134,8 @@
 		currNode.set(2);
 	});
 
-	WebsocketClient.ws.onmessage = (event) => {
+	const ws = createWebsocket();
+	ws.onmessage = (event) => {
 		const data = JSON.parse(event.data);
 		if (data.creds) {
 			receivedCreds = true;

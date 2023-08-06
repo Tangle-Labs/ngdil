@@ -147,10 +147,9 @@
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
 	import { apiClient } from "$lib/utils/axios.utils";
-	import { WebsocketClient } from "$lib/utils/ws.util";
 	import { onMount } from "svelte";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
-	import { qrcode } from "svelte-qrcode-action";
+	import { createWebsocket } from "$lib/utils/ws.util";
 
 	let showModal = false;
 	let receivedCreds = false;
@@ -164,7 +163,8 @@
 		qr = data.uri;
 	});
 
-	WebsocketClient.ws.onmessage = (event) => {
+	const ws = createWebsocket();
+	ws.onmessage = (event) => {
 		const data = JSON.parse(event.data);
 		if (data.creds) {
 			currNode.set(5);

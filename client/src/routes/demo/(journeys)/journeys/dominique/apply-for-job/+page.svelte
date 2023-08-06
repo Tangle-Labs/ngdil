@@ -35,7 +35,7 @@
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 	import { apiClient } from "$lib/utils/axios.utils";
-	import { WebsocketClient } from "$lib/utils/ws.util";
+	import { createWebsocket } from "$lib/utils/sse.util";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 
 	let animatePhone = false;
@@ -50,7 +50,8 @@
 		qr = data.uri;
 	};
 
-	WebsocketClient.ws.onmessage = (event) => {
+	const ws = createWebsocket();
+	ws.onmessage = (event) => {
 		const data = JSON.parse(event.data);
 		if (data.login) {
 			goto("/demo/journeys/dominique/view-jobs");

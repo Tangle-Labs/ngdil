@@ -87,7 +87,7 @@
 	import { apiClient } from "$lib/utils/axios.utils";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { onMount } from "svelte";
-	import { WebsocketClient } from "$lib/utils/ws.util";
+	import { createWebsocket } from "$lib/utils/sse.util";
 	let receivedCreds = false;
 	let qr: string;
 
@@ -97,7 +97,8 @@
 	// 	// }, 8000);
 	// }
 
-	WebsocketClient.ws.onmessage = (event) => {
+	const ws = createWebsocket();
+	ws.onmessage = (event) => {
 		const data = JSON.parse(event.data);
 		console.log(data);
 		if (data.received) {

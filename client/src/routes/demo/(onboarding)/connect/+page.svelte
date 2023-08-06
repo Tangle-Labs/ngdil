@@ -121,7 +121,8 @@
 		// 	// ws.send(JSON.stringify({ action: "join" }));
 		// };
 
-		WebsocketClient.ws.onmessage = (event) => {
+		const ws = createWebsocket();
+		ws.onmessage = (event) => {
 			const data = JSON.parse(event.data);
 			if (data.login) {
 				goto("/demo/choose-journey");
