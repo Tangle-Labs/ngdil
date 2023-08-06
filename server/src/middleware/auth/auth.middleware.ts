@@ -16,7 +16,8 @@ export const userDeserializer = asyncHandler(
 
 			res.cookie("refreshToken", token, {
 				maxAge: 365 * 24 * 60 * 60 * 1000,
-				httpOnly: true
+				httpOnly: true,
+				sameSite: "none"
 			});
 		}
 
