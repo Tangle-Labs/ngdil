@@ -208,7 +208,7 @@
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
 	import { apiClient } from "$lib/utils/axios.utils";
-	import { createWebsocket } from "$lib/utils/sse.util";
+	import { createWebsocket } from "$lib/utils/ws.util";
 	import { onMount } from "svelte";
 	let receivedCreds = false;
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
