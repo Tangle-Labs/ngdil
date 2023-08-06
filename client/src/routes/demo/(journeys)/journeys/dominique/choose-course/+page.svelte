@@ -88,6 +88,7 @@
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { onMount } from "svelte";
 	import { createWebsocket } from "$lib/utils/ws.util";
+
 	let receivedCreds = false;
 	let qr: string;
 

@@ -36,6 +36,7 @@
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 	import { apiClient } from "$lib/utils/axios.utils";
 	import { createWebsocket } from "$lib/utils/ws.util";
+
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 
 	let animatePhone = false;
