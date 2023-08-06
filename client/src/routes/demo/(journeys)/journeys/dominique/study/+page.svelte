@@ -118,7 +118,7 @@
 	import { apiClient } from "$lib/utils/axios.utils";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { qrcode } from "svelte-qrcode-action";
-	import { createWebsocket } from "$lib/utils/sse.util";
+	import { createWebsocket } from "$lib/utils/ws.util";
 
 	let progress = 0;
 	let studied = false;

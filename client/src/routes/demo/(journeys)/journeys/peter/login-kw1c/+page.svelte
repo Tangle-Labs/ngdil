@@ -45,7 +45,7 @@
 	import { onMount } from "svelte";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { apiClient } from "$lib/utils/axios.utils";
-	import { createWebsocket } from "$lib/utils/sse.util";
+	import { createWebsocket } from "$lib/utils/ws.util";
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 
 	let animatePhone = false;
