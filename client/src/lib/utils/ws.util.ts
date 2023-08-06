@@ -2,7 +2,8 @@ import { PUBLIC_WS_URI } from "$env/static/public";
 
 export class WebsocketClient {
 	static ws: WebSocket;
-	static interval: NodeJS.Timer;
+	static retries: number;
+	static interval: NodeJS.Timer | null;
 	static init() {
 		WebsocketClient.ws = new WebSocket(PUBLIC_WS_URI);
 		WebsocketClient.ws.onclose = function (e) {
@@ -10,9 +11,16 @@ export class WebsocketClient {
 			WebsocketClient.interval = setInterval(function () {
 				console.log("should not bombard this");
 				WebsocketClient.ws = new WebSocket(PUBLIC_WS_URI);
-			}, 1000);
+				WebsocketClient.retries++;
+				if (WebsocketClient.retries < 10) return;
+				if (!WebsocketClient.interval) return;
+				clearInterval(WebsocketClient.interval);
+			}, 2000);
 		};
 		WebsocketClient.ws.onopen = () => {
+			console.log("here?");
+			WebsocketClient.interval = null;
+			if (!WebsocketClient.interval) return;
 			clearInterval(WebsocketClient.interval);
 		};
 	}
