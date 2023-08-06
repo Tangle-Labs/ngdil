@@ -13,9 +13,11 @@ class WebSocketManager {
 
 		this.wss.on("connection", async (ws: WebSocket, req) => {
 			const refresh = req.headers.cookie?.split("refreshToken=")[1].split(";")[0];
+			console.log(req.headers);
 			if (!refresh) return;
 			const { payload } = validateJsonWebToken(refresh as string);
 
+			console.log(payload);
 			if (!payload) return;
 			// @ts-ignore
 			const channelId = payload.sessionId;

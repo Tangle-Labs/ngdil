@@ -42,7 +42,7 @@
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, nodeCount } from "$lib/stores/flows.store";
 	import { apiClient } from "$lib/utils/axios.utils";
-	import { WebsocketClient } from "$lib/utils/ws.util";
+	import { createWebsocket } from "$lib/utils/sse.util";
 	import { onMount } from "svelte";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
@@ -58,7 +58,8 @@
 		qr = data.uri;
 	};
 
-	WebsocketClient.ws.onmessage = (event) => {
+	const ws = createWebsocket();
+	ws.onmessage = (event) => {
 		const data = JSON.parse(event.data);
 		if (data.login) {
 			goto("/demo/journeys/imani/applications");
