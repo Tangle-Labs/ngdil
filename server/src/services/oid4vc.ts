@@ -1,4 +1,4 @@
-import { PUBLIC_BASE_URI } from "@/config";
+import { PUBLIC_BASE_URI, PUBLIC_CLIENT_URI } from "@/config";
 import { resolver } from "@/utils";
 import {
 	IssuerStoreData,
@@ -26,8 +26,8 @@ export const rp = new RelyingParty({
 	clientMetadata: {
 		subjectSyntaxTypesSupported: ["did:iota"],
 		idTokenSigningAlgValuesSupported: [SigningAlgs.EdDSA],
-		client_name: "NGDIL",
-		logo_uri:
+		clientName: "NGDIL",
+		logoUri:
 			"https://uploads-ssl.webflow.com/6440ceac338a9203b5100c47/6440ceac338a920197100e60_NGDIL%20Logo%20Dark.svg"
 	},
 	...rpKeys,
@@ -55,9 +55,37 @@ export const issuer = new VcIssuer({
 	cryptographicSuitesSupported: ["EdDSA"],
 	proofTypesSupported: ["jwt"],
 	store: new SimpleStore<IssuerStoreData>({ reader, writer }),
-	client_name: "NGDIL",
-	logo_uri:
+	clientName: "NGDIL",
+	logoUri:
 		"https://uploads-ssl.webflow.com/6440ceac338a9203b5100c47/6440ceac338a920197100e60_NGDIL%20Logo%20Dark.svg",
 	...rpKeys,
 	resolver
 });
+export const issuers = {
+	bbc: new VcIssuer({
+		credentialEndpoint: `${PUBLIC_BASE_URI}/api/credential`,
+		batchCredentialEndpoint: `${PUBLIC_BASE_URI}/api/credentials`,
+		credentialIssuer: new URL("/bbc", PUBLIC_BASE_URI).toString(),
+		cryptographicBindingMethodsSupported: ["did:iota"],
+		cryptographicSuitesSupported: ["EdDSA"],
+		proofTypesSupported: ["jwt"],
+		store: new SimpleStore<IssuerStoreData>({ reader, writer }),
+		clientName: "Big Business Corp",
+		logoUri: new URL("/imgs/bbc.png", PUBLIC_CLIENT_URI).toString(),
+		...rpKeys,
+		resolver
+	}),
+	kw1c: new VcIssuer({
+		credentialEndpoint: `${PUBLIC_BASE_URI}/api/credential`,
+		batchCredentialEndpoint: `${PUBLIC_BASE_URI}/api/credentials`,
+		credentialIssuer: new URL("/kw1c", PUBLIC_BASE_URI).toString(),
+		cryptographicBindingMethodsSupported: ["did:iota"],
+		cryptographicSuitesSupported: ["EdDSA"],
+		proofTypesSupported: ["jwt"],
+		store: new SimpleStore<IssuerStoreData>({ reader, writer }),
+		clientName: "Koning Willem I College",
+		logoUri: new URL("/imgs/kw1c-white.png", PUBLIC_CLIENT_URI).toString(),
+		...rpKeys,
+		resolver
+	})
+};

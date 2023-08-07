@@ -91,6 +91,7 @@
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { onMount } from "svelte";
 	import { createWebsocket } from "$lib/utils/ws.util";
+	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 
 	let receivedCreds = false;
 	let qr: string;
@@ -110,7 +111,13 @@
 
 		const {
 			data: { uri }
-		} = await apiClient.post("/api/oid4vp", { presentationStage: "dominiqueEnrolCourse" });
+		} = await apiClient.post("/api/oid4vp", {
+			presentationStage: "dominiqueEnrolCourse",
+			clientMetadata: {
+				logoUri: new URL("/imgs/kw1c-white.png", PUBLIC_CLIENT_URI).toString(),
+				clientName: "KW1C"
+			}
+		});
 		qr = uri;
 	});
 </script>
@@ -182,7 +189,6 @@
 									onClick="{() => {
 										showModal = true;
 										dominiqueSelectedCourse.set(i);
-										handleWait();
 									}}"
 									variant="kw1c"
 									label="ENROL NOW" />

@@ -213,6 +213,7 @@
 	let receivedCreds = false;
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { qrcode } from "svelte-qrcode-action";
+	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 	let qr: string;
 
 	onMount(async () => {
@@ -220,7 +221,13 @@
 
 		const {
 			data: { uri }
-		} = await apiClient.post("/api/oid4vp", { presentationStage: "dominiqueShareCred" });
+		} = await apiClient.post("/api/oid4vp", {
+			presentationStage: "dominiqueShareCred",
+			clientMetadata: {
+				logoUri: new URL("/imgs/openjobs.png", PUBLIC_CLIENT_URI).toString(),
+				clientName: "Open Jobs Network"
+			}
+		});
 		qr = uri;
 	});
 

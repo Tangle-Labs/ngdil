@@ -155,6 +155,7 @@
 	import { createWebsocket } from "$lib/utils/ws.util";
 	import { onMount } from "svelte";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
+	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 
 	let showModal = false;
 	let receivedCreds = false;
@@ -164,7 +165,13 @@
 		currNode.set(3);
 		const {
 			data: { uri }
-		} = await apiClient.post("/api/oid4vp", { presentationStage: "dominiqueApplyForJob" });
+		} = await apiClient.post("/api/oid4vp", {
+			presentationStage: "dominiqueApplyForJob",
+			clientMetadata: {
+				logoUri: new URL("/imgs/bbc.png", PUBLIC_CLIENT_URI).toString(),
+				clientName: "Big Business Corp"
+			}
+		});
 		qr = uri;
 	});
 

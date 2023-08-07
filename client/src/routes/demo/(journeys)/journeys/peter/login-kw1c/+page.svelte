@@ -53,7 +53,11 @@
 
 	const loadQr = async function () {
 		const { data } = await apiClient.post("/api/oid4vp", {
-			presentationStage: "peterLogin"
+			presentationStage: "peterLogin",
+			clientMetadata: {
+				logoUri: new URL("/imgs/kw1c-white.png", PUBLIC_CLIENT_URI).toString(),
+				clientName: "KW1C"
+			}
 		});
 		qr = data.uri;
 	};

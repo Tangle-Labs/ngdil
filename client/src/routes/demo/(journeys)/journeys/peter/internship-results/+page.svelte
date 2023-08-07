@@ -143,12 +143,6 @@
 	import { onMount } from "svelte";
 	let receivedCreds = false;
 
-	function handleWait() {
-		setTimeout(() => {
-			receivedCreds = true;
-		}, 8000);
-	}
-
 	onMount(() => {
 		currNode.set(0);
 		nodeCount.set(3);
