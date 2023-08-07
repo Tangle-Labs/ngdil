@@ -311,6 +311,8 @@ export const auth = expressAsyncHandler(async (req: Request, res: Response) => {
 			did: iss
 		});
 
+		console.log("siopv2: authenticated");
+
 		wsServer.broadcast(state, { login: true });
 
 		res.status(200).send();

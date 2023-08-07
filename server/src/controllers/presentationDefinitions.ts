@@ -137,5 +137,35 @@ export const presentationDefinitions = {
 				}
 			}
 		]
+	},
+	peterLogin: {
+		id: "32f54163-7166-48f1-93d8-ff217bdb0653",
+		input_descriptors: [
+			{
+				id: "staff-id",
+				constraints: {
+					fields: [
+						{
+							path: ["$.type"],
+							filter: {
+								type: "array",
+								contains: {
+									type: "string",
+									pattern: "Staff ID"
+								}
+							}
+						},
+						{
+							path: ["$.id"],
+							filter: {
+								type: "string",
+								// prettier-ignore
+								pattern: ".*kw1c.*"
+							}
+						}
+					]
+				}
+			}
+		]
 	}
 };

@@ -52,9 +52,8 @@
 	let qr: string;
 
 	const loadQr = async function () {
-		const { data } = await apiClient.post("/siop", {
-			overrideLogo: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`,
-			overrideClientName: "KW1C"
+		const { data } = await apiClient.post("/api/oid4vp", {
+			presentationStage: "peterLogin"
 		});
 		qr = data.uri;
 	};
@@ -62,7 +61,7 @@
 	const ws = createWebsocket();
 	ws.onmessage = (event) => {
 		const data = JSON.parse(event.data);
-		if (data.login) {
+		if (data.received) {
 			goto("/demo/journeys/peter/view-applications");
 		}
 	};
