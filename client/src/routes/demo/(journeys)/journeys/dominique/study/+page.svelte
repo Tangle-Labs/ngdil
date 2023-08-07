@@ -165,7 +165,7 @@
 						onClick="{() => goto('/demo/journeys/dominique/finished-course')}" />
 				</div>
 			{:else if qr}
-				<Qr data="{qr}" size="{250}" />
+				<Qr data="{qr}" size="{200}" />
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text"

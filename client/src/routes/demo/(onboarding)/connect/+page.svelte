@@ -150,7 +150,7 @@
 	</div>
 	<div class="cards">
 		{#if qr}
-			<Qr size="{250}" data="{qr}" />
+			<Qr size="{200}" data="{qr}" />
 		{/if}
 	</div>
 </div>

@@ -60,6 +60,9 @@
 			color: var(--black-500);
 			font-weight: 300;
 		}
+		.qr {
+			width: 100%;
+		}
 
 		& > * {
 			padding: 10px 0;
@@ -136,7 +139,9 @@
 					: "In your mobile wallet scan the QR Code and accept the request to share the credentials with KW1C to privately send the credentials required."}
 			</div>
 			{#if !receivedCreds}
-				<Qr data="{qr}" size="{320}" />
+				<div class="qr">
+					<Qr data="{qr}" size="{200}" />
+				</div>
 			{/if}
 			{#if receivedCreds}
 				<img class="checked" src="/imgs/checked.png" alt="" />

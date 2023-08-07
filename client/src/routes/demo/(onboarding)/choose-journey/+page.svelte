@@ -189,7 +189,7 @@
 				{#if qrVisible}
 					<div class="right">
 						{#if qr}
-							<Qr size="{250}" data="{qr}" />
+							<Qr size="{200}" data="{qr}" />
 						{/if}
 						<div class="scan-header">
 							<Typography variant="card-header"
@@ -212,6 +212,8 @@
 									goto(`/demo/journeys/${selectedJourney}`);
 								}}"
 								variant="secondary" />
+						{:else}
+							<Loading size="30px" />
 						{/if}
 					</div>
 				{/if}

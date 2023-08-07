@@ -16,6 +16,7 @@
 				padding: 10px;
 				display: flex;
 				justify-content: flex-start;
+				box-sizing: border-box;
 
 				flex-wrap: wrap;
 				text-align: left;
@@ -27,10 +28,8 @@
 						padding: 0;
 					}
 				}
-
-				img {
-					padding: 20px 0;
-					width: 200px;
+				.qr {
+					padding: 10px 0;
 				}
 			}
 		}
@@ -102,7 +101,9 @@
 							</div>
 						</div>
 						{#if qr}
-							<Qr size="{200}" data="{qr}" />
+							<div class="qr">
+								<Qr size="{200}" data="{qr}" />
+							</div>
 						{/if}
 						<div class="desc">
 							<Typography variant="kw1c-sub-text"

@@ -100,7 +100,7 @@
 							</div>
 						</div>
 						{#if qr}
-							<Qr data="{qr}" size="{220}" />
+							<Qr data="{qr}" size="{200}" />
 						{/if}
 						<div class="desc">
 							<Typography variant="kw1c-sub-text"
