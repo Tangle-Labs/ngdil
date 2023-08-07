@@ -150,6 +150,7 @@
 	import { onMount } from "svelte";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { createWebsocket } from "$lib/utils/ws.util";
+	import Confetti from "svelte-confetti";
 
 	let showModal = false;
 	let receivedCreds = false;
@@ -213,6 +214,16 @@
 	<div class="sub-text">
 		<Typography
 			>Click the get staff ID button to receive your staff ID credential from Big Business Corp.</Typography>
+	</div>
+	<div
+		style="position: fixed; top: -50px; left: 0; height: 100vh; width: 100vw; display: flex; justify-content: center; overflow: hidden; pointer-events: none;">
+		<Confetti
+			x="{[-5, 5]}"
+			y="{[0, 0.1]}"
+			delay="{[500, 5000]}"
+			duration="2000"
+			amount="500"
+			fallDistance="100vh" />
 	</div>
 
 	<div class="dash">

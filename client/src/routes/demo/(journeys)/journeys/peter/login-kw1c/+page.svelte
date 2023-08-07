@@ -87,8 +87,8 @@
 	</div>
 	<div class="sub-text">
 		<Typography
-			>In your identity wallet, scan the QR code and accept the connection request to the KW1C staff
-			portal.</Typography>
+			>In your identity wallet, scan the QR code and accept the connection request to access the
+			KW1C staff portal.</Typography>
 	</div>
 	<div class="dash">
 		<Kw1c variant="blue">

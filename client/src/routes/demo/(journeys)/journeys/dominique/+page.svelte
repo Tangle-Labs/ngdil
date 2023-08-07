@@ -62,8 +62,7 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>Hi Dominique. <Highlight>Let’s get you started on your learning journey.</Highlight>Select
-			your experienceto get started.</Typography
-		>
+			your experience to get started.</Typography>
 	</div>
 	<div class="desc">
 		<Typography variant="button">
@@ -80,14 +79,12 @@
 					<div class="text">
 						<div class="heading">
 							<Typography variant="card-header"
-								>Enrol at KW1C and earn a course credential.</Typography
-							>
+								>Enrol at KW1C and earn a course credential.</Typography>
 						</div>
 						<div class="desc">
 							<Typography
 								>Dominique is a school graduate, excited to enrol as a student at Koning Willem I
-								College.</Typography
-							>
+								College.</Typography>
 						</div>
 					</div>
 					<Button
@@ -96,8 +93,7 @@
 							nodeCount.set(5);
 							goto('/demo/journeys/dominique/earn-a-cred');
 						}}"
-						label="{$dominiqueEarnedCourseCred ? 'Retry' : 'Get Started'}"
-					/>
+						label="{$dominiqueEarnedCourseCred ? 'Retry' : 'Get Started'}" />
 				</div>
 			</Card>
 		</div>
@@ -108,8 +104,7 @@
 					<div class="text">
 						<div class="heading">
 							<Typography variant="card-header"
-								>Share your new credential on social media.</Typography
-							>
+								>Share your new credential on social media.</Typography>
 						</div>
 						<div class="desc">
 							<Typography>
@@ -128,8 +123,7 @@
 							nodeCount.set(4);
 							goto('/demo/journeys/dominique/share-a-cred');
 						}}"
-						label="{$dominiqueSharedCred ? 'Retry' : 'Get Started'}"
-					/>
+						label="{$dominiqueSharedCred ? 'Retry' : 'Get Started'}" />
 				</div>
 			</Card>
 		</div>
@@ -158,8 +152,7 @@
 							nodeCount.set(5);
 							goto('/demo/journeys/dominique/apply-for-job');
 						}}"
-						label="{$dominiqueAppliedForJob ? 'Retry' : 'Get Started'}"
-					/>
+						label="{$dominiqueAppliedForJob ? 'Retry' : 'Get Started'}" />
 				</div>
 			</Card>
 		</div>
@@ -168,8 +161,7 @@
 				<Button
 					variant="secondary"
 					onClick="{() => goto('/demo/choose-journey')}"
-					label="Try Another Journey"
-				/>
+					label="Try Another Journey" />
 			</div>
 		{/if}
 	</div>
