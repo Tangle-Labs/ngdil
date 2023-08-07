@@ -87,6 +87,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Button, Modal } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currStep } from "$lib/stores/onboarding.store";
 	import { apiClient } from "$lib/utils/axios.utils";
 	import { onMount } from "svelte";
@@ -130,7 +131,8 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>To begin with self-sovereign identity you must first have an identity wallet app.</Typography>
+			>To begin with <Highlight>self-sovereign identity</Highlight> you must first have an identity wallet
+			app.</Typography>
 	</div>
 
 	<div class="desc">

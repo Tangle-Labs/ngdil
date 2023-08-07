@@ -206,8 +206,8 @@
 
 	<div class="heading">
 		<Typography variant="heading">
-			Three students are looking to get this badge. Let’s select the students and <Highlight
-				>issue their course invites.</Highlight>
+			Three students are <Highlight>looking to get this badge.</Highlight> Let’s select the students
+			and issue their course invites.
 		</Typography>
 	</div>
 	<div class="sub-text">
