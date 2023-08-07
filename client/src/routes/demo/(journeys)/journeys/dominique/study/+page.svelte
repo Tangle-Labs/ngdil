@@ -139,9 +139,6 @@
 		const data = JSON.parse(event.data);
 		if (data.creds) {
 			receivedCreds = true;
-		} else {
-			console.log(data.login);
-			console.log("WTF");
 		}
 	};
 </script>

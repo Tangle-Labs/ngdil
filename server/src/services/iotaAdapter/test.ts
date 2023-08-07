@@ -46,8 +46,6 @@ const constructFileStore = ({ path, password }: { path: string; password: string
 		})
 	});
 
-	console.log(did);
-
 	const credential = await did.credentials.create({
 		id: "http://cred.com/wa_driving_license",
 		body: {
@@ -61,9 +59,6 @@ const constructFileStore = ({ path, password }: { path: string; password: string
 		recipientDid: "did:iota:Efey9yaBCgvLmWJ8HhRA9ufbSCaty8LJyC1f7eXXpVC",
 		type: "Volunteering Badge"
 	});
-	console.log(credential);
 
 	did.credentials.store.create({ name: "asdf" });
-
-	console.log(did.getDid());
 })();

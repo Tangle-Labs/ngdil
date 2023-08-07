@@ -63,9 +63,6 @@
 		const data = JSON.parse(event.data);
 		if (data.login) {
 			goto("/demo/journeys/dominique/choose-course");
-		} else {
-			console.log(data.login);
-			console.log("WTF");
 		}
 	};
 

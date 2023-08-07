@@ -64,9 +64,6 @@
 		const data = JSON.parse(event.data);
 		if (data.login) {
 			goto("/demo/journeys/peter/view-applications");
-		} else {
-			console.log(data.login);
-			console.log("WTF");
 		}
 	};
 

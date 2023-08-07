@@ -63,9 +63,6 @@
 		const data = JSON.parse(event.data);
 		if (data.login) {
 			goto("/demo/journeys/imani/applications");
-		} else {
-			console.log(data.login);
-			console.log("WTF");
 		}
 	};
 

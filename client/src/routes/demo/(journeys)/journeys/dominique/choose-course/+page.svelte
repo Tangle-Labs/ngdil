@@ -92,16 +92,9 @@
 	let receivedCreds = false;
 	let qr: string;
 
-	// function handleWait() {
-	// 	// setTimeout(() => {
-	// 	// 	receivedCreds = true;
-	// 	// }, 8000);
-	// }
-
 	const ws = createWebsocket();
 	ws.onmessage = (event) => {
 		const data = JSON.parse(event.data);
-		console.log(data);
 		if (data.received) {
 			receivedCreds = true;
 		}

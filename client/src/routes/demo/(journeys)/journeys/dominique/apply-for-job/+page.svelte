@@ -56,9 +56,6 @@
 		const data = JSON.parse(event.data);
 		if (data.login) {
 			goto("/demo/journeys/dominique/view-jobs");
-		} else {
-			console.log(data.login);
-			console.log("WTF");
 		}
 	};
 

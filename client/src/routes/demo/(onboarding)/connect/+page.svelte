@@ -126,9 +126,6 @@
 			const data = JSON.parse(event.data);
 			if (data.login) {
 				goto("/demo/choose-journey");
-			} else {
-				console.log(data.login);
-				console.log("WTF");
 			}
 		};
 	});

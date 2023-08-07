@@ -171,7 +171,6 @@
 	const ws = createWebsocket();
 	ws.onmessage = (event) => {
 		const data = JSON.parse(event.data);
-		console.log(data);
 		if (data.received) {
 			receivedCreds = true;
 		}

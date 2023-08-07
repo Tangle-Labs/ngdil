@@ -145,13 +145,9 @@
 
 		const ws = createWebsocket();
 		ws.onmessage = (event) => {
-			console.log("?", event);
 			const data = JSON.parse(event.data);
 			if (data.creds) {
 				buttonVisible = true;
-			} else {
-				console.log(data.login);
-				console.log("WTF");
 			}
 		};
 	}

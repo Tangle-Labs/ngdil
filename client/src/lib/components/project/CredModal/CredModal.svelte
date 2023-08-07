@@ -63,10 +63,8 @@
 	class="show"
 	alt=""
 	on:click="{() => {
-		console.log('hello');
 		isOpen = true;
-	}}"
-/>
+	}}" />
 
 <Modal bind:isOpen="{isOpen}">
 	<div class="card-content">
