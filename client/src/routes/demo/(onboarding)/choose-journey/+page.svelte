@@ -106,6 +106,7 @@
 	import { apiClient } from "$lib/utils/axios.utils";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { createWebsocket } from "$lib/utils/ws.util";
+	import { onMount } from "svelte";
 	let qr: string;
 
 	const journeys = {
@@ -135,18 +136,18 @@
 	let buttonVisible = false;
 	apiClient.get("/");
 
+	onMount(() => {
+		currStep.set(2);
+	});
+
 	function watchQr(qr: string) {
 		if (!qr) return;
 
 		const ws = createWebsocket();
 		ws.onmessage = (event) => {
-			console.log("?", event);
 			const data = JSON.parse(event.data);
 			if (data.creds) {
 				buttonVisible = true;
-			} else {
-				console.log(data.login);
-				console.log("WTF");
 			}
 		};
 	}
@@ -188,7 +189,7 @@
 				{#if qrVisible}
 					<div class="right">
 						{#if qr}
-							<Qr size="{250}" data="{qr}" />
+							<Qr size="{200}" data="{qr}" />
 						{/if}
 						<div class="scan-header">
 							<Typography variant="card-header"
@@ -211,6 +212,8 @@
 									goto(`/demo/journeys/${selectedJourney}`);
 								}}"
 								variant="secondary" />
+						{:else}
+							<Loading size="30px" />
 						{/if}
 					</div>
 				{/if}

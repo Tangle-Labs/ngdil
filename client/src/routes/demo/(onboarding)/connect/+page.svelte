@@ -126,9 +126,6 @@
 			const data = JSON.parse(event.data);
 			if (data.login) {
 				goto("/demo/choose-journey");
-			} else {
-				console.log(data.login);
-				console.log("WTF");
 			}
 		};
 	});
@@ -153,7 +150,7 @@
 	</div>
 	<div class="cards">
 		{#if qr}
-			<Qr size="{250}" data="{qr}" />
+			<Qr size="{200}" data="{qr}" />
 		{/if}
 	</div>
 </div>

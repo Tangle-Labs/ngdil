@@ -360,11 +360,11 @@
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--black-500"
-								>Koning Willem 1 College</Typography>
+								>Koning Willem I College</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--black-500"
-								>Koning Willem 1 College</Typography>
+								>Koning Willem I College</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--black-500"
@@ -399,7 +399,7 @@
 							<div class="data">
 								<CredModal
 									name="College ID"
-									issuer="Koning Willem 1 College"
+									issuer="Koning Willem I College"
 									credential="{{
 										...credentials.collegeId,
 										'Student Name': $peterChosenStudent
@@ -409,7 +409,7 @@
 							<div class="data">
 								<CredModal
 									name="Internationalisation Badge"
-									issuer="Koning Willem 1 College"
+									issuer="Koning Willem I College"
 									logo="/imgs/kw1c-white.png"
 									credential="{{ ...credentials.internationalisation }}" />
 							</div>

@@ -298,19 +298,20 @@ export const auth = expressAsyncHandler(async (req: Request, res: Response) => {
 	if (vp_token) {
 		// @ts-ignore
 		await rp.verifyAuthResponse(req.body, presentationDefinitions[state.split("::")[0]]);
-		console.log("verified?");
+		console.log("oid4vp: verified");
 		wsServer.broadcast(state.split("::")[1], { received: true });
 		res.status(200).send();
 	} else if (id_token) {
 		await rp.verifyAuthResponse(req.body);
 		const { iss } = await rp.validateJwt(id_token);
 
-		console.log(req.body);
 		// @ts-ignore
 		await SessionsService.findByIdAndUpdate(state, {
 			isValid: true,
 			did: iss
 		});
+
+		console.log("siopv2: authenticated");
 
 		wsServer.broadcast(state, { login: true });
 

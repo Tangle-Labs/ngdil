@@ -8,7 +8,7 @@ export function createWebsocket() {
 	ws.onclose = function (e) {
 		console.log("Socket is closed. Reconnect will be attempted in 1 second.", e.reason);
 		interval = setInterval(function () {
-			console.log("should not bombard this");
+			console.log("attempting reconnect");
 			ws = new WebSocket(PUBLIC_WS_URI);
 			retries++;
 			if (retries < 10) return;
@@ -17,7 +17,6 @@ export function createWebsocket() {
 		}, 2000);
 	};
 	ws.onopen = () => {
-		console.log("here?");
 		interval = null;
 		if (!interval) return;
 		clearInterval(interval);

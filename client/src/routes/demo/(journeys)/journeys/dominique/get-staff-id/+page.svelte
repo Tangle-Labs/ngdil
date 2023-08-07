@@ -196,7 +196,7 @@
 				<button class="button" on:click="{() => goto('/demo/journeys/dominique/job-secured')}"
 					>Continue</button>
 			{:else if qr}
-				<Qr data="{qr}" size="{260}" />
+				<Qr data="{qr}" size="{200}" />
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text"

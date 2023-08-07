@@ -227,7 +227,6 @@
 	const ws = createWebsocket();
 	ws.onmessage = (event) => {
 		const data = JSON.parse(event.data);
-		console.log(data);
 		if (data.received) {
 			receivedCreds = true;
 		}
@@ -263,7 +262,7 @@
 				<button class="button" on:click="{() => goto('/demo/journeys/dominique/new-message')}"
 					>Continue</button>
 			{:else if qr}
-				<Qr data="{qr}" size="{260}" />
+				<Qr data="{qr}" size="{200}" />
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text"
@@ -328,7 +327,7 @@
 							>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography>
 					</div>
 					<div class="issued-by">
-						<Typography variant="sub-text">Issued by<br /> Konning Willem 1 College</Typography>
+						<Typography variant="sub-text">Issued by<br /> Konning Willem I College</Typography>
 					</div>
 					<button
 						class="button"

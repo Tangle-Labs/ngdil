@@ -7,6 +7,14 @@
 		box-sizing: border-box;
 		padding: 15vh 22.5vw;
 
+		@media screen and (max-width: 1200px) {
+			padding: 15vh 15vw;
+		}
+
+		@media screen and (max-width: 900px) {
+			padding: 15vh 5vw;
+		}
+
 		& > .container {
 			display: flex;
 			height: 100%;

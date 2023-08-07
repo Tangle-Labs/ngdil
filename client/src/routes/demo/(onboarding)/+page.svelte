@@ -17,20 +17,25 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, Button } from "$lib/components";
+	import { Typography, Button, Hightlight } from "$lib/components";
+	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currStep } from "$lib/stores/onboarding.store";
+	import { onMount } from "svelte";
 
 	function handleContinue() {
 		currStep.set(1);
 		goto("/demo/download-wallet");
 	}
+
+	onMount(() => {
+		currStep.set(0);
+	});
 </script>
 
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>Welcome to the NGDIL interactive demo for self-sovereign identity in learning.</Typography
-		>
+			>Welcome to the <Highlight>NGDIL interactive demo</Highlight> for self-sovereign identity in learning.</Typography>
 	</div>
 	<div class="desc">
 		<Typography variant="button">

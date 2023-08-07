@@ -63,9 +63,6 @@
 		const data = JSON.parse(event.data);
 		if (data.login) {
 			goto("/demo/journeys/imani/applications");
-		} else {
-			console.log(data.login);
-			console.log("WTF");
 		}
 	};
 
@@ -98,7 +95,7 @@
 				</div>
 				<div class="login-card">
 					{#if qr}
-						<Qr data="{qr}" size="{220}" />
+						<Qr data="{qr}" size="{200}" />
 					{/if}
 					<div class="heading">
 						<Typography variant="list" color="--future-tech-green-300">Scan QR to Login</Typography>
