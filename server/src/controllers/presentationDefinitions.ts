@@ -184,6 +184,14 @@ export const presentationDefinitions = {
 									pattern: "Employee ID"
 								}
 							}
+						},
+						{
+							path: ["$.id"],
+							filter: {
+								type: "string",
+								// prettier-ignore
+								pattern: ".*futuretech.*"
+							}
 						}
 					]
 				}

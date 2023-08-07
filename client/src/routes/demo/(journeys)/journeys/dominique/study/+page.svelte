@@ -95,6 +95,10 @@
 			margin-top: 20px;
 		}
 
+		.loading {
+			width: 100%;
+		}
+
 		.subtext {
 			width: 100%;
 		}
@@ -167,6 +171,9 @@
 				</div>
 			{:else if qr}
 				<Qr data="{qr}" size="{200}" />
+				<div class="loading">
+					<Loading img="/imgs/blue-loading.png" size="30px" />
+				</div>
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text"

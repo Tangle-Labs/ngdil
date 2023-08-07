@@ -75,7 +75,7 @@
 			{#if currStatus === "loaded"}
 				Great! All of <Highlight
 					>{$imaniChosenApplicant?.split(" ")[0]}’s credentials are verified.</Highlight> With such a
-				good CV let’s hire Gillian.
+				good CV let’s hire {$imaniChosenApplicant?.split(" ")[0]}.
 			{:else}
 				{$imaniChosenApplicant?.split(" ")[0]} has <Highlight
 					>shared their digital CV with you.</Highlight> It’s time to verify their credentials.

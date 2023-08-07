@@ -162,6 +162,10 @@
 			padding: 20px 0;
 		}
 
+		.loading {
+			width: 100%;
+		}
+
 		.p {
 			color: var(--black-500);
 			font-weight: 300;
@@ -270,6 +274,9 @@
 					>Continue</button>
 			{:else if qr}
 				<Qr data="{qr}" size="{200}" />
+				<div class="loading">
+					<Loading size="30px" img="/imgs/blue-loading.png" />
+				</div>
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text"
