@@ -106,6 +106,7 @@
 	import { apiClient } from "$lib/utils/axios.utils";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { createWebsocket } from "$lib/utils/ws.util";
+	import { onMount } from "svelte";
 	let qr: string;
 
 	const journeys = {
@@ -134,6 +135,10 @@
 	let qrVisible = false;
 	let buttonVisible = false;
 	apiClient.get("/");
+
+	onMount(() => {
+		currStep.set(2);
+	});
 
 	function watchQr(qr: string) {
 		if (!qr) return;

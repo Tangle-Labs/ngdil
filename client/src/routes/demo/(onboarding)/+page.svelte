@@ -19,18 +19,22 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Button } from "$lib/components";
 	import { currStep } from "$lib/stores/onboarding.store";
+	import { onMount } from "svelte";
 
 	function handleContinue() {
 		currStep.set(1);
 		goto("/demo/download-wallet");
 	}
+
+	onMount(() => {
+		currStep.set(0);
+	});
 </script>
 
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>Welcome to the NGDIL interactive demo for self-sovereign identity in learning.</Typography
-		>
+			>Welcome to the NGDIL interactive demo for self-sovereign identity in learning.</Typography>
 	</div>
 	<div class="desc">
 		<Typography variant="button">

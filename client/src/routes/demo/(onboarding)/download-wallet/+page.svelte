@@ -89,6 +89,7 @@
 	import { Typography, Card, Button, Modal } from "$lib/components";
 	import { currStep } from "$lib/stores/onboarding.store";
 	import { apiClient } from "$lib/utils/axios.utils";
+	import { onMount } from "svelte";
 
 	let modalVisible = false;
 
@@ -96,6 +97,10 @@
 		currStep.set(2);
 		goto("/demo/choose-journey");
 	}
+
+	onMount(() => {
+		currStep.set(1);
+	});
 </script>
 
 <Modal bind:isOpen="{modalVisible}" withBorder="{true}" borderRadius="8">
