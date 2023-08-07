@@ -200,14 +200,14 @@
 								<Typography variant="list">Future Engineer Diploma</Typography>
 							</div>
 							<div class="issuer">
-								<Typography variant="sub-text">Issued by Koning Willem 1 College</Typography>
+								<Typography variant="sub-text">Issued by Koning Willem I College</Typography>
 							</div>
 						</div>
 					</div>
 					{#if currStatus === "loaded"}
 						<div class="verify">
 							<CredModal
-								issuer="Koning Willem 1 College"
+								issuer="Koning Willem I College"
 								name="Future Engineer Diploma"
 								logo="/imgs/kw1c-white.png"
 								credential="{{

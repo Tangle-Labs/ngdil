@@ -17,7 +17,7 @@ export const credentials = {
 		Language: "Dutch"
 	},
 	collegeId: {
-		Issuer: "Koning Willem 1 College",
+		Issuer: "Koning Willem I College",
 		"Student Name": "",
 		"Student Number": Math.random().toString(36).slice(2).toUpperCase(),
 		"Date Issued": new Date(Date.now() - 1_000_000_000).toDateString(),

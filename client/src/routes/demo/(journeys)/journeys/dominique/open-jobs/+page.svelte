@@ -328,7 +328,7 @@
 							>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography>
 					</div>
 					<div class="issued-by">
-						<Typography variant="sub-text">Issued by<br /> Konning Willem 1 College</Typography>
+						<Typography variant="sub-text">Issued by<br /> Konning Willem I College</Typography>
 					</div>
 					<button
 						class="button"

@@ -294,7 +294,7 @@
 										>{dominqueCourses[$dominiqueSelectedCourse].name} Certificate</Typography>
 								</div>
 								<div class="sub-text">
-									<Typography variant="sub-text">Issued by Konning Willem 1 College</Typography>
+									<Typography variant="sub-text">Issued by Konning Willem I College</Typography>
 								</div>
 							</div>
 						</div>
