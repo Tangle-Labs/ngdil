@@ -128,7 +128,8 @@
 
 	onMount(async () => {
 		const { data } = await apiClient.post("/api/credential-offer", {
-			credential: dominqueCourses[$dominiqueSelectedCourse].name
+			credential: dominqueCourses[$dominiqueSelectedCourse].name,
+			issuer: "kw1c"
 		});
 		qr = data.uri;
 		currNode.set(2);

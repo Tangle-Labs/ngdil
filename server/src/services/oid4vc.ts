@@ -1,4 +1,4 @@
-import { PUBLIC_BASE_URI } from "@/config";
+import { PUBLIC_BASE_URI, PUBLIC_CLIENT_URI } from "@/config";
 import { resolver } from "@/utils";
 import {
 	IssuerStoreData,
@@ -61,3 +61,31 @@ export const issuer = new VcIssuer({
 	...rpKeys,
 	resolver
 });
+export const issuers = {
+	bbc: new VcIssuer({
+		credentialEndpoint: `${PUBLIC_BASE_URI}/api/credential`,
+		batchCredentialEndpoint: `${PUBLIC_BASE_URI}/api/credentials`,
+		credentialIssuer: new URL("/bbc", PUBLIC_BASE_URI).toString(),
+		cryptographicBindingMethodsSupported: ["did:iota"],
+		cryptographicSuitesSupported: ["EdDSA"],
+		proofTypesSupported: ["jwt"],
+		store: new SimpleStore<IssuerStoreData>({ reader, writer }),
+		client_name: "Big Business Corp",
+		logo_uri: new URL("/imgs/bbc.png", PUBLIC_CLIENT_URI).toString(),
+		...rpKeys,
+		resolver
+	}),
+	kw1c: new VcIssuer({
+		credentialEndpoint: `${PUBLIC_BASE_URI}/api/credential`,
+		batchCredentialEndpoint: `${PUBLIC_BASE_URI}/api/credentials`,
+		credentialIssuer: new URL("/kw1c", PUBLIC_BASE_URI).toString(),
+		cryptographicBindingMethodsSupported: ["did:iota"],
+		cryptographicSuitesSupported: ["EdDSA"],
+		proofTypesSupported: ["jwt"],
+		store: new SimpleStore<IssuerStoreData>({ reader, writer }),
+		client_name: "Koning Willem I College",
+		logo_uri: new URL("/imgs/kw1c-white.png", PUBLIC_CLIENT_URI).toString(),
+		...rpKeys,
+		resolver
+	})
+};

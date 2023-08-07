@@ -12,12 +12,14 @@ import {
 	tokeEndpoint,
 	vpRequest,
 	getCredOffer,
-	getSiopRequest
+	getSiopRequest,
+	sendSpecificMetadata
 } from "@/controllers/openid";
 
 const router = Router();
 
 router.route("/.well-known/openid-credential-issuer").get(sendMetadata);
+router.route("/:issuer/.well-known/openid-credential-issuer").get(sendSpecificMetadata);
 router.route("/api/credential").post(credentialEndpoint);
 router.route("/api/credentials").post(batchCredentialEndpoint);
 router.route("/api/oid4vp").post(vpRequest);

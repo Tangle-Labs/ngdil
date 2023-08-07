@@ -158,7 +158,8 @@
 	onMount(async () => {
 		currNode.set(4);
 		const { data } = await apiClient.post("/api/credential-offer", {
-			credential: "Staff ID"
+			credential: "Staff ID",
+			issuer: "bbc"
 		});
 		qr = data.uri;
 	});
