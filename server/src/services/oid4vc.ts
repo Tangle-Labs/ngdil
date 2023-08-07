@@ -22,7 +22,7 @@ const rpKeys = {
 
 export const rp = new RelyingParty({
 	redirectUri: `${PUBLIC_BASE_URI}/auth`,
-	clientId: "did:iota:AUMDtBCbC6g8iUFMDQUzprUEMpZMgyE3jcxGtmTRAnmR",
+	clientId: rpKeys.did,
 	clientMetadata: {
 		subjectSyntaxTypesSupported: ["did:iota"],
 		idTokenSigningAlgValuesSupported: [SigningAlgs.EdDSA],
