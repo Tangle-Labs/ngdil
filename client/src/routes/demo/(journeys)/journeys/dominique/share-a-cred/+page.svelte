@@ -45,8 +45,10 @@
 
 	const loadQr = async function () {
 		const { data } = await apiClient.post("/siop", {
-			overrideLogo: `${PUBLIC_CLIENT_URI}/imgs/openjobs.png`,
-			overrideClientName: "Open Jobs"
+			clientMetadata: {
+				logoUri: `${PUBLIC_CLIENT_URI}/imgs/openjobs.png`,
+				clientName: "Open Jobs"
+			}
 		});
 		qr = data.uri;
 	};

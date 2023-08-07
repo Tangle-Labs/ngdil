@@ -134,11 +134,13 @@ export const batchCredentialEndpoint = expressAsyncHandler(async (req: Request, 
 
 export const siopRequest = expressAsyncHandler(async (req: Request, res: Response) => {
 	const id = nanoid();
+	const { clientMetadata } = req.body;
 	const request = await rp.createRequest({
 		requestBy: "reference",
 		requestUri: new URL(`/api/offers/siop/${id}`, PUBLIC_BASE_URI).toString(),
 		responseType: "id_token",
-		state: req.session.id
+		state: req.session.id,
+		clientMetadata
 	});
 	SiopOfferService.create({ id, request: request.request });
 
@@ -147,14 +149,15 @@ export const siopRequest = expressAsyncHandler(async (req: Request, res: Respons
 
 export const vpRequest = expressAsyncHandler(async (req: Request, res: Response) => {
 	const id = nanoid();
-	const { presentationStage, overrideLogo } = req.body;
+	const { presentationStage, clientMetadata } = req.body;
 	const request = await rp.createRequest({
 		requestBy: "reference",
 		requestUri: new URL(`/api/offers/siop/${id}`, PUBLIC_BASE_URI).toString(),
 		responseType: "vp_token",
 		// @ts-ignore
 		presentationDefinition: presentationDefinitions[presentationStage],
-		state: `${presentationStage}::${req.session.id}`
+		state: `${presentationStage}::${req.session.id}`,
+		clientMetadata
 	});
 
 	SiopOfferService.create({ id, request: request.request });

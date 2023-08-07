@@ -26,8 +26,8 @@ export const rp = new RelyingParty({
 	clientMetadata: {
 		subjectSyntaxTypesSupported: ["did:iota"],
 		idTokenSigningAlgValuesSupported: [SigningAlgs.EdDSA],
-		client_name: "NGDIL",
-		logo_uri:
+		clientName: "NGDIL",
+		logoUri:
 			"https://uploads-ssl.webflow.com/6440ceac338a9203b5100c47/6440ceac338a920197100e60_NGDIL%20Logo%20Dark.svg"
 	},
 	...rpKeys,
@@ -55,8 +55,8 @@ export const issuer = new VcIssuer({
 	cryptographicSuitesSupported: ["EdDSA"],
 	proofTypesSupported: ["jwt"],
 	store: new SimpleStore<IssuerStoreData>({ reader, writer }),
-	client_name: "NGDIL",
-	logo_uri:
+	clientName: "NGDIL",
+	logoUri:
 		"https://uploads-ssl.webflow.com/6440ceac338a9203b5100c47/6440ceac338a920197100e60_NGDIL%20Logo%20Dark.svg",
 	...rpKeys,
 	resolver
@@ -70,8 +70,8 @@ export const issuers = {
 		cryptographicSuitesSupported: ["EdDSA"],
 		proofTypesSupported: ["jwt"],
 		store: new SimpleStore<IssuerStoreData>({ reader, writer }),
-		client_name: "Big Business Corp",
-		logo_uri: new URL("/imgs/bbc.png", PUBLIC_CLIENT_URI).toString(),
+		clientName: "Big Business Corp",
+		logoUri: new URL("/imgs/bbc.png", PUBLIC_CLIENT_URI).toString(),
 		...rpKeys,
 		resolver
 	}),
@@ -83,8 +83,8 @@ export const issuers = {
 		cryptographicSuitesSupported: ["EdDSA"],
 		proofTypesSupported: ["jwt"],
 		store: new SimpleStore<IssuerStoreData>({ reader, writer }),
-		client_name: "Koning Willem I College",
-		logo_uri: new URL("/imgs/kw1c-white.png", PUBLIC_CLIENT_URI).toString(),
+		clientName: "Koning Willem I College",
+		logoUri: new URL("/imgs/kw1c-white.png", PUBLIC_CLIENT_URI).toString(),
 		...rpKeys,
 		resolver
 	})

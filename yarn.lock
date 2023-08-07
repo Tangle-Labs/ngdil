@@ -2968,10 +2968,10 @@
   dependencies:
     crypto-js "^4.1.1"
 
-"@tanglelabs/oid4vc@^0.1.4":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@tanglelabs/oid4vc/-/oid4vc-0.1.4.tgz#e10ee63b8b3fce1f4ce785dc4c5b8c7117dc45ff"
-  integrity sha512-Yk0RRFKRB6Sw6KXju02wPY3Oh+eVVlJ/5GWlB91IUCMWhcK6mV0fCmJunKa2c8YBGKtoC1ch918xOKIacFiIjQ==
+"@tanglelabs/oid4vc@^0.1.6":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@tanglelabs/oid4vc/-/oid4vc-0.1.6.tgz#55b198d9c522a8cb315eded535c2d3913f244739"
+  integrity sha512-n89ddDhR0+zoZ/mZbl3w9BEI6vnrdncjx9Y6PwFnlngSmXh9Nb+s158Nd39SM3jKkivEc6JIe6g8eG0Kdj2k2A==
   dependencies:
     "@sphereon/pex" "^2.1.0"
     "@sphereon/pex-models" "^2.0.3"
