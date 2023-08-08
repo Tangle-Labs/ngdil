@@ -32,6 +32,10 @@
 		currStep.set(1);
 		goto("/demo/download-wallet");
 	}
+
+	onMount(() => {
+		currStep.set(0);
+	});
 </script>
 
 <div class="container">
