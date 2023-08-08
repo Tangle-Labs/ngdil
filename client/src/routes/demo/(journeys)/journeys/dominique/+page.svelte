@@ -83,9 +83,11 @@
 						</div>
 						<div class="desc">
 							<Typography
+
 								>Here you will use your self-sovereign identity to connect to the KW1C learning
 								portal, apply for an educational course, complete the course and obtain your first
 								verifiable credential.</Typography>
+
 						</div>
 					</div>
 					<Button
