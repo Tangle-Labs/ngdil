@@ -51,7 +51,8 @@
 	let qr: string;
 
 	const loadQr = async function () {
-		const { data } = await apiClient.post("/siop", {
+		const { data } = await apiClient.post("/api/oid4vp", {
+			presentationStage: "imaniLogin",
 			clientMetadata: {
 				logoUri: `${PUBLIC_CLIENT_URI}/imgs/future-tech.png`,
 				clientName: "Future Tech Co."
@@ -63,7 +64,7 @@
 	const ws = createWebsocket();
 	ws.onmessage = (event) => {
 		const data = JSON.parse(event.data);
-		if (data.login) {
+		if (data.received) {
 			goto("/demo/journeys/imani/applications");
 		}
 	};
@@ -97,7 +98,11 @@
 				</div>
 				<div class="login-card">
 					{#if qr}
-						<Qr data="{qr}" size="{200}" />
+						<Qr
+							data="{qr}"
+							size="{200}"
+							bgColor="var(--future-tech-green)"
+							fgColor="var(--future-tech-green-300)" />
 					{/if}
 					<div class="heading">
 						<Typography variant="list" color="--future-tech-green-300">Scan QR to Login</Typography>

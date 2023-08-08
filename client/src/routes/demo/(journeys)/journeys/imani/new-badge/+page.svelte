@@ -149,6 +149,9 @@
 	let variant: "hexagon" | "crest" | "rounded-hexagon" | "circle" | null = null;
 	let creatingBadgeImage = true;
 
+	let badgeNameValue: string;
+	let badgeDescValue: string;
+
 	let badgeName: string = "3d Print Team Management";
 	let badgeDesc: string =
 		"This badge is to certify the holder demonstrates the ability to operate as a team manager within an advanced technology 3d print environment.";
@@ -182,13 +185,21 @@
 
 <div class="container">
 	<div class="heading">
-		<Typography variant="heading"
-			>A badge needs to look the part. <Highlight>Let’s create an image template</Highlight>for the
-			badge in the creator.</Typography>
+		<Typography variant="heading">
+			{#if creatingBadgeImage}
+				A badge needs to look the part. <Highlight>Let’s create an image template</Highlight>for the
+				badge in the creator.
+			{:else}
+				Now we <Highlight>have our badge image ready,</Highlight> let’s give the badge some information
+				to show what it is for.
+			{/if}
+		</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography
-			>Select the shape and color for your badge and click continue to proceed.</Typography>
+			>{creatingBadgeImage
+				? "Select the shape and color for your badge and click continue to proceed."
+				: "Click the fields to add a badge name and description, then click continue to proceed."}</Typography>
 	</div>
 	<div class="dash">
 		<FutureTech header="NEW BADGE">
@@ -256,7 +267,11 @@
 			{:else}
 				<div class="input">
 					<div class="label"><Typography variant="list">Badge Name</Typography></div>
-					<input type="text" placeholder="3d Print Engineer" bind:value="{badgeName}" />
+					<input
+						type="text"
+						placeholder="3d Print Engineer"
+						on:click="{() => (badgeNameValue = badgeName)}"
+						bind:value="{badgeNameValue}" />
 					<div class="sub-text">
 						<Typography variant="sub-text">Enter Badge name here</Typography>
 					</div>
@@ -266,8 +281,9 @@
 					<div class="label"><Typography variant="list">Badge Description</Typography></div>
 					<textarea
 						rows="{5}"
-						bind:value="{badgeDesc}"
-						placeholder="3d Print Engineer Badge Description"></textarea>
+						bind:value="{badgeDescValue}"
+						placeholder="3d Print Engineer Badge Description"
+						on:click="{() => (badgeDescValue = badgeDesc)}"></textarea>
 					<div class="sub-text">
 						<Typography variant="sub-text">Enter Badge description here</Typography>
 					</div>
@@ -278,7 +294,7 @@
 					onClick="{handleCreateBadge}"
 					label="Continue"
 					variant="{(creatingBadgeImage && !(variant && color)) ||
-					(!creatingBadgeImage && !(badgeDesc && badgeName))
+					(!creatingBadgeImage && !(badgeDescValue && badgeNameValue))
 						? 'future-tech-disabled'
 						: 'future-tech'}" />
 			</div>

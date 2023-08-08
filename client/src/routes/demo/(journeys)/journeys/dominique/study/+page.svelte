@@ -95,6 +95,10 @@
 			margin-top: 20px;
 		}
 
+		.loading {
+			width: 100%;
+		}
+
 		.subtext {
 			width: 100%;
 		}
@@ -134,6 +138,14 @@
 		qr = data.uri;
 		currNode.set(2);
 	});
+	const handleStudy = () => {
+		currNode.set(3);
+		studied = true;
+		const counting = setInterval(() => {
+			if (progress > 100) clearInterval(counting);
+			progress = progress < 100 ? progress + 1 : progress;
+		}, 1);
+	};
 
 	const ws = createWebsocket();
 	ws.onmessage = (event) => {
@@ -167,6 +179,9 @@
 				</div>
 			{:else if qr}
 				<Qr data="{qr}" size="{200}" />
+				<div class="loading">
+					<Loading img="/imgs/blue-loading.png" size="30px" />
+				</div>
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text"
@@ -237,14 +252,7 @@
 									showModal = true;
 								}}" />
 						{:else}
-							<Button
-								variant="kw1c"
-								label="START STUDYING"
-								onClick="{() => {
-									currNode.set(3);
-									studied = true;
-									progress = 100;
-								}}" />
+							<Button variant="kw1c" label="START STUDYING" onClick="{handleStudy}" />
 						{/if}
 					</div>
 				</div>

@@ -240,13 +240,13 @@
 
 					<div class="column">
 						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c">Internship Category</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c">Course of Study</Typography>
 						</div>
 
 						{#each $peterChosenStudents as student (student)}
 							<div class="data">
 								<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-									>3D Print Design</Typography>
+									>Internationalisation Course</Typography>
 							</div>
 						{/each}
 					</div>

@@ -28,16 +28,30 @@
 				padding-bottom: 20px;
 			}
 
-			& > .progress {
-				width: 100%;
-				justify-content: center;
+			& > .bottom {
+				width: 50%;
 				display: flex;
+				justify-content: center;
+				position: relative;
 
-				& > .bar {
-					width: 50%;
+				& > .back {
+					position: absolute;
+					top: 50%;
+					transform: translateY(-50%);
+					left: 0;
+				}
 
-					@media screen and (max-width: 900px) {
-						width: 100%;
+				.progress {
+					width: calc(100% - 200px);
+					justify-content: center;
+					display: flex;
+
+					& > .bar {
+						width: 50%;
+
+						@media screen and (max-width: 900px) {
+							width: 100%;
+						}
 					}
 				}
 			}
@@ -46,7 +60,7 @@
 </style>
 
 <script>
-	import { ProgressBar } from "$lib/components";
+	import { ProgressBar, Typography } from "$lib/components";
 	import { completedJourneys } from "$lib/stores/flows.store";
 	import { currStep } from "$lib/stores/onboarding.store";
 	import { apiClient } from "$lib/utils/axios.utils";
@@ -61,10 +75,18 @@
 		<div class="slot">
 			<slot />
 		</div>
-		{#if $completedJourneys.length === 0}
-			<div class="progress">
-				<div class="bar">
-					<ProgressBar nodes="{5}" bind:current="{$currStep}" />
+		{#if !(window.location.pathname === "/demo/choose-journey" && $completedJourneys.length > 0)}
+			<div class="bottom">
+				<div
+					class="back"
+					on:click="{() => {
+						history.back();
+					}}">
+					<img src="/imgs/back.svg" alt="" class="icon" />
+					<Typography variant="button" color="--black-300">Back</Typography>
+				</div>
+				<div class="progress">
+					<ProgressBar nodes="{5}" current="{$currStep}" />
 				</div>
 			</div>
 		{/if}

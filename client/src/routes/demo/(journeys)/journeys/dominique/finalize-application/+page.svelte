@@ -102,6 +102,10 @@
 		.checked {
 			height: 60px;
 		}
+
+		.loading {
+			width: 100%;
+		}
 	}
 
 	.button-container {
@@ -209,6 +213,9 @@
 					>Continue</button>
 			{:else if qr}
 				<Qr data="{qr}" size="{200}" />
+				<div class="loading">
+					<Loading size="30px" img="/imgs/blue-loading.png" />
+				</div>
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text"
