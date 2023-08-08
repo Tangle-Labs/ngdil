@@ -61,13 +61,18 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>Hi Imani. Let’s <Highlight>get you hiring some experienced staff</Highlight>. Select your
-			first experience to get started.</Typography
-		>
+			>{#if $imaniHiredEmployee}
+				<Highlight>Great new hire.</Highlight> Let’s get creating a new open badge and training the staff.
+			{:else}
+				Hi Imani. Let’s <Highlight>get you hiring some experienced staff</Highlight>. Select your
+				first experience to get started.
+			{/if}</Typography>
 	</div>
 	<div class="desc">
 		<Typography variant="button">
-			Select the first experience to start Imani’s journey and get hiring a new employee.
+			{$imaniHiredEmployee
+				? "Select the next experience to continue Imani’s journey and train some employees."
+				: "Select the first experience to start Imani’s journey and get hiring a new employee."}
 		</Typography>
 	</div>
 
@@ -92,8 +97,7 @@
 						onClick="{() => {
 							goto('/demo/journeys/imani/login');
 						}}"
-						label="{$imaniHiredEmployee ? 'Retry' : 'Get Started'}"
-					/>
+						label="{$imaniHiredEmployee ? 'Retry' : 'Get Started'}" />
 				</div>
 			</Card>
 		</div>
@@ -122,8 +126,7 @@
 						onClick="{() => {
 							goto('/demo/journeys/imani/company-badges');
 						}}"
-						label="{$imaniIssuedBadge ? 'Retry' : 'Get Started'}"
-					/>
+						label="{$imaniIssuedBadge ? 'Retry' : 'Get Started'}" />
 				</div>
 			</Card>
 		</div>
@@ -132,8 +135,7 @@
 				<Button
 					variant="secondary"
 					onClick="{() => goto('/demo/choose-journey')}"
-					label="Try Another Journey"
-				/>
+					label="Try Another Journey" />
 			</div>
 		{/if}
 	</div>

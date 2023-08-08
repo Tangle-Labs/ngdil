@@ -264,10 +264,7 @@
 
 				<div class="input">
 					<div class="label"><Typography variant="list">Badge Description</Typography></div>
-					<textarea
-						rows="{5}"
-						bind:value="{badgeDesc}"
-						placeholder="3d Print Engineer Badge Description"></textarea>
+					<textarea rows="{5}" placeholder="3d Print Engineer Badge Description"></textarea>
 					<div class="sub-text">
 						<Typography variant="sub-text">Enter Badge description here</Typography>
 					</div>

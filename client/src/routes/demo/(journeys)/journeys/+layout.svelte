@@ -74,6 +74,7 @@
 	import { Avatar, Button, ProgressBar, Typography } from "$lib/components";
 	import {
 		JourneyInfo,
+		completedJourneys,
 		currNode,
 		currentJourney,
 		nodeCount,
@@ -132,7 +133,7 @@
 	<slot />
 </div>
 
-{#if $nodeCount > 0}
+{#if $nodeCount > 0 && !(window.location.pathname === "/demo/choose-journey" && $completedJourneys.length > 1)}
 	<div class="bottom">
 		<div
 			class="back"
