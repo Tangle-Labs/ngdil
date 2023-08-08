@@ -28,7 +28,7 @@
 	}
 
 	onMount(() => {
-		currStep.set(0);
+		goto("/demo");
 	});
 </script>
 
