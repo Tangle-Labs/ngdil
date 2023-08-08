@@ -12,6 +12,8 @@
 	export let data: string;
 	export let logo: string = "/imgs/tl-logo.png";
 	export let size = 220;
+	export let bgColor = "#ffffff";
+	export let fgColor = "#3d3d3d";
 
 	let options: Options = {
 		data,
@@ -23,8 +25,11 @@
 			errorCorrectionLevel: "M"
 		},
 		dotsOptions: {
-			color: "#3d3d3d",
+			color: fgColor,
 			type: "classy-rounded"
+		},
+		backgroundOptions: {
+			color: bgColor
 		}
 	};
 </script>

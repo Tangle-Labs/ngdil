@@ -91,12 +91,11 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>Your badge template is looking great. <Highlight>Let’s create the badge</Highlight> template so
-			it is available for trainees.</Typography
-		>
+			>Your badge template is looking great. <Highlight>Let’s save the badge</Highlight> template so
+			it is available for trainees.</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography>Click the create badge button to confirm the badge template.</Typography>
+		<Typography>Click the save badge button to confirm the badge template.</Typography>
 	</div>
 	<div class="dash">
 		<FutureTech header="COMPANY BADGES">
@@ -142,11 +141,10 @@
 			<div class="button-container">
 				<Button
 					variant="future-tech"
-					label="Create Badge"
+					label="Save Badge"
 					onClick="{() => {
 						goto('/demo/journeys/imani/badges');
-					}}"
-				/>
+					}}" />
 			</div>
 		</FutureTech>
 	</div>

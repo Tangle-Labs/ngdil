@@ -212,8 +212,7 @@
 					YOU HAVE SUCCESSFULLY ISSUED {selected.length} STUDENT INTERNATIONALISATION COURSE BADGES
 				{:else}
 					YOU ARE ABOUT TO ISSUE {selected.length} STUDENT INTERNATIONALISATION COURSE BADGES
-				{/if}</Typography
-			>
+				{/if}</Typography>
 			<div class="p">
 				{#if state === "loaded"}
 					Click the CONTINUE button to continue and assign student internship placements.
@@ -223,8 +222,7 @@
 				<Loading img="/imgs/blue-loading.png" />
 			{:else}
 				<button class="button" on:click="{handleModalClick}"
-					>{state === "init" ? "ISSUE BADGES" : "CONTINUE"}</button
-				>
+					>{state === "init" ? "ISSUE BADGES" : "CONTINUE"}</button>
 			{/if}
 
 			<div class="subtext">
@@ -262,57 +260,36 @@
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c" color="--white-300">.</Typography>
 						</div>
-						<div class="data">
-							<Radio bind:checked="{students['Sarah Jones']}" />
-						</div>
-						<div class="data">
-							<Radio bind:checked="{students['Ivar Leifsson']}" />
-						</div>
-						<div class="data">
-							<Radio bind:checked="{students['Lagertha Bonde']}" />
-						</div>
+						{#each $peterChosenStudents as student (student)}
+							<div class="data">
+								<Radio bind:checked="{students[student]}" />
+							</div>
+						{/each}
 					</div>
 
 					<div class="column">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c">Student Applicant</Typography>
 						</div>
-						<div class="data">
-							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>SARAH JONES</Typography
-							>
-						</div>
-						<div class="data">
-							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>IVAR LEIFSSON</Typography
-							>
-						</div>
-						<div class="data">
-							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>LAGERTHA BONDE</Typography
-							>
-						</div>
+						{#each $peterChosenStudents as student}
+							<div class="data">
+								<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
+									>{student.toUpperCase()}</Typography>
+							</div>
+						{/each}
 					</div>
 
 					<div class="column">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c">Internship Category</Typography>
 						</div>
-						<div class="data">
-							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography
-							>
-						</div>
-						<div class="data">
-							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography
-							>
-						</div>
-						<div class="data">
-							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography
-							>
-						</div>
+
+						{#each $peterChosenStudents as student (student)}
+							<div class="data">
+								<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
+									>3D Print Design</Typography>
+							</div>
+						{/each}
 					</div>
 
 					<div class="column">
@@ -320,31 +297,19 @@
 							<Typography variant="sub-text" fontVariant="kw1c">Course Result</Typography>
 						</div>
 
-						<div class="data">
-							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--green-900"
-								>PASS</Typography
-							>
-						</div>
-
-						<div class="data">
-							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--green-900"
-								>PASS</Typography
-							>
-						</div>
-
-						<div class="data">
-							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--green-900"
-								>PASS</Typography
-							>
-						</div>
+						{#each $peterChosenStudents as student (student)}
+							<div class="data">
+								<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--green-900"
+									>PASS</Typography>
+							</div>
+						{/each}
 					</div>
 				</div>
 
 				<div class="button-container">
 					<button
 						class="{`button ${selected.length <= 0 && 'disabled'}`}"
-						on:click="{handleIssueCourseBadges}">ISSUE COURSE BADGES</button
-					>
+						on:click="{handleIssueCourseBadges}">ISSUE COURSE BADGES</button>
 				</div>
 			</div>
 		</Kw1c>

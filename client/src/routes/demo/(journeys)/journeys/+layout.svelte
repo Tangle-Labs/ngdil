@@ -82,11 +82,6 @@
 	} from "$lib/stores/flows.store";
 
 	let expanded = false;
-
-	afterNavigate(({ from, to }) => {
-		previousPath.update((p) => from?.url.pathname ?? p);
-		if (!to) return;
-	});
 </script>
 
 <div class="nav">
@@ -133,12 +128,12 @@
 	<slot />
 </div>
 
-{#if $nodeCount > 0 && !(window.location.pathname === "/demo/choose-journey" && $completedJourneys.length > 1)}
+{#if $nodeCount > 0}
 	<div class="bottom">
 		<div
 			class="back"
 			on:click="{() => {
-				goto($previousPath);
+				history.back();
 			}}">
 			<img src="/imgs/back.svg" alt="" class="icon" />
 			<Typography variant="button" color="--black-300">Back</Typography>
