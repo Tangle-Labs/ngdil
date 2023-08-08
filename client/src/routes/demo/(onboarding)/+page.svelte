@@ -11,6 +11,12 @@
 
 		& > .button {
 			padding-top: 60px;
+			width: 100%;
+		}
+
+		& > .heading,
+		& > .desc {
+			width: 40vw;
 		}
 	}
 </style>

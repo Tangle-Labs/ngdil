@@ -24,6 +24,11 @@
 					padding-bottom: 5px;
 				}
 
+				.requirements {
+					padding: 0 20px;
+					padding-bottom: 20px;
+				}
+
 				.title {
 					padding: 0 20px;
 					padding-bottom: 20px;
@@ -182,6 +187,14 @@
 							<div class="title">
 								<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
 									>{course.name.toUpperCase()}</Typography>
+							</div>
+
+							<div class="requirements">
+								<Typography>This course requires the following credentials:</Typography>
+								<ul>
+									<li><Typography>National ID</Typography></li>
+									<li><Typography>School Course Certificate</Typography></li>
+								</ul>
 							</div>
 
 							<div class="button">

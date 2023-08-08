@@ -138,6 +138,14 @@
 		qr = data.uri;
 		currNode.set(2);
 	});
+	const handleStudy = () => {
+		currNode.set(3);
+		studied = true;
+		const counting = setInterval(() => {
+			if (progress > 100) clearInterval(counting);
+			progress = progress < 100 ? progress + 1 : progress;
+		}, 1);
+	};
 
 	const ws = createWebsocket();
 	ws.onmessage = (event) => {
@@ -244,14 +252,7 @@
 									showModal = true;
 								}}" />
 						{:else}
-							<Button
-								variant="kw1c"
-								label="START STUDYING"
-								onClick="{() => {
-									currNode.set(3);
-									studied = true;
-									progress = 100;
-								}}" />
+							<Button variant="kw1c" label="START STUDYING" onClick="{handleStudy}" />
 						{/if}
 					</div>
 				</div>
