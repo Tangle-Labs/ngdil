@@ -6,7 +6,6 @@
 
 <script lang="ts">
 	import { qrcode } from "svelte-qrcode-action";
-	import { onMount } from "svelte";
 	import type { Options } from "qr-code-styling";
 
 	export let data: string;

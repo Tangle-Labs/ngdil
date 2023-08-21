@@ -2961,17 +2961,22 @@
     svelte-hmr "^0.15.2"
     vitefu "^0.2.4"
 
-"@tanglelabs/identity-manager@^0.4.4":
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/@tanglelabs/identity-manager/-/identity-manager-0.4.4.tgz#f71bd03037d0160b99a940fe1d8b4bd31b302a05"
-  integrity sha512-lCv6h/HRR2vZaXGdEoCBkd+telg7Ni6lQgHjFcbkLTKe6cirbAgi/ljLlDdPUSnNgagaRHbAwTxn7y4QUVlTTQ==
+"@tanglelabs/iota-identity-adapter@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@tanglelabs/iota-identity-adapter/-/iota-identity-adapter-0.2.2.tgz#8c5cba83216fd47aa37ad150b970c6ca85486e9a"
+  integrity sha512-gXnkkeJMOlSRDTlRNWqHOgm5WT3ZI6zOClUFPigoo+RubxPdchAZbggGNIL7UcY8/QGbLKQWqBRVRytGdBuQFA==
   dependencies:
-    crypto-js "^4.1.1"
+    "@iota/identity-wasm" "^0.6.0"
+    "@tanglelabs/ssimon" "^0.5.0"
+    did-jwt "^7.2.4"
+    did-jwt-vc "^3.2.5"
+    patch-package "^8.0.0"
+    postinstall-postinstall "^2.1.0"
 
-"@tanglelabs/oid4vc@^0.1.7":
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/@tanglelabs/oid4vc/-/oid4vc-0.1.7.tgz#b89b456d9dcbe379ad3b1ffba5a6f2befb890a41"
-  integrity sha512-njTZ3+Hy9+/FvGHlz2iGdIBzfq2jOWlpXnEEKsMQtX3ms8A4x0ygfZ959keAIWm7If8/N4yF5Tcp4NRYzKWxAw==
+"@tanglelabs/oid4vc@^0.1.8":
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@tanglelabs/oid4vc/-/oid4vc-0.1.8.tgz#d6c12a07a6c3d8602df37b2cf95e9c5640b273e0"
+  integrity sha512-M5hqtthO/GI43J4moSA2/lu3y8p424llEh0MZH/ZShxHst/Aq9e7j2aEPMHQRv12I3zlMn8Bauoeqni/EsDOBg==
   dependencies:
     "@sphereon/pex" "^2.1.0"
     "@sphereon/pex-models" "^2.0.3"
@@ -2982,6 +2987,13 @@
     nanoid "^3.0.0"
     tweetnacl "^1.0.3"
     tweetnacl-util "^0.15.1"
+
+"@tanglelabs/ssimon@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@tanglelabs/ssimon/-/ssimon-0.5.0.tgz#d9f926c33ff1cc96b1ce06d18a3ed3abc3684c8d"
+  integrity sha512-vEd3e9GpOoQ4xDQr1598zxYjMc4jVzFFY8Z6PrRmCzgjdG1yE0ZaLiDWEGQvv2Xl3OLan2IY1ZlOJ7NkcKoA5Q==
+  dependencies:
+    crypto-js "^4.1.1"
 
 "@testing-library/dom@^8.3.0":
   version "8.19.0"
@@ -5650,6 +5662,28 @@ devalue@^4.3.1:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/devalue/-/devalue-4.3.2.tgz#cc44e4cf3872ac5a78229fbce3b77e57032727b5"
   integrity sha512-KqFl6pOgOW+Y6wJgu80rHpo2/3H07vr8ntR9rkkFIRETewbf5GaYYcakYfiKz89K+sLsuPkQIZaXDMjUObZwWg==
+
+did-jwt-vc@^3.2.5:
+  version "3.2.5"
+  resolved "https://registry.yarnpkg.com/did-jwt-vc/-/did-jwt-vc-3.2.5.tgz#526753e640382fd2582f1962f359745c1c5e2607"
+  integrity sha512-FPVW9fRMqQZmDCgoJkj1ZN4v0esLg1BlZRHHqKwTKW8Dg3n1eWvTOxrQlGys8BDlWGDALBw+N2SCM6LYyj7qZg==
+  dependencies:
+    did-jwt "^7.2.0"
+    did-resolver "^4.1.0"
+
+did-jwt@^7.2.0:
+  version "7.2.5"
+  resolved "https://registry.yarnpkg.com/did-jwt/-/did-jwt-7.2.5.tgz#82d589fde5c80f399353829c2319177391018b25"
+  integrity sha512-bbkRurNmIOvr9F8cmgOg1oaXEoGUCmi4UttADCFG//JRdN4EhPnvGVfpp3HGnvhw1vIAvhm0rCLPG9HBgQIM4Q==
+  dependencies:
+    "@noble/curves" "^1.0.0"
+    "@noble/hashes" "^1.3.0"
+    "@stablelib/xchacha20poly1305" "^1.0.1"
+    bech32 "^2.0.0"
+    canonicalize "^2.0.0"
+    did-resolver "^4.1.0"
+    multiformats "^12.0.0"
+    uint8arrays "^4.0.3"
 
 did-jwt@^7.2.4:
   version "7.2.4"
