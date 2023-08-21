@@ -13,13 +13,17 @@ import {
 	vpRequest,
 	getCredOffer,
 	getSiopRequest,
-	sendSpecificMetadata
+	sendSpecificMetadata,
+	sendOauthMetadata,
+	sendSpecificOauthMetadata
 } from "@/controllers/openid";
 
 const router = Router();
 
 router.route("/.well-known/openid-credential-issuer").get(sendMetadata);
+router.route("/.well-known/oauth-authorization-server").get(sendOauthMetadata);
 router.route("/:issuer/.well-known/openid-credential-issuer").get(sendSpecificMetadata);
+router.route("/:issuer/.well-known/oauth-authorization-server").get(sendSpecificOauthMetadata);
 router.route("/api/credential").post(credentialEndpoint);
 router.route("/api/credentials").post(batchCredentialEndpoint);
 router.route("/api/oid4vp").post(vpRequest);
