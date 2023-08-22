@@ -60,7 +60,29 @@ export const issuer = new VcIssuer({
 		"https://uploads-ssl.webflow.com/6440ceac338a9203b5100c47/6440ceac338a920197100e60_NGDIL%20Logo%20Dark.svg",
 	...rpKeys,
 	resolver,
-	tokenEndpoint: `${PUBLIC_BASE_URI}/token`
+	tokenEndpoint: `${PUBLIC_BASE_URI}/token`,
+	supportedCredentials: [
+		{
+			name: "National ID",
+			type: "National ID"
+		},
+		{
+			name: "Volunteer Badge",
+			type: "Volunteer Badge"
+		},
+		{
+			name: "School Course Certificate",
+			type: "School Course Certificate"
+		},
+		{
+			name: "Staff ID",
+			type: "Staff ID"
+		},
+		{
+			name: "Employee ID",
+			type: "Employee ID"
+		}
+	]
 });
 export const issuers = {
 	bbc: new VcIssuer({
@@ -75,7 +97,13 @@ export const issuers = {
 		logoUri: new URL("/imgs/bbc.png", PUBLIC_CLIENT_URI).toString(),
 		...rpKeys,
 		resolver,
-		tokenEndpoint: `${PUBLIC_BASE_URI}/token`
+		tokenEndpoint: `${PUBLIC_BASE_URI}/token`,
+		supportedCredentials: [
+			{
+				name: "Staff ID",
+				type: "Staff ID"
+			}
+		]
 	}),
 	kw1c: new VcIssuer({
 		credentialEndpoint: `${PUBLIC_BASE_URI}/api/credential`,
@@ -89,6 +117,20 @@ export const issuers = {
 		clientName: "Koning Willem I College",
 		logoUri: new URL("/imgs/kw1c-white.png", PUBLIC_CLIENT_URI).toString(),
 		...rpKeys,
-		resolver
+		resolver,
+		supportedCredentials: [
+			{
+				name: "All-Round Carpentry Certificate",
+				type: "All-Round Carpentry Certificate"
+			},
+			{
+				name: "Marketing Certificate",
+				type: "Marketing Certificate"
+			},
+			{
+				name: "Future Engineer Certificate",
+				type: "Future Engineer Certificate"
+			}
+		]
 	})
 };

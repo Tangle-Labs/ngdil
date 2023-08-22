@@ -22,6 +22,17 @@ export const sendSpecificMetadata = expressAsyncHandler(async (req: Request, res
 	res.json(metadata);
 });
 
+export const sendOauthMetadata = expressAsyncHandler(async (req: Request, res: Response) => {
+	const metadata = issuer.getOauthServerMetadata();
+	res.json(metadata);
+});
+export const sendSpecificOauthMetadata = expressAsyncHandler(
+	async (req: Request, res: Response) => {
+		const metadata = issuers[req.params.issuer as "kw1c" | "bbc"].getOauthServerMetadata();
+		res.json(metadata);
+	}
+);
+
 export const tokeEndpoint = expressAsyncHandler(async (req: Request, res: Response) => {
 	const response = await issuer.createTokenResponse(req.body);
 	res.json(response);
