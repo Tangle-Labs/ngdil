@@ -128,7 +128,10 @@ export const batchCredentialEndpoint = expressAsyncHandler(async (req: Request, 
 		resolver
 	});
 
-	const did = await issuer.validateCredentialsResponse({ token, proof: req.body.proof.jwt });
+	const did = await issuer.validateCredentialsResponse({
+		token,
+		proof: req.body.credential_requests[0].proof.jwt
+	});
 
 	const session = await SessionsService.findById(payload.sessionId);
 	const credentials = await getPersonaCreds(
