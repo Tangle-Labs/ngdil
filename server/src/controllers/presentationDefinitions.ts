@@ -7,7 +7,7 @@ export const presentationDefinitions = {
 				constraints: {
 					fields: [
 						{
-							path: ["$.type"],
+							path: ["$.vc.type"],
 							filter: {
 								type: "array",
 								contains: {
@@ -17,7 +17,7 @@ export const presentationDefinitions = {
 							}
 						},
 						{
-							path: ["$.credentialSubject.Surname"],
+							path: ["$.vc.vcredentialSubject.Surname"],
 							filter: {
 								type: "string",
 								pattern: "Veritas"
@@ -31,7 +31,7 @@ export const presentationDefinitions = {
 				constraints: {
 					fields: [
 						{
-							path: ["$.type"],
+							path: ["$.vc.type"],
 							filter: {
 								type: "array",
 								contains: {
@@ -53,7 +53,7 @@ export const presentationDefinitions = {
 				constraints: {
 					fields: [
 						{
-							path: ["$.type"],
+							path: ["$.vc.type"],
 							filter: {
 								type: "array",
 								contains: {
@@ -79,7 +79,7 @@ export const presentationDefinitions = {
 				constraints: {
 					fields: [
 						{
-							path: ["$.type"],
+							path: ["$.vc.type"],
 							filter: {
 								type: "array",
 								contains: {
@@ -103,7 +103,7 @@ export const presentationDefinitions = {
 				constraints: {
 					fields: [
 						{
-							path: ["$.type"],
+							path: ["$.vc.type"],
 							filter: {
 								type: "array",
 								contains: {
@@ -120,7 +120,7 @@ export const presentationDefinitions = {
 				constraints: {
 					fields: [
 						{
-							path: ["$.type"],
+							path: ["$.vc.type"],
 							filter: {
 								type: "array",
 								contains: {
@@ -146,7 +146,7 @@ export const presentationDefinitions = {
 				constraints: {
 					fields: [
 						{
-							path: ["$.type"],
+							path: ["$.vc.type"],
 							filter: {
 								type: "array",
 								contains: {
@@ -156,7 +156,7 @@ export const presentationDefinitions = {
 							}
 						},
 						{
-							path: ["$.id"],
+							path: ["$.vc.id"],
 							filter: {
 								type: "string",
 								// prettier-ignore
@@ -176,7 +176,7 @@ export const presentationDefinitions = {
 				constraints: {
 					fields: [
 						{
-							path: ["$.type"],
+							path: ["$.vc.type"],
 							filter: {
 								type: "array",
 								contains: {
@@ -186,7 +186,7 @@ export const presentationDefinitions = {
 							}
 						},
 						{
-							path: ["$.id"],
+							path: ["$.vc.id"],
 							filter: {
 								type: "string",
 								// prettier-ignore
