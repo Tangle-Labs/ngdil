@@ -13,9 +13,10 @@
 		"postinstall": "patch-package"
 	},
 	"dependencies": {
-		"@tanglelabs/ssimon": "^0.5.0",
 		"@tanglelabs/iota-identity-adapter": "^0.2.2",
-		"@tanglelabs/oid4vc": "^0.1.9-unstable.1",
+		"@tanglelabs/key-identity-adapter": "^0.1.1",
+		"@tanglelabs/oid4vc": "^0.1.9-unstable.2",
+		"@tanglelabs/ssimon": "^0.5.1",
 		"bcryptjs": "^2.4.3",
 		"cookie-parser": "1.4.6",
 		"cors": "^2.8.5",
@@ -25,6 +26,7 @@
 		"express-async-handler": "^1.2.0",
 		"express-intercept": "1.0.0",
 		"jsonwebtoken": "8.5.1",
+		"key-did-resolver": "^3.0.0",
 		"nanoid": "^4.0.2",
 		"patch-package": "^8.0.0",
 		"pg": "^8.8.0",

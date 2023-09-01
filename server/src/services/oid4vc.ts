@@ -15,16 +15,16 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const rpKeys = {
-	privKeyHex: "e402aa94b0113c14bc10259dbbb15fba9042029ddf2e9243238237af025a05f3",
-	did: "did:iota:2UPUvGJkHuoJwFoFuZYqhmCipERNecdvqXebpfD7mKSB",
-	kid: "did:iota:2UPUvGJkHuoJwFoFuZYqhmCipERNecdvqXebpfD7mKSB#vc-signature"
+	privKeyHex: "95ea66436c4ccd826007e5835a0bd0f96bd811e44fa9dd6d58c75fa04a903a8a",
+	did: "did:key:z6MkquY2TrE7KeuBNRAJ4eZbPqtYeCyGXe8seQNfK1ZXAumj",
+	kid: "did:key:z6MkquY2TrE7KeuBNRAJ4eZbPqtYeCyGXe8seQNfK1ZXAumj#z6MkquY2TrE7KeuBNRAJ4eZbPqtYeCyGXe8seQNfK1ZXAumj"
 };
 
 export const rp = new RelyingParty({
 	redirectUri: `${PUBLIC_BASE_URI}/auth`,
 	clientId: rpKeys.did,
 	clientMetadata: {
-		subjectSyntaxTypesSupported: ["did:iota"],
+		subjectSyntaxTypesSupported: ["did:key"],
 		idTokenSigningAlgValuesSupported: [SigningAlgs.EdDSA],
 		clientName: "NGDIL",
 		logoUri:
@@ -51,7 +51,7 @@ export const issuer = new VcIssuer({
 	credentialEndpoint: `${PUBLIC_BASE_URI}/api/credential`,
 	batchCredentialEndpoint: `${PUBLIC_BASE_URI}/api/credentials`,
 	credentialIssuer: `${PUBLIC_BASE_URI}/`,
-	cryptographicBindingMethodsSupported: ["did:iota"],
+	cryptographicBindingMethodsSupported: ["did:key"],
 	cryptographicSuitesSupported: ["EdDSA"],
 	proofTypesSupported: ["jwt"],
 	store: new SimpleStore<IssuerStoreData>({ reader, writer }),
@@ -89,7 +89,7 @@ export const issuers = {
 		credentialEndpoint: `${PUBLIC_BASE_URI}/api/credential`,
 		batchCredentialEndpoint: `${PUBLIC_BASE_URI}/api/credentials`,
 		credentialIssuer: new URL("/bbc", PUBLIC_BASE_URI).toString(),
-		cryptographicBindingMethodsSupported: ["did:iota"],
+		cryptographicBindingMethodsSupported: ["did:key"],
 		cryptographicSuitesSupported: ["EdDSA"],
 		proofTypesSupported: ["jwt"],
 		store: new SimpleStore<IssuerStoreData>({ reader, writer }),
@@ -109,7 +109,7 @@ export const issuers = {
 		credentialEndpoint: `${PUBLIC_BASE_URI}/api/credential`,
 		batchCredentialEndpoint: `${PUBLIC_BASE_URI}/api/credentials`,
 		credentialIssuer: new URL("/kw1c", PUBLIC_BASE_URI).toString(),
-		cryptographicBindingMethodsSupported: ["did:iota"],
+		cryptographicBindingMethodsSupported: ["did:key"],
 		cryptographicSuitesSupported: ["EdDSA"],
 		proofTypesSupported: ["jwt"],
 		store: new SimpleStore<IssuerStoreData>({ reader, writer }),
