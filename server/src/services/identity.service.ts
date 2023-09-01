@@ -4,6 +4,7 @@ import path from "path";
 import { readFile, writeFile } from "fs/promises";
 import { fileURLToPath } from "url";
 import { nanoid } from "nanoid";
+import { DidKeyAdapter } from "@tanglelabs/key-identity-adapter/dist";
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -39,7 +40,7 @@ export class IdentityService {
 	static async build() {
 		const service = new IdentityService();
 		service.manager = await IdentityManager.build({
-			adapter: IotaAdapter,
+			adapter: DidKeyAdapter,
 			storage: constructFileStore({
 				path: path.resolve(__dirname, "./identity"),
 				password: "asdf"
