@@ -1,4 +1,4 @@
-import { DIDResolutionOptions, DIDResolutionResult, Resolver } from "did-resolver";
+import { Resolver } from "did-resolver";
 import * as iotaIdentity from "@iota/identity-wasm/node";
 import KeyResolver from "key-did-resolver";
 
