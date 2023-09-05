@@ -89,7 +89,7 @@ export const presentationDefinitions = {
 							}
 						},
 						{
-							path: ["$.credentialSubject.Surname"],
+							path: ["$.vc.credentialSubject.Surname"],
 							filter: {
 								type: "string",
 								pattern: "Veritas"
