@@ -108,7 +108,7 @@
 		},
 		{
 			name: "UniMe",
-			image: "/imgs/unime-side.pmg"
+			image: "/imgs/unime-side.png"
 		}
 	];
 
