@@ -47,7 +47,7 @@
 		const { data } = await apiClient.post("/siop", {
 			clientMetadata: {
 				logoUri: `${PUBLIC_CLIENT_URI}/imgs/openjobs.png`,
-				clientName: "Open Jobs"
+				clientName: "Open Jobs Network"
 			}
 		});
 		qr = data.uri;

@@ -46,7 +46,7 @@
 						position: absolute;
 						top: 50%;
 						left: 50%;
-						height: 100px;
+						height: 275px;
 						transform: translate(-50%, -50%);
 					}
 				}
@@ -119,7 +119,7 @@
 						onClick="{() => window.open('https://ngdil.com/contact', '_blank')}" />
 				</div>
 				<div class="img">
-					<img src="/imgs/pic-placeholder.png" alt="" />
+					<img src="/imgs/imani-2.svg" alt="" />
 				</div>
 			</div>
 		</Card>

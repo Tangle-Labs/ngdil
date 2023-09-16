@@ -46,7 +46,7 @@
 						position: absolute;
 						top: 50%;
 						left: 50%;
-						height: 100px;
+						height: 275px;
 						transform: translate(-50%, -50%);
 					}
 				}
@@ -70,12 +70,11 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You’ve already <Hightlight>successfully verified and hired</Hightlight> a new employee. Let’s
-			get them trained up next.</Typography
-		>
+			get them trained up next.</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography>Here is what you have achieved so far with your self-sovereign identity:</Typography
-		>
+		<Typography
+			>Here is what you have achieved so far with your self-sovereign identity:</Typography>
 	</div>
 	<div class="card">
 		<Card withBorder="{true}">
@@ -109,7 +108,7 @@
 					<Button variant="secondary" label="continue" onClick="{handleFinishCourse}" />
 				</div>
 				<div class="img">
-					<img src="/imgs/pic-placeholder.png" alt="" />
+					<img src="/imgs/imani-1.svg" alt="" />
 				</div>
 			</div>
 		</Card>

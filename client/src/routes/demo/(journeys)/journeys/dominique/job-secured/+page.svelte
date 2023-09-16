@@ -40,13 +40,14 @@
 					background: var(--white-500);
 					border: 1px solid black;
 					border-radius: 10px;
+					min-height: 320px;
 
 					img {
 						display: block;
 						position: absolute;
 						top: 50%;
 						left: 50%;
-						height: 100px;
+						height: 275px;
 						transform: translate(-50%, -50%);
 					}
 				}
@@ -126,7 +127,7 @@
 						onClick="{() => window.open('https://ngdil.com/contact', '_blank')}" />
 				</div>
 				<div class="img">
-					<img src="/imgs/pic-placeholder.png" alt="" />
+					<img src="/imgs/dominique-3.svg" alt="" />
 				</div>
 			</div>
 		</Card>

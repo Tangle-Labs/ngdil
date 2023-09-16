@@ -50,7 +50,9 @@ export const credentials = {
 		Language: "Dutch",
 		"Activity Start": "07/01/2023",
 		"Activity End": "27/03/2023",
-		"Date Issued": new Date(Date.now()).toDateString()
+		"Date Issued": new Date(Date.now()).toDateString(),
+		Description:
+			"This open badge recognizes the recipient's successful completion of an internationalization course at KW1C, which equipped them with valuable cultural and international education to support their success in international internship programs. The badge represents their ability to navigate diverse cultural  settings, communicate effectively across borders, and adapt to new and unfamiliar environments, making them a valuable asset to any international team."
 	},
 	internshipReference: {
 		"Badge Name": "Professional Reference",
@@ -64,7 +66,7 @@ export const credentials = {
 		"Holder Name": "",
 		"Badge Name": "Community Volunteer",
 		Description:
-			"This is to certify that the named badge holder has participated with and supported the Volunteer Org. through volunteer practices within the local community over a three month period.",
+			"This open badge acknowledges the recipient's dedication and contribution to a 3-month volunteering position, highlighting their commitment to making a positive impact in their community. The badge represents their selfless service and the valuable skills and experience they gained through their volunteer work.",
 		Country: "Netherlands",
 		Language: "Dutch",
 		"Activity Start": "07/01/2023",

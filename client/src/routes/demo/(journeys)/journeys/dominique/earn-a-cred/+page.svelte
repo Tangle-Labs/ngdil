@@ -53,7 +53,7 @@
 		const { data } = await apiClient.post("/siop", {
 			clientMetadata: {
 				logoUri: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`,
-				clientName: "KW1C"
+				clientName: "Koning Willem 1 College"
 			}
 		});
 		qr = data.uri;

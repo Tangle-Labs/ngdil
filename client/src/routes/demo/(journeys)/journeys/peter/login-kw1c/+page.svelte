@@ -56,7 +56,7 @@
 			presentationStage: "peterLogin",
 			clientMetadata: {
 				logoUri: new URL("/imgs/kw1c-white.png", PUBLIC_CLIENT_URI).toString(),
-				clientName: "KW1C"
+				clientName: "Koning Willem I College"
 			}
 		});
 		qr = data.uri;

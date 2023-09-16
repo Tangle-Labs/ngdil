@@ -3086,10 +3086,10 @@
     tweetnacl "^1.0.3"
     tweetnacl-util "^0.15.1"
 
-"@tanglelabs/oid4vc@^0.1.9-unstable.2":
-  version "0.1.9-unstable.2"
-  resolved "https://registry.yarnpkg.com/@tanglelabs/oid4vc/-/oid4vc-0.1.9-unstable.2.tgz#e0a81e1551a98428204f25dd9f809d66aac6ac10"
-  integrity sha512-u9sT/50WV6Y93RmU8kDQngyNeJQeVXAaPpbUjPx0I63zxn+tZ4Bf6/twGi/G7ira4QUni7hedfYGkZTvrg99ew==
+"@tanglelabs/oid4vc@^0.1.9-unstable.4":
+  version "0.1.9-unstable.4"
+  resolved "https://registry.yarnpkg.com/@tanglelabs/oid4vc/-/oid4vc-0.1.9-unstable.4.tgz#b64109b56b6a43890fdad44c8b503387cfcb355c"
+  integrity sha512-KLoqTG/MGDyM1z1rltC2eng58uOqO6qhkvLo01ADK/+yh36GSqWCQvdbHbiyc/2ogRSl9RW8D2CPKPeo6Ra/yA==
   dependencies:
     "@sphereon/pex" "^2.1.0"
     "@sphereon/pex-models" "^2.0.3"
