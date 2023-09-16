@@ -99,6 +99,19 @@
 		goto("/demo/choose-journey");
 	}
 
+	let selectedWallet: number;
+
+	const wallets = [
+		{
+			name: "Vira",
+			image: "/imgs/vira-side.png"
+		},
+		{
+			name: "UniMe",
+			image: "/imgs/unime-side.pmg"
+		}
+	];
+
 	onMount(() => {
 		currStep.set(1);
 	});
@@ -110,21 +123,20 @@
 			<img src="/imgs/qr.png" alt="" class="qr" />
 			<div class="title">
 				<Typography variant="card-header"
-					>Scan the QR code to download the vira identity wallet</Typography>
+					>Scan the QR code to download the {wallets[selectedWallet].name} identity wallet</Typography>
 			</div>
-			<div class="caption">Or click the icon to download for desktop</div>
-			<div class="icons">
+			<!-- <div class="icons">
 				<img src="/imgs/apple.png" alt="" class="icon" />
 				<img src="/imgs/linux.png" alt="" class="icon" />
 				<img src="/imgs/windows.png" alt="" class="icon" />
-			</div>
+			</div> -->
 			<Button variant="secondary" onClick="{() => goto('/demo/choose-journey')}" label="Continue" />
 			<div class="subtitle">
 				<Typography variant="sub-text"
 					>Click to continue once you have downloaded your wallet</Typography>
 			</div>
 		</div>
-		<img src="/imgs/vira-side.png" alt="" class="side" />
+		<img src="{wallets[selectedWallet].image}" alt="" class="side" />
 	</div>
 </Modal>
 
@@ -156,6 +168,7 @@
 					<Button
 						variant="secondary"
 						onClick="{() => {
+							selectedWallet = 0;
 							modalVisible = true;
 						}}"
 						label="Download" />
@@ -167,7 +180,7 @@
 				<div class="card-content">
 					<img src="/imgs/impierce.png" />
 					<div class="wallet-name">
-						<Typography variant="button">Impierce Wallet</Typography>
+						<Typography variant="button">UniMe</Typography>
 					</div>
 					<div class="info">
 						<Typography variant="sub-text">From Impierce</Typography>
@@ -176,6 +189,7 @@
 					<Button
 						variant="secondary"
 						onClick="{() => {
+							selectedWallet = 1;
 							modalVisible = true;
 						}}"
 						label="Download" />
