@@ -86,8 +86,11 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
+	import { PUBLIC_BASE_URI, PUBLIC_CLIENT_URI } from "$env/static/public";
 	import { Typography, Card, Button, Modal } from "$lib/components";
+	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
+	import { wallets } from "$lib/config/config";
 	import { currStep } from "$lib/stores/onboarding.store";
 	import { apiClient } from "$lib/utils/axios.utils";
 	import { onMount } from "svelte";
@@ -101,26 +104,15 @@
 
 	let selectedWallet: number;
 
-	const wallets = [
-		{
-			name: "Vira",
-			image: "/imgs/vira-side.png"
-		},
-		{
-			name: "UniMe",
-			image: "/imgs/unime-side.png"
-		}
-	];
-
 	onMount(() => {
 		currStep.set(1);
 	});
 </script>
 
-<Modal bind:isOpen="{modalVisible}" withBorder="{true}" borderRadius="8">
+<Modal bind:isOpen="{modalVisible}" withBorder="{true}" borderRadius="{8}">
 	<div class="modal">
 		<div class="content">
-			<img src="/imgs/qr.png" alt="" class="qr" />
+			<Qr data="{`${PUBLIC_CLIENT_URI}/wallets/${wallets[selectedWallet].name}`}" />
 			<div class="title">
 				<Typography variant="card-header"
 					>Scan the QR code to download the {wallets[selectedWallet].name} identity wallet</Typography>
@@ -156,7 +148,7 @@
 
 	<div class="cards">
 		<div class="card tl-wallet">
-			<Card borderRadius="8" withBorder="{true}">
+			<Card borderRadius="{8}" withBorder="{true}">
 				<div class="card-content">
 					<img src="/imgs/vira.png" />
 					<div class="wallet-name">
@@ -176,7 +168,7 @@
 			</Card>
 		</div>
 		<div class="card impierce-wallet">
-			<Card borderRadius="8" withBorder="{true}">
+			<Card borderRadius="{8}" withBorder="{true}">
 				<div class="card-content">
 					<img src="/imgs/impierce.png" />
 					<div class="wallet-name">
