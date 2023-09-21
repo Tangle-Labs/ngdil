@@ -80,7 +80,7 @@
 		<div class="card">
 			<Card withBorder="{true}">
 				<div class="card-content">
-					<Avatar image="/imgs/pic-placeholder.png" />
+					<Avatar image="/imgs/imani-1.svg" />
 					<div class="text">
 						<div class="heading">
 							<Typography variant="card-header">Hiring an employee with a digital CV</Typography>
@@ -105,7 +105,7 @@
 		<div class="card">
 			<Card withBorder="{true}">
 				<div class="card-content">
-					<Avatar image="/imgs/pic-placeholder.png" />
+					<Avatar image="/imgs/imani-2.svg" />
 					<div class="text">
 						<div class="heading">
 							<Typography variant="card-header">Create and issue company skills badge</Typography>

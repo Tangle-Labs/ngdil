@@ -17,6 +17,8 @@ import {
 	sendOauthMetadata,
 	sendSpecificOauthMetadata
 } from "@/controllers/openid";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const router = Router();
 
@@ -36,6 +38,17 @@ router.route("/siop").post(siopRequest);
 router.route("/auth").post(auth);
 router.get("/", (req, res) => {
 	res.status(204).send();
+});
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
+router.get("/downloads/vira", (req, res) => {
+	const file = path.resolve(__dirname, "../vira-demo-app.apk");
+	res.set("Content-Type", "application/vnd.android.package-archive");
+	res.download(file, (err) => {
+		if (err) res.sendStatus(404);
+		res.end();
+	});
 });
 
 export { router };

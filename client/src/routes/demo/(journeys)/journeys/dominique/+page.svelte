@@ -75,7 +75,7 @@
 		<div class="card">
 			<Card withBorder="{true}">
 				<div class="card-content">
-					<Avatar image="/imgs/pic-placeholder.png" />
+					<Avatar image="/imgs/dominique-1.svg" />
 					<div class="text">
 						<div class="heading">
 							<Typography variant="card-header"
@@ -101,7 +101,7 @@
 		<div class="card">
 			<Card withBorder="{true}">
 				<div class="card-content">
-					<Avatar image="/imgs/dominique-1.svg" />
+					<Avatar image="/imgs/dominique-2.svg" />
 					<div class="text">
 						<div class="heading">
 							<Typography variant="card-header"
@@ -131,7 +131,7 @@
 		<div class="card">
 			<Card withBorder="{true}">
 				<div class="card-content">
-					<Avatar image="/imgs/pic-placeholder.png" />
+					<Avatar image="/imgs/dominique-3.svg" />
 					<div class="text">
 						<div class="heading">
 							<Typography variant="card-header">Apply for a job with your digital CV.</Typography>

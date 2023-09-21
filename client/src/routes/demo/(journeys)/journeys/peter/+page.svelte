@@ -62,8 +62,7 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>Hi Peter. Let’s get you <Highlight>started with enrolling your students.</Highlight> Select your
-			experience to get started.</Typography
-		>
+			experience to get started.</Typography>
 	</div>
 	<div class="desc">
 		<Typography variant="button">
@@ -75,12 +74,11 @@
 		<div class="card">
 			<Card withBorder="{true}">
 				<div class="card-content">
-					<Avatar image="/imgs/pic-placeholder.png" />
+					<Avatar image="/imgs/peter-1.svg" />
 					<div class="text">
 						<div class="heading">
 							<Typography variant="card-header"
-								>Verify Student and enrol on Internationalisation course.</Typography
-							>
+								>Verify Student and enrol on Internationalisation course.</Typography>
 						</div>
 						<div class="desc">
 							<Typography>
@@ -95,20 +93,18 @@
 						onClick="{() => {
 							goto('/demo/journeys/peter/login-kw1c');
 						}}"
-						label="{$peterEnrolledStudent ? 'Retry' : 'Get Started'}"
-					/>
+						label="{$peterEnrolledStudent ? 'Retry' : 'Get Started'}" />
 				</div>
 			</Card>
 		</div>
 		<div class="card">
 			<Card withBorder="{true}">
 				<div class="card-content">
-					<Avatar image="/imgs/pic-placeholder.png" />
+					<Avatar image="/imgs/peter-2.svg" />
 					<div class="text">
 						<div class="heading">
 							<Typography variant="card-header"
-								>Issue internationalisation course badges and assign student internship placements.</Typography
-							>
+								>Issue internationalisation course badges and assign student internship placements.</Typography>
 						</div>
 						<div class="desc">
 							<Typography>
@@ -127,15 +123,14 @@
 						onClick="{() => {
 							goto('/demo/journeys/peter/view-courses');
 						}}"
-						label="{$peterAssignedInternship ? 'Retry' : 'Get Started'}"
-					/>
+						label="{$peterAssignedInternship ? 'Retry' : 'Get Started'}" />
 				</div>
 			</Card>
 		</div>
 		<div class="card">
 			<Card withBorder="{true}">
 				<div class="card-content">
-					<Avatar image="/imgs/pic-placeholder.png" />
+					<Avatar image="/imgs/peter-3.svg" />
 					<div class="text">
 						<div class="heading">
 							<Typography variant="card-header">Verify students internship credentials</Typography>
@@ -157,8 +152,7 @@
 						onClick="{() => {
 							goto('/demo/journeys/peter/internship-results');
 						}}"
-						label="{$peterVerifiedInternship ? 'Retry' : 'Get Started'}"
-					/>
+						label="{$peterVerifiedInternship ? 'Retry' : 'Get Started'}" />
 				</div>
 			</Card>
 		</div>
@@ -167,8 +161,7 @@
 				<Button
 					variant="secondary"
 					onClick="{() => goto('/demo/choose-journey')}"
-					label="Try Another Journey"
-				/>
+					label="Try Another Journey" />
 			</div>
 		{/if}
 	</div>
