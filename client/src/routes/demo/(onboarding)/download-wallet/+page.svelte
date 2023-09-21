@@ -116,7 +116,7 @@
 <Modal bind:isOpen="{modalVisible}" withBorder="{true}" borderRadius="{8}">
 	<div class="modal">
 		<div class="content">
-			<Qr data="{`${PUBLIC_CLIENT_URI}/wallets/${wallets[selectedWallet].name}`}" />
+			<Qr data="{`${PUBLIC_CLIENT_URI}/demo/wallets/${wallets[selectedWallet].name}`}" />
 			<div class="title">
 				<Typography variant="card-header"
 					>Scan the QR code to download the {wallets[selectedWallet].name} identity wallet</Typography>
