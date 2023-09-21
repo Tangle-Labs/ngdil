@@ -83,11 +83,9 @@
 						</div>
 						<div class="desc">
 							<Typography
-
 								>Here you will use your self-sovereign identity to connect to the KW1C learning
 								portal, apply for an educational course, complete the course and obtain your first
 								verifiable credential.</Typography>
-
 						</div>
 					</div>
 					<Button
@@ -103,7 +101,7 @@
 		<div class="card">
 			<Card withBorder="{true}">
 				<div class="card-content">
-					<Avatar image="/imgs/pic-placeholder.png" />
+					<Avatar image="/imgs/dominique-1.svg" />
 					<div class="text">
 						<div class="heading">
 							<Typography variant="card-header"
