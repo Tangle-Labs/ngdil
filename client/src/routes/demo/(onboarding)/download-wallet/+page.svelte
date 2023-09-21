@@ -21,6 +21,10 @@
 				.card-content {
 					padding-bottom: 15px;
 
+					img {
+						height: 60px;
+					}
+
 					.info {
 						padding: 10px;
 					}
@@ -170,7 +174,7 @@
 		<div class="card impierce-wallet">
 			<Card borderRadius="{8}" withBorder="{true}">
 				<div class="card-content">
-					<img src="/imgs/impierce.png" />
+					<img src="/imgs/unime-logo.jpg" />
 					<div class="wallet-name">
 						<Typography variant="button">UniMe</Typography>
 					</div>
