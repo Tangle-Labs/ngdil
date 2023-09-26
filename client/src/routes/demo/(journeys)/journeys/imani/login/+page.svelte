@@ -98,7 +98,7 @@
 				</div>
 				<div class="login-card">
 					{#if qr}
-						<Qr data="{qr}" size="{200}" bgColor="var(--future-tech-green)" />
+						<Qr data="{qr}" size="{200}" fgColor="white" bgColor="var(--future-tech-green)" />
 					{/if}
 					<div class="heading">
 						<Typography variant="list" color="--future-tech-green-300">Scan QR to Login</Typography>
