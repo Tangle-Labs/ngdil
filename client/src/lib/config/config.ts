@@ -7,8 +7,8 @@ export const wallets = [
 		name: "Vira",
 		image: "/imgs/vira-side.png",
 		downloads: {
-			android: `${PUBLIC_BASE_URI}/downloads/vira`,
-			ios: "https://testflight.apple.com/join/QTm6DhIt"
+			android: `https://play.google.com/store/apps/details?id=io.tanglelabs.vira&pli=1`,
+			ios: "https://apps.apple.com/in/app/vira-wallet/id6466040524"
 		}
 	},
 	{
