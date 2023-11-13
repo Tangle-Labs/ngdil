@@ -81,6 +81,10 @@ export const issuer = new VcIssuer({
 		{
 			name: "Employee ID",
 			type: "Employee ID"
+		},
+		{
+			name: "Higher Education Information Literacy Level 1",
+			type: "Higher Education Information Literacy Level 1"
 		}
 	]
 });

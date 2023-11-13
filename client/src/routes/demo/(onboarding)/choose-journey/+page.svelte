@@ -267,7 +267,7 @@
 									'National ID',
 									'School Course Certificate',
 									'Volunteer Badge',
-									'Information Literacy L.1 EduBadge'
+									'Higher Education Information Literacy Level 1'
 								]
 							});
 
