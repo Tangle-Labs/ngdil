@@ -210,7 +210,7 @@ export const getPersonaCreds = async (
 		creds.push(
 			await identityService.createCredential({
 				recipient,
-				domain: "werkgroepinformationliteracy.demo.ngdil.com",
+				domain: "werkgroepil.ngdil.com",
 				type: "Higher Education Information Literacy Level 1",
 				body: {
 					Issuer: "Werkgroep Information Literacy",

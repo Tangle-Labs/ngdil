@@ -263,7 +263,12 @@
 							selectedJourney = 'dominique';
 							currStep.set(3);
 							const { data } = await apiClient.post('/api/starting-offer', {
-								credentials: ['National ID', 'School Course Certificate', 'Volunteer Badge']
+								credentials: [
+									'National ID',
+									'School Course Certificate',
+									'Volunteer Badge',
+									'Information Literacy L.1 EduBadge'
+								]
 							});
 
 							qr = data.uri;
