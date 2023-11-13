@@ -207,6 +207,28 @@ export const getPersonaCreds = async (
 				}
 			})
 		);
+		creds.push(
+			await identityService.createCredential({
+				recipient,
+				domain: "werkgroepinformationliteracy.demo.ngdil.com",
+				type: "Higher Education Information Literacy Level 1",
+				body: {
+					Issuer: "Werkgroep Information Literacy",
+					"Language of Education": "Dutch",
+					"Issued to": "Dominique Veritas",
+					Description:
+						"Information Literacy is the set of integrated skills that includes the reflective discovery of information, the understanding of how information is produced and valued, and the use of information to create new knowledge and ethical participation in learning communities.",
+					enrichment: {
+						logo_uri: `${PUBLIC_CLIENT_URI}/imgs/werk.png`
+					},
+					"Learning outcomes": `LEVEL 1 - To obtain this badge, the student has demonstrated that he/she is able to:
+1. Orientation and specification
+- identify the need for information on a particular topic
+- identify characteristics of information sources on a particular topic
+- find suitable information sources and evaluate them based on a particular topic`
+				}
+			})
+		);
 	}
 
 	return creds.map((c) => c.cred);
