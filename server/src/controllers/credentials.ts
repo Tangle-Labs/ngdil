@@ -229,6 +229,27 @@ export const getPersonaCreds = async (
 				}
 			})
 		);
+		creds.push(
+			await identityService.createCredential({
+				recipient,
+				domain: "kw1c.ngdil.com",
+				type: "Business Innovation & Interdisciplinair Samenwerken",
+				body: {
+					"Badge Name": "Business Innovation & Interdisciplinair Samenwerken",
+					"Language of Education": "Dutch",
+					"Issued to": "Dominique Veritas",
+					Alignments:
+						"This badge illustrates the holder has demonstrated their abilities to collaborate with colleagues, work in a team to solve information problems, use renewal techniques, models, methods and strategies that contribute to the promotion of innovation-oriented developments, creative thinking to generate new ideas or innovative new solutions, innovation of current practices' to improve and present alternative thinking and new methods that can solve work related problems.",
+					Criteria:
+						"Over the period of 10 weeks the holder of this badge has learned interdisciplinary skill through practical experiences with real companies and institutions in the region. The holder has demonstrated they can collaborate as part of a team, effectively communicate, research and apply new technologies and innovations, creatively solve problems, and contribute to global goals.",
+					Evidence:
+						"The owner of this badge has learned and worked in an interdisciplinary team on a challenge from a real company or institution from the region. The interdisciplinary team has gone through various phases to arrive at a creative, innovative solution that is suitable for the client. The team presented the learning process and the solution through a pitch to the client.",
+					enrichment: {
+						logo_uri: `${PUBLIC_CLIENT_URI}/imgs/hta.png`
+					}
+				}
+			})
+		);
 	}
 
 	return creds.map((c) => c.cred);
