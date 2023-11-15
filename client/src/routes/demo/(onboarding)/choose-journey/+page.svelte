@@ -267,7 +267,8 @@
 									'National ID',
 									'School Course Certificate',
 									'Volunteer Badge',
-									'Higher Education Information Literacy Level 1'
+									'Higher Education Information Literacy Level 1',
+									'Business Innovation & Interdisciplinair Samenwerken'
 								]
 							});
 

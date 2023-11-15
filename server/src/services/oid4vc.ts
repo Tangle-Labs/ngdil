@@ -85,6 +85,10 @@ export const issuer = new VcIssuer({
 		{
 			name: "Higher Education Information Literacy Level 1",
 			type: "Higher Education Information Literacy Level 1"
+		},
+		{
+			name: "Business Innovation & Interdisciplinair Samenwerken",
+			type: "Business Innovation & Interdisciplinair Samenwerken"
 		}
 	]
 });
