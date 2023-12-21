@@ -3071,16 +3071,17 @@
     patch-package "^8.0.0"
     postinstall-postinstall "^2.1.0"
 
-"@tanglelabs/key-identity-adapter@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@tanglelabs/key-identity-adapter/-/key-identity-adapter-0.1.1.tgz#64ea35822652df6ecb91bc6b699f81a5644d4d95"
-  integrity sha512-AVp/zF7oXw10tdJbI3R3Nq56leCzoC6ojlGrRzxwtvPS1/14D2rOsQUxanG6iMHPA2esQFucVFCYCa9l9gYBrg==
+"@tanglelabs/key-identity-adapter@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@tanglelabs/key-identity-adapter/-/key-identity-adapter-0.1.2.tgz#73fffbc7fc7ff9eb6d09cd2758a1aca1b95b3318"
+  integrity sha512-An+C66lNhk5xzMdBp0EgNiLVc645yEKwroB9Ea6XErI45ypcumfl+gC0aGflGBely/YMHFq1pgVet/9Ag/XGPQ==
   dependencies:
-    "@tanglelabs/ssimon" "^0.5.1"
+    "@tanglelabs/ssimon" "^0.5.2"
     did-jwt "^7.2.6"
     did-jwt-vc "^3.2.6"
     did-resolver "^4.1.0"
     dids "^4.0.4"
+    jsonschema "^1.4.1"
     key-did-provider-ed25519 "^3.0.2"
     key-did-resolver "^3.0.0"
     tweetnacl "^1.0.3"
@@ -3108,10 +3109,10 @@
   dependencies:
     crypto-js "^4.1.1"
 
-"@tanglelabs/ssimon@^0.5.1":
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/@tanglelabs/ssimon/-/ssimon-0.5.1.tgz#79c7c2b2250d7c07627466f60947fb60549e6995"
-  integrity sha512-oge9UVdY3iV41c5fdGVdeoIlz1whDDZCf1ymbKrLL031zbo00dc8bC/8zVH7LZWsWmHhx8CSfKmuZ6pTjcE6yQ==
+"@tanglelabs/ssimon@^0.5.2", "@tanglelabs/ssimon@^0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@tanglelabs/ssimon/-/ssimon-0.5.3.tgz#9177b9cdcc81c900d78610c30161b974296e216d"
+  integrity sha512-qqiwe0lRyCHDDEphyt56R0RqJhmuALZBrvDGD82uXntRIdeaDcvmNMjj7j3+8Fi6OmPPXLMMTR0tDKfDqYNl6A==
   dependencies:
     crypto-js "^4.1.1"
 
@@ -8670,6 +8671,11 @@ jsonify@^0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/jsonify/-/jsonify-0.0.1.tgz#2aa3111dae3d34a0f151c63f3a45d995d9420978"
   integrity sha512-2/Ki0GcmuqSrgFyelQq9M05y7PS0mEwuIzrf3f1fPqkVDVRvZrPZtVSMHxdgo8Aq0sxAOb/cr2aqqA3LeWHVPg==
+
+jsonschema@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/jsonschema/-/jsonschema-1.4.1.tgz#cc4c3f0077fb4542982973d8a083b6b34f482dab"
+  integrity sha512-S6cATIPVv1z0IlxdN+zUk5EPjkGCdnhN4wVSBlvoUO1tOLJootbo9CquNJmbIh4yikWHiUedhRYrNPn1arpEmQ==
 
 jsonwebtoken@8.5.1:
   version "8.5.1"
