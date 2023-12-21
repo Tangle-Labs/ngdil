@@ -3087,14 +3087,14 @@
     tweetnacl "^1.0.3"
     tweetnacl-util "^0.15.1"
 
-"@tanglelabs/oid4vc@^0.1.9-unstable.4":
-  version "0.1.9-unstable.4"
-  resolved "https://registry.yarnpkg.com/@tanglelabs/oid4vc/-/oid4vc-0.1.9-unstable.4.tgz#b64109b56b6a43890fdad44c8b503387cfcb355c"
-  integrity sha512-KLoqTG/MGDyM1z1rltC2eng58uOqO6qhkvLo01ADK/+yh36GSqWCQvdbHbiyc/2ogRSl9RW8D2CPKPeo6Ra/yA==
+"@tanglelabs/oid4vc@^0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@tanglelabs/oid4vc/-/oid4vc-0.1.10.tgz#efb33a7346e2b946b4a5b23d914c35d66ee4bdd8"
+  integrity sha512-6wfrXqrXJxkO+8ABCteLJYxzggkZ5DxHGif3n6mdj786mit2KXtvIgTtYYpROCIOsqVofx3NZEkNPanz8N+Xdw==
   dependencies:
     "@sphereon/pex" "^2.1.0"
     "@sphereon/pex-models" "^2.0.3"
-    axios "^1.4.0"
+    axios "^1.6.0"
     buffer "^6.0.3"
     did-jwt "^7.2.4"
     did-resolver "^4.1.0"
@@ -4416,10 +4416,10 @@ axios@^1.2.0:
     form-data "^4.0.0"
     proxy-from-env "^1.1.0"
 
-axios@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-1.4.0.tgz#38a7bf1224cd308de271146038b551d725f0be1f"
-  integrity sha512-S4XCWMEmzvo64T9GfvQDOXgYRDJ/wsSZc7Jvdgx5u1sd0JwsuPLqb3SYmusag+edF6ziyMensPVqLTSc1PiSEA==
+axios@^1.6.0:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.6.2.tgz#de67d42c755b571d3e698df1b6504cde9b0ee9f2"
+  integrity sha512-7i24Ri4pmDRfJTR7LDBhsOTtcm+9kjX5WiY1X3wIisx6G9So3pfMkEiU7emUBe46oceVImccTEM3k6C5dbVW8A==
   dependencies:
     follow-redirects "^1.15.0"
     form-data "^4.0.0"

@@ -4,7 +4,7 @@ import path from "path";
 import { readFile, writeFile } from "fs/promises";
 import { fileURLToPath } from "url";
 import { nanoid } from "nanoid";
-import { DidKeyAdapter } from "@tanglelabs/key-identity-adapter/dist";
+import { DidKeyAccount, DidKeyAdapter } from "@tanglelabs/key-identity-adapter/dist";
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -35,7 +35,7 @@ export class IdentityService {
 	//@ts-ignore
 	manager: IdentityManager<IotaAdapter>;
 	// @ts-ignore
-	did: IotaAccount<any>;
+	did: DidKeyAccount;
 
 	static async build() {
 		const service = new IdentityService();
@@ -80,5 +80,36 @@ export class IdentityService {
 			type
 		});
 		return credential;
+	}
+
+	async createBadge({
+		recipient,
+		body,
+		type,
+		domain,
+		image,
+		issuer
+	}: {
+		recipient: string;
+		body: Record<string, any>;
+		type: string;
+		domain: string;
+		image: string;
+		issuer: string;
+	}) {
+		const { name, description, ...rest } = body;
+		const badge = await this.did.credentials.createBadge({
+			recipientDid: recipient,
+			body,
+			type,
+			keyIndex: 0,
+			id: `http://${domain}/${nanoid()}`,
+			description: description,
+			badgeName: name,
+			issuerName: issuer,
+			criteria: "",
+			image
+		});
+		return badge;
 	}
 }

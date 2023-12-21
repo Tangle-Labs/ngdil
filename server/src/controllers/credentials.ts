@@ -208,7 +208,7 @@ export const getPersonaCreds = async (
 			})
 		);
 		creds.push(
-			await identityService.createCredential({
+			await identityService.createBadge({
 				recipient,
 				domain: "werkgroepil.ngdil.com",
 				type: "Higher Education Information Literacy Level 1",
@@ -218,19 +218,18 @@ export const getPersonaCreds = async (
 					"Issued to": "Dominique Veritas",
 					Description:
 						"Information Literacy is the set of integrated skills that includes the reflective discovery of information, the understanding of how information is produced and valued, and the use of information to create new knowledge and ethical participation in learning communities.",
-					enrichment: {
-						logo_uri: `${PUBLIC_CLIENT_URI}/imgs/werk.png`
-					},
 					"Learning outcomes": `LEVEL 1 - To obtain this badge, the student has demonstrated that he/she is able to:
 1. Orientation and specification
 - identify the need for information on a particular topic
 - identify characteristics of information sources on a particular topic
 - find suitable information sources and evaluate them based on a particular topic`
-				}
+				},
+				issuer: "Werkgroep Information Literacy",
+				image: `${PUBLIC_CLIENT_URI}/imgs/werk.png`
 			})
 		);
 		creds.push(
-			await identityService.createCredential({
+			await identityService.createBadge({
 				recipient,
 				domain: "kw1c.ngdil.com",
 				type: "Business Innovation & Interdisciplinair Samenwerken",
@@ -243,11 +242,10 @@ export const getPersonaCreds = async (
 					Criteria:
 						"Over the period of 10 weeks the holder of this badge has learned interdisciplinary skill through practical experiences with real companies and institutions in the region. The holder has demonstrated they can collaborate as part of a team, effectively communicate, research and apply new technologies and innovations, creatively solve problems, and contribute to global goals.",
 					Evidence:
-						"The owner of this badge has learned and worked in an interdisciplinary team on a challenge from a real company or institution from the region. The interdisciplinary team has gone through various phases to arrive at a creative, innovative solution that is suitable for the client. The team presented the learning process and the solution through a pitch to the client.",
-					enrichment: {
-						logo_uri: `${PUBLIC_CLIENT_URI}/imgs/hta.png`
-					}
-				}
+						"The owner of this badge has learned and worked in an interdisciplinary team on a challenge from a real company or institution from the region. The interdisciplinary team has gone through various phases to arrive at a creative, innovative solution that is suitable for the client. The team presented the learning process and the solution through a pitch to the client."
+				},
+				issuer: "Koning Willem I College",
+				image: `${PUBLIC_CLIENT_URI}/imgs/hta.png`
 			})
 		);
 	}
