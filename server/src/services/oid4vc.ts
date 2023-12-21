@@ -69,12 +69,14 @@ export const issuer = new VcIssuer({
 				credential_definition: {
 					type: ["VerifiableCredential"]
 				},
-				display: {
-					name: "National ID",
-					logo: {
-						url: `${PUBLIC_CLIENT_URI}/imgs/gov.svg`
+				display: [
+					{
+						name: "National ID",
+						logo: {
+							url: `${PUBLIC_CLIENT_URI}/imgs/gov.svg`
+						}
 					}
-				}
+				]
 			}
 		},
 		{
@@ -84,12 +86,14 @@ export const issuer = new VcIssuer({
 				credential_definition: {
 					type: ["VerifiableCredential"]
 				},
-				display: {
-					name: "Volunteer Badge",
-					logo: {
-						url: `${PUBLIC_CLIENT_URI}/imgs/volunteer.svg`
+				display: [
+					{
+						name: "Volunteer Badge",
+						logo: {
+							url: `${PUBLIC_CLIENT_URI}/imgs/volunteer.svg`
+						}
 					}
-				}
+				]
 			}
 		},
 		{
@@ -99,12 +103,14 @@ export const issuer = new VcIssuer({
 				credential_definition: {
 					type: ["VerifiableCredential"]
 				},
-				display: {
-					name: "School Course Certificate",
-					logo: {
-						url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+				display: [
+					{
+						name: "School Course Certificate",
+						logo: {
+							url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+						}
 					}
-				}
+				]
 			}
 		},
 		{
@@ -114,12 +120,14 @@ export const issuer = new VcIssuer({
 				credential_definition: {
 					type: ["VerifiableCredential"]
 				},
-				display: {
-					name: "Staff ID",
-					logo: {
-						url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+				display: [
+					{
+						name: "Staff ID",
+						logo: {
+							url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+						}
 					}
-				}
+				]
 			}
 		},
 		{
@@ -129,12 +137,14 @@ export const issuer = new VcIssuer({
 				credential_definition: {
 					type: ["VerifiableCredential"]
 				},
-				display: {
-					name: "Employee ID",
-					logo: {
-						url: `${PUBLIC_CLIENT_URI}/imgs/future-tech.png`
+				display: [
+					{
+						name: "Employee ID",
+						logo: {
+							url: `${PUBLIC_CLIENT_URI}/imgs/future-tech.png`
+						}
 					}
-				}
+				]
 			}
 		},
 		{
@@ -144,12 +154,14 @@ export const issuer = new VcIssuer({
 				credential_definition: {
 					type: ["OpenBadgeCredential"]
 				},
-				display: {
-					name: "Higher Education Information Literacy Level 1",
-					logo: {
-						url: `${PUBLIC_CLIENT_URI}/imgs/werk.png`
+				display: [
+					{
+						name: "Higher Education Information Literacy Level 1",
+						logo: {
+							url: `${PUBLIC_CLIENT_URI}/imgs/werk.png`
+						}
 					}
-				}
+				]
 			}
 		},
 		{
@@ -159,12 +171,14 @@ export const issuer = new VcIssuer({
 				credential_definition: {
 					type: ["OpenBadgeCredential"]
 				},
-				display: {
-					name: "Business Innovation & Interdisciplinair Samenwerken",
-					logo: {
-						url: `${PUBLIC_CLIENT_URI}/imgs/hta.png`
+				display: [
+					{
+						name: "Business Innovation & Interdisciplinair Samenwerken",
+						logo: {
+							url: `${PUBLIC_CLIENT_URI}/imgs/hta.png`
+						}
 					}
-				}
+				]
 			}
 		}
 	]
@@ -191,12 +205,14 @@ export const issuers = {
 					credential_definition: {
 						type: ["VerifiableCredential"]
 					},
-					display: {
-						name: "Staff ID",
-						logo: {
-							url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+					display: [
+						{
+							name: "Staff ID",
+							logo: {
+								url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+							}
 						}
-					}
+					]
 				}
 			}
 		]
@@ -222,12 +238,14 @@ export const issuers = {
 					credential_definition: {
 						type: ["VerifiableCredential"]
 					},
-					display: {
-						name: "Staff ID",
-						logo: {
-							url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+					display: [
+						{
+							name: "Staff ID",
+							logo: {
+								url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+							}
 						}
-					}
+					]
 				}
 			},
 			{
@@ -237,12 +255,14 @@ export const issuers = {
 					credential_definition: {
 						type: ["VerifiableCredential"]
 					},
-					display: {
-						name: "Staff ID",
-						logo: {
-							url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+					display: [
+						{
+							name: "Staff ID",
+							logo: {
+								url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+							}
 						}
-					}
+					]
 				}
 			},
 			{
@@ -252,12 +272,14 @@ export const issuers = {
 					credential_definition: {
 						type: ["VerifiableCredential"]
 					},
-					display: {
-						name: "Staff ID",
-						logo: {
-							url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+					display: [
+						{
+							name: "Staff ID",
+							logo: {
+								url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+							}
 						}
-					}
+					]
 				}
 			}
 		]
