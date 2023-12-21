@@ -213,16 +213,17 @@ export const getPersonaCreds = async (
 				domain: "werkgroepil.ngdil.com",
 				type: "Higher Education Information Literacy Level 1",
 				body: {
+					name: "Higher Education Information Literacy Level 1",
 					Issuer: "Werkgroep Information Literacy",
 					"Language of Education": "Dutch",
 					"Issued to": "Dominique Veritas",
-					Description:
+					description:
 						"Information Literacy is the set of integrated skills that includes the reflective discovery of information, the understanding of how information is produced and valued, and the use of information to create new knowledge and ethical participation in learning communities.",
 					"Learning outcomes": `LEVEL 1 - To obtain this badge, the student has demonstrated that he/she is able to:
-1. Orientation and specification
-- identify the need for information on a particular topic
-- identify characteristics of information sources on a particular topic
-- find suitable information sources and evaluate them based on a particular topic`
+		1. Orientation and specification
+		- identify the need for information on a particular topic
+		- identify characteristics of information sources on a particular topic
+		- find suitable information sources and evaluate them based on a particular topic`
 				},
 				issuer: "Werkgroep Information Literacy",
 				image: `${PUBLIC_CLIENT_URI}/imgs/werk.png`
@@ -234,10 +235,10 @@ export const getPersonaCreds = async (
 				domain: "kw1c.ngdil.com",
 				type: "Business Innovation & Interdisciplinair Samenwerken",
 				body: {
-					"Badge Name": "Business Innovation & Interdisciplinair Samenwerken",
+					name: "Business Innovation & Interdisciplinair Samenwerken",
 					"Language of Education": "Dutch",
 					"Issued to": "Dominique Veritas",
-					Alignments:
+					description:
 						"This badge illustrates the holder has demonstrated their abilities to collaborate with colleagues, work in a team to solve information problems, use renewal techniques, models, methods and strategies that contribute to the promotion of innovation-oriented developments, creative thinking to generate new ideas or innovative new solutions, innovation of current practices' to improve and present alternative thinking and new methods that can solve work related problems.",
 					Criteria:
 						"Over the period of 10 weeks the holder of this badge has learned interdisciplinary skill through practical experiences with real companies and institutions in the region. The holder has demonstrated they can collaborate as part of a team, effectively communicate, research and apply new technologies and innovations, creatively solve problems, and contribute to global goals.",
@@ -250,5 +251,6 @@ export const getPersonaCreds = async (
 		);
 	}
 
+	console.log(creds);
 	return creds.map((c) => c.cred);
 };
