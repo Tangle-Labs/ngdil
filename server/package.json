@@ -14,9 +14,9 @@
 	},
 	"dependencies": {
 		"@tanglelabs/iota-identity-adapter": "^0.2.2",
-		"@tanglelabs/key-identity-adapter": "^0.1.1",
-		"@tanglelabs/oid4vc": "^0.1.9-unstable.4",
-		"@tanglelabs/ssimon": "^0.5.1",
+		"@tanglelabs/key-identity-adapter": "^0.1.2",
+		"@tanglelabs/oid4vc": "^0.1.10",
+		"@tanglelabs/ssimon": "^0.5.3",
 		"bcryptjs": "^2.4.3",
 		"cookie-parser": "1.4.6",
 		"cors": "^2.8.5",

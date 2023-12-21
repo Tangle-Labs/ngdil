@@ -64,31 +64,108 @@ export const issuer = new VcIssuer({
 	supportedCredentials: [
 		{
 			name: "National ID",
-			type: "National ID"
+			type: "National ID",
+			raw: {
+				credential_definition: {
+					type: ["VerifiableCredential"]
+				},
+				display: {
+					name: "National ID",
+					logo: {
+						url: `${PUBLIC_CLIENT_URI}/imgs/gov.svg`
+					}
+				}
+			}
 		},
 		{
 			name: "Volunteer Badge",
-			type: "Volunteer Badge"
+			type: "Volunteer Badge",
+			raw: {
+				credential_definition: {
+					type: ["VerifiableCredential"]
+				},
+				display: {
+					name: "Volunteer Badge",
+					logo: {
+						url: `${PUBLIC_CLIENT_URI}/imgs/volunteer.svg`
+					}
+				}
+			}
 		},
 		{
 			name: "School Course Certificate",
-			type: "School Course Certificate"
+			type: "School Course Certificate",
+			raw: {
+				credential_definition: {
+					type: ["VerifiableCredential"]
+				},
+				display: {
+					name: "School Course Certificate",
+					logo: {
+						url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+					}
+				}
+			}
 		},
 		{
 			name: "Staff ID",
-			type: "Staff ID"
+			type: "Staff ID",
+			raw: {
+				credential_definition: {
+					type: ["VerifiableCredential"]
+				},
+				display: {
+					name: "Staff ID",
+					logo: {
+						url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+					}
+				}
+			}
 		},
 		{
 			name: "Employee ID",
-			type: "Employee ID"
+			type: "Employee ID",
+			raw: {
+				credential_definition: {
+					type: ["VerifiableCredential"]
+				},
+				display: {
+					name: "Employee ID",
+					logo: {
+						url: `${PUBLIC_CLIENT_URI}/imgs/future-tech.png`
+					}
+				}
+			}
 		},
 		{
 			name: "Higher Education Information Literacy Level 1",
-			type: "Higher Education Information Literacy Level 1"
+			type: "Higher Education Information Literacy Level 1",
+			raw: {
+				credential_definition: {
+					type: ["OpenBadgeCredential"]
+				},
+				display: {
+					name: "Higher Education Information Literacy Level 1",
+					logo: {
+						url: `${PUBLIC_CLIENT_URI}/imgs/werk.png`
+					}
+				}
+			}
 		},
 		{
 			name: "Business Innovation & Interdisciplinair Samenwerken",
-			type: "Business Innovation & Interdisciplinair Samenwerken"
+			type: "Business Innovation & Interdisciplinair Samenwerken",
+			raw: {
+				credential_definition: {
+					type: ["OpenBadgeCredential"]
+				},
+				display: {
+					name: "Business Innovation & Interdisciplinair Samenwerken",
+					logo: {
+						url: `${PUBLIC_CLIENT_URI}/imgs/hta.png`
+					}
+				}
+			}
 		}
 	]
 });
@@ -109,7 +186,18 @@ export const issuers = {
 		supportedCredentials: [
 			{
 				name: "Staff ID",
-				type: "Staff ID"
+				type: "Staff ID",
+				raw: {
+					credential_definition: {
+						type: ["VerifiableCredential"]
+					},
+					display: {
+						name: "Staff ID",
+						logo: {
+							url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+						}
+					}
+				}
 			}
 		]
 	}),
@@ -129,15 +217,48 @@ export const issuers = {
 		supportedCredentials: [
 			{
 				name: "All-Round Carpentry Certificate",
-				type: "All-Round Carpentry Certificate"
+				type: "All-Round Carpentry Certificate",
+				raw: {
+					credential_definition: {
+						type: ["VerifiableCredential"]
+					},
+					display: {
+						name: "Staff ID",
+						logo: {
+							url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+						}
+					}
+				}
 			},
 			{
 				name: "Marketing Certificate",
-				type: "Marketing Certificate"
+				type: "Marketing Certificate",
+				raw: {
+					credential_definition: {
+						type: ["VerifiableCredential"]
+					},
+					display: {
+						name: "Staff ID",
+						logo: {
+							url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+						}
+					}
+				}
 			},
 			{
 				name: "Future Engineer Certificate",
-				type: "Future Engineer Certificate"
+				type: "Future Engineer Certificate",
+				raw: {
+					credential_definition: {
+						type: ["VerifiableCredential"]
+					},
+					display: {
+						name: "Staff ID",
+						logo: {
+							url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+						}
+					}
+				}
 			}
 		]
 	})
