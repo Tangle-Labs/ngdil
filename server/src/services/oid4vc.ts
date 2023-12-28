@@ -240,7 +240,7 @@ export const issuers = {
 					},
 					display: [
 						{
-							name: "Staff ID",
+							name: "All-Round Carpentry Certificate",
 							logo: {
 								url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
 							}
@@ -257,7 +257,7 @@ export const issuers = {
 					},
 					display: [
 						{
-							name: "Staff ID",
+							name: "Marketing Certificate",
 							logo: {
 								url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
 							}
@@ -274,7 +274,7 @@ export const issuers = {
 					},
 					display: [
 						{
-							name: "Staff ID",
+							name: "Future Engineer Certificate",
 							logo: {
 								url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
 							}
