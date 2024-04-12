@@ -31,6 +31,7 @@ jobs:
                   rm -rf /var/www/ngdilstaging/api/*
                   cp -R ./server/* /var/www/ngdilstaging/api/
                   cd /var/www/ngdilstaging/api/
+                  pnpm i
                   pnpm build
 
             - name: start application
