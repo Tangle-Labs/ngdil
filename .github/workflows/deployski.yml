@@ -1,4 +1,4 @@
-name: Deployski
+name: DeployAPI
 
 on:
     pull_request:
@@ -32,7 +32,6 @@ jobs:
                   cp -R ./server/* /var/www/ngdilstaging/api/
                   cd /var/www/ngdilstaging/api/
                   pnpm i
-                  pnpm build
 
             - name: start application
               continue-on-error: true
