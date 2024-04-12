@@ -28,9 +28,10 @@ jobs:
 
             - name: build server
               run: |
-                  rm -rf /var/www/ngdil/api/*
-                  cp -R ./server/* /var/www/ngdil/api/
-                  cd /var/www/auvo/api/
+                  rm -rf /var/www/ngdilstaging/api/*
+                  cp -R ./server/* /var/www/ngdilstaging/api/
+                  cd /var/www/ngdilstaging/api/
+                  pnpm build
 
             - name: start application
               continue-on-error: true
