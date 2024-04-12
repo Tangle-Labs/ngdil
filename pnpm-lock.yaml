@@ -145,9 +145,6 @@ importers:
 
   server:
     dependencies:
-      '@tanglelabs/iota-identity-adapter':
-        specifier: ^0.2.2
-        version: 0.2.3
       '@tanglelabs/key-identity-adapter':
         specifier: ^0.1.2
         version: 0.1.2
@@ -2507,15 +2504,6 @@ packages:
     resolution: {integrity: sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==}
     dev: true
 
-  /@iota/identity-wasm@0.6.1:
-    resolution: {integrity: sha512-OEdxLi+QbVgyaYmbrng6YX1B2k3MZ5NXQ3fR/osouH8nICm6ejXm33R+Zkq7N98o7s1i57ZYzfi9L3lAOQr4jA==}
-    engines: {node: '>=16'}
-    dependencies:
-      node-fetch: 2.7.0
-    transitivePeerDependencies:
-      - encoding
-    dev: false
-
   /@ipld/dag-cbor@7.0.3:
     resolution: {integrity: sha512-1VVh2huHsuohdXC1bGJNE8WR72slZ9XE2T3wbBBq31dm7ZBatmKLLxrB+XAqafxfRFjv08RZmj/W/ZqaM13AuA==}
     dependencies:
@@ -4683,20 +4671,6 @@ packages:
       vitefu: 0.2.5(vite@5.2.8)
     transitivePeerDependencies:
       - supports-color
-
-  /@tanglelabs/iota-identity-adapter@0.2.3:
-    resolution: {integrity: sha512-fGZTTV7MPObOUiQhov5YAKvwyjcUNkS70eX7O562zILYooci0ekTSGDOvxQhIvE7iug8eEUmG/xgTYNt7YuW9g==}
-    requiresBuild: true
-    dependencies:
-      '@iota/identity-wasm': 0.6.1
-      '@tanglelabs/ssimon': 0.5.3
-      did-jwt: 7.4.7
-      did-jwt-vc: 3.2.15
-      patch-package: 8.0.0
-      postinstall-postinstall: 2.1.0
-    transitivePeerDependencies:
-      - encoding
-    dev: false
 
   /@tanglelabs/key-identity-adapter@0.1.2:
     resolution: {integrity: sha512-An+C66lNhk5xzMdBp0EgNiLVc645yEKwroB9Ea6XErI45ypcumfl+gC0aGflGBely/YMHFq1pgVet/9Ag/XGPQ==}
@@ -12482,6 +12456,7 @@ packages:
       react: 16.14.0
       scheduler: 0.19.1
     dev: true
+    bundledDependencies: false
 
   /react-dom@18.2.0(react@17.0.2):
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
@@ -12529,6 +12504,7 @@ packages:
       object-assign: 4.1.1
       prop-types: 15.8.1
     dev: true
+    bundledDependencies: false
 
   /react@17.0.2:
     resolution: {integrity: sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==}

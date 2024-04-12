@@ -31,9 +31,8 @@ jobs:
                   rm -rf /var/www/ngdil/api/*
                   cp -R ./server/* /var/www/ngdil/api/
                   cd /var/www/auvo/api/
-                  cd /var/www/auvo/api/
 
             - name: start application
               continue-on-error: true
               run: |
-                  pm2 restart "auvo-api"
+                  pm2 restart "ngdil-api"
