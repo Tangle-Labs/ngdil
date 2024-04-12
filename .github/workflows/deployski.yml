@@ -1,0 +1,39 @@
+name: Deployski
+
+on:
+    pull_request:
+        branches: [main, release/**, next/**]
+
+jobs:
+    api:
+        runs-on: ngdil-runner
+
+        strategy:
+            matrix:
+                node-version: [20.x]
+
+        steps:
+            - uses: actions/checkout@v2
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  registry-url: "https://registry.npmjs.org"
+
+            - name: Install Dependencies
+              run: |
+                  echo "installing pnpm"
+                  npm install -g pnpm
+                  echo "installing deps for packages"
+
+            - name: build server
+              run: |
+                  rm -rf /var/www/ngdil/api/*
+                  cp -R ./server/* /var/www/ngdil/api/
+                  cd /var/www/auvo/api/
+                  cd /var/www/auvo/api/
+
+            - name: start application
+              continue-on-error: true
+              run: |
+                  pm2 restart "auvo-api"
