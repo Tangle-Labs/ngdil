@@ -50,6 +50,7 @@
 	"dependencies": {
 		"@sveltejs/adapter-node": "^1.2.4",
 		"@sveltejs/adapter-static": "1.0.6",
+		"@sveltejs/adapter-vercel": "^4.0.5",
 		"axios": "^1.2.0",
 		"buffer": "^6.0.3",
 		"qr-code-styling": "^1.6.0-rc.1",
