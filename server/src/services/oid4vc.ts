@@ -51,8 +51,9 @@ export const issuer = new VcIssuer({
 	credentialEndpoint: `${PUBLIC_BASE_URI}/api/credential`,
 	batchCredentialEndpoint: `${PUBLIC_BASE_URI}/api/credentials`,
 	credentialIssuer: `${PUBLIC_BASE_URI}/`,
+
 	cryptographicBindingMethodsSupported: ["did:key"],
-	cryptographicSuitesSupported: ["EdDSA"],
+	credentialSigningAlgValuesSupported: ["EdDSA"],
 	proofTypesSupported: ["jwt"],
 	store: new SimpleStore<IssuerStoreData>({ reader, writer }),
 	clientName: "NGDIL",
@@ -64,7 +65,7 @@ export const issuer = new VcIssuer({
 	supportedCredentials: [
 		{
 			name: "National ID",
-			type: "National ID",
+			type: ["National ID"],
 			raw: {
 				credential_definition: {
 					type: ["VerifiableCredential"]
@@ -81,7 +82,7 @@ export const issuer = new VcIssuer({
 		},
 		{
 			name: "Volunteer Badge",
-			type: "Volunteer Badge",
+			type: ["Volunteer Badge"],
 			raw: {
 				credential_definition: {
 					type: ["VerifiableCredential"]
@@ -98,7 +99,7 @@ export const issuer = new VcIssuer({
 		},
 		{
 			name: "School Course Certificate",
-			type: "School Course Certificate",
+			type: ["School Course Certificate"],
 			raw: {
 				credential_definition: {
 					type: ["VerifiableCredential"]
@@ -115,7 +116,7 @@ export const issuer = new VcIssuer({
 		},
 		{
 			name: "Staff ID",
-			type: "Staff ID",
+			type: ["Staff ID"],
 			raw: {
 				credential_definition: {
 					type: ["VerifiableCredential"]
@@ -132,7 +133,7 @@ export const issuer = new VcIssuer({
 		},
 		{
 			name: "Employee ID",
-			type: "Employee ID",
+			type: ["Employee ID"],
 			raw: {
 				credential_definition: {
 					type: ["VerifiableCredential"]
@@ -149,7 +150,7 @@ export const issuer = new VcIssuer({
 		},
 		{
 			name: "Higher Education Information Literacy Level 1",
-			type: "Higher Education Information Literacy Level 1",
+			type: ["Higher Education Information Literacy Level 1"],
 			raw: {
 				credential_definition: {
 					type: ["OpenBadgeCredential"]
@@ -166,7 +167,7 @@ export const issuer = new VcIssuer({
 		},
 		{
 			name: "Business Innovation & Interdisciplinair Samenwerken",
-			type: "Business Innovation & Interdisciplinair Samenwerken",
+			type: ["Business Innovation & Interdisciplinair Samenwerken"],
 			raw: {
 				credential_definition: {
 					type: ["OpenBadgeCredential"]
@@ -189,7 +190,7 @@ export const issuers = {
 		batchCredentialEndpoint: `${PUBLIC_BASE_URI}/api/credentials`,
 		credentialIssuer: new URL("/bbc", PUBLIC_BASE_URI).toString(),
 		cryptographicBindingMethodsSupported: ["did:key"],
-		cryptographicSuitesSupported: ["EdDSA"],
+		credentialSigningAlgValuesSupported: ["EdDSA"],
 		proofTypesSupported: ["jwt"],
 		store: new SimpleStore<IssuerStoreData>({ reader, writer }),
 		clientName: "Big Business Corp",
@@ -200,7 +201,7 @@ export const issuers = {
 		supportedCredentials: [
 			{
 				name: "Staff ID",
-				type: "Staff ID",
+				type: ["Staff ID"],
 				raw: {
 					credential_definition: {
 						type: ["VerifiableCredential"]
@@ -222,7 +223,7 @@ export const issuers = {
 		batchCredentialEndpoint: `${PUBLIC_BASE_URI}/api/credentials`,
 		credentialIssuer: new URL("/kw1c", PUBLIC_BASE_URI).toString(),
 		cryptographicBindingMethodsSupported: ["did:key"],
-		cryptographicSuitesSupported: ["EdDSA"],
+		credentialSigningAlgValuesSupported: ["EdDSA"],
 		proofTypesSupported: ["jwt"],
 		store: new SimpleStore<IssuerStoreData>({ reader, writer }),
 		tokenEndpoint: `${PUBLIC_BASE_URI}/token`,
@@ -233,7 +234,7 @@ export const issuers = {
 		supportedCredentials: [
 			{
 				name: "All-Round Carpentry Certificate",
-				type: "All-Round Carpentry Certificate",
+				type: ["All-Round Carpentry Certificate"],
 				raw: {
 					credential_definition: {
 						type: ["VerifiableCredential"]
@@ -250,7 +251,7 @@ export const issuers = {
 			},
 			{
 				name: "Marketing Certificate",
-				type: "Marketing Certificate",
+				type: ["Marketing Certificate"],
 				raw: {
 					credential_definition: {
 						type: ["VerifiableCredential"]
@@ -267,7 +268,7 @@ export const issuers = {
 			},
 			{
 				name: "Future Engineer Certificate",
-				type: "Future Engineer Certificate",
+				type: ["Future Engineer Certificate"],
 				raw: {
 					credential_definition: {
 						type: ["VerifiableCredential"]
