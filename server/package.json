@@ -5,20 +5,20 @@
 	"license": "MIT",
 	"type": "module",
 	"scripts": {
-		"dev": "node --watch --loader=tsx src/server.ts | pino-pretty",
+		"dev": "node --watch --import=tsx src/server.ts | pino-pretty",
 		"lint": "prettier --plugin-search-dir . --check . && eslint \"src/**/*.{ts,json}\"",
 		"format": "prettier --plugin-search-dir . --write .",
 		"format-check": "prettier -c \"**/*.{ts,js,json}\"",
 		"build": "tsc && resolve-tspaths"
 	},
 	"dependencies": {
-		"@tanglelabs/iota-identity-adapter": "^0.2.2",
 		"@tanglelabs/key-identity-adapter": "^0.1.2",
 		"@tanglelabs/oid4vc": "^0.2.1-alpha.0",
 		"@tanglelabs/ssimon": "^0.5.3",
 		"bcryptjs": "^2.4.3",
 		"cookie-parser": "1.4.6",
 		"cors": "^2.8.5",
+		"did-jwt": "^8.0.4",
 		"did-resolver": "^4.1.0",
 		"dotenv": "^16.0.3",
 		"express": "^4.18.2",

@@ -1,5 +1,4 @@
 import { GenericStore, IdentityManager, encryptWithAES } from "@tanglelabs/ssimon";
-import { IotaAccount, IotaAdapter } from "@tanglelabs/iota-identity-adapter";
 import path from "path";
 import { readFile, writeFile } from "fs/promises";
 import { fileURLToPath } from "url";
