@@ -27,6 +27,9 @@
 			color: fgColor,
 			type: "classy-rounded"
 		},
+		cornersDotOptions: {
+			color: fgColor
+		},
 		backgroundOptions: {
 			color: bgColor
 		}
