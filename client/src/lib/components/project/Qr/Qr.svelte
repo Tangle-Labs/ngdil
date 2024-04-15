@@ -30,6 +30,9 @@
 		cornersDotOptions: {
 			color: fgColor
 		},
+		cornersSquareOptions: {
+			color: fgColor
+		},
 		backgroundOptions: {
 			color: bgColor
 		}
