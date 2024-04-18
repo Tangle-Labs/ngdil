@@ -75,7 +75,7 @@ export const issuer = new VcIssuer({
 				{
 					name: "National ID",
 					logo: {
-						uri: `${PUBLIC_CLIENT_URI}/imgs/gov.svg`
+						url: `${PUBLIC_CLIENT_URI}/imgs/gov.svg`
 					}
 				}
 			]
@@ -92,7 +92,7 @@ export const issuer = new VcIssuer({
 				{
 					name: "Volunteer Badge",
 					logo: {
-						uri: `${PUBLIC_CLIENT_URI}/imgs/volunteer.svg`
+						url: `${PUBLIC_CLIENT_URI}/imgs/volunteer.svg`
 					}
 				}
 			]
@@ -109,7 +109,7 @@ export const issuer = new VcIssuer({
 				{
 					name: "School Course Certificate",
 					logo: {
-						uri: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+						url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
 					}
 				}
 			]
@@ -126,7 +126,7 @@ export const issuer = new VcIssuer({
 				{
 					name: "Staff ID",
 					logo: {
-						uri: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+						url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
 					}
 				}
 			]
@@ -143,7 +143,7 @@ export const issuer = new VcIssuer({
 				{
 					name: "Employee ID",
 					logo: {
-						uri: `${PUBLIC_CLIENT_URI}/imgs/future-tech.png`
+						url: `${PUBLIC_CLIENT_URI}/imgs/future-tech.png`
 					}
 				}
 			]
@@ -160,7 +160,7 @@ export const issuer = new VcIssuer({
 				{
 					name: "Higher Education Information Literacy Level 1",
 					logo: {
-						uri: `${PUBLIC_CLIENT_URI}/imgs/werk.png`
+						url: `${PUBLIC_CLIENT_URI}/imgs/werk.png`
 					}
 				}
 			]
@@ -177,7 +177,7 @@ export const issuer = new VcIssuer({
 				{
 					name: "Business Innovation & Interdisciplinair Samenwerken",
 					logo: {
-						uri: `${PUBLIC_CLIENT_URI}/imgs/hta.png`
+						url: `${PUBLIC_CLIENT_URI}/imgs/hta.png`
 					}
 				}
 			]
@@ -211,7 +211,7 @@ export const issuers = {
 					{
 						name: "Staff ID",
 						logo: {
-							uri: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+							url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
 						}
 					}
 				]
@@ -244,7 +244,7 @@ export const issuers = {
 					{
 						name: "All-Round Carpentry Certificate",
 						logo: {
-							uri: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+							url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
 						}
 					}
 				]
@@ -261,7 +261,7 @@ export const issuers = {
 					{
 						name: "Marketing Certificate",
 						logo: {
-							uri: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+							url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
 						}
 					}
 				]
@@ -278,7 +278,7 @@ export const issuers = {
 					{
 						name: "Future Engineer Certificate",
 						logo: {
-							uri: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+							url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
 						}
 					}
 				]
