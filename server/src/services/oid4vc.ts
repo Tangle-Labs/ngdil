@@ -69,16 +69,16 @@ export const issuer = new VcIssuer({
 			raw: {
 				credential_definition: {
 					type: ["VerifiableCredential"]
-				},
-				display: [
-					{
-						name: "National ID",
-						logo: {
-							url: `${PUBLIC_CLIENT_URI}/imgs/gov.svg`
-						}
+				}
+			},
+			display: [
+				{
+					name: "National ID",
+					logo: {
+						uri: `${PUBLIC_CLIENT_URI}/imgs/gov.svg`
 					}
-				]
-			}
+				}
+			]
 		},
 		{
 			name: "Volunteer Badge",
@@ -86,16 +86,16 @@ export const issuer = new VcIssuer({
 			raw: {
 				credential_definition: {
 					type: ["VerifiableCredential"]
-				},
-				display: [
-					{
-						name: "Volunteer Badge",
-						logo: {
-							url: `${PUBLIC_CLIENT_URI}/imgs/volunteer.svg`
-						}
+				}
+			},
+			display: [
+				{
+					name: "Volunteer Badge",
+					logo: {
+						uri: `${PUBLIC_CLIENT_URI}/imgs/volunteer.svg`
 					}
-				]
-			}
+				}
+			]
 		},
 		{
 			name: "School Course Certificate",
@@ -103,16 +103,16 @@ export const issuer = new VcIssuer({
 			raw: {
 				credential_definition: {
 					type: ["VerifiableCredential"]
-				},
-				display: [
-					{
-						name: "School Course Certificate",
-						logo: {
-							url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
-						}
+				}
+			},
+			display: [
+				{
+					name: "School Course Certificate",
+					logo: {
+						uri: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
 					}
-				]
-			}
+				}
+			]
 		},
 		{
 			name: "Staff ID",
@@ -120,16 +120,16 @@ export const issuer = new VcIssuer({
 			raw: {
 				credential_definition: {
 					type: ["VerifiableCredential"]
-				},
-				display: [
-					{
-						name: "Staff ID",
-						logo: {
-							url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
-						}
+				}
+			},
+			display: [
+				{
+					name: "Staff ID",
+					logo: {
+						uri: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
 					}
-				]
-			}
+				}
+			]
 		},
 		{
 			name: "Employee ID",
@@ -137,16 +137,16 @@ export const issuer = new VcIssuer({
 			raw: {
 				credential_definition: {
 					type: ["VerifiableCredential"]
-				},
-				display: [
-					{
-						name: "Employee ID",
-						logo: {
-							url: `${PUBLIC_CLIENT_URI}/imgs/future-tech.png`
-						}
+				}
+			},
+			display: [
+				{
+					name: "Employee ID",
+					logo: {
+						uri: `${PUBLIC_CLIENT_URI}/imgs/future-tech.png`
 					}
-				]
-			}
+				}
+			]
 		},
 		{
 			name: "Higher Education Information Literacy Level 1",
@@ -154,16 +154,16 @@ export const issuer = new VcIssuer({
 			raw: {
 				credential_definition: {
 					type: ["OpenBadgeCredential"]
-				},
-				display: [
-					{
-						name: "Higher Education Information Literacy Level 1",
-						logo: {
-							url: `${PUBLIC_CLIENT_URI}/imgs/werk.png`
-						}
+				}
+			},
+			display: [
+				{
+					name: "Higher Education Information Literacy Level 1",
+					logo: {
+						uri: `${PUBLIC_CLIENT_URI}/imgs/werk.png`
 					}
-				]
-			}
+				}
+			]
 		},
 		{
 			name: "Business Innovation & Interdisciplinair Samenwerken",
@@ -171,16 +171,16 @@ export const issuer = new VcIssuer({
 			raw: {
 				credential_definition: {
 					type: ["OpenBadgeCredential"]
-				},
-				display: [
-					{
-						name: "Business Innovation & Interdisciplinair Samenwerken",
-						logo: {
-							url: `${PUBLIC_CLIENT_URI}/imgs/hta.png`
-						}
+				}
+			},
+			display: [
+				{
+					name: "Business Innovation & Interdisciplinair Samenwerken",
+					logo: {
+						uri: `${PUBLIC_CLIENT_URI}/imgs/hta.png`
 					}
-				]
-			}
+				}
+			]
 		}
 	]
 });
@@ -205,16 +205,16 @@ export const issuers = {
 				raw: {
 					credential_definition: {
 						type: ["VerifiableCredential"]
-					},
-					display: [
-						{
-							name: "Staff ID",
-							logo: {
-								url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
-							}
+					}
+				},
+				display: [
+					{
+						name: "Staff ID",
+						logo: {
+							uri: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
 						}
-					]
-				}
+					}
+				]
 			}
 		]
 	}),
@@ -238,16 +238,16 @@ export const issuers = {
 				raw: {
 					credential_definition: {
 						type: ["VerifiableCredential"]
-					},
-					display: [
-						{
-							name: "All-Round Carpentry Certificate",
-							logo: {
-								url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
-							}
+					}
+				},
+				display: [
+					{
+						name: "All-Round Carpentry Certificate",
+						logo: {
+							uri: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
 						}
-					]
-				}
+					}
+				]
 			},
 			{
 				name: "Marketing Certificate",
@@ -255,16 +255,16 @@ export const issuers = {
 				raw: {
 					credential_definition: {
 						type: ["VerifiableCredential"]
-					},
-					display: [
-						{
-							name: "Marketing Certificate",
-							logo: {
-								url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
-							}
+					}
+				},
+				display: [
+					{
+						name: "Marketing Certificate",
+						logo: {
+							uri: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
 						}
-					]
-				}
+					}
+				]
 			},
 			{
 				name: "Future Engineer Certificate",
@@ -272,16 +272,16 @@ export const issuers = {
 				raw: {
 					credential_definition: {
 						type: ["VerifiableCredential"]
-					},
-					display: [
-						{
-							name: "Future Engineer Certificate",
-							logo: {
-								url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
-							}
+					}
+				},
+				display: [
+					{
+						name: "Future Engineer Certificate",
+						logo: {
+							uri: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
 						}
-					]
-				}
+					}
+				]
 			}
 		]
 	})
