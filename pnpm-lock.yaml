@@ -152,8 +152,8 @@ importers:
         specifier: ^0.1.2
         version: 0.1.2
       '@tanglelabs/oid4vc':
-        specifier: ^0.2.1-alpha.1
-        version: 0.2.1-alpha.1
+        specifier: 0.2.1-alpha.2
+        version: 0.2.1-alpha.2
       '@tanglelabs/ssimon':
         specifier: ^0.5.3
         version: 0.5.3
@@ -3800,8 +3800,8 @@ packages:
       tweetnacl-util: 0.15.1
     dev: false
 
-  /@tanglelabs/oid4vc@0.2.1-alpha.1:
-    resolution: {integrity: sha512-sLsBwum39vDki8WgeRdBhXt+J09kKljq8487v4cOKSnTEKdHQTdkrxpR/BR+/71djNZjUKqJ2VRjAwLS7HtXZw==}
+  /@tanglelabs/oid4vc@0.2.1-alpha.2:
+    resolution: {integrity: sha512-mbbppXmvYNnqj75B3gbBlBkV/HTmifSqW7DHI+aoLjFhlH01RvyhyzNOTa5GGtdlilGKAn7BCETR/0L27lWIUw==}
     dependencies:
       '@sphereon/pex': 2.1.0
       '@sphereon/pex-models': 2.2.2

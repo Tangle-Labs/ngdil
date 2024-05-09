@@ -27,6 +27,11 @@ export const rp = new RelyingParty({
 		subjectSyntaxTypesSupported: ["did:key"],
 		idTokenSigningAlgValuesSupported: [SigningAlgs.EdDSA],
 		clientName: "NGDIL",
+		vpFormats: {
+			jwt_vc_json: {
+				alg: ["EdDSA"]
+			}
+		},
 		logoUri:
 			"https://uploads-ssl.webflow.com/6440ceac338a9203b5100c47/6440ceac338a920197100e60_NGDIL%20Logo%20Dark.svg"
 	},
