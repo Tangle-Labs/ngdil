@@ -3,7 +3,7 @@ import path from "path";
 import { readFile, writeFile } from "fs/promises";
 import { fileURLToPath } from "url";
 import { nanoid } from "nanoid";
-import { DidKeyAccount, DidKeyAdapter } from "@tanglelabs/key-identity-adapter/dist";
+import { DidJwkAccount, DidJwkAdapter } from "@tanglelabs/jwk-identity-adapter";
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -34,12 +34,13 @@ export class IdentityService {
 	//@ts-ignore
 	manager: IdentityManager<IotaAdapter>;
 	// @ts-ignore
-	did: DidKeyAccount;
+	did: DidJwkAccount;
 
 	static async build() {
 		const service = new IdentityService();
+		console.log(__dirname);
 		service.manager = await IdentityManager.build({
-			adapter: DidKeyAdapter,
+			adapters: [DidJwkAdapter],
 			storage: constructFileStore({
 				path: path.resolve(__dirname, "./identity"),
 				password: "asdf"
@@ -56,7 +57,7 @@ export class IdentityService {
 				alias: "ngdil",
 				store
 			})
-			.catch(() => service.manager.createDid({ alias: "ngdil", store }));
+			.catch(() => service.manager.createDid({ alias: "ngdil", method: "jwk", store }));
 		return service;
 	}
 

@@ -7,6 +7,8 @@ import {
 	SimpleStore,
 	VcIssuer
 } from "@tanglelabs/oid4vc";
+import { stringToBytes } from "@tanglelabs/ssimon";
+import { ES256Signer } from "did-jwt";
 import { readFile, writeFile } from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -15,9 +17,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const rpKeys = {
-	privKeyHex: "95ea66436c4ccd826007e5835a0bd0f96bd811e44fa9dd6d58c75fa04a903a8a",
-	did: "did:key:z6MkquY2TrE7KeuBNRAJ4eZbPqtYeCyGXe8seQNfK1ZXAumj",
-	kid: "did:key:z6MkquY2TrE7KeuBNRAJ4eZbPqtYeCyGXe8seQNfK1ZXAumj#z6MkquY2TrE7KeuBNRAJ4eZbPqtYeCyGXe8seQNfK1ZXAumj"
+	signer: ES256Signer(
+		stringToBytes("e48ad81c8e23939edf1e10bd87e04155901c304a0eaef240a729e6e8645ad66d")
+	),
+	did: "did:jwk:eyJrdHkiOiJFQyIsIngiOiIwRW5wZ2NodWJxaG5jNWx6MDNvaGQtN0NoLVo5UmRsY0NWTmRUSDZCdFpBIiwieSI6ImhzcFJqZTNMb3Y0TE1vazdVblhLMGQxR1BtSjFFQmIwOUw0SGN5S01KUEUiLCJjcnYiOiJQLTI1NiJ9",
+	kid: "did:jwk:eyJrdHkiOiJFQyIsIngiOiIwRW5wZ2NodWJxaG5jNWx6MDNvaGQtN0NoLVo5UmRsY0NWTmRUSDZCdFpBIiwieSI6ImhzcFJqZTNMb3Y0TE1vazdVblhLMGQxR1BtSjFFQmIwOUw0SGN5S01KUEUiLCJjcnYiOiJQLTI1NiJ9#0"
 };
 
 export const rp = new RelyingParty({
@@ -25,11 +29,11 @@ export const rp = new RelyingParty({
 	clientId: rpKeys.did,
 	clientMetadata: {
 		subjectSyntaxTypesSupported: ["did:key"],
-		idTokenSigningAlgValuesSupported: [SigningAlgs.EdDSA],
+		idTokenSigningAlgValuesSupported: [SigningAlgs.ES256],
 		clientName: "NGDIL",
 		vpFormats: {
 			jwt_vc_json: {
-				alg: ["EdDSA"]
+				alg: ["ES256"]
 			}
 		},
 		logoUri:
@@ -57,8 +61,9 @@ export const issuer = new VcIssuer({
 	batchCredentialEndpoint: `${PUBLIC_BASE_URI}/api/credentials`,
 	credentialIssuer: `${PUBLIC_BASE_URI}/`,
 
-	cryptographicBindingMethodsSupported: ["did:key"],
-	credentialSigningAlgValuesSupported: ["EdDSA"],
+	// @ts-ignore
+	cryptographicBindingMethodsSupported: ["did:key", "did:jwk"],
+	credentialSigningAlgValuesSupported: ["ES256"],
 	proofTypesSupported: ["jwt"],
 	store: new SimpleStore<IssuerStoreData>({ reader, writer }),
 	clientName: "NGDIL",
@@ -194,8 +199,9 @@ export const issuers = {
 		credentialEndpoint: `${PUBLIC_BASE_URI}/api/credential`,
 		batchCredentialEndpoint: `${PUBLIC_BASE_URI}/api/credentials`,
 		credentialIssuer: new URL("/bbc", PUBLIC_BASE_URI).toString(),
-		cryptographicBindingMethodsSupported: ["did:key"],
-		credentialSigningAlgValuesSupported: ["EdDSA"],
+		// @ts-ignore
+		cryptographicBindingMethodsSupported: ["did:key", "did:jwk"],
+		credentialSigningAlgValuesSupported: ["ES256"],
 		proofTypesSupported: ["jwt"],
 		store: new SimpleStore<IssuerStoreData>({ reader, writer }),
 		clientName: "Big Business Corp",
@@ -227,8 +233,8 @@ export const issuers = {
 		credentialEndpoint: `${PUBLIC_BASE_URI}/api/credential`,
 		batchCredentialEndpoint: `${PUBLIC_BASE_URI}/api/credentials`,
 		credentialIssuer: new URL("/kw1c", PUBLIC_BASE_URI).toString(),
-		cryptographicBindingMethodsSupported: ["did:key"],
-		credentialSigningAlgValuesSupported: ["EdDSA"],
+		cryptographicBindingMethodsSupported: ["did:key", "did:web", "did:jwk"],
+		credentialSigningAlgValuesSupported: ["ES256"],
 		proofTypesSupported: ["jwt"],
 		store: new SimpleStore<IssuerStoreData>({ reader, writer }),
 		tokenEndpoint: `${PUBLIC_BASE_URI}/token`,
