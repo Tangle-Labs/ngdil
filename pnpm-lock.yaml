@@ -148,6 +148,9 @@ importers:
 
   server:
     dependencies:
+      '@sphereon/did-resolver-jwk':
+        specifier: 0.10.2-unstable.5
+        version: 0.10.2-unstable.5
       '@tanglelabs/jwk-identity-adapter':
         specifier: ^0.1.0
         version: 0.1.0
