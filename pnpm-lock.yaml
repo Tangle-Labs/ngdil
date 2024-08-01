@@ -152,11 +152,11 @@ importers:
         specifier: 0.10.2-unstable.5
         version: 0.10.2-unstable.5
       '@tanglelabs/jwk-identity-adapter':
-        specifier: ^0.1.0
-        version: 0.1.0
+        specifier: ^0.1.2
+        version: 0.1.2
       '@tanglelabs/oid4vc':
-        specifier: 0.2.1-alpha.6
-        version: 0.2.1-alpha.6
+        specifier: 0.2.1-alpha.8
+        version: 0.2.1-alpha.8
       '@tanglelabs/ssimon':
         specifier: ^0.7.1
         version: 0.7.1
@@ -1946,11 +1946,11 @@ packages:
       svelte: ^4.0.0 || ^5.0.0-next.0
       vite: ^5.0.0
 
-  '@tanglelabs/jwk-identity-adapter@0.1.0':
-    resolution: {integrity: sha512-hLbMgq4ppVlksmlrCDQBQU/nYiaDAoENIX8ssqOe8CUh8PmnW1NymUuHkoP84N6z0yQ2Vg7cZ+C3o4EkHbqKRQ==}
+  '@tanglelabs/jwk-identity-adapter@0.1.2':
+    resolution: {integrity: sha512-sC7fVkFw3vR6nUm3vYy/DHMz3gEN73LIB2XnxqFSRSVYteTHB9IDzVmSJN3x+stAalJwoqjhalnm3AtXcpEydQ==}
 
-  '@tanglelabs/oid4vc@0.2.1-alpha.6':
-    resolution: {integrity: sha512-wAfVIGNVt9GgleOsUboXZZQhV8jtDOvUWl2qJJnTH5Xe1wEgCqcvHN8hfHREC/Be0kDZ/eac1zVtPFuPt/KzRQ==}
+  '@tanglelabs/oid4vc@0.2.1-alpha.8':
+    resolution: {integrity: sha512-GIdpTl00pAlt2hBnABZg03qfeGa+IzeDj5vSCL7GwSFBnkNbpkp2GnG0WyceKsEStG+BI3EgowdGNU+2yTLqPQ==}
 
   '@tanglelabs/ssimon@0.7.1':
     resolution: {integrity: sha512-vSLrh5nxgZ7bINhSU8TGqYw6Oi0lXDU1qVBXbnvfk2wxW0fIspITxcTwgRsPEx3ozoMOVw5++t8rZvPXqVH/xw==}
@@ -8262,7 +8262,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@tanglelabs/jwk-identity-adapter@0.1.0':
+  '@tanglelabs/jwk-identity-adapter@0.1.2':
     dependencies:
       '@sphereon/did-resolver-jwk': 0.10.2-unstable.5
       '@tanglelabs/ssimon': 0.7.1
@@ -8282,7 +8282,7 @@ snapshots:
       - pg-native
       - supports-color
 
-  '@tanglelabs/oid4vc@0.2.1-alpha.6':
+  '@tanglelabs/oid4vc@0.2.1-alpha.8':
     dependencies:
       '@sphereon/did-resolver-jwk': 0.10.2-unstable.5
       '@sphereon/pex': 2.1.0
