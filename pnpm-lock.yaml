@@ -155,8 +155,8 @@ importers:
         specifier: ^0.1.2
         version: 0.1.2
       '@tanglelabs/oid4vc':
-        specifier: 0.2.1-alpha.8
-        version: 0.2.1-alpha.8
+        specifier: 0.2.1-alpha.9
+        version: 0.2.1-alpha.9
       '@tanglelabs/ssimon':
         specifier: ^0.7.1
         version: 0.7.1
@@ -1949,8 +1949,8 @@ packages:
   '@tanglelabs/jwk-identity-adapter@0.1.2':
     resolution: {integrity: sha512-sC7fVkFw3vR6nUm3vYy/DHMz3gEN73LIB2XnxqFSRSVYteTHB9IDzVmSJN3x+stAalJwoqjhalnm3AtXcpEydQ==}
 
-  '@tanglelabs/oid4vc@0.2.1-alpha.8':
-    resolution: {integrity: sha512-GIdpTl00pAlt2hBnABZg03qfeGa+IzeDj5vSCL7GwSFBnkNbpkp2GnG0WyceKsEStG+BI3EgowdGNU+2yTLqPQ==}
+  '@tanglelabs/oid4vc@0.2.1-alpha.9':
+    resolution: {integrity: sha512-tF/B3Id/LV4G0uXHXO1WcunzGpBV1ZTM723iWK+JuWsvCl6obmRzMEVtae8BJBarUvVNoqI9lLtkJWfks1cmvw==}
 
   '@tanglelabs/ssimon@0.7.1':
     resolution: {integrity: sha512-vSLrh5nxgZ7bINhSU8TGqYw6Oi0lXDU1qVBXbnvfk2wxW0fIspITxcTwgRsPEx3ozoMOVw5++t8rZvPXqVH/xw==}
@@ -8282,7 +8282,7 @@ snapshots:
       - pg-native
       - supports-color
 
-  '@tanglelabs/oid4vc@0.2.1-alpha.8':
+  '@tanglelabs/oid4vc@0.2.1-alpha.9':
     dependencies:
       '@sphereon/did-resolver-jwk': 0.10.2-unstable.5
       '@sphereon/pex': 2.1.0
