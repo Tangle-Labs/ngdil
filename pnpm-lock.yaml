@@ -152,8 +152,8 @@ importers:
         specifier: 0.10.2-unstable.5
         version: 0.10.2-unstable.5
       '@tanglelabs/jwk-identity-adapter':
-        specifier: ^0.1.2
-        version: 0.1.2
+        specifier: ^0.1.3
+        version: 0.1.3
       '@tanglelabs/oid4vc':
         specifier: 0.2.1-alpha.9
         version: 0.2.1-alpha.9
@@ -1946,8 +1946,8 @@ packages:
       svelte: ^4.0.0 || ^5.0.0-next.0
       vite: ^5.0.0
 
-  '@tanglelabs/jwk-identity-adapter@0.1.2':
-    resolution: {integrity: sha512-sC7fVkFw3vR6nUm3vYy/DHMz3gEN73LIB2XnxqFSRSVYteTHB9IDzVmSJN3x+stAalJwoqjhalnm3AtXcpEydQ==}
+  '@tanglelabs/jwk-identity-adapter@0.1.3':
+    resolution: {integrity: sha512-7EWjfbeEYgU1z0Tq/IM/UOBMF41W8MkezzUZM3zooxZA9/m0N0Ww8jlLcEL66y3vIXgAmwEtl5FZ4JUpwT6pXw==}
 
   '@tanglelabs/oid4vc@0.2.1-alpha.9':
     resolution: {integrity: sha512-tF/B3Id/LV4G0uXHXO1WcunzGpBV1ZTM723iWK+JuWsvCl6obmRzMEVtae8BJBarUvVNoqI9lLtkJWfks1cmvw==}
@@ -8262,7 +8262,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@tanglelabs/jwk-identity-adapter@0.1.2':
+  '@tanglelabs/jwk-identity-adapter@0.1.3':
     dependencies:
       '@sphereon/did-resolver-jwk': 0.10.2-unstable.5
       '@tanglelabs/ssimon': 0.7.1

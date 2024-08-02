@@ -128,22 +128,29 @@ export const batchCredentialEndpoint = expressAsyncHandler(async (req: Request, 
 		resolver
 	});
 
-	const did = await issuer.validateCredentialsResponse({
-		token,
-		proof: req.body.credential_requests[0].proof.jwt
+	const proofToken = req.body.credential_requests[0].proof.jwt;
+	console.log(proofToken);
+	const details = await didJWT.verifyJWT(proofToken, {
+		policies: { aud: false },
+		resolver: resolver
 	});
+	console.log(details);
+	// const did = await issuer.validateCredentialsResponse({
+	// 	token,
+	// 	proof: req.body.credential_requests[0].proof.jwt
+	// });
 
-	const session = await SessionsService.findById(payload.sessionId);
-	const credentials = await getPersonaCreds(
-		session.credentialDef as "peter" | "imani" | "dominique",
-		did
-	);
+	// const session = await SessionsService.findById(payload.sessionId);
+	// const credentials = await getPersonaCreds(
+	// 	session.credentialDef as "peter" | "imani" | "dominique",
+	// 	did
+	// );
 
-	const response = await issuer.createSendCredentialsResponse({
-		credentials
-	});
-	wsServer.broadcast(payload.sessionId, { creds: true });
-	res.json(response);
+	// const response = await issuer.createSendCredentialsResponse({
+	// 	credentials
+	// });
+	// wsServer.broadcast(payload.sessionId, { creds: true });
+	// res.json(response);
 });
 
 export const siopRequest = expressAsyncHandler(async (req: Request, res: Response) => {
