@@ -148,7 +148,13 @@ importers:
 
   server:
     dependencies:
+      '@cef-ebsi/key-did-resolver':
+        specifier: ^2.0.2
+        version: 2.0.2
       '@sphereon/did-resolver-jwk':
+        specifier: 0.10.2-unstable.5
+        version: 0.10.2-unstable.5
+      '@sphereon/did-resolver-key':
         specifier: 0.10.2-unstable.5
         version: 0.10.2-unstable.5
       '@tanglelabs/jwk-identity-adapter':
@@ -956,6 +962,9 @@ packages:
     resolution: {integrity: sha512-+j7a5c253RfKh8iABBhywc8NSfP5LURe7Uh4qpsh6jc+aLJguvmIUBdjSdEMQv2bENrCR5MfRdjGo7vzS/ob7w==}
     engines: {node: '>=6.9.0'}
 
+  '@cef-ebsi/key-did-resolver@2.0.2':
+    resolution: {integrity: sha512-3/NxIQhyxIyR+HQCo371fUQf4idNfWSRfILZrz2olU4VBYoaAagafL5JEtBhLqsg34L8nBeNp4euy2JcFYeMPw==}
+
   '@chromatic-com/storybook@1.3.2':
     resolution: {integrity: sha512-XcEWNjpRNHCedKZeaXL1cArTIVAap4hZQS0Khn1u1R/b2WRhBqTFDl582sJDUixBN+qkhdStS23S1+Fj/BC1nQ==}
     engines: {node: '>=16.0.0', yarn: '>=1.22.18'}
@@ -1637,6 +1646,9 @@ packages:
   '@sphereon/did-resolver-jwk@0.10.2-unstable.5':
     resolution: {integrity: sha512-T4+y+ClIc6rEiRw/UyUvLijJa575sJlQZpm9PIpCJocT/ZeFSHoIESb9OkKR47V9cEOn1seeZFPdxS/14Yucgw==}
 
+  '@sphereon/did-resolver-key@0.10.2-unstable.5':
+    resolution: {integrity: sha512-HmRiJ8UPb2R95u04W7DYYj9jUEagoHymkvpjtrmkc/UYky+d7XFIBRNB7eqxMNkzO73HZhDI4ARU4zHtBX8QSA==}
+
   '@sphereon/pex-models@2.2.2':
     resolution: {integrity: sha512-CZIsBoaV5rMZEWYBsmH+RxsdoxpXf5FSDwDz0GB0qOf5WFk1BGUnzpZzi5yJ+2L151mhPk97dlRc9Wb01Awr4Q==}
 
@@ -2304,6 +2316,9 @@ packages:
 
   '@yarnpkg/lockfile@1.1.0':
     resolution: {integrity: sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ==}
+
+  '@zxing/text-encoding@0.9.0':
+    resolution: {integrity: sha512-U/4aVJ2mxI0aDNI8Uq0wEhMgY+u4CNtEb0om3+y3+niDAsoTCOB33UF0sxpzqzdqXLqmvc+vZyAt4O8pPdfkwA==}
 
   abbrev@1.1.1:
     resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
@@ -4018,6 +4033,9 @@ packages:
   jest-worker@27.5.1:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
+
+  jose@4.15.9:
+    resolution: {integrity: sha512-1vUQX+IdDMVPj4k8kOxgUqlcK518yluMuGZwqlr44FS1ppZB/5GWh4rZG89erpOBOJjU/OBsnCVFfapsRz6nEA==}
 
   jose@5.6.3:
     resolution: {integrity: sha512-1Jh//hEEwMhNYPDDLwXHa2ePWgWiFNNUadVmguAAw2IJ6sj9mNxV5tGXJNqlMkJAybF6Lgw1mISDxTePP/187g==}
@@ -6027,6 +6045,9 @@ packages:
   web-did-resolver@2.0.27:
     resolution: {integrity: sha512-YxQlNdeYBXLhVpMW62+TPlc6sSOiWyBYq7DNvY6FXmXOD9g0zLeShpq2uCKFFQV/WlSrBi/yebK/W5lMTDxMUQ==}
 
+  web-encoding@1.1.5:
+    resolution: {integrity: sha512-HYLeVCdJ0+lBYV2FvNZmv3HJ2Nt0QYXqZojk3d9FJOLkwnuhzM9tmamh8d7HPM8QqjKH8DeHkFTx+CFlWpZZDA==}
+
   webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
 
@@ -6956,6 +6977,13 @@ snapshots:
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
 
+  '@cef-ebsi/key-did-resolver@2.0.2':
+    dependencies:
+      did-resolver: 4.1.0
+      jose: 4.15.9
+      lodash.isplainobject: 4.0.6
+      multiformats: 9.9.0
+
   '@chromatic-com/storybook@1.3.2(react@17.0.2)':
     dependencies:
       chromatic: 11.3.0
@@ -7444,6 +7472,18 @@ snapshots:
       uint8arrays: 3.1.1
     transitivePeerDependencies:
       - supports-color
+
+  '@sphereon/did-resolver-key@0.10.2-unstable.5':
+    dependencies:
+      '@stablelib/ed25519': 1.0.3
+      bigint-mod-arith: 3.3.1
+      enhanced-resolve: 5.16.0
+      lodash.isplainobject: 4.0.6
+      multiformats: 9.9.0
+      nist-weierstrauss: 1.6.1
+      uint8arrays: 3.1.1
+      varint: 6.0.0
+      web-encoding: 1.1.5
 
   '@sphereon/pex-models@2.2.2': {}
 
@@ -8797,6 +8837,9 @@ snapshots:
       tslib: 1.14.1
 
   '@yarnpkg/lockfile@1.1.0': {}
+
+  '@zxing/text-encoding@0.9.0':
+    optional: true
 
   abbrev@1.1.1: {}
 
@@ -10808,6 +10851,8 @@ snapshots:
       '@types/node': 18.19.31
       merge-stream: 2.0.0
       supports-color: 8.1.1
+
+  jose@4.15.9: {}
 
   jose@5.6.3: {}
 
@@ -12960,6 +13005,12 @@ snapshots:
       did-resolver: 4.1.0
     transitivePeerDependencies:
       - encoding
+
+  web-encoding@1.1.5:
+    dependencies:
+      util: 0.12.5
+    optionalDependencies:
+      '@zxing/text-encoding': 0.9.0
 
   webidl-conversions@3.0.1: {}
 
