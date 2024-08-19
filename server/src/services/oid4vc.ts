@@ -1,4 +1,4 @@
-import { PUBLIC_BASE_URI, PUBLIC_CLIENT_URI } from "@/config";
+import { PUBLIC_BASE_URI, PUBLIC_CLIENT_URI, DID, KID, DID_SEED } from "@/config";
 import { resolver } from "@/utils";
 import {
 	IssuerStoreData,
@@ -17,11 +17,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const rpKeys = {
-	signer: ES256Signer(
-		stringToBytes("e48ad81c8e23939edf1e10bd87e04155901c304a0eaef240a729e6e8645ad66d")
-	),
-	did: "did:jwk:eyJrdHkiOiJFQyIsIngiOiIwRW5wZ2NodWJxaG5jNWx6MDNvaGQtN0NoLVo5UmRsY0NWTmRUSDZCdFpBIiwieSI6ImhzcFJqZTNMb3Y0TE1vazdVblhLMGQxR1BtSjFFQmIwOUw0SGN5S01KUEUiLCJjcnYiOiJQLTI1NiJ9",
-	kid: "did:jwk:eyJrdHkiOiJFQyIsIngiOiIwRW5wZ2NodWJxaG5jNWx6MDNvaGQtN0NoLVo5UmRsY0NWTmRUSDZCdFpBIiwieSI6ImhzcFJqZTNMb3Y0TE1vazdVblhLMGQxR1BtSjFFQmIwOUw0SGN5S01KUEUiLCJjcnYiOiJQLTI1NiJ9#0",
+	signer: ES256Signer(stringToBytes(DID_SEED)),
+	did: DID,
+	kid: KID,
 	signingAlgorithm: SigningAlgs.ES256
 };
 

@@ -9,6 +9,9 @@ const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, "../../../.env") });
 
 export const {
+	DID_SEED,
+	DID,
+	KID,
 	PORT,
 	METRICS_PORT,
 	DB_PORT,
