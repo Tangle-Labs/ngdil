@@ -4,15 +4,15 @@
 
 # NGDIL
 
-This is the repository for (The NGDIL Demo)[https://demo.ngdil.com].
+This is the repository for [The NGDIL Demo](https://demo.ngdil.com).
 
-NGDIL Demo by default uses the TangleLabs NGDIL backend but it can consume any provider's backend which comply's to this (API Spec)[https://ngdil-spec.apidocumentation.com/reference]
+NGDIL Demo by default uses the TangleLabs NGDIL backend but it can consume any provider's backend which comply's to this [API Spec](https://ngdil-spec.apidocumentation.com/reference)
 
 ## How to plug my own backend?
 
 1. Clone this repository
 2. Fill out the `.env` taking a copy from `.env.sample`, only fill the fields which are required by the frontend
-3. Change the `PUBLIC_BASE_URI` in `.env` to be the base URI for your API which follows the spec as defined in this (API Spec)[https://ngdil-spec.apidocumentation.com/reference]
+3. Change the `PUBLIC_BASE_URI` in `.env` to be the base URI for your API which follows the spec as defined in this [API Spec](https://ngdil-spec.apidocumentation.com/reference)
 
 ## Running
 
