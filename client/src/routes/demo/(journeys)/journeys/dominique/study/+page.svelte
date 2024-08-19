@@ -116,13 +116,18 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Modal, Loading, Hightlight, Button } from "$lib/components";
-	import { dominqueCourses, dominiqueSelectedCourse, currNode } from "$lib/stores/flows.store";
+	import {
+		dominqueCourses,
+		dominiqueSelectedCourse,
+		currNode,
+		eventUri
+	} from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
 	import { Confetti } from "svelte-confetti";
 	import { apiClient } from "$lib/utils/axios.utils";
-	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { qrcode } from "svelte-qrcode-action";
 	import { createWebsocket } from "$lib/utils/ws.util";
+	import "@tanglelabs/open-id-qr";
 
 	let progress = 0;
 	let studied = false;
@@ -147,13 +152,14 @@
 		}, 1);
 	};
 
-	const ws = createWebsocket();
-	ws.onmessage = (event) => {
-		const data = JSON.parse(event.data);
-		if (data.creds) {
-			receivedCreds = true;
-		}
-	};
+	function watchQr(qr: string) {
+		if (!qr) return;
+		document.addEventListener("open-id-qr-success", (e) => {
+			if (e.detail.type === "vc") receivedCreds = true;
+		});
+	}
+
+	$: watchQr(qr);
 </script>
 
 <div class="container">
@@ -178,7 +184,7 @@
 						onClick="{() => goto('/demo/journeys/dominique/finished-course')}" />
 				</div>
 			{:else if qr}
-				<Qr data="{qr}" size="{200}" />
+				<open-id-qr request-uri="{qr}" size="{200}" event-stream-uri="{$eventUri}"></open-id-qr>
 				<div class="loading">
 					<Loading img="/imgs/blue-loading.png" size="30px" />
 				</div>

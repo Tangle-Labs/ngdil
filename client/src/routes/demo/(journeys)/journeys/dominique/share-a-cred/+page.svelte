@@ -32,12 +32,22 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, OpenJobsNetwork, Phone, Card, Hightlight } from "$lib/components";
-	import { currNode, nodeCount } from "$lib/stores/flows.store";
+	import { currNode, eventUri, nodeCount } from "$lib/stores/flows.store";
 	import { apiClient } from "$lib/utils/axios.utils";
 	import { createWebsocket } from "$lib/utils/ws.util";
 	import { onMount } from "svelte";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
+	import "@tanglelabs/open-id-qr";
+
+	function watchQr(qr: string) {
+		if (!qr) return;
+		document.addEventListener("open-id-qr-success", (e) => {
+			if (e.detail.type === "id") goto("/demo/journeys/dominique/open-jobs");
+		});
+	}
+
+	$: watchQr(qr);
 
 	let animatePhone = false;
 
@@ -52,15 +62,6 @@
 		});
 		qr = data.uri;
 	};
-
-	const ws = createWebsocket();
-	ws.onmessage = (event) => {
-		const data = JSON.parse(event.data);
-		if (data.login) {
-			goto("/demo/journeys/dominique/open-jobs");
-		}
-	};
-
 	onMount(() => {
 		loadQr();
 		currNode.set(0);
@@ -85,7 +86,8 @@
 				<Card borderRadius="{16}">
 					<div class="card-content">
 						{#if qr}
-							<Qr data="{qr}" size="{200}" />
+							<open-id-qr request-uri="{qr}" event-stream-uri="{$eventUri}" size="{200}"
+							></open-id-qr>
 						{/if}
 						<div class="heading">
 							<Typography variant="card-header" color="--bbc-blue"

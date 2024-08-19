@@ -101,12 +101,11 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Loading, Card, Avatar, Button, Modal } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { completedJourneys, currentJourney } from "$lib/stores/flows.store";
+	import { completedJourneys, currentJourney, sessionId, eventUri } from "$lib/stores/flows.store";
 	import { currStep } from "$lib/stores/onboarding.store";
 	import { apiClient } from "$lib/utils/axios.utils";
-	import Qr from "$lib/components/project/Qr/Qr.svelte";
-	import { createWebsocket } from "$lib/utils/ws.util";
 	import { onMount } from "svelte";
+	import "@tanglelabs/open-id-qr";
 	let qr: string;
 
 	const journeys = {
@@ -134,22 +133,19 @@
 	let selectedJourney: "dominique" | "peter" | "imani" | null = null;
 	let qrVisible = false;
 	let buttonVisible = false;
-	apiClient.get("/");
+	let renderQr = false;
 
 	onMount(() => {
 		currStep.set(2);
 	});
 
 	function watchQr(qr: string) {
+		console.log(qr);
 		if (!qr) return;
-
-		const ws = createWebsocket();
-		ws.onmessage = (event) => {
-			const data = JSON.parse(event.data);
-			if (data.creds) {
-				buttonVisible = true;
-			}
-		};
+		renderQr = true;
+		document.addEventListener("open-id-qr-success", (e) => {
+			if (e.detail.type === "vc") buttonVisible = true;
+		});
 	}
 
 	$: watchQr(qr);
@@ -189,8 +185,9 @@
 				{#if qrVisible}
 					<div class="right">
 						{#if qr}
-							<Qr size="{200}" data="{qr}" />
+							<open-id-qr size="200" request-uri="{qr}" event-stream-uri="{$eventUri}"></open-id-qr>
 						{/if}
+
 						<div class="scan-header">
 							<Typography variant="card-header"
 								>{buttonVisible
