@@ -1,4 +1,4 @@
-![ngdil logo](https://raw.githubusercontent.com/Tangle-Labs/ngdil/feat/openid-qr-component/client/static/imgs/ngdil.svg?token=GHSAT0AAAAAABXWSODG7VPCSUHWDRDFB6XMZWDBKCA)
+![ngdil logo](https://raw.githubusercontent.com/Tangle-Labs/ngdil/main/client/static/imgs/ngdil.svg)
 
 ---
 
