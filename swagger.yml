@@ -113,3 +113,48 @@ paths:
                                     uri:
                                         type: string
                                         example: "openid-credential-offer://?credential_offer_uri=https://api.demo.ngdil.com/api/offers/creds/TiS7Ftu1FHPN0O5alSgHR"
+
+    /events/{session-id}:
+        get:
+            summary: Expose an SSE stream for session events.
+            description: |
+                This endpoint provides a Server-Sent Events (SSE) stream that sends events related to the user's session. The `session-id` is a unique identifier for the user's session, which the backend uses to track the session.
+
+            parameters:
+                - in: path
+                  name: session-id
+                  required: true
+                  description: The unique identifier for the user's session.
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: A stream of events for the specified session.
+                    content:
+                        text/event-stream:
+                            schema:
+                                type: object
+                                properties:
+                                    type:
+                                        type: string
+                                        enum:
+                                            - vc
+                                            - id
+                                            - vp
+                                        description: |
+                                            - `vc`: OpenID4VCI
+                                            - `id`: SIOPv2
+                                            - `vp`: OpenID4VP
+                                    status:
+                                        type: string
+                                        enum:
+                                            - success
+                                            - failure
+                                    state:
+                                        type: string
+                                        description: User-defined state found in token payloads.
+                            example:
+                                type: "vc"
+                                status: "success"
+                                state: "initialRequest"
