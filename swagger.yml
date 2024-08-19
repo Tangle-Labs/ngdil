@@ -1,0 +1,115 @@
+openapi: 3.0.0
+info:
+    version: 1.0.0
+    title: NGDIL API
+    description: NGDIL API for generating various URIs related to SIOPv2, OpenID4VP, and OpenID4VCI.
+
+paths:
+    /siop:
+        post:
+            summary: Generate a SIOPv2-compliant request URI.
+            responses:
+                "200":
+                    description: A SIOPv2-compliant request URI.
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    uri:
+                                        type: string
+                                        example: "openid://client_id=https%3A%2F%2Fclient.example.org%2Fcb&request_uri=https%3A%2F%2Fclient.example.org%2Frequest%2FGkurKxf5T0Y-mnPFCHqWOMiZi4VS138cQO_V7PZHAdM"
+
+    /oid4vp:
+        post:
+            summary: Generate an OpenID4VP request URI.
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                presentationStage:
+                                    type: string
+                                    enum:
+                                        - dominiqueEnrolCourse - Initial request where Dominique shares National ID and School Course Certificate when enrolling in KW1C.
+                                        - dominiqueShareCred - When Dominique shares her credential to the Open Jobs Network.
+                                        - dominiqueApplyForJob - When Dominique has to share her National ID, School Course Certificate, and her earned certificate to Big Business Corp.
+                                        - peterLogin - When Peter needs to present Staff ID to log in to KW1C.
+                                        - imaniLogin - When Imani has to present Staff ID to log in to Future Tech Co.
+                                    example: "dominiqueEnrolCourse"
+            responses:
+                "200":
+                    description: OpenID4VP request URI.
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    uri:
+                                        type: string
+                                        example: "openid://authorize?response_type=vp_token&client_id=https%3A%2F%2Fclient.example.org%2Fcb&redirect_uri=https%3A%2F%2Fclient.example.org%2Fcb&presentation_definition=...&nonce=n-0S6_WzA2Mj HTTP/1.1"
+
+    /api/starting-offer:
+        post:
+            summary: Generate the Starting Offer, (used when the user chooses their Persona).
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                credentials:
+                                    type: array
+                                    items:
+                                        type: string
+                                        enum:
+                                            - National ID
+                                            - School Course Certificate
+                                            - Volunteer Badge
+                                            - Staff ID
+                                            - Employee ID
+                                    example: ["National ID", "Staff ID"]
+            responses:
+                "200":
+                    description: OpenID4VCI URI
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    uri:
+                                        type: string
+                                        example: "openid-credential-offer://?credential_offer_uri=https://api.demo.ngdil.com/api/offers/creds/TiS7Ftu1FHPN0O5alSgHR"
+
+    /api/credential-offer:
+        post:
+            summary: Generate an Oid4vc-compliant URI based on a single credential.
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                credential:
+                                    type: string
+                                    enum:
+                                        - Future Engineer - Credential for a future engineer.
+                                        - All Round Carpenter - Credential for an all-round carpenter.
+                                        - Marketing - Credential for a marketing professional.
+                                        - Staff ID - Credential for staff identification.
+                                    example: "Future Engineer"
+            responses:
+                "200":
+                    description: An Oid4vc-compliant URI.
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    uri:
+                                        type: string
+                                        example: "openid-credential-offer://?credential_offer_uri=https://api.demo.ngdil.com/api/offers/creds/TiS7Ftu1FHPN0O5alSgHR"
