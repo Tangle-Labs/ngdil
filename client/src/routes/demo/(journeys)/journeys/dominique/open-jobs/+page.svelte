@@ -210,7 +210,12 @@
 	import { goto } from "$app/navigation";
 	import { Typography, OpenJobsNetwork, Avatar, Modal, Loading } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { currNode, dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
+	import {
+		currNode,
+		dominiqueSelectedCourse,
+		dominqueCourses,
+		eventUri
+	} from "$lib/stores/flows.store";
 	import { apiClient } from "$lib/utils/axios.utils";
 	import { createWebsocket } from "$lib/utils/ws.util";
 	import { onMount } from "svelte";
@@ -218,7 +223,17 @@
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { qrcode } from "svelte-qrcode-action";
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
+	import "@tanglelabs/open-id-qr";
+
 	let qr: string;
+	function watchQr(qr: string) {
+		if (!qr) return;
+		document.addEventListener("open-id-qr-success", (e) => {
+			if (e.detail.type === "vp") receivedCreds = true;
+		});
+	}
+
+	$: watchQr(qr);
 
 	onMount(async () => {
 		currNode.set(1);
@@ -234,14 +249,6 @@
 		});
 		qr = uri;
 	});
-
-	const ws = createWebsocket();
-	ws.onmessage = (event) => {
-		const data = JSON.parse(event.data);
-		if (data.received) {
-			receivedCreds = true;
-		}
-	};
 
 	let showModal = false;
 </script>
@@ -273,7 +280,7 @@
 				<button class="button" on:click="{() => goto('/demo/journeys/dominique/new-message')}"
 					>Continue</button>
 			{:else if qr}
-				<Qr data="{qr}" size="{200}" />
+				<open-id-qr request-uri="{qr}" event-stream-uri="{$eventUri}" size="{240}"></open-id-qr>
 				<div class="loading">
 					<Loading size="30px" img="/imgs/blue-loading.png" />
 				</div>

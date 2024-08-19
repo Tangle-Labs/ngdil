@@ -40,12 +40,13 @@
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Phone } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { currNode, nodeCount } from "$lib/stores/flows.store";
+	import { currNode, eventUri, nodeCount } from "$lib/stores/flows.store";
 	import { apiClient } from "$lib/utils/axios.utils";
 	import { createWebsocket } from "$lib/utils/ws.util";
 	import { onMount } from "svelte";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
+	import "@tanglelabs/open-id-qr";
 
 	let animatePhone = false;
 	let qr: string;
@@ -61,13 +62,14 @@
 		qr = data.uri;
 	};
 
-	const ws = createWebsocket();
-	ws.onmessage = (event) => {
-		const data = JSON.parse(event.data);
-		if (data.received) {
-			goto("/demo/journeys/imani/applications");
-		}
-	};
+	function watchQr(qr: string) {
+		if (!qr) return;
+		document.addEventListener("open-id-qr-success", (e) => {
+			if (e.detail.type === "vp") goto("/demo/journeys/imani/applications");
+		});
+	}
+
+	$: watchQr(qr);
 
 	onMount(() => {
 		currNode.set(0);
@@ -98,7 +100,7 @@
 				</div>
 				<div class="login-card">
 					{#if qr}
-						<Qr data="{qr}" size="{200}" fgColor="white" bgColor="var(--future-tech-green)" />
+						<open-id-qr request-uri="{qr}" event-stream-uri="{$eventUri}" size="{240}"></open-id-qr>
 					{/if}
 					<div class="heading">
 						<Typography variant="list" color="--future-tech-green-300">Scan QR to Login</Typography>
