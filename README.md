@@ -1,3 +1,7 @@
+![ngdil logo](https://raw.githubusercontent.com/Tangle-Labs/ngdil/feat/openid-qr-component/client/static/imgs/ngdil.svg?token=GHSAT0AAAAAABXWSODG7VPCSUHWDRDFB6XMZWDBKCA)
+
+---
+
 # NGDIL
 
 This is the repository for (The NGDIL Demo)[https://demo.ngdil.com].
