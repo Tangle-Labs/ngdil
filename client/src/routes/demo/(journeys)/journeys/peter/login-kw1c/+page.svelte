@@ -41,13 +41,12 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Card, Phone } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { currNode, eventUri, nodeCount } from "$lib/stores/flows.store";
+	import { currNode, nodeCount } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { apiClient } from "$lib/utils/axios.utils";
 	import { createWebsocket } from "$lib/utils/ws.util";
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
-	import "@tanglelabs/open-id-qr";
 
 	let animatePhone = false;
 	let qr: string;
@@ -62,14 +61,15 @@
 		});
 		qr = data.uri;
 	};
-	function watchQr(qr: string) {
-		if (!qr) return;
-		document.addEventListener("open-id-qr-success", (e) => {
-			if (e.detail.type === "vp") goto("/demo/journeys/peter/view-applications");
-		});
-	}
 
-	$: watchQr(qr);
+	const ws = createWebsocket();
+	ws.onmessage = (event) => {
+		const data = JSON.parse(event.data);
+		if (data.received) {
+			goto("/demo/journeys/peter/view-applications");
+		}
+	};
+
 	onMount(() => {
 		nodeCount.set(5);
 		currNode.set(0);
@@ -103,8 +103,7 @@
 							</div>
 						</div>
 						{#if qr}
-							<open-id-qr request-uri="{qr}" event-stream-uri="{$eventUri}" size="{220}"
-							></open-id-qr>
+							<Qr data="{qr}" size="{200}" />
 						{/if}
 						<div class="desc">
 							<Typography variant="kw1c-sub-text"

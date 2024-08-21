@@ -220,6 +220,8 @@
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
+
 	let showModal = false;
 
 	onMount(() => {
@@ -231,34 +233,42 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You <Highlight>shared your credential</Highlight> and an interested employer has messaged you
-			after seeing your skills.</Typography>
+			after seeing your skills.
+			<!-- {$_("journeys.dominique.shared_cred_and_employer_msged")} -->
+		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography>Click view message to see what the employer has to say.</Typography>
+		<Typography>
+			{$_("journeys.dominique.view_msg_btn_desc")}
+		</Typography>
 	</div>
 	<Modal bind:isOpen="{showModal}" borderRadius="{16}">
 		<div class="modal-content">
 			<div class="heading">
-				<Typography variant="card-header" color="--bbc-blue">from Big Business Corp.</Typography>
+				<Typography variant="card-header" color="--bbc-blue"
+					>{$_("journeys.dominique.from_bbc")}.</Typography>
 			</div>
 			<div class="message">
 				<Typography>
-					Hi Dominique <br /><br />
-
-					Congratulations on your new qualification. <br /><br />
-
+					{$_("journeys.dominique.hi_dominique")}
+					<br /><br />
+					{$_("journeys.dominique.congrats_on_new_qualifications")}
+					<br /><br />
 					We saw your skills on your profile and would like to
 					<b>invite you to apply for a role at the Big Business Corp.</b>
+					<!-- {$_("journeys.dominique.saw_skills_so_apply_job_role")} -->
 					<br /><br />
-					Looking forward to your application. <br /><br />
-
-					Regards <br /> Dasha Bloomberg
+					{$_("journeys.dominique.looking_forward_to_your_application")}
+					<br /><br />
+					{$_("journeys.dominique.regards")}
+					<br />
+					{$_("journeys.dominique.dasha_bloomberg")}
 				</Typography>
 			</div>
 			<button class="button" on:click="{() => goto('/demo/journeys/dominique/shared-cred')}"
-				>Continue</button>
+				>{$_("components.continue")}</button>
 			<div class="subtext">
-				<Typography variant="sub-text">Click continue to proceed</Typography>
+				<Typography variant="sub-text">{$_("journeys.dominique.click_to_proceed")}</Typography>
 			</div>
 		</div>
 	</Modal>
@@ -268,7 +278,7 @@
 				<div class="avatar">
 					<Avatar variant="small" image="/imgs/dominique.png" />
 					<div class="welcome">
-						<Typography variant="button">Welcome, Dominique Veritas</Typography>
+						<Typography variant="button">{$_("journeys.dominique.welcome_dominique")}</Typography>
 					</div>
 
 					<div class="big-bar"></div>
@@ -284,17 +294,21 @@
 					<div class="card card-1">
 						<div class="sub-text">
 							<Typography variant="sub-text"
-								>Dominique Veritas just shared a new credential</Typography>
+								>{$_("journeys.dominique.dominique_shared_cred")}l</Typography>
 						</div>
 						<div class="details">
 							<img src="/imgs/kw1c-white.png" class="logo" alt="" />
 							<div class="text">
 								<div class="heading">
 									<Typography variant="button"
-										>{dominqueCourses[$dominiqueSelectedCourse].name} Certificate</Typography>
+										>{dominqueCourses[$dominiqueSelectedCourse].name +
+											" " +
+											$_("creds.certificate")}</Typography>
 								</div>
 								<div class="sub-text">
-									<Typography variant="sub-text">Issued by Koning Willem I College</Typography>
+									<Typography variant="sub-text">
+										{$_("components.issued_by") + " " + $_("issuer.koning_willem_i_college")}
+									</Typography>
 								</div>
 							</div>
 						</div>
@@ -321,21 +335,22 @@
 
 				<div class="share">
 					<div class="credential">
-						<Typography variant="card-header">Your Messages</Typography>
+						<Typography variant="card-header">{$_("journeys.dominique.your_msg")}</Typography>
 					</div>
 					<img src="/imgs/inbox.png" alt="" class="logo" />
 					<div class="credential">
-						<Typography variant="button" color="--bbc-blue">You have a new message</Typography>
+						<Typography variant="button" color="--bbc-blue"
+							>{$_("journeys.dominique.you_have_new_msg")}</Typography>
 					</div>
 					<div class="issued-by">
-						<Typography variant="sub-text">from Big Business Corp.</Typography>
+						<Typography variant="sub-text">{$_("journeys.dominique.from_bbc")}</Typography>
 					</div>
 					<button
 						class="button"
 						on:click="{() => {
 							showModal = true;
 							currNode.set(3);
-						}}">View Message</button>
+						}}">{$_("journeys.dominique.view_msg_btn")}</button>
 				</div>
 			</div>
 		</OpenJobsNetwork>

@@ -80,14 +80,13 @@
 		nodeCount,
 		previousPath
 	} from "$lib/stores/flows.store";
-	import { apiClient } from "$lib/utils/axios.utils";
-	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
 
 	let expanded = false;
 </script>
 
 <div class="nav">
-	<img src="/imgs/ngdil.svg" class="logo" />
+	<img src="/imgs/ngdil.svg" class="logo" alt="" />
 	{#if expanded}
 		<div class="overlay" on:click="{() => (expanded = false)}"></div>
 	{/if}
@@ -113,7 +112,7 @@
 					<Button
 						variant="white"
 						onClick="{() => goto('/demo/choose-journey')}"
-						label="{'Change'}" />
+						label="{$_('components.change')}" />
 				</div>
 			{/if}
 		</div>
@@ -121,7 +120,7 @@
 			onClick="{() => {
 				window.open('https://ngdil.com/contact', '_blank');
 			}}"
-			label="Contact Us"
+			label="{$_('components.contact_us')}"
 			variant="white" />
 	</div>
 </div>
@@ -138,7 +137,7 @@
 				history.back();
 			}}">
 			<img src="/imgs/back.svg" alt="" class="icon" />
-			<Typography variant="button" color="--black-300">Back</Typography>
+			<Typography variant="button" color="--black-300">{$_("components.back")}</Typography>
 		</div>
 		<div class="progress">
 			<ProgressBar nodes="{$nodeCount}" current="{$currNode}" />

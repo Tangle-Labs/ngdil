@@ -30,30 +30,17 @@
 </style>
 
 <script lang="ts">
-	import "@tanglelabs/open-id-qr";
 	import { goto } from "$app/navigation";
 	import { Phone, Typography, BigBusinessCorp, Card } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 	import { apiClient } from "$lib/utils/axios.utils";
 	import { createWebsocket } from "$lib/utils/ws.util";
-
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
-	import { eventUri } from "$lib/stores/flows.store";
+	import { _ } from "svelte-i18n";
 
 	let animatePhone = false;
-
 	let qr: string;
-
-	function watchQr(qr: string) {
-		if (!qr) return;
-		document.addEventListener("open-id-qr-success", (e) => {
-			if (e.detail.type === "id") goto("/demo/journeys/dominique/view-jobs");
-		});
-	}
-
-	$: watchQr(qr);
-
 	const loadQr = async function () {
 		const { data } = await apiClient.post("/siop", {
 			clientMetadata: {
@@ -63,11 +50,12 @@
 		});
 		qr = data.uri;
 	};
-
 	const ws = createWebsocket();
+
 	ws.onmessage = (event) => {
 		const data = JSON.parse(event.data);
 		if (data.login) {
+			goto("/demo/journeys/dominique/view-jobs");
 		}
 	};
 
@@ -80,32 +68,36 @@
 		<Typography variant="heading">
 			You made it to the <Highlight>Big Business Corp website. Let’s login</Highlight> to view their
 			jobs board.
+			<!-- {$_("journeys.dominique.view_jobs")} -->
 		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>In your mobile wallet, scan the QR code & accept the connection request to login privately to
-			the Big Business Corp website.</Typography>
+		<Typography>
+			{$_("journeys.dominique.scan_and_conn_to_bbc")}
+		</Typography>
 	</div>
 	<div class="dash">
 		<BigBusinessCorp>
 			<div class="card">
 				<div class="text">
-					<Typography variant="card-header" color="--bbc-blue">Passwordless Login</Typography>
+					<Typography variant="card-header" color="--bbc-blue">
+						{$_("journeys.dominique.passwordless_login")}
+					</Typography>
 				</div>
 				<Card borderRadius="{16}">
 					<div class="card-content">
 						{#if qr}
-							<open-id-qr request-uri="{qr}" event-stream-uri="{$eventUri}" size="{200}"
-							></open-id-qr>
+							<Qr data="{qr}" size="{200}" />
 						{/if}
-
 						<div class="heading">
-							<Typography variant="card-header" color="--bbc-blue">Scan QR to Login</Typography>
+							<Typography variant="card-header" color="--bbc-blue">
+								{$_("journeys.dominique.scan_qr_to_login")}
+							</Typography>
 						</div>
 						<div class="desc">
-							<Typography variant="sub-text"
-								>Scan the QR to login to the Big Business Corp website.</Typography>
+							<Typography variant="sub-text">
+								{$_("journeys.dominique.scan_qr_login_desc")}
+							</Typography>
 						</div>
 					</div>
 				</Card>

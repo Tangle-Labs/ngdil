@@ -116,18 +116,14 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Modal, Loading, Hightlight, Button } from "$lib/components";
-	import {
-		dominqueCourses,
-		dominiqueSelectedCourse,
-		currNode,
-		eventUri
-	} from "$lib/stores/flows.store";
+	import { dominqueCourses, dominiqueSelectedCourse, currNode } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
 	import { Confetti } from "svelte-confetti";
 	import { apiClient } from "$lib/utils/axios.utils";
+	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { qrcode } from "svelte-qrcode-action";
 	import { createWebsocket } from "$lib/utils/ws.util";
-	import "@tanglelabs/open-id-qr";
+	import { _ } from "svelte-i18n";
 
 	let progress = 0;
 	let studied = false;
@@ -143,6 +139,7 @@
 		qr = data.uri;
 		currNode.set(2);
 	});
+
 	const handleStudy = () => {
 		currNode.set(3);
 		studied = true;
@@ -152,14 +149,13 @@
 		}, 1);
 	};
 
-	function watchQr(qr: string) {
-		if (!qr) return;
-		document.addEventListener("open-id-qr-success", (e) => {
-			if (e.detail.type === "vc") receivedCreds = true;
-		});
-	}
-
-	$: watchQr(qr);
+	const ws = createWebsocket();
+	ws.onmessage = (event) => {
+		const data = JSON.parse(event.data);
+		if (data.creds) {
+			receivedCreds = true;
+		}
+	};
 </script>
 
 <div class="container">
@@ -168,23 +164,23 @@
 			<img src="/imgs/kw1c-white.png" alt="" class="logo" />
 			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"
 				>{receivedCreds
-					? "YOU HAVE RECEIVED & ACCEPTED YOUR NEW COURSE CREDENTIAL."
-					: "KW1C HAS SENT YOU A NEW COURSE CREDENTIAL"}</Typography>
+					? $_("journeys.dominique.received_and_accepted_new_course_cred").toUpperCase()
+					: $_("journeys.dominique.kw1c_sent_new_course_cred").toUpperCase()}</Typography>
 			<div class="p">
 				{receivedCreds
-					? "This is now visible in your wallet and free for you to share with anyone, at any time. "
-					: "In your mobile wallet scan the QR and accept the credential from KW1C to receive your new qualification."}
+					? $_("journeys.dominique.visible_in_wallet_and_free_for_you_to_shared")
+					: $_("journeys.dominique.scan_qr_and_accept_cred_from_kw1c")}
 			</div>
 			{#if receivedCreds}
 				<img class="checked" src="/imgs/checked.png" alt="" />
 				<div class="button">
 					<Button
-						label="CONTINUE"
+						label="{$_('components.continue').toUpperCase()}"
 						variant="kw1c"
 						onClick="{() => goto('/demo/journeys/dominique/finished-course')}" />
 				</div>
 			{:else if qr}
-				<open-id-qr request-uri="{qr}" size="{200}" event-stream-uri="{$eventUri}"></open-id-qr>
+				<Qr data="{qr}" size="{200}" />
 				<div class="loading">
 					<Loading img="/imgs/blue-loading.png" size="30px" />
 				</div>
@@ -192,7 +188,7 @@
 			<div class="subtext">
 				<Typography variant="sub-text"
 					>{receivedCreds
-						? "Click Continue to proceed"
+						? $_("journeys.dominique.click_to_proceed")
 						: "Awaiting credential acceptance..."}</Typography>
 			</div>
 		</div>

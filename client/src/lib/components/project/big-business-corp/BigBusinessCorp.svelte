@@ -68,6 +68,7 @@
 
 <script lang="ts">
 	import { Typography } from "$lib/components";
+	import { _ } from "svelte-i18n";
 
 	export let heading = "";
 </script>
@@ -77,7 +78,8 @@
 		<div class="logo">
 			<img src="/imgs/bbc.png" alt="" />
 			<div class="text">
-				<Typography color="--white-300" variant="card-header">Big Business Corp</Typography>
+				<Typography color="--white-300" variant="card-header"
+					>{$_("components.big_business_corp")}</Typography>
 			</div>
 		</div>
 		<div class="tabs">

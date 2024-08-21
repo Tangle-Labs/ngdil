@@ -39,17 +39,16 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Card, Hightlight, Phone } from "$lib/components";
-	import { currNode, eventUri, nodeCount } from "$lib/stores/flows.store";
+	import { currNode, nodeCount } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { apiClient } from "$lib/utils/axios.utils";
 	import { createWebsocket } from "$lib/utils/ws.util";
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
-	import "@tanglelabs/open-id-qr";
+	import { _ } from "svelte-i18n";
 
 	let animatePhone = false;
 	let qr: string;
-
 	const loadQr = async function () {
 		const { data } = await apiClient.post("/siop", {
 			clientMetadata: {
@@ -59,21 +58,22 @@
 		});
 		qr = data.uri;
 	};
+	const ws = createWebsocket();
 
-	function watchQr(qr: string) {
-		if (!qr) return;
-		document.addEventListener("open-id-qr-success", (e) => {
-			console.log("here");
-			if (e.detail.type === "id") {
-				goto("/demo/journeys/dominique/choose-course");
-			}
-		});
-	}
+	ws.onmessage = (event) => {
+		const data = JSON.parse(event.data);
+		if (data.login) {
+			goto("/demo/journeys/dominique/choose-course");
+		}
+	};
 
 	loadQr();
-	$: watchQr(qr);
 	currNode.set(0);
 	nodeCount.set(5);
+
+	// ws.onopen = () => {
+	// 	// ws.send(JSON.stringify({ action: "join" }));
+	// };
 
 	onMount(() => {});
 </script>
@@ -83,12 +83,12 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You've made it to the <Hightlight>KW1C website, let's log in</Hightlight> to enrol on your course
-			of choice.</Typography>
+			of choice.
+			<!-- {$_("journeys.dominique.enroll_to_course_of_choice")} -->
+		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>In your identity wallet, scan the QR code and accept the connection request to access the
-			KW1C learners portal.</Typography>
+		<Typography>{$_("journeys.dominique.scan_and_conn_to_kw1c")}</Typography>
 	</div>
 	<div class="dash">
 		<Kw1c variant="blue">
@@ -99,20 +99,17 @@
 							<img src="/imgs/kw1c-crowns.png" alt="" class="crowns" />
 							<div class="heading-text">
 								<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>LOGIN TO KW1C</Typography>
+									>{$_("journeys.dominique.login_to_kw1c").toUpperCase()}</Typography>
 							</div>
 						</div>
 						{#if qr}
 							<div class="qr">
-								{#key qr}
-									<open-id-qr size="{180}" request-uri="{qr}" event-stream-uri="{$eventUri}"
-									></open-id-qr>
-								{/key}
+								<Qr size="{200}" data="{qr}" />
 							</div>
 						{/if}
 						<div class="desc">
 							<Typography variant="kw1c-sub-text"
-								>Scan the QR to access the KW1C learners portal.</Typography>
+								>{$_("journeys.dominique.scan_to_access_kw1c")}</Typography>
 						</div>
 					</div>
 				</Card>

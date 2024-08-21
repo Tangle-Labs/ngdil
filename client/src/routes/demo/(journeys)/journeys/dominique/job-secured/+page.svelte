@@ -66,6 +66,7 @@
 		dominiqueEarnedCourseCred
 	} from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
 
 	function handleFinishCourse() {
 		goto("/demo/choose-journey");
@@ -85,11 +86,14 @@
 	<div class="heading">
 		<Typography variant="heading"
 			><Highlight>You are now an employee of the Big Business Corp.</Highlight> Let’s see what you have
-			achieved.</Typography>
+			achieved.
+			<!-- {$_("journeys.dominique.you_are_now_emp")} -->
+		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>Here is what you have achieved so far with your self-sovereign identity:</Typography>
+		<Typography>
+			{$_("journeys.dominique.heres_what_you_achieved")}
+		</Typography>
 	</div>
 	<div class="card">
 		<Card withBorder="{true}">
@@ -97,33 +101,37 @@
 				<div class="content">
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list">Connected privately to Big Business Corp website</Typography>
+						<Typography variant="list"
+							>{$_("journeys.dominique.connected_pvtly_bbc_website")}</Typography>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list">Shared multiple credentials as a digital CV</Typography>
+						<Typography variant="list"
+							>{$_("journeys.dominique.shared_multiple_creds_as_cv")}</Typography>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list">Got the job!</Typography>
+						<Typography variant="list">{$_("journeys.dominique.got_the_job")}</Typography>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list">Securely received your new Staff ID credential</Typography>
+						<Typography variant="list"
+							>{$_("journeys.dominique.securely_received_staff_id_cred")}</Typography>
 					</div>
 					<div class="p">
 						<Typography>
-							You have successfully completed Dominique’s journey enrolling and obtaining a new
-							course credential, sharing your credential to potential employers, and successfully
-							landing a new job.
+							{$_("journeys.dominique.successfully_completed_dominique_journey")}
 							<br /><br />
-							To explore other journeys for employers and educators click continue.
+							{$_("journeys.dominique.explore_other_journeys_desc")}
 						</Typography>
 					</div>
-					<Button variant="secondary" label="Continue" onClick="{handleFinishCourse}" />&nbsp;
+					<Button
+						variant="secondary"
+						label="{$_('components.continue')}"
+						onClick="{handleFinishCourse}" />&nbsp;
 					<Button
 						variant="white"
-						label="Contact NGDIL"
+						label="{$_('journeys.dominique.contact_ngdil')}"
 						onClick="{() => window.open('https://ngdil.com/contact', '_blank')}" />
 				</div>
 				<div class="img">

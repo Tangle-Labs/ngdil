@@ -210,34 +210,21 @@
 	import { goto } from "$app/navigation";
 	import { Typography, OpenJobsNetwork, Avatar, Modal, Loading } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import {
-		currNode,
-		dominiqueSelectedCourse,
-		dominqueCourses,
-		eventUri
-	} from "$lib/stores/flows.store";
+	import { currNode, dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
 	import { apiClient } from "$lib/utils/axios.utils";
 	import { createWebsocket } from "$lib/utils/ws.util";
 	import { onMount } from "svelte";
-	let receivedCreds = false;
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { qrcode } from "svelte-qrcode-action";
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
-	import "@tanglelabs/open-id-qr";
+	import { _ } from "svelte-i18n";
 
+	let receivedCreds = false;
 	let qr: string;
-	function watchQr(qr: string) {
-		if (!qr) return;
-		document.addEventListener("open-id-qr-success", (e) => {
-			if (e.detail.type === "vp") receivedCreds = true;
-		});
-	}
-
-	$: watchQr(qr);
+	let showModal = false;
 
 	onMount(async () => {
 		currNode.set(1);
-
 		const {
 			data: { uri }
 		} = await apiClient.post("/api/oid4vp", {
@@ -250,44 +237,55 @@
 		qr = uri;
 	});
 
-	let showModal = false;
+	const ws = createWebsocket();
+	ws.onmessage = (event) => {
+		const data = JSON.parse(event.data);
+		if (data.received) {
+			receivedCreds = true;
+		}
+	};
 </script>
 
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
 			>You’re all <Highlight>logged in to the Open Jobs Network.</Highlight> Now, share your credential
-			with potential employers.</Typography>
+			with potential employers.
+			<!-- {$_("journeys.dominique.logged_in_to_open_job_network")} -->
+		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>Click the share credential button to share your credential on your Open Jobs Network profile.</Typography>
+		<Typography>
+			{$_("journeys.dominique.share_cred_btn_desc")}
+		</Typography>
 	</div>
 	<Modal bind:isOpen="{showModal}" borderRadius="{16}">
 		<div class="modal-content">
 			<img src="/imgs/openjobs.png" alt="" class="logo" />
 			<Typography variant="card-header" color="--bbc-blue"
 				>{receivedCreds
-					? "The Open Jobs Network has received your confirmation to share your credential!"
-					: "Allow the Open Jobs Network to share your credential "}</Typography>
+					? $_("journeys.dominique.open_job_network_received_confirmation")
+					: $_("journeys.dominique.allow_open_job_network_to_share_cred")}</Typography>
 			<div class="p">
 				{receivedCreds
-					? "You may continue further in the browser. "
-					: "In your mobile wallet scan the QR and accept the request to share the credentials with Open Jobs Network to get share your credentials to employers."}
+					? $_("journeys.dominique.continue_further_in_browser")
+					: $_("journeys.dominique.scan_qr_and_share_cred_to_open_job_network")}
 			</div>
 			{#if receivedCreds}
 				<img class="checked" src="/imgs/open-jobs-check.png" alt="" />
 				<button class="button" on:click="{() => goto('/demo/journeys/dominique/new-message')}"
-					>Continue</button>
+					>{$_("components.continue")}</button>
 			{:else if qr}
-				<open-id-qr request-uri="{qr}" event-stream-uri="{$eventUri}" size="{240}"></open-id-qr>
+				<Qr data="{qr}" size="{200}" />
 				<div class="loading">
 					<Loading size="30px" img="/imgs/blue-loading.png" />
 				</div>
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text"
-					>{receivedCreds ? "Click continue to proceed" : "Waiting for credentials"}</Typography>
+					>{receivedCreds
+						? $_("journeys.dominique.click_to_proceed")
+						: $_("journeys.dominique.waiting_for_creds")}</Typography>
 			</div>
 		</div>
 	</Modal>
@@ -297,10 +295,9 @@
 				<div class="avatar">
 					<Avatar variant="small" image="/imgs/dominique.png" />
 					<div class="welcome">
-						<Typography variant="button">Welcome, Dominique Veritas</Typography>
+						<Typography variant="button">{$_("journeys.dominique.welcome_dominique")}</Typography>
 					</div>
 					<div class="big-bar"></div>
-
 					<div class="bars">
 						<div class="bar"></div>
 						<div class="bar"></div>
@@ -308,7 +305,6 @@
 						<div class="bar"></div>
 					</div>
 				</div>
-
 				<div class="cards">
 					<div class="card">
 						<div class="pic"></div>
@@ -318,7 +314,6 @@
 							<div class="bar"></div>
 						</div>
 					</div>
-
 					<div class="card">
 						<div class="pic"></div>
 						<div class="bars">
@@ -327,7 +322,6 @@
 							<div class="bar"></div>
 						</div>
 					</div>
-
 					<div class="card">
 						<div class="pic"></div>
 						<div class="bars">
@@ -337,10 +331,9 @@
 						</div>
 					</div>
 				</div>
-
 				<div class="share">
 					<div class="header">
-						<Typography variant="list">Your Latest Credentials</Typography>
+						<Typography variant="list">{$_("journeys.dominique.your_latest_creds")}</Typography>
 					</div>
 					<img src="/imgs/kw1c-white.png" alt="" class="logo" />
 					<div class="credential">
@@ -348,13 +341,15 @@
 							>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography>
 					</div>
 					<div class="issued-by">
-						<Typography variant="sub-text">Issued by<br /> Koning Willem I College</Typography>
+						<Typography variant="sub-text"
+							>{$_("components.issued_by")}<br />
+							{$_("issuer.koning_willem_i_college")}</Typography>
 					</div>
 					<button
 						class="button"
 						on:click="{() => {
 							showModal = true;
-						}}">Share Credential</button>
+						}}">{$_("journeys.dominique.share_cred_btn")}</button>
 				</div>
 			</div>
 		</OpenJobsNetwork>

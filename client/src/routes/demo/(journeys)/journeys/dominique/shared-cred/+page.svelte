@@ -61,6 +61,7 @@
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, dominiqueSharedCred } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
 
 	function handleFinishShare() {
 		dominiqueSharedCred.set(true);
@@ -76,11 +77,12 @@
 	<div class="heading">
 		<Typography variant="heading"
 			><Highlight>A new credential, a job invite,</Highlight> all that’s left to do now is to land that
-			job.</Typography>
+			job.
+			<!-- {$_("journeys.dominique.new_cred_and_job_invite_done_land_on_job_left")} -->
+		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>Here is what you have achieved so far with your self-sovereign identity:</Typography>
+		<Typography>{$_("journeys.dominique.heres_what_you_achieved")}</Typography>
 	</div>
 	<div class="card">
 		<Card withBorder="{true}">
@@ -88,23 +90,28 @@
 				<div class="content">
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list">Passwordless sign on to a social network</Typography>
+						<Typography variant="list"
+							>{$_("journeys.dominique.passwordless_sign_on_to_social_network")}</Typography>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list">Shared your credential with potential employers</Typography>
+						<Typography variant="list"
+							>{$_("journeys.dominique.shared_cred_with_employers")}</Typography>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list">Received a job invitation</Typography>
+						<Typography variant="list"
+							>{$_("journeys.dominique.received_job_invitation")}</Typography>
 					</div>
 					<div class="p">
 						<Typography>
-							With a job invitation at hand, let’s get sharing your digital CV with the potential
-							employer and get that job! Click continue to proceed
+							{$_("journeys.dominique.share_digital_cv_and_get_job")}
 						</Typography>
 					</div>
-					<Button variant="secondary" label="continue" onClick="{handleFinishShare}" />
+					<Button
+						variant="secondary"
+						label="{$_('components.continue')}"
+						onClick="{handleFinishShare}" />
 				</div>
 				<div class="img">
 					<img src="/imgs/dominique-2.svg" alt="" />

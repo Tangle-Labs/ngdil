@@ -32,25 +32,15 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, OpenJobsNetwork, Phone, Card, Hightlight } from "$lib/components";
-	import { currNode, eventUri, nodeCount } from "$lib/stores/flows.store";
+	import { currNode, nodeCount } from "$lib/stores/flows.store";
 	import { apiClient } from "$lib/utils/axios.utils";
 	import { createWebsocket } from "$lib/utils/ws.util";
 	import { onMount } from "svelte";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
-	import "@tanglelabs/open-id-qr";
-
-	function watchQr(qr: string) {
-		if (!qr) return;
-		document.addEventListener("open-id-qr-success", (e) => {
-			if (e.detail.type === "id") goto("/demo/journeys/dominique/open-jobs");
-		});
-	}
-
-	$: watchQr(qr);
+	import { _ } from "svelte-i18n";
 
 	let animatePhone = false;
-
 	let qr: string;
 
 	const loadQr = async function () {
@@ -62,6 +52,15 @@
 		});
 		qr = data.uri;
 	};
+
+	const ws = createWebsocket();
+	ws.onmessage = (event) => {
+		const data = JSON.parse(event.data);
+		if (data.login) {
+			goto("/demo/journeys/dominique/open-jobs");
+		}
+	};
+
 	onMount(() => {
 		loadQr();
 		currNode.set(0);
@@ -73,12 +72,14 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>It’s time to spread the word. <Hightlight>Let’s connect to the Open Jobs Network</Hightlight>
-			to share your credential.</Typography>
+			to share your credential.
+			<!-- {$_("journeys.dominique.lets_conn_to_open_jobs_network")} -->
+		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>In your mobile wallet, scan the QR code & accept the connection request to login privately to
-			the Open Jobs Network.</Typography>
+		<Typography>
+			{$_("journeys.dominique.scan_qr_and_conn_pvtly_to_open_jobs")}
+		</Typography>
 	</div>
 	<div class="dash">
 		<OpenJobsNetwork>
@@ -86,16 +87,15 @@
 				<Card borderRadius="{16}">
 					<div class="card-content">
 						{#if qr}
-							<open-id-qr request-uri="{qr}" event-stream-uri="{$eventUri}" size="{200}"
-							></open-id-qr>
+							<Qr data="{qr}" size="{200}" />
 						{/if}
 						<div class="heading">
 							<Typography variant="card-header" color="--bbc-blue"
-								>Login to Open Jobs Network</Typography>
+								>{$_("journeys.dominique.login_to_open_jobs_network")}</Typography>
 						</div>
 						<div class="desc">
 							<Typography variant="sub-text"
-								>Scan the QR code to login to the Open Jobs Network website</Typography>
+								>{$_("journeys.dominique.scan_qr_to_login_to_open_jobs_network")}</Typography>
 						</div>
 					</div>
 				</Card>

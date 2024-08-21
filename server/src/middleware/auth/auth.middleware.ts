@@ -1,4 +1,3 @@
-import { PUBLIC_BASE_URI } from "@/config";
 import { SessionsService, UsersService } from "@/services";
 import { createJsonWebToken, validateJsonWebToken } from "@/utils";
 import { NextFunction, Request, Response } from "express";
@@ -19,7 +18,7 @@ export const userDeserializer = asyncHandler(
 				maxAge: 365 * 24 * 60 * 60 * 1000,
 				httpOnly: true,
 				sameSite: "none",
-				secure: PUBLIC_BASE_URI?.startsWith("https://")
+				secure: true
 			});
 		}
 

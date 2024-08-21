@@ -15,7 +15,7 @@
 
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { draw, fly } from "svelte/transition";
+	import { fly } from "svelte/transition";
 
 	let animate = false;
 	onMount(() => {

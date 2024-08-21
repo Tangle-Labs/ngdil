@@ -49,6 +49,7 @@
 
 <script lang="ts">
 	import { Modal, Typography } from "$lib/components";
+	import { _ } from "svelte-i18n";
 
 	export let credential: Record<string, string>;
 	export let name: string;
@@ -75,7 +76,7 @@
 			<Typography variant="card-header">{name}</Typography>
 		</div>
 		<div class="cred-issuer">
-			<Typography color="--black-500">Issued by {issuer}</Typography>
+			<Typography color="--black-500">{$_("components.issued_by") + " " + issuer}</Typography>
 		</div>
 		{#each Object.keys(credential) as key}
 			<div class="text-block">

@@ -109,7 +109,7 @@
 </script>
 
 <div class="container">
-	<Modal bind:isOpen="{showModal}" borderRadius="16">
+	<Modal bind:isOpen="{showModal}" borderRadius="{16}">
 		<div class="modal-content">
 			<img src="/imgs/future-tech.png" alt="" class="logo" />
 			<div class="heading">
