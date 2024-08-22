@@ -381,7 +381,9 @@
             "login_to_kw1c": "login to KW1C",
             "scan_qr_to_access_kw1c_staff_portal": "Scan the QR to access the KW1C staff portal.",
             "view_applications_intro": "The students are keen to get on their international internships. Let’s see [if they meet the requirements.]",
-            "view_applications_sub_text": "Click the view application button to check a student’s application."
+            "view_applications_sub_text": "Click the view application button to check a student’s application.",
+            "view_courses_intro": "Your [students have completed their course.] Let’s check their results and issue their badges.",
+            "view_courses_subtext": "Click the view results button to see the outcome for the internationalisation course students."
         }
     }
 }

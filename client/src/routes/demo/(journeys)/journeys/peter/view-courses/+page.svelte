@@ -153,6 +153,7 @@
 		peterChosenStudent
 	} from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
 	let receivedCreds = false;
 
 	function handleWait() {
@@ -172,14 +173,11 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading">
-			Your <Highlight>students have completed their course.</Highlight> Let’s check their results and
-			issue their badges.
+			{$_("journeys.peter.view_courses_intro")}
 		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>Click the view results button to see the outcome for the internationalisation course
-			students.</Typography>
+		<Typography>{$_("journeys.peter.view_courses_subtext")}</Typography>
 	</div>
 
 	<div class="dash">
@@ -196,7 +194,8 @@
 				<div class="table">
 					<div class="column">
 						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c">Course Name</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("journeys.peter.course_name")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
