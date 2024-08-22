@@ -130,7 +130,10 @@
 				<img src="/imgs/linux.png" alt="" class="icon" />
 				<img src="/imgs/windows.png" alt="" class="icon" />
 			</div> -->
-			<Button variant="secondary" onClick="{() => goto('/demo/choose-journey')}" label="Continue" />
+			<Button
+				variant="secondary"
+				onClick="{() => goto('/demo/choose-journey')}"
+				label="{$_('components.continue')}" />
 			<div class="subtitle">
 				<Typography variant="sub-text">
 					{$_("onboarding.download_wallet.click_to_continue")}

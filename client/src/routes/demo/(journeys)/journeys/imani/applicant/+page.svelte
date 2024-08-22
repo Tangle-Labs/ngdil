@@ -299,7 +299,7 @@
 								logo="{'/imgs/volunteer.svg'}"
 								credential="{{
 									...credentials.volunteerBadge,
-									'Holder Name': $_('imani_applicant.Gilian_OLeary')
+									'Holder Name': $_('applicants.Gilian_OLeary')
 								}}" />
 						</div>
 					{/if}

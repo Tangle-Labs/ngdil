@@ -207,12 +207,6 @@
 						</div>
 						{#if buttonVisible}
 							<Button
-								label="{`Start ${selectedJourney}'s Journey`}"
-								onClick="{() => {
-									goto(`/demo/journeys/${selectedJourney}`);
-								}}"
-								variant="secondary" />
-							<Button
 								label="{$_('onboarding.start_journey', { values: { selected: selectedJourney } })}"
 								onClick="{() => {
 									goto(`/demo/journeys/${selectedJourney}`);

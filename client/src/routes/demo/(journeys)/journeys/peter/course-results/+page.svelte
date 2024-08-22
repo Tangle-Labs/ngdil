@@ -210,22 +210,29 @@
 			<img src="/imgs/kw1c-white.png" alt="" class="logo" />
 			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"
 				>{#if state === "loaded"}
-					YOU HAVE SUCCESSFULLY ISSUED {selected.length} STUDENT INTERNATIONALISATION COURSE BADGES
+					{$_("journeys.peter.issued_student_courses_badges", {
+						values: { BadgeCount: selected.length }
+					}).toUpperCase()}
 				{:else}
-					YOU ARE ABOUT TO ISSUE {selected.length} STUDENT INTERNATIONALISATION COURSE BADGES
+					{$_("journeys.peter.about_to_issue_student_courses_badges", {
+						values: { BadgeCount: selected.length }
+					}).toUpperCase()}
 				{/if}</Typography>
 			<div class="p">
 				{#if state === "loaded"}
-					Click the CONTINUE button to continue and assign student internship placements.
-				{:else}Click ISSUE BADGES button to issue the selected students.{/if}
+					{$_("journeys.peter.click_continue_to_assign_internships")}
+				{:else}
+					{$_("journeys.peter.click_issue_badges_to_issue_selected_students")}
+				{/if}
 			</div>
 			{#if state === "loading"}
 				<Loading img="/imgs/blue-loading.png" />
 			{:else}
 				<button class="button" on:click="{handleModalClick}"
-					>{state === "init" ? "ISSUE BADGES" : "CONTINUE"}</button>
+					>{state === "init"
+						? $_("journeys.peter.issue_badges").toUpperCase()
+						: $_("components.continue").toUpperCase()}</button>
 			{/if}
-
 			<div class="subtext">
 				<Typography variant="sub-text" />
 			</div>
@@ -236,17 +243,19 @@
 		<Typography variant="heading">
 			<Highlight>All the students have passed!</Highlight> That’s great news. Let’s issue their course
 			badges.
+			<!-- {$_("journeys.peter.all_passed_now_issue_course_badges")} -->
 		</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography>
-			Select the checkboxes next to the students and click the issue course badges button to issue
-			their badges.
+			{$_("journeys.peter.select_students_and_issue_their_badges")}
 		</Typography>
 	</div>
 
 	<div class="dash">
-		<Kw1c variant="white" title="INTERNATIONALISATION COURSE STUDENTS">
+		<Kw1c
+			variant="white"
+			title="{$_('journeys.peter.internationalisation_course_students').toUpperCase()}">
 			<div class="sidebar">
 				{#each Array(5) as i}
 					<div class="menu-item">
@@ -270,7 +279,8 @@
 
 					<div class="column">
 						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c">Student Applicant</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("journeys.peter.student_applicant")}</Typography>
 						</div>
 						{#each $peterChosenStudents as student}
 							<div class="data">
@@ -282,26 +292,28 @@
 
 					<div class="column">
 						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c">Internship Category</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("journeys.peter.internship_category")}</Typography>
 						</div>
 
 						{#each $peterChosenStudents as student (student)}
 							<div class="data">
 								<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-									>3D Print Design</Typography>
+									>{$_("journeys.peter.3d_print_design")}</Typography>
 							</div>
 						{/each}
 					</div>
 
 					<div class="column">
 						<div class="header action">
-							<Typography variant="sub-text" fontVariant="kw1c">Course Result</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("journeys.peter.course_result")}</Typography>
 						</div>
 
 						{#each $peterChosenStudents as student (student)}
 							<div class="data">
 								<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--green-900"
-									>PASS</Typography>
+									>{$_("journeys.peter.pass").toUpperCase()}</Typography>
 							</div>
 						{/each}
 					</div>
@@ -310,7 +322,8 @@
 				<div class="button-container">
 					<button
 						class="{`button ${selected.length <= 0 && 'disabled'}`}"
-						on:click="{handleIssueCourseBadges}">ISSUE COURSE BADGES</button>
+						on:click="{handleIssueCourseBadges}"
+						>{$_("journeys.peter.issue_course_badges").toUpperCase()}</button>
 				</div>
 			</div>
 		</Kw1c>

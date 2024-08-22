@@ -217,7 +217,7 @@
 
 				<tr>
 					<td>
-						<Typography variant="list">{$_("imani_applicant.Marcus_Lithero")}</Typography>
+						<Typography variant="list">{$_("applicants.Marcus_Lithero")}</Typography>
 					</td>
 					<td>
 						<Typography variant="sub-text">{$_("journeys.imani.3d_print_designer")}</Typography>
@@ -229,7 +229,7 @@
 
 				<tr>
 					<td>
-						<Typography variant="list">{$_("imani_applicant.Ada_Liefsso")}</Typography>
+						<Typography variant="list">{$_("applicants.Ada_Liefsso")}</Typography>
 					</td>
 					<td>
 						<Typography variant="sub-text">{$_("journeys.imani.3d_print_designer")}</Typography>
@@ -241,7 +241,7 @@
 
 				<tr>
 					<td>
-						<Typography variant="list">{$_("imani_applicant.Carter_Jorvig")}</Typography>
+						<Typography variant="list">{$_("applicants.Carter_Jorvig")}</Typography>
 					</td>
 					<td>
 						<Typography variant="sub-text">{$_("journeys.imani.3d_print_designer")}</Typography>
@@ -254,7 +254,7 @@
 
 				<tr>
 					<td>
-						<Typography variant="list">{$_("imani_applicant.Malik_Chaudry")}</Typography>
+						<Typography variant="list">{$_("applicants.Malik_Chaudry")}</Typography>
 					</td>
 					<td>
 						<Typography variant="sub-text">{$_("journeys.imani.3d_print_designer")}</Typography>

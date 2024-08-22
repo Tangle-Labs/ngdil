@@ -166,6 +166,7 @@
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, peterChosenStudents } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
 
 	let students = {
 		"Sarah Jones": false,
@@ -193,11 +194,14 @@
 	<Modal borderRadius="{16}" bind:isOpen="{showModal}">
 		<div class="modal-content">
 			<img src="/imgs/kw1c-white.png" alt="" class="logo" />
-			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"
-				>YOU ARE ABOUT TO INVITE {selected.length} STUDENTS ON THE COURSE: INTERNATIONALISATION</Typography>
-			<div class="p">Click send invitations to confirm the invites.</div>
+			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900">
+				{$_("journeys.peter.about_to_invite_students_on_course", {
+					values: { StudentCount: selected.length }
+				}).toUpperCase()}
+			</Typography>
+			<div class="p">{$_("journeys.peter.click_send_invites_to_confirm")}</div>
 			<button class="button" on:click="{() => goto('/demo/journeys/peter/course-students')}"
-				>SEND INVITES</button>
+				>{$_("journeys.peter.send_invites").toUpperCase()}</button>
 			<div class="subtext">
 				<Typography variant="sub-text" />
 			</div>
@@ -208,17 +212,19 @@
 		<Typography variant="heading">
 			Three students are <Highlight>looking to get this badge.</Highlight> Let’s select the students
 			and issue their course invites.
+			<!-- {$_("journeys.peter.select_students_and_issue_course_invites")} -->
 		</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography>
-			Select the checkboxes next to the students you wish to invite, then click the issue course
-			invite button.
+			{$_("journeys.peter.select_students_and_click_issue_course_invite")}
 		</Typography>
 	</div>
 
 	<div class="dash">
-		<Kw1c variant="white" title="INTERNATIONALISATION COURSE APPLICANTS">
+		<Kw1c
+			variant="white"
+			title="{$_('journeys.peter.internationalisation_course_applicants').toUpperCase()}">
 			<div class="sidebar">
 				{#each Array(5) as i}
 					<div class="menu-item">
@@ -246,58 +252,61 @@
 
 					<div class="column">
 						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c">Student Applicant</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("journeys.peter.student_applicant")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Sarah Jones</Typography>
+								>{$_("applicants.Sarah_Jones")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Ivar Leifsson</Typography>
+								>{$_("applicants.Ivar_Leifsson")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Lagertha Bonde</Typography>
+								>{$_("applicants.Lagertha_Bonde")}</Typography>
 						</div>
 					</div>
 
 					<div class="column">
 						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c">Internship Category</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("journeys.peter.internship_category")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography>
+								>{$_("journeys.peter.3d_print_design")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography>
+								>{$_("journeys.peter.3d_print_design")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography>
+								>{$_("journeys.peter.3d_print_design")}</Typography>
 						</div>
 					</div>
 
 					<div class="column">
 						<div class="header action">
-							<Typography variant="sub-text" fontVariant="kw1c">Course Application</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("journeys.peter.course_application")}</Typography>
 						</div>
 
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>Internationalisation Course</Typography>
+								>{$_("journeys.peter.internatinalisation_course")}</Typography>
 						</div>
 
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>Internationalisation Course</Typography>
+								>{$_("journeys.peter.internatinalisation_course")}</Typography>
 						</div>
 
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>Internationalisation Course</Typography>
+								>{$_("journeys.peter.internatinalisation_course")}</Typography>
 						</div>
 					</div>
 				</div>
@@ -305,7 +314,8 @@
 				<div class="button-container">
 					<button
 						class="{`button ${selected.length <= 0 && 'disabled'}`}"
-						on:click="{handleIssueCourseInvites}">SEND INVITATIONS</button>
+						on:click="{handleIssueCourseInvites}"
+						>{$_("journeys.peter.send_invitations").toUpperCase()}</button>
 				</div>
 			</div>
 		</Kw1c>

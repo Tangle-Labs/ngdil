@@ -141,14 +141,15 @@
 		peterChosenStudent
 	} from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
+
 	let receivedCreds = false;
+	let showModal = false;
 
 	onMount(() => {
 		currNode.set(0);
 		nodeCount.set(3);
 	});
-
-	let showModal = false;
 </script>
 
 <div class="container">
@@ -156,16 +157,15 @@
 		<Typography variant="heading">
 			Your students have <Highlight>returned from their internships abroad.</Highlight> Let’s verify
 			their internship completion.
+			<!-- {$_("journeys.peter.students_returned_from_internships_now_verify_internship_completion")} -->
 		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>Click the verify completion button to proceed to verify the credentials for your internship
-			students.</Typography>
+		<Typography>{$_("journeys.peter.click_verify_completion_to_proceed_To_verify")}</Typography>
 	</div>
 
 	<div class="dash">
-		<Kw1c variant="white" title="INTERNSHIP STUDENTS">
+		<Kw1c variant="white" title="{$_('journeys.peter.internship_students').toUpperCase()}">
 			<div class="sidebar">
 				{#each Array(5) as i}
 					<div class="menu-item">
@@ -178,25 +178,27 @@
 				<div class="table">
 					<div class="column">
 						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c">Student Applicant</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("journeys.peter.student_applicant")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>SARAH JONES</Typography>
+								>{$_("applicants.Sarah_Jones").toUpperCase()}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>IVAR LEIFSSON</Typography>
+								>{$_("applicants.Ivar_Leifsson").toUpperCase()}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>LAGERTHA BONDE</Typography>
+								>{$_("applicants.Lagertha_Bonde").toUpperCase()}</Typography>
 						</div>
 					</div>
 
 					<div class="column">
 						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c">Internship Placement</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("journeys.peter.internship_placement")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
@@ -214,14 +216,15 @@
 
 					<div class="column">
 						<div class="header action">
-							<Typography variant="sub-text" fontVariant="kw1c">Action</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("journeys.peter.action")}</Typography>
 						</div>
 						<div class="button-container">
 							<button
 								class="{`button ${$peterAssignedStudent !== 'Sarah Jones' && 'disabled'}`}"
 								on:click="{() => {
 									goto('/demo/journeys/peter/verify-internship');
-								}}">VERIFY COMPLETION</button>
+								}}">{$_("journeys.peter.verify_completion").toUpperCase()}</button>
 						</div>
 
 						<div class="button-container">
@@ -229,14 +232,14 @@
 								class="{`button ${$peterAssignedStudent !== 'Ivar Leifsson' && 'disabled'}`}"
 								on:click="{() => {
 									goto('/demo/journeys/peter/verify-internship');
-								}}">VERIFY COMPLETION</button>
+								}}">{$_("journeys.peter.verify_completion").toUpperCase()}</button>
 						</div>
 						<div class="button-container">
 							<button
 								class="{`button ${$peterAssignedStudent !== 'Lagertha Bonde' && 'disabled'}`}"
 								on:click="{() => {
 									goto('/demo/journeys/peter/verify-internship');
-								}}">VERIFY COMPLETION</button>
+								}}">{$_("journeys.peter.verify_completion").toUpperCase()}</button>
 						</div>
 					</div>
 				</div>

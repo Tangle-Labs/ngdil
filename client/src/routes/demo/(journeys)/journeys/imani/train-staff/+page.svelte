@@ -90,22 +90,22 @@
 
 	let staff = [
 		{
-			name: $_("imani_applicant.Gilian_OLeary"),
+			name: $_("applicants.Gilian_OLeary"),
 			role: $_("journeys.imani.3d_print_designer"),
 			selected: false
 		},
 		{
-			name: $_("imani_applicant.Marcus_Erikson"),
+			name: $_("applicants.Marcus_Erikson"),
 			role: $_("journeys.imani.technical_engineer"),
 			selected: false
 		},
 		{
-			name: $_("imani_applicant.Ada_Liefsso"),
+			name: $_("applicants.Ada_Liefsso"),
 			role: $_("journeys.imani.senior_3d_print_operator"),
 			selected: false
 		},
 		{
-			name: $_("imani_applicant.Malik_Chaudry"),
+			name: $_("applicants.Malik_Chaudry"),
 			role: $_("journeys.imani.3d_print_designer"),
 			selected: false
 		}

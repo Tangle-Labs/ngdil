@@ -58,7 +58,7 @@
 				<div class="info">
 					<div class="name">
 						<Typography variant="list" fontVariant="kw1c" color="--future-tech-green">
-							{$_("imani_applicant.Gilian_OLeary")}
+							{$_("applicants.Gilian_OLeary")}
 						</Typography>
 					</div>
 					<div class="bar"></div>
@@ -78,7 +78,7 @@
 				<div class="info">
 					<div class="name">
 						<Typography variant="list" fontVariant="kw1c" color="--future-tech-green">
-							{$_("imani_applicant.Marcus_Erikson")}
+							{$_("applicants.Marcus_Erikson")}
 						</Typography>
 					</div>
 					<div class="bar"></div>
@@ -98,7 +98,7 @@
 				<div class="info">
 					<div class="name">
 						<Typography variant="list" fontVariant="kw1c" color="--future-tech-green">
-							{$_("imani_applicant.Cassandra_Blanc")}
+							{$_("applicants.Cassandra_Blanc")}
 						</Typography>
 					</div>
 					<div class="bar"></div>
