@@ -1,7 +1,7 @@
 {
     "components": {
         "big_business_corp": "Big Business Corp",
-        "issued_by": "Issued by",
+        "issued_by": "Issued by {IssuerName}",
         "future_tech_co": "Future Tech Co.",
         "open_jobs_network": "The Open Jobs Network",
         "login": {

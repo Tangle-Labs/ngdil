@@ -140,8 +140,9 @@
 								<Typography variant="list">{$_("creds.national_id")}</Typography>
 							</div>
 							<div class="issuer">
-								<Typography variant="sub-text"
-									>{$_("components.issued_by") + " " + $_("issuer.the_govt")}</Typography>
+								<Typography variant="sub-text">
+									{$_("components.issued_by", { values: { IssuerName: $_("issuer.the_govt") } })}
+								</Typography>
 							</div>
 						</div>
 					</div>
@@ -172,8 +173,9 @@
 								<Typography variant="list">{$_("journeys.imani.personal_statement")}</Typography>
 							</div>
 							<div class="issuer">
-								<Typography variant="sub-text"
-									>{$_("components.issued_by") + " " + $imaniChosenApplicant}</Typography>
+								<Typography variant="sub-text">
+									{$_("components.issued_by", { values: { IssuerName: $imaniChosenApplicant } })}
+								</Typography>
 							</div>
 						</div>
 					</div>
@@ -209,10 +211,11 @@
 									>{$_("journeys.imani.future_engineer_diploma")}</Typography>
 							</div>
 							<div class="issuer">
-								<Typography variant="sub-text"
-									>{$_("components.issued_by") +
-										" " +
-										$_("issuer.koning_willem_i_college")}</Typography>
+								<Typography variant="sub-text">
+									{$_("components.issued_by", {
+										values: { IssuerName: $_("issuer.koning_willem_i_college") }
+									})}
+								</Typography>
 							</div>
 						</div>
 					</div>
@@ -247,10 +250,11 @@
 									>{$_("journeys.imani.internship_certificate")}</Typography>
 							</div>
 							<div class="issuer">
-								<Typography variant="sub-text"
-									>{$_("components.issued_by") +
-										" " +
-										$_("issuer.irish_future_print_co")}</Typography>
+								<Typography variant="sub-text">
+									{$_("components.issued_by", {
+										values: { IssuerName: $_("issuer.irish_future_print_co") }
+									})}
+								</Typography>
 							</div>
 						</div>
 					</div>
@@ -286,8 +290,11 @@
 								<Typography variant="list">{$_("journeys.imani.volunteering_badge")}</Typography>
 							</div>
 							<div class="issuer">
-								<Typography variant="sub-text"
-									>{$_("components.issued_by") + " " + $_("issuer.volunteer_corps")}</Typography>
+								<Typography variant="sub-text">
+									{$_("components.issued_by", {
+										values: { IssuerName: $_("issuer.volunteer_corps") }
+									})}
+								</Typography>
 							</div>
 						</div>
 					</div>

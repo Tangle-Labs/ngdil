@@ -342,7 +342,7 @@
 					</div>
 					<div class="issued-by">
 						<Typography variant="sub-text"
-							>{$_("components.issued_by")}<br />
+							>{$_("components.issued_by", { values: { IssuerName: "" } })}<br />
 							{$_("issuer.koning_willem_i_college")}</Typography>
 					</div>
 					<button

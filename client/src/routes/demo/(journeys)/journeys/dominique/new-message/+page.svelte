@@ -307,7 +307,9 @@
 								</div>
 								<div class="sub-text">
 									<Typography variant="sub-text">
-										{$_("components.issued_by") + " " + $_("issuer.koning_willem_i_college")}
+										{$_("components.issued_by", {
+											values: { IssuerName: $_("issuer.koning_willem_i_college") }
+										})}
 									</Typography>
 								</div>
 							</div>

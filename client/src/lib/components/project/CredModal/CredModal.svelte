@@ -76,7 +76,9 @@
 			<Typography variant="card-header">{name}</Typography>
 		</div>
 		<div class="cred-issuer">
-			<Typography color="--black-500">{$_("components.issued_by") + " " + issuer}</Typography>
+			<Typography color="--black-500">
+				{$_("components.issued_by", { values: { IssuerName: issuer } })}
+			</Typography>
 		</div>
 		{#each Object.keys(credential) as key}
 			<div class="text-block">
