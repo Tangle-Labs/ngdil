@@ -167,6 +167,7 @@
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, peterAssignedBadges, peterChosenStudents } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
 
 	let students = {
 		"Sarah Jones": false,

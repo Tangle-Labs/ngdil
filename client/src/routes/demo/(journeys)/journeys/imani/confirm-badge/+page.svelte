@@ -82,6 +82,7 @@
 		imaniBadgeVariant
 	} from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
 
 	onMount(() => {
 		currNode.set(3);
@@ -92,44 +93,44 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>Your badge template is looking great. <Highlight>Let’s save the badge</Highlight> template so
-			it is available for trainees.</Typography>
+			it is available for trainees.
+			<!-- {$_("journeys.imani.save_badge_template_for_trainees")} -->
+		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography>Click the save badge button to confirm the badge template.</Typography>
+		<Typography>
+			{$_("journeys.imani.save_badge_btn_desc")}
+		</Typography>
 	</div>
 	<div class="dash">
-		<FutureTech header="COMPANY BADGES">
+		<FutureTech header="{$_('journeys.imani.company_badges').toUpperCase()}">
 			<div class="card-header">
-				<Typography variant="card-header">Confirm Badge</Typography>
+				<Typography variant="card-header">{$_("journeys.imani.confirm_badge")}</Typography>
 			</div>
-
 			<div class="badge">
 				<div class="badge">
 					<Badge fill="{$imaniBadgeColor}" variant="{$imaniBadgeVariant}" />
 				</div>
-
 				<div class="data">
 					<div class="text-block">
 						<div class="header">
-							<Typography variant="list">Badge Name</Typography>
+							<Typography variant="list">{$_("journeys.imani.badge_name")}</Typography>
 						</div>
 						<div class="content">
 							<Typography>{$imaniBadgeName}</Typography>
 						</div>
 					</div>
-
 					<div class="text-block">
 						<div class="header">
-							<Typography variant="list">Badge Issuer</Typography>
+							<Typography variant="list">{$_("journeys.imani.badge_issuer")}</Typography>
 						</div>
 						<div class="content">
-							<Typography>Future Tech Co.</Typography>
+							<Typography>{$_("components.future_tech_co")}</Typography>
 						</div>
 					</div>
-
 					<div class="text-block">
 						<div class="header">
-							<Typography variant="list">Badge Description</Typography>
+							<Typography variant="list">{$_("journeys.imani.badge_description")}</Typography>
 						</div>
 						<div class="content">
 							<Typography>{$imaniBadgeDesc}</Typography>
@@ -141,7 +142,7 @@
 			<div class="button-container">
 				<Button
 					variant="future-tech"
-					label="Save Badge"
+					label="{$_('journeys.imani.save_badge')}"
 					onClick="{() => {
 						goto('/demo/journeys/imani/badges');
 					}}" />

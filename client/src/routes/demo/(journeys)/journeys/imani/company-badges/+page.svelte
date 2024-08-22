@@ -89,6 +89,7 @@
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, nodeCount } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
 
 	onMount(() => {
 		currNode.set(1);
@@ -100,59 +101,57 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>Future Tech Co. <Highlight>is big on employee development.</Highlight> Let’s create a new badge
-			so we can train staff.</Typography
-		>
+			so we can train staff.
+			<!-- {$_("journeys.imani.future_tech_to_create_new_badge")} -->
+		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>Click the Create New Badge button to continue and create a new open badge template.</Typography
-		>
+		<Typography>
+			{$_("journeys.imani.create_new_badge_btn_desc")}
+		</Typography>
 	</div>
 	<div class="dash">
-		<FutureTech header="COMPANY BADGES">
+		<FutureTech header="{$_('journeys.imani.company_badges').toUpperCase()}">
 			<table class="table">
 				<tr>
-					<th><Typography variant="sub-text">Badge Name</Typography></th>
+					<th><Typography variant="sub-text">{$_("journeys.imani.badge_name")}</Typography></th>
 					<th></th>
-					<th><Typography variant="sub-text">Badge Status</Typography></th>
+					<th><Typography variant="sub-text">{$_("journeys.imani.badge_status")}</Typography></th>
 				</tr>
 				<tr>
 					<td>
-						<Typography variant="list">Health & Safety</Typography>
+						<Typography variant="list">{$_("journeys.imani.health_safety")}</Typography>
 					</td>
 					<td> </td>
 					<td>
-						<Typography variant="status">Active</Typography>
+						<Typography variant="status">{$_("components.active")}</Typography>
 					</td>
 				</tr>
-
 				<tr>
 					<td>
-						<Typography variant="list">Communication</Typography>
+						<Typography variant="list">{$_("journeys.imani.communication")}</Typography>
 					</td>
 					<td> </td>
 					<td>
-						<Typography variant="status">Active</Typography>
+						<Typography variant="status">{$_("components.active")}</Typography>
 					</td>
 				</tr>
-
 				<tr>
 					<td>
-						<Typography variant="list">Problem Solving</Typography>
+						<Typography variant="list">{$_("journeys.imani.problem_solving")}</Typography>
 					</td>
 					<td> </td>
 					<td>
-						<Typography variant="status">Active</Typography>
+						<Typography variant="status">{$_("components.active")}</Typography>
 					</td>
 				</tr>
-
 				<tr>
 					<td>
-						<Typography variant="list">Print Automation</Typography>
+						<Typography variant="list">{$_("journeys.imani.print_automation")}</Typography>
 					</td>
 					<td> </td>
 					<td>
-						<Typography variant="status">Active</Typography>
+						<Typography variant="status">{$_("components.active")}</Typography>
 					</td>
 				</tr>
 			</table>
@@ -160,11 +159,10 @@
 			<div class="button-container">
 				<Button
 					variant="future-tech"
-					label="Create New Badge"
+					label="{$_('journeys.imani.create_new_badge')}"
 					onClick="{() => {
 						goto('/demo/journeys/imani/new-badge');
-					}}"
-				/>
+					}}" />
 			</div>
 		</FutureTech>
 	</div>

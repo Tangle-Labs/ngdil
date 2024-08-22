@@ -189,7 +189,7 @@
 				<Typography variant="sub-text"
 					>{receivedCreds
 						? $_("journeys.dominique.click_to_proceed")
-						: "Awaiting credential acceptance..."}</Typography>
+						: $_("journeys.dominique.awaiting_cred_acceptance")}</Typography>
 			</div>
 		</div>
 	</Modal>
@@ -198,19 +198,22 @@
 			<Typography variant="heading">
 				<Hightlight>Exciting times. You have completed your course</Hightlight>with top marks. Let’s
 				get your credential.
+				<!-- {$_("journeys.dominique.completed_course_with_top_mark_now_get_cred")} -->
 			</Typography>
 		{:else}
 			<Typography variant="heading">
 				Congratulations. <Hightlight>You have been accepted</Hightlight> on the course. Now you need
-				to complete your studies.</Typography>
+				to complete your studies.
+				<!-- {$_("journeys.dominique.accepted_on_course_now_stud")}	 -->
+			</Typography>
 		{/if}
 	</div>
 	<div class="sub-text">
 		<Typography>
 			{#if studied}
-				Click the get credential button to receive your credential from KW1C.
+				{$_("journeys.dominique.get_cred_btn_desc")}	
 			{:else}
-				Click the start studying button to continue and complete the course.
+				{$_("journeys.dominique.start_studying_btn_desc")}	
 			{/if}</Typography>
 	</div>
 	{#if studied}
@@ -231,8 +234,8 @@
 				<div class="title">
 					<Typography variant="kw1c-header" fontVariant="kw1c"
 						>{studied
-							? "CONGRATULATIONS DOMINIQUE, YOU HAVE COMPLETED YOUR COURSE!"
-							: "HELLO DOMINIQUE, WELCOME TO YOUR NEW COURSE"}</Typography>
+							? $_("journeys.dominique.congrats_dominique_you_completed_course").toUpperCase()
+							: $_("journeys.dominique.hello_dominique_welcome_to_new_course").toUpperCase()}</Typography>
 				</div>
 				<div class="details">
 					<div class="text">
@@ -249,12 +252,12 @@
 						{#if studied}
 							<Button
 								variant="kw1c"
-								label="GET CREDENTIAL"
+								label={$_("journeys.dominique.get_cred").toUpperCase()}
 								onClick="{() => {
 									showModal = true;
 								}}" />
 						{:else}
-							<Button variant="kw1c" label="START STUDYING" onClick="{handleStudy}" />
+							<Button variant="kw1c" label={$_("journeys.dominique.start_studying").toUpperCase()} onClick="{handleStudy}" />
 						{/if}
 					</div>
 				</div>

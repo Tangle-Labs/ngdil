@@ -89,13 +89,14 @@
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, imaniBadgeName, imaniChosenApplicant } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
 
 	let loading = true;
 
 	setTimeout(() => {
 		loading = false;
 		currNode.set(5);
-	}, 5_000);
+	}, 5000);
 
 	onMount(() => {
 		currNode.set(4);
@@ -106,19 +107,20 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You’ve successfully <Highlight>created a new badge template.</Highlight> Let’s continue to get
-			training the staff.</Typography
-		>
+			training the staff.
+			<!-- {$_("journeys.imani.created_new_badge_desc")} -->
+		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography>Click continue to proceed to staff training.</Typography>
+		<Typography>{$_("journeys.imani.click_continue_staff_training")}</Typography>
 	</div>
 	<div class="dash">
-		<FutureTech header="COMPANY BADGES">
+		<FutureTech header="{$_('journeys.imani.company_badges').toUpperCase()}">
 			<table class="table">
 				<tr>
-					<th><Typography variant="sub-text">Badge Name</Typography></th>
+					<th><Typography variant="sub-text">{$_("journeys.imani.badge_name")}</Typography></th>
 					<th></th>
-					<th><Typography variant="sub-text">Badge Status</Typography></th>
+					<th><Typography variant="sub-text">{$_("journeys.imani.badge_status")}</Typography></th>
 				</tr>
 				<tr>
 					<td>
@@ -130,48 +132,43 @@
 							<Loading size="16px" />
 						{/if}
 						<Typography variant="status" color="{loading ? '--secondary-900' : '--green-900'}"
-							>{loading ? "Pending" : "Active"}</Typography
-						>
+							>{loading ? $_("components.pending") : $_("components.active")}</Typography>
 					</td>
 				</tr>
-
 				<tr>
 					<td>
-						<Typography variant="list">Health & Safety</Typography>
+						<Typography variant="list">{$_("journeys.imani.health_safety")}</Typography>
 					</td>
 					<td> </td>
 					<td>
-						<Typography variant="status">Active</Typography>
+						<Typography variant="status">{$_("components.active")}</Typography>
 					</td>
 				</tr>
-
 				<tr>
 					<td>
-						<Typography variant="list">Communication</Typography>
+						<Typography variant="list">{$_("journeys.imani.communication")}</Typography>
 					</td>
 					<td> </td>
 					<td>
-						<Typography variant="status">Active</Typography>
+						<Typography variant="status">{$_("components.active")}</Typography>
 					</td>
 				</tr>
-
 				<tr>
 					<td>
-						<Typography variant="list">Problem Solving</Typography>
+						<Typography variant="list">{$_("journeys.imani.problem_solving")}</Typography>
 					</td>
 					<td> </td>
 					<td>
-						<Typography variant="status">Active</Typography>
+						<Typography variant="status">{$_("components.active")}</Typography>
 					</td>
 				</tr>
-
 				<tr>
 					<td>
-						<Typography variant="list">Print Automation</Typography>
+						<Typography variant="list">{$_("journeys.imani.print_automation")}</Typography>
 					</td>
 					<td> </td>
 					<td>
-						<Typography variant="status">Active</Typography>
+						<Typography variant="status">{$_("components.active")}</Typography>
 					</td>
 				</tr>
 			</table>
@@ -179,11 +176,10 @@
 			<div class="button-container">
 				<Button
 					variant="future-tech"
-					label="Continue"
+					label="{$_('components.continue')}"
 					onClick="{() => {
 						goto('/demo/journeys/imani/train-staff');
-					}}"
-				/>
+					}}" />
 			</div>
 		</FutureTech>
 	</div>

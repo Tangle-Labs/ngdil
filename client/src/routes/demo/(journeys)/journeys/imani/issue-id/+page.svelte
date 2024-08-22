@@ -90,6 +90,7 @@
 	import { currNode, imaniChosenApplicant } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
 	import { Confetti } from "svelte-confetti";
+	import { _ } from "svelte-i18n";
 
 	let currStage: "init" | "loading" | "issued" = "init";
 	let showModal = false;
@@ -113,19 +114,26 @@
 		<div class="modal-content">
 			<img src="/imgs/future-tech.png" alt="" class="logo" />
 			<div class="heading">
-				<Typography variant="card-header" fontVariant="kw1c" color="--future-tech-green"
-					>FUTURE TECH CO.</Typography>
-			</div>
-			<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-red-900"
-				>You are about to issue {$imaniChosenApplicant} with an Employee ID Credential</Typography>
-			<div class="p">
-				<Typography color="--black-500">
-					To continue and issue the credential please click the issue credential button.
+				<Typography variant="card-header" fontVariant="kw1c" color="--future-tech-green">
+					{$_("components.future_tech_co").toUpperCase()}
 				</Typography>
 			</div>
-			<Button variant="future-tech" label="Issue Credential" onClick="{handleIssueCred}" />
+			<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-red-900">
+				{$_("journeys.imani.about_to_issue_applicant_with_emp_id_cred", {
+					values: { ChosenApplicant: $imaniChosenApplicant }
+				})}
+			</Typography>
+			<div class="p">
+				<Typography color="--black-500">
+					{$_("journeys.imani.click_issue_cred_to_continue")}
+				</Typography>
+			</div>
+			<Button
+				variant="future-tech"
+				label="{$_('journeys.imani.issue_cred')}"
+				onClick="{handleIssueCred}" />
 			<div class="subtext">
-				<Typography variant="sub-text">Cancel</Typography>
+				<Typography variant="sub-text">{$_("components.cancel")}</Typography>
 			</div>
 		</div>
 	</Modal>
@@ -134,18 +142,25 @@
 			>{#if currStage === "issued"}
 				Great work. {$imaniChosenApplicant?.split(" ")[0]} has <Highlight
 					>received their employee ID card.</Highlight> Let’s continue to see what’s next.
+				<!-- {$_("journeys.imani.applicant_received_emp_id_card", {
+						values: { ChosenApplicant: $imaniChosenApplicant?.split(" ")[0] }
+					})} -->
 			{:else}
 				<Highlight>{$imaniChosenApplicant?.split(" ")[0]} has accepted your job offer</Highlight> and
 				joined the system. Let’s issue their employee ID credential.
+				<!-- {$_("journeys.imani.applicant_accepted_job_and_joined_system", {
+					values: { ChosenApplicant: $imaniChosenApplicant?.split(" ")[0] }
+				})} -->
 			{/if}</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography
 			>{#if currStage === "issued"}
-				Click the continue button to proceed and see what you have achieved so far.
+				{$_("journeys.imani.click_continue_to_see_what_you_achieved")}
 			{:else}
-				Click the issue ID button to issue {$imaniChosenApplicant?.split(" ")[0]} with an employee ID
-				credential from the company.
+				{$_("journeys.imani.click_issue_id_to_issue_applicant_emp_id_cred", {
+					values: { ChosenApplicant: $imaniChosenApplicant?.split(" ")[0] }
+				})}
 			{/if}</Typography>
 	</div>
 	<div
@@ -159,17 +174,17 @@
 			fallDistance="100vh" />
 	</div>
 	<div class="dash">
-		<FutureTech header="COMPANY EMPLOYEES">
+		<FutureTech header="{$_('journeys.imani.company_employees').toUpperCase()}">
 			<table class="table">
 				<tr>
 					<th>
-						<Typography variant="sub-text">Employee Name</Typography>
+						<Typography variant="sub-text">{$_("journeys.imani.emp_name")}</Typography>
 					</th>
 					<th>
-						<Typography variant="sub-text">Designation</Typography>
+						<Typography variant="sub-text">{$_("journeys.imani.designation")}</Typography>
 					</th>
 					<th>
-						<Typography variant="sub-text">Action</Typography>
+						<Typography variant="sub-text">{$_("journeys.imani.action")}</Typography>
 					</th>
 				</tr>
 				<tr>
@@ -177,13 +192,13 @@
 						<Typography variant="list">{$imaniChosenApplicant}</Typography>
 					</td>
 					<td>
-						<Typography variant="sub-text">3d Print Designer</Typography>
+						<Typography variant="sub-text">{$_("journeys.imani.3d_print_designer")}</Typography>
 					</td>
 					<td>
 						{#if currStage === "init"}
 							<Button
 								variant="future-tech"
-								label="Issue ID"
+								label="{$_('journeys.imani.issue_id')}"
 								onClick="{() => {
 									showModal = true;
 								}}" />
@@ -191,59 +206,61 @@
 							<div class="loading">
 								<Loading size="1.125rem" />
 								<div class="text">
-									<Typography variant="status" color="--secondary-900">Pending</Typography>
+									<Typography variant="status" color="--secondary-900"
+										>{$_("components.pending")}</Typography>
 								</div>
 							</div>
 						{:else}
-							<Typography variant="status">Active</Typography>{/if}
+							<Typography variant="status">{$_("components.active")}</Typography>{/if}
 					</td>
 				</tr>
 
 				<tr>
 					<td>
-						<Typography variant="list">Marcus Lithero</Typography>
+						<Typography variant="list">{$_("imani_applicant.Marcus_Lithero")}</Typography>
 					</td>
 					<td>
-						<Typography variant="sub-text">3d Print Designer</Typography>
+						<Typography variant="sub-text">{$_("journeys.imani.3d_print_designer")}</Typography>
 					</td>
 					<td>
-						<Typography variant="status">Active</Typography>
-					</td>
-				</tr>
-
-				<tr>
-					<td>
-						<Typography variant="list">Ada Liefsson</Typography>
-					</td>
-					<td>
-						<Typography variant="sub-text">3d Print Designer</Typography>
-					</td>
-					<td>
-						<Typography variant="status">Active</Typography>
+						<Typography variant="status">{$_("components.active")}</Typography>
 					</td>
 				</tr>
 
 				<tr>
 					<td>
-						<Typography variant="list">Carter Jorvig</Typography>
+						<Typography variant="list">{$_("imani_applicant.Ada_Liefsso")}</Typography>
 					</td>
 					<td>
-						<Typography variant="sub-text">3d Print Designer</Typography>
+						<Typography variant="sub-text">{$_("journeys.imani.3d_print_designer")}</Typography>
 					</td>
 					<td>
-						<Typography variant="status" color="--kw1c-red-900">Expired</Typography>
+						<Typography variant="status">{$_("components.active")}</Typography>
 					</td>
 				</tr>
 
 				<tr>
 					<td>
-						<Typography variant="list">Malik Chaudry</Typography>
+						<Typography variant="list">{$_("imani_applicant.Carter_Jorvig")}</Typography>
 					</td>
 					<td>
-						<Typography variant="sub-text">3d Print Designer</Typography>
+						<Typography variant="sub-text">{$_("journeys.imani.3d_print_designer")}</Typography>
 					</td>
 					<td>
-						<Typography variant="status">Active</Typography>
+						<Typography variant="status" color="--kw1c-red-900"
+							>{$_("components.expired")}</Typography>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<Typography variant="list">{$_("imani_applicant.Malik_Chaudry")}</Typography>
+					</td>
+					<td>
+						<Typography variant="sub-text">{$_("journeys.imani.3d_print_designer")}</Typography>
+					</td>
+					<td>
+						<Typography variant="status">{$_("components.active")}</Typography>
 					</td>
 				</tr>
 			</table>
@@ -252,7 +269,7 @@
 				<div class="button-container">
 					<Button
 						variant="future-tech"
-						label="Continue"
+						label="{$_('components.continue')}"
 						onClick="{() => {
 							goto('/demo/journeys/imani/hired-applicant');
 						}}" />

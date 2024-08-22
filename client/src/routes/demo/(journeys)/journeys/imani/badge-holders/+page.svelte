@@ -82,6 +82,7 @@
 	import { currNode, imaniBadgeName, imaniIssuedStaff } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
 	import { Confetti } from "svelte-confetti";
+	import { _ } from "svelte-i18n";
 
 	let staff = $imaniIssuedStaff.map((s) => ({ ...s, selected: false }));
 	let pending = true;
@@ -111,20 +112,25 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>And they’re away. <Highlight>You have successfully trained and issued</Highlight> open badges
-			to your employees.</Typography>
+			to your employees.
+			<!-- {$_("journeys.imani.successfully_trained_issued_badge_to_emp")} -->
+		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>Click the continue button to proceed and see what you have achieved with self-sovereign
-			identity.</Typography>
+		<Typography>
+			{$_("journeys.imani.click_to_see_self_sovereign_id_desc")}
+		</Typography>
 	</div>
 	<div class="dash">
-		<FutureTech header="{`${$imaniBadgeName.toUpperCase()} BADGE HOLDERS`}">
+		<FutureTech
+			header="{$imaniBadgeName.toUpperCase() +
+				' ' +
+				$_('journeys.imani.badge_holders').toUpperCase()}">
 			<table class="table">
 				<tr>
-					<th><Typography variant="sub-text">Employee Name</Typography></th>
-					<th><Typography variant="sub-text">Designation</Typography></th>
-					<th><Typography variant="sub-text">Badge Status</Typography></th>
+					<th><Typography variant="sub-text">{$_("journeys.imani.emp_name")}</Typography></th>
+					<th><Typography variant="sub-text">{$_("journeys.imani.designation")}</Typography></th>
+					<th><Typography variant="sub-text">{$_("journeys.imani.badge_status")}</Typography></th>
 				</tr>
 				{#each staff as emp (emp.name)}
 					<tr>
@@ -139,11 +145,12 @@
 								<div class="loading">
 									<Loading size="1rem" />
 									<div class="text">
-										<Typography variant="status" color="--secondary-900">Pending</Typography>
+										<Typography variant="status" color="--secondary-900"
+											>{$_("components.pending")}</Typography>
 									</div>
 								</div>
 							{:else}
-								<Typography variant="status">Accepted</Typography>
+								<Typography variant="status">{$_("components.accepted")}</Typography>
 							{/if}
 						</td>
 					</tr>
@@ -153,7 +160,7 @@
 			<div class="button-container">
 				<Button
 					variant="{pending ? 'future-tech-disabled' : 'future-tech'}"
-					label="Continue"
+					label="{$_('components.continue')}"
 					onClick="{() => goto('/demo/journeys/imani/issued-badge')}" />
 			</div>
 		</FutureTech>

@@ -51,6 +51,7 @@
 	} from "$lib/stores/flows.store";
 	import { currStep } from "$lib/stores/onboarding.store";
 	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
 
 	onMount(() => {
 		nodeCount.set(0);
@@ -63,16 +64,18 @@
 		<Typography variant="heading"
 			>{#if $imaniHiredEmployee}
 				<Highlight>Great new hire.</Highlight> Let’s get creating a new open badge and training the staff.
+				<!-- {$_("journeys.imani.imani_hired_emp_intro")} -->
 			{:else}
 				Hi Imani. Let’s <Highlight>get you hiring some experienced staff</Highlight>. Select your
 				first experience to get started.
+				<!-- {$_("journeys.imani.imani_yet_to_hire_emp_intro")} -->
 			{/if}</Typography>
 	</div>
 	<div class="desc">
 		<Typography variant="button">
 			{$imaniHiredEmployee
-				? "Select the next experience to continue Imani’s journey and train some employees."
-				: "Select the first experience to start Imani’s journey and get hiring a new employee."}
+				? $_("journeys.imani.select_next_experience")
+				: $_("journeys.imani.select_first_journey")}
 		</Typography>
 	</div>
 
@@ -83,12 +86,11 @@
 					<Avatar image="/imgs/imani-1.svg" />
 					<div class="text">
 						<div class="heading">
-							<Typography variant="card-header">Hiring an employee with a digital CV</Typography>
+							<Typography variant="card-header">{$_("journeys.imani.hiring_emp_with_digital_cv")}</Typography>
 						</div>
 						<div class="desc">
 							<Typography>
-								Here you will login to your business portal using your self-sovereign identity,
-								verify applicant credentials, select a new hire, and issue an employee ID card.
+								{$_("journeys.imani.business_portal_dashboard_desc")}	
 							</Typography>
 						</div>
 					</div>
@@ -97,7 +99,9 @@
 						onClick="{() => {
 							goto('/demo/journeys/imani/login');
 						}}"
-						label="{$imaniHiredEmployee ? 'Retry' : 'Get Started'}" />
+						label="{$imaniHiredEmployee
+							? $_('components.retry')
+							: $_('components.get_started')}" />
 				</div>
 			</Card>
 		</div>
@@ -108,12 +112,11 @@
 					<Avatar image="/imgs/imani-2.svg" />
 					<div class="text">
 						<div class="heading">
-							<Typography variant="card-header">Create and issue company skills badge</Typography>
+							<Typography variant="card-header">{$_("journeys.imani.create_and_issue_company_skill_badge")}</Typography>
 						</div>
 						<div class="desc">
 							<Typography>
-								Here you will create a reusable open badge template, select your employees for
-								training, and privately issue skills badges to successful trainees.
+								{$_("journeys.imani.company_skill_badge_desc")}
 							</Typography>
 						</div>
 					</div>
@@ -126,7 +129,9 @@
 						onClick="{() => {
 							goto('/demo/journeys/imani/company-badges');
 						}}"
-						label="{$imaniIssuedBadge ? 'Retry' : 'Get Started'}" />
+						label="{$imaniIssuedBadge
+							? $_('components.retry')
+							: $_('components.get_started')}" />
 				</div>
 			</Card>
 		</div>
@@ -135,7 +140,7 @@
 				<Button
 					variant="secondary"
 					onClick="{() => goto('/demo/choose-journey')}"
-					label="Try Another Journey" />
+					label={$_("components.try_another_journey")} />
 			</div>
 		{/if}
 	</div>

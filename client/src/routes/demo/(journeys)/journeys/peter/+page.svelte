@@ -51,6 +51,7 @@
 		peterVerifiedInternship
 	} from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
 
 	onMount(() => {
 		nodeCount.set(0);
@@ -62,11 +63,13 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>Hi Peter. Let’s get you <Highlight>started with enrolling your students.</Highlight> Select your
-			experience to get started.</Typography>
+			experience to get started.
+			<!-- {$_("journeys.peter.intro")} -->
+		</Typography>
 	</div>
 	<div class="desc">
 		<Typography variant="button">
-			Select the experience to start Peter’s journey and evaluate and enrol students.
+			{$_("journeys.peter.select_experience_to_start_journey")}
 		</Typography>
 	</div>
 
@@ -78,13 +81,13 @@
 					<div class="text">
 						<div class="heading">
 							<Typography variant="card-header"
-								>Verify Student and enrol on Internationalisation course.</Typography>
+								>{$_(
+									"journeys.peter.verify_student_and_enroll_on_internationalisation_course"
+								)}</Typography>
 						</div>
 						<div class="desc">
 							<Typography>
-								Here you will use your self-sovereign identity to connect to the KW1C staff
-								dashboard, assess student eligibility for international internships, and enrol
-								students onto the internationalisation course.
+								{$_("journeys.peter.verify_student_enroll_desc")}
 							</Typography>
 						</div>
 					</div>
@@ -93,7 +96,9 @@
 						onClick="{() => {
 							goto('/demo/journeys/peter/login-kw1c');
 						}}"
-						label="{$peterEnrolledStudent ? 'Retry' : 'Get Started'}" />
+						label="{$peterEnrolledStudent
+							? $_('components.retry')
+							: $_('components.get_started')}" />
 				</div>
 			</Card>
 		</div>
@@ -103,14 +108,15 @@
 					<Avatar image="/imgs/peter-2.svg" />
 					<div class="text">
 						<div class="heading">
-							<Typography variant="card-header"
-								>Issue internationalisation course badges and assign student internship placements.</Typography>
+							<Typography variant="card-header">
+								{$_(
+									"journeys.peter.issue_internationalisation_course_badge_and_assign_student_internship"
+								)}
+							</Typography>
 						</div>
 						<div class="desc">
 							<Typography>
-								In this journey you will issue internationalisation badges to students who were
-								successful in their course studies and assign a student an international internship
-								placement.
+								{$_("journeys.peter.issue_course_badge_desc")}
 							</Typography>
 						</div>
 					</div>
@@ -123,7 +129,9 @@
 						onClick="{() => {
 							goto('/demo/journeys/peter/view-courses');
 						}}"
-						label="{$peterAssignedInternship ? 'Retry' : 'Get Started'}" />
+						label="{$peterAssignedInternship
+							? $_('components.retry')
+							: $_('components.get_started')}" />
 				</div>
 			</Card>
 		</div>
@@ -133,13 +141,12 @@
 					<Avatar image="/imgs/peter-3.svg" />
 					<div class="text">
 						<div class="heading">
-							<Typography variant="card-header">Verify students internship credentials</Typography>
+							<Typography variant="card-header"
+								>{$_("journeys.peter.verify_students_internship_creds")}</Typography>
 						</div>
 						<div class="desc">
 							<Typography>
-								After the return of students from their international internship you will verify
-								their participation and successful completion of their internship by verifying their
-								new credentials issued by international companies.
+								{$_("journeys.peter.verify_students_internship_desc")}
 							</Typography>
 						</div>
 					</div>
@@ -152,7 +159,9 @@
 						onClick="{() => {
 							goto('/demo/journeys/peter/internship-results');
 						}}"
-						label="{$peterVerifiedInternship ? 'Retry' : 'Get Started'}" />
+						label="{$peterVerifiedInternship
+							? $_('components.retry')
+							: $_('components.get_started')}" />
 				</div>
 			</Card>
 		</div>
@@ -161,7 +170,7 @@
 				<Button
 					variant="secondary"
 					onClick="{() => goto('/demo/choose-journey')}"
-					label="Try Another Journey" />
+					label="{$_('components.try_another_journey')}" />
 			</div>
 		{/if}
 	</div>
