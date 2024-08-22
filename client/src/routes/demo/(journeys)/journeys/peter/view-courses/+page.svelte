@@ -199,7 +199,7 @@
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Internationalisation</Typography>
+								>{$_("journeys.peter.internationalisation")}</Typography>
 						</div>
 						<div class="data">
 							<div class="blue-bar"></div>
@@ -211,11 +211,12 @@
 
 					<div class="column">
 						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c">Course Status</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("journeys.peter.course_status")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="status" fontVariant="kw1c" color="--green-900"
-								>Complete</Typography>
+								>{$_("journeys.peter.complete")}</Typography>
 						</div>
 						<div class="data">
 							<div class="red-bar"></div>
@@ -228,11 +229,11 @@
 					<div class="column">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c" color="--white-300"
-								>Action</Typography>
+								>{$_("journeys.peter.action")}</Typography>
 						</div>
 						<div class="button-container">
 							<Button
-								label="VIEW RESULTS"
+								label="{$_('journeys.peter.view_results')}"
 								variant="kw1c"
 								onClick="{() => {
 									goto('/demo/journeys/peter/course-results');
