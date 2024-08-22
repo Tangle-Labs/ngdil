@@ -383,7 +383,14 @@
             "view_applications_intro": "The students are keen to get on their international internships. Let’s see [if they meet the requirements.]",
             "view_applications_sub_text": "Click the view application button to check a student’s application.",
             "view_courses_intro": "Your [students have completed their course.] Let’s check their results and issue their badges.",
-            "view_courses_subtext": "Click the view results button to see the outcome for the internationalisation course students."
+            "view_courses_subtext": "Click the view results button to see the outcome for the internationalisation course students.",
+            "view_application_enrolled_intro": "To evaluate {peterChosenStudent}’s eligibility [let’s request the credentials] required to participate in the internship.",
+            "view_application_not_enrolled_intro": "It appears {peterChosenStudent} is missing an internationalisation badge. Let’s enrol them onto the course.",
+            "view_application_not_enrolled_sub_text": "Click the enrol student button to enrol them onto the internationalisation course.",
+            "view_applications_enrolled_sub_text": "Click the request credentials button to get the students credentials",
+            "enrol_student": "Enrol Student",
+            "verifying": "Verifying",
+            "request_credentials": "Request Credentials"
         }
     }
 }
