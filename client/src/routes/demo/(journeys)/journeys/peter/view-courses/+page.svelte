@@ -153,6 +153,7 @@
 		peterChosenStudent
 	} from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
 	let receivedCreds = false;
 
 	function handleWait() {
@@ -172,14 +173,11 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading">
-			Your <Highlight>students have completed their course.</Highlight> Let’s check their results and
-			issue their badges.
+			{$_("journeys.peter.view_courses_intro")}
 		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>Click the view results button to see the outcome for the internationalisation course
-			students.</Typography>
+		<Typography>{$_("journeys.peter.view_courses_subtext")}</Typography>
 	</div>
 
 	<div class="dash">
@@ -196,11 +194,12 @@
 				<div class="table">
 					<div class="column">
 						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c">Course Name</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("journeys.peter.course_name")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>Internationalisation</Typography>
+								>{$_("journeys.peter.internationalisation")}</Typography>
 						</div>
 						<div class="data">
 							<div class="blue-bar"></div>
@@ -212,11 +211,12 @@
 
 					<div class="column">
 						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c">Course Status</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("journeys.peter.course_status")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="status" fontVariant="kw1c" color="--green-900"
-								>Complete</Typography>
+								>{$_("journeys.peter.complete")}</Typography>
 						</div>
 						<div class="data">
 							<div class="red-bar"></div>
@@ -229,11 +229,11 @@
 					<div class="column">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c" color="--white-300"
-								>Action</Typography>
+								>{$_("journeys.peter.action")}</Typography>
 						</div>
 						<div class="button-container">
 							<Button
-								label="VIEW RESULTS"
+								label="{$_('journeys.peter.view_results')}"
 								variant="kw1c"
 								onClick="{() => {
 									goto('/demo/journeys/peter/course-results');

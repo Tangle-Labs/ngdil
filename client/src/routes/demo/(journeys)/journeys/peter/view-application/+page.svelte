@@ -177,6 +177,7 @@
 	import { credentials } from "$lib/stores/creds";
 	import { currNode, dominiqueSelectedCourse, peterChosenStudent } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
 	let receivedCreds = false;
 	let loading = false;
 
@@ -198,20 +199,17 @@
 	<div class="heading">
 		<Typography variant="heading">
 			{#if !receivedCreds}
-				To evaluate {$peterChosenStudent?.split(" ")[0]}’s eligibility <Highlight>
-					let’s request the credentials</Highlight>
-				required to participate in the internship.
+				{$_("journeys.peter.view_application_enrolled_intro")}
 			{:else}
-				It appears {$peterChosenStudent?.split(" ")[0]} is missing an internationalisation badge. Let’s
-				enrol them onto the course.
+				{$_("journeys.peter.view_application_not_enrolled_intro")}
 			{/if}
 		</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography
 			>{receivedCreds
-				? "Click the enrol student button to enrol them onto the internationalisation course."
-				: "Click the request credentials button to get the students credentials"}</Typography>
+				? $_("journeys.peter.view_application_not_enrolled_sub_text")
+				: $_("journeys.peter.view_application_enrolled_sub_text")}</Typography>
 	</div>
 
 	<div class="dash">
@@ -233,7 +231,7 @@
 						</div>
 						<div class="course">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D PRINT DESIGN</Typography>
+								>{$_("journeys.peter.3d_print_design")}</Typography>
 						</div>
 					</div>
 					<div class="button-container">
@@ -241,11 +239,11 @@
 							<button
 								class="{`button ${loading && 'loading'}`}"
 								on:click="{() => goto('/demo/journeys/peter/enrol-students')}">
-								ENROL STUDENT
+								{$_("journeys.peter.enrol_student").toUpperCase()}
 							</button>
 						{:else}
 							<button class="{`button ${loading && 'loading'}`}" on:click="{handleWait}">
-								{loading ? "VERIFYING" : "REQUEST CREDENTIALS"}
+								{loading ? $_("page.journeys.verifying") : $_("page.journeys.request_credentials")}
 							</button>
 						{/if}
 					</div>
