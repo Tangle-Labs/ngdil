@@ -77,6 +77,8 @@
 		</div>
 		{#if !(window.location.pathname === "/demo/choose-journey" && $completedJourneys.length > 0)}
 			<div class="bottom">
+				<!-- svelte-ignore a11y-no-static-element-interactions -->
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<div
 					class="back"
 					on:click="{() => {

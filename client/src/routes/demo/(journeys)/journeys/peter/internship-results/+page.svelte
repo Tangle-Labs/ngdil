@@ -130,21 +130,16 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, Kw1c, Modal, Loading } from "$lib/components";
+	import { Typography, Kw1c } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
 		currNode,
-		dominiqueSelectedCourse,
 		nodeCount,
 		peterAssignedCompany,
-		peterAssignedStudent,
-		peterChosenStudent
+		peterAssignedStudent
 	} from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
-
-	let receivedCreds = false;
-	let showModal = false;
 
 	onMount(() => {
 		currNode.set(0);

@@ -199,9 +199,14 @@
 	<div class="heading">
 		<Typography variant="heading">
 			{#if !receivedCreds}
-				{$_("journeys.peter.view_application_enrolled_intro")}
+				To evaluate {$peterChosenStudent?.split(" ")[0]}’s eligibility <Highlight>
+					let’s request the credentials</Highlight>
+				required to participate in the internship.
+				<!-- {$_("journeys.peter.view_application_enrolled_intro", {values: {PeterChosenStudent: $peterChosenStudent?.split(" ")[0]}})} -->
 			{:else}
-				{$_("journeys.peter.view_application_not_enrolled_intro")}
+				It appears {$peterChosenStudent?.split(" ")[0]} is missing an internationalisation badge. Let’s
+				enrol them onto the course.
+				<!-- {$_("journeys.peter.view_application_not_enrolled_intro", {values: {PeterChosenStudent: $peterChosenStudent?.split(" ")[0]}})} -->
 			{/if}
 		</Typography>
 	</div>
@@ -213,7 +218,7 @@
 	</div>
 
 	<div class="dash">
-		<Kw1c variant="white" title="STUDENT APPLICANT">
+		<Kw1c variant="white" title="{$_('journeys.peter.student_applicant').toUpperCase()}">
 			<div class="sidebar">
 				{#each Array(5) as i}
 					<div class="menu-item">
@@ -270,55 +275,66 @@
 					</div>
 					<div class="column type">
 						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c">Credential Type</Typography>
-						</div>
-						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c">NATIONAL ID</Typography>
-						</div>
-						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c">COLLEGE ID</Typography>
-						</div>
-						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c">COURSE BADGE</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("journeys.peter.cred_type")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c"
-								>INTERNATIONALISATION BADGE</Typography>
+								>{$_("creds.national_id").toUpperCase()}</Typography>
+						</div>
+						<div class="data">
+							<Typography variant="card-header" fontVariant="kw1c"
+								>{$_("creds.college_id").toUpperCase()}</Typography>
+						</div>
+						<div class="data">
+							<Typography variant="card-header" fontVariant="kw1c"
+								>{$_("creds.course_badge").toUpperCase()}</Typography>
+						</div>
+						<div class="data">
+							<Typography variant="card-header" fontVariant="kw1c"
+								>{$_("creds.internatinalisation_badge").toUpperCase()}</Typography>
 						</div>
 					</div>
 
 					<div class="column">
 						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c">Issuer</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c">{$_("issuer.issuer")}</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c">The Government</Typography>
+							<Typography variant="list" fontVariant="kw1c">{$_("issuer.the_govt")}</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c">Koning Willem I College</Typography>
+							<Typography variant="list" fontVariant="kw1c"
+								>{$_("issuer.koning_willem_i_college")}</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c">Koning Willem I College</Typography>
+							<Typography variant="list" fontVariant="kw1c"
+								>{$_("issuer.koning_willem_i_college")}</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="list" fontVariant="kw1c">Koning Willem I College</Typography>
+							<Typography variant="list" fontVariant="kw1c"
+								>{$_("issuer.koning_willem_i_college")}</Typography>
 						</div>
 					</div>
 
 					<div class="column">
 						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c">Status</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("components.status")}</Typography>
 						</div>
 						{#each Array(4) as _, i}
 							<div class="data">
 								{#if receivedCreds}
 									{#if i !== 3}
-										<Typography variant="status" color="--green-900">Verified</Typography>
+										<Typography variant="status" color="--green-900"
+											>{$_("components.verified")}</Typography>
 									{:else}
-										<Typography variant="status" color="--red-900">Missing</Typography>
+										<Typography variant="status" color="--red-900"
+											>{$_("components.missing")}</Typography>
 									{/if}
 								{:else}
-									<Typography variant="status" color="--secondary-900">Pending</Typography>
+									<Typography variant="status" color="--secondary-900"
+										>{$_("components.pending")}</Typography>
 								{/if}
 							</div>
 						{/each}
@@ -330,15 +346,15 @@
 							</div>
 							<div class="data">
 								<CredModal
-									name="National ID"
-									issuer="The Government"
+									name="{$_('creds.national_id')}"
+									issuer="{$_('issuer.the_govt')}"
 									credential="{{ ...credentials.nationalId, 'Full Name': $peterChosenStudent }}"
 									logo="/imgs/gov.svg" />
 							</div>
 							<div class="data">
 								<CredModal
-									name="College ID"
-									issuer="Koning Willem I College"
+									name="{$_('creds.college_id')}"
+									issuer="{$_('issuer.koning_willem_i_college')}"
 									credential="{{
 										...credentials.collegeId,
 										'Student Name': $peterChosenStudent
@@ -347,8 +363,8 @@
 							</div>
 							<div class="data">
 								<CredModal
-									name="Course Badge"
-									issuer="Koning Willem I College"
+									name="{$_('creds.college_badge')}"
+									issuer="{$_('issuer.koning_willem_i_college')}"
 									logo="/imgs/kw1c-white.png"
 									credential="{{
 										...credentials.courseCred,

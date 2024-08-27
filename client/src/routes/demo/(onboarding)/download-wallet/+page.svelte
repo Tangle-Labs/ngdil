@@ -90,24 +90,22 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { PUBLIC_BASE_URI, PUBLIC_CLIENT_URI } from "$env/static/public";
+	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 	import { Typography, Card, Button, Modal } from "$lib/components";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { wallets } from "$lib/config/config";
 	import { currStep } from "$lib/stores/onboarding.store";
-	import { apiClient } from "$lib/utils/axios.utils";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 
 	let modalVisible = false;
+	let selectedWallet: number;
 
 	function handleContinue() {
 		currStep.set(2);
 		goto("/demo/choose-journey");
 	}
-
-	let selectedWallet: number;
 
 	onMount(() => {
 		currStep.set(1);

@@ -215,10 +215,16 @@
 	import { createWebsocket } from "$lib/utils/ws.util";
 	import { onMount } from "svelte";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
-	import { qrcode } from "svelte-qrcode-action";
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 	import { _ } from "svelte-i18n";
 
+	const ws = createWebsocket();
+	ws.onmessage = (event) => {
+		const data = JSON.parse(event.data);
+		if (data.received) {
+			receivedCreds = true;
+		}
+	};
 	let receivedCreds = false;
 	let qr: string;
 	let showModal = false;
@@ -236,14 +242,6 @@
 		});
 		qr = uri;
 	});
-
-	const ws = createWebsocket();
-	ws.onmessage = (event) => {
-		const data = JSON.parse(event.data);
-		if (data.received) {
-			receivedCreds = true;
-		}
-	};
 </script>
 
 <div class="container">

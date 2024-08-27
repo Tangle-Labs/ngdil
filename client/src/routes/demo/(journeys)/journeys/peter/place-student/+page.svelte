@@ -199,25 +199,18 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, Kw1c, Modal, Loading, Radio } from "$lib/components";
+	import { Typography, Kw1c, Modal, Loading } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
 		currNode,
 		dominqueCourses,
 		peterAssignecCompanyCountry,
-		peterAssignedBadges,
 		peterAssignedCompany,
-		peterAssignedStudent,
-		peterChosenStudents
+		peterAssignedStudent
 	} from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 
-	let students = {
-		"Sarah Jones": false,
-		"Ivar Leifsson": false,
-		"Lagertha Bonde": false
-	};
 	let state: "init" | "loading" | "loaded" = "init";
 	let showModal = false;
 
@@ -244,12 +237,17 @@
 			<img src="/imgs/kw1c-white.png" alt="" class="logo" />
 			<span style:text-transform="uppercase">
 				{#if state === "loaded"}
-					<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"
-						>you have successfully assigned {$peterAssignedStudent?.split(" ")[0]} their internship placement.
+					<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900">
+						{$_("journeys.peter.assigned_internship", {
+							values: { PeterAssignedStudent: $peterAssignedStudent?.split(" ")[0] }
+						})}
 					</Typography>
 				{:else}
-					<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"
-						>You are about to assign {$peterAssignedStudent?.split(" ")[0]} an internship placement with:<br />
+					<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900">
+						{$_("journeys.peter.about_to_assign_internship", {
+							values: { PeterAssignedStudent: $peterAssignedStudent?.split(" ")[0] }
+						})}
+						<br />
 					</Typography>
 					<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
 						>{$peterAssignedCompany}</Typography>
@@ -257,19 +255,21 @@
 			</span>
 			<div class="p">
 				{#if state === "loaded"}
-					Click the CONTINUE button to proceed
+					{$_("journeys.peter.click_continue_to_proceed")}
 				{:else}
-					Click the ASSIGN INTERNSHIP button to assign your student internship placement.
+					{$_("journeys.peter.assign_internship_btn_desc")}
 				{/if}
 			</div>
 			{#if state === "loading"}
 				<Loading img="/imgs/blue-loading.png" />
 				<div class="subtext">
-					<Typography variant="sub-text">Awaiting confirmation...</Typography>
+					<Typography variant="sub-text">{$_("journeys.peter.awaiting_confirmation")}</Typography>
 				</div>
 			{:else}
 				<button class="button" on:click="{handleModalClick}"
-					>{state === "loaded" ? "CONTINUE" : "ASSIGN PLACEMENT"}</button>
+					>{state === "loaded"
+						? $_("components.continue").toUpperCase()
+						: $_("journeys.peter.assign_placement").toUpperCase()}</button>
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text" />
@@ -281,16 +281,19 @@
 		<Typography variant="heading">
 			{$peterAssignedStudent?.split(" ")[0]} has <Highlight
 				>two relevant internship opportunities.</Highlight> Let’s assign their placement.
+			<!-- {$_("journeys.peter.2_relevent_internship", {
+				values: { PeterAssignedStudent: $peterAssignedStudent?.split(" ")[0] }
+			})} -->
 		</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography>
-			Click the assign placement button on the internship you wish to assign to the student.
+			{$_("journeys.peter.click_assign_internship_btn_to_student")}
 		</Typography>
 	</div>
 
 	<div class="dash">
-		<Kw1c variant="white" title="STUDENT INTERNSHIP PLACEMENT">
+		<Kw1c variant="white" title="{$_('journeys.peter.student_internship_placement').toUpperCase()}">
 			<div class="sidebar">
 				{#each Array(5) as i}
 					<div class="menu-item">
@@ -304,7 +307,8 @@
 					<div class="meta">
 						<div class="text-block">
 							<div class="header">
-								<Typography fontVariant="kw1c" variant="sub-text">Student Applicant</Typography>
+								<Typography fontVariant="kw1c" variant="sub-text"
+									>{$_("journeys.peter.student_applicant")}</Typography>
 							</div>
 							<div class="content">
 								<Typography fontVariant="kw1c" variant="kw1c-header" color="--kw1c-blue-900"
@@ -314,11 +318,12 @@
 
 						<div class="text-block">
 							<div class="header">
-								<Typography fontVariant="kw1c" variant="sub-text">Internship Category</Typography>
+								<Typography fontVariant="kw1c" variant="sub-text"
+									>{$_("journeys.peter.internship_category")}</Typography>
 							</div>
 							<div class="content">
 								<Typography fontVariant="kw1c" variant="kw1c-sub-text" color="--kw1c-red-900"
-									>3D Print Design</Typography>
+									>{$_("journeys.peter.3d_print_design")}</Typography>
 							</div>
 						</div>
 					</div>
@@ -341,7 +346,7 @@
 										peterAssignedCompany.set(internship.name);
 										peterAssignecCompanyCountry.set(internship.location.split(',')[1]);
 										showModal = true;
-									}}">ASSIGN PLACEMENT</button>
+									}}">{$_("journeys.peter.assign_placement").toUpperCase()}</button>
 							</div>
 						</div>
 					{/each}

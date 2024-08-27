@@ -173,6 +173,8 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading">
+			Your <Highlight>students have completed their course.</Highlight> Let’s check their results and
+			issue their badges.
 			{$_("journeys.peter.view_courses_intro")}
 		</Typography>
 	</div>
@@ -181,7 +183,7 @@
 	</div>
 
 	<div class="dash">
-		<Kw1c variant="white" title="ACTIVE COURSES">
+		<Kw1c variant="white" title="{$_('journeys.peter.active_courses').toUpperCase()}">
 			<div class="sidebar">
 				{#each Array(5) as i}
 					<div class="menu-item">
@@ -216,7 +218,7 @@
 						</div>
 						<div class="data">
 							<Typography variant="status" fontVariant="kw1c" color="--green-900"
-								>{$_("journeys.peter.complete")}</Typography>
+								>{$_("components.complete")}</Typography>
 						</div>
 						<div class="data">
 							<div class="red-bar"></div>

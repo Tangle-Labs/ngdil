@@ -18,6 +18,7 @@
 	import { fly } from "svelte/transition";
 
 	let animate = false;
+
 	onMount(() => {
 		animate = true;
 	});

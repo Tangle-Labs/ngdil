@@ -134,7 +134,7 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, FutureTech, Button, Loading, Modal, Badge, Radio } from "$lib/components";
+	import { Typography, FutureTech, Button, Badge, Radio } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
 		currNode,
@@ -146,6 +146,12 @@
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 
+	const colors = {
+		red: "var(--red-900)",
+		green: "var(--green-900)",
+		yellow: "var(--secondary-900)",
+		blue: "var(--blue-900)"
+	};
 	let color: "red" | "blue" | "green" | "yellow" | null = null;
 	let variant: "hexagon" | "crest" | "rounded-hexagon" | "circle" | null = null;
 	let creatingBadgeImage = true;
@@ -153,13 +159,6 @@
 	let badgeDescValue: string;
 	let badgeName: string = $_("journeys.imani.3d_print_team_management");
 	let badgeDesc: string = $_("journeys.imani.team_manager_badge_desc");
-
-	const colors = {
-		red: "var(--red-900)",
-		green: "var(--green-900)",
-		yellow: "var(--secondary-900)",
-		blue: "var(--blue-900)"
-	};
 
 	function handleCreateBadge() {
 		if (creatingBadgeImage) {

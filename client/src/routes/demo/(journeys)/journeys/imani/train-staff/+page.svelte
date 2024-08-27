@@ -120,6 +120,7 @@
 	onMount(() => {
 		currNode.set(6);
 	});
+
 	$: disabled = staff.filter((s) => s.selected).length < 1;
 </script>
 

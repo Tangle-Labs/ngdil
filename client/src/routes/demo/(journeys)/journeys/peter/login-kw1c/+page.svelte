@@ -49,9 +49,6 @@
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 	import { _ } from "svelte-i18n";
 
-	let animatePhone = false;
-	let qr: string;
-
 	const loadQr = async function () {
 		const { data } = await apiClient.post("/api/oid4vp", {
 			presentationStage: "peterLogin",
@@ -62,7 +59,6 @@
 		});
 		qr = data.uri;
 	};
-
 	const ws = createWebsocket();
 	ws.onmessage = (event) => {
 		const data = JSON.parse(event.data);
@@ -70,11 +66,12 @@
 			goto("/demo/journeys/peter/view-applications");
 		}
 	};
+	let animatePhone = false;
+	let qr: string;
 
 	onMount(() => {
 		nodeCount.set(5);
 		currNode.set(0);
-
 		loadQr();
 	});
 </script>

@@ -70,16 +70,9 @@
 </style>
 
 <script lang="ts">
-	import { afterNavigate, goto } from "$app/navigation";
+	import { goto } from "$app/navigation";
 	import { Avatar, Button, ProgressBar, Typography } from "$lib/components";
-	import {
-		JourneyInfo,
-		completedJourneys,
-		currNode,
-		currentJourney,
-		nodeCount,
-		previousPath
-	} from "$lib/stores/flows.store";
+	import { JourneyInfo, currNode, currentJourney, nodeCount } from "$lib/stores/flows.store";
 	import { _ } from "svelte-i18n";
 
 	let expanded = false;
@@ -88,6 +81,8 @@
 <div class="nav">
 	<img src="/imgs/ngdil.svg" class="logo" alt="" />
 	{#if expanded}
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div class="overlay" on:click="{() => (expanded = false)}"></div>
 	{/if}
 
@@ -131,6 +126,8 @@
 
 {#if $nodeCount > 0}
 	<div class="bottom">
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div
 			class="back"
 			on:click="{() => {

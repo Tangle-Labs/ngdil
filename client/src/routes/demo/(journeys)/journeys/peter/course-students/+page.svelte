@@ -165,23 +165,17 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Button, Loading } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import {
-		currNode,
-		peterAssignedBadges,
-		peterAssignedStudent,
-		peterChosenStudents
-	} from "$lib/stores/flows.store";
+	import { currNode, peterChosenStudents } from "$lib/stores/flows.store";
 	import { Confetti } from "svelte-confetti";
 	import { _ } from "svelte-i18n";
 
-	let students = {
-		"Sarah Jones": false,
-		"Ivar Leifsson": false,
-		"Lagertha Bonde": false
-	};
-
+	// let students = {
+	// 	"Sarah Jones": false,
+	// 	"Ivar Leifsson": false,
+	// 	"Lagertha Bonde": false
+	// };
 	let loading = true;
-	let showModal = false;
+	// let showModal = false;
 
 	setTimeout(() => {
 		currNode.set(5);

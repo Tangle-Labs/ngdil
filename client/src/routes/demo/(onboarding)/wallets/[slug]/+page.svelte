@@ -31,6 +31,7 @@
 			);
 		}
 	};
+
 	onMount(() => {
 		if (browser) {
 			const wallet = wallets.find((w) => w.name === $page.params.slug);

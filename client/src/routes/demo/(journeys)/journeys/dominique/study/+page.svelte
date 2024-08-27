@@ -121,10 +121,24 @@
 	import { Confetti } from "svelte-confetti";
 	import { apiClient } from "$lib/utils/axios.utils";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
-	import { qrcode } from "svelte-qrcode-action";
 	import { createWebsocket } from "$lib/utils/ws.util";
 	import { _ } from "svelte-i18n";
 
+	const handleStudy = () => {
+		currNode.set(3);
+		studied = true;
+		const counting = setInterval(() => {
+			if (progress > 100) clearInterval(counting);
+			progress = progress < 100 ? progress + 1 : progress;
+		}, 1);
+	};
+	const ws = createWebsocket();
+	ws.onmessage = (event) => {
+		const data = JSON.parse(event.data);
+		if (data.creds) {
+			receivedCreds = true;
+		}
+	};
 	let progress = 0;
 	let studied = false;
 	let showModal = false;
@@ -139,23 +153,6 @@
 		qr = data.uri;
 		currNode.set(2);
 	});
-
-	const handleStudy = () => {
-		currNode.set(3);
-		studied = true;
-		const counting = setInterval(() => {
-			if (progress > 100) clearInterval(counting);
-			progress = progress < 100 ? progress + 1 : progress;
-		}, 1);
-	};
-
-	const ws = createWebsocket();
-	ws.onmessage = (event) => {
-		const data = JSON.parse(event.data);
-		if (data.creds) {
-			receivedCreds = true;
-		}
-	};
 </script>
 
 <div class="container">
@@ -211,9 +208,9 @@
 	<div class="sub-text">
 		<Typography>
 			{#if studied}
-				{$_("journeys.dominique.get_cred_btn_desc")}	
+				{$_("journeys.dominique.get_cred_btn_desc")}
 			{:else}
-				{$_("journeys.dominique.start_studying_btn_desc")}	
+				{$_("journeys.dominique.start_studying_btn_desc")}
 			{/if}</Typography>
 	</div>
 	{#if studied}
@@ -223,8 +220,8 @@
 				x="{[-5, 5]}"
 				y="{[0, 0.1]}"
 				delay="{[500, 5000]}"
-				duration="2000"
-				amount="500"
+				duration="{2000}"
+				amount="{500}"
 				fallDistance="100vh" />
 		</div>
 	{/if}
@@ -235,7 +232,9 @@
 					<Typography variant="kw1c-header" fontVariant="kw1c"
 						>{studied
 							? $_("journeys.dominique.congrats_dominique_you_completed_course").toUpperCase()
-							: $_("journeys.dominique.hello_dominique_welcome_to_new_course").toUpperCase()}</Typography>
+							: $_(
+									"journeys.dominique.hello_dominique_welcome_to_new_course"
+							  ).toUpperCase()}</Typography>
 				</div>
 				<div class="details">
 					<div class="text">
@@ -252,12 +251,15 @@
 						{#if studied}
 							<Button
 								variant="kw1c"
-								label={$_("journeys.dominique.get_cred").toUpperCase()}
+								label="{$_('journeys.dominique.get_cred').toUpperCase()}"
 								onClick="{() => {
 									showModal = true;
 								}}" />
 						{:else}
-							<Button variant="kw1c" label={$_("journeys.dominique.start_studying").toUpperCase()} onClick="{handleStudy}" />
+							<Button
+								variant="kw1c"
+								label="{$_('journeys.dominique.start_studying').toUpperCase()}"
+								onClick="{handleStudy}" />
 						{/if}
 					</div>
 				</div>

@@ -216,7 +216,7 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, OpenJobsNetwork, Avatar, Modal, Loading } from "$lib/components";
+	import { Typography, OpenJobsNetwork, Avatar, Modal } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";

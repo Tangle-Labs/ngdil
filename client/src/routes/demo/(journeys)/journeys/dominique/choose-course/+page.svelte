@@ -99,10 +99,10 @@
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 	import { _ } from "svelte-i18n";
 
+	const ws = createWebsocket();
 	let receivedCreds = false;
 	let qr: string;
 	let showModal = false;
-	const ws = createWebsocket();
 
 	ws.onmessage = (event) => {
 		const data = JSON.parse(event.data);

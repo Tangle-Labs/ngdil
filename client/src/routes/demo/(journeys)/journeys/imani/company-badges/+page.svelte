@@ -85,7 +85,7 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, FutureTech, Button, Loading, Modal } from "$lib/components";
+	import { Typography, FutureTech, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, nodeCount } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";

@@ -39,8 +39,6 @@
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { _ } from "svelte-i18n";
 
-	let animatePhone = false;
-	let qr: string;
 	const loadQr = async function () {
 		const { data } = await apiClient.post("/siop", {
 			clientMetadata: {
@@ -51,6 +49,8 @@
 		qr = data.uri;
 	};
 	const ws = createWebsocket();
+	let animatePhone = false;
+	let qr: string;
 
 	ws.onmessage = (event) => {
 		const data = JSON.parse(event.data);

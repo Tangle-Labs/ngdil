@@ -48,9 +48,6 @@
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 	import { _ } from "svelte-i18n";
 
-	let animatePhone = false;
-	let qr: string;
-
 	const loadQr = async function () {
 		const { data } = await apiClient.post("/api/oid4vp", {
 			presentationStage: "imaniLogin",
@@ -61,7 +58,6 @@
 		});
 		qr = data.uri;
 	};
-
 	const ws = createWebsocket();
 	ws.onmessage = (event) => {
 		const data = JSON.parse(event.data);
@@ -69,6 +65,8 @@
 			goto("/demo/journeys/imani/applications");
 		}
 	};
+	let animatePhone = false;
+	let qr: string;
 
 	onMount(() => {
 		currNode.set(0);

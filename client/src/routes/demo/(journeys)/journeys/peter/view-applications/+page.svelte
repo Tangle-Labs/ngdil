@@ -141,7 +141,9 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading">
-			{$_("journeys.peter.view_applications_intro")}
+			The students are keen to get on their international internships. Let’s see <Highlight>
+				if they meet the requirements.</Highlight>
+			<!-- {$_("journeys.peter.view_applications_intro")} -->
 		</Typography>
 	</div>
 	<div class="sub-text">
@@ -149,7 +151,7 @@
 	</div>
 
 	<div class="dash">
-		<Kw1c variant="white" title="INTERNSHIP APPLICATIONS">
+		<Kw1c variant="white" title="{$_('journeys.peter.internship_applications').toUpperCase()}">
 			<div class="sidebar">
 				{#each Array(5) as i}
 					<div class="menu-item">
@@ -181,7 +183,8 @@
 
 					<div class="column">
 						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c">Internship Category</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("journeys.peter.sinternship_category")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
@@ -199,7 +202,8 @@
 
 					<div class="column">
 						<div class="header action">
-							<Typography variant="sub-text" fontVariant="kw1c">Action</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("journeys.peter.action")}</Typography>
 						</div>
 						<div class="button-container">
 							<Button

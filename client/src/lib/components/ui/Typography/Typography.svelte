@@ -69,6 +69,7 @@
 
 <script lang="ts">
 	import type { TypographyVariants } from "./Typography.types";
+
 	export let variant: TypographyVariants = "body";
 	export let fontVariant: "main" | "kw1c" = "main";
 	export let color = "";
@@ -76,5 +77,4 @@
 
 <span
 	class="{`typography ${variant} ${fontVariant}-font`}"
-	style="{color && `color: var(${color});`}"><slot /></span
->
+	style="{color && `color: var(${color});`}"><slot /></span>

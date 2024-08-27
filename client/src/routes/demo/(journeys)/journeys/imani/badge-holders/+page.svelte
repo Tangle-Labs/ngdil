@@ -77,7 +77,7 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, FutureTech, Button, Loading, Modal, Radio } from "$lib/components";
+	import { Typography, FutureTech, Button, Loading } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, imaniBadgeName, imaniIssuedStaff } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
@@ -102,8 +102,8 @@
 			x="{[-5, 5]}"
 			y="{[0, 0.1]}"
 			delay="{[500, 5000]}"
-			duration="2000"
-			amount="500"
+			duration="{2000}"
+			amount="{500}"
 			fallDistance="100vh" />
 	</div>
 {/if}

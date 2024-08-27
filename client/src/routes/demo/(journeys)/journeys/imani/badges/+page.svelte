@@ -87,7 +87,7 @@
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Button, Loading, Modal } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { currNode, imaniBadgeName, imaniChosenApplicant } from "$lib/stores/flows.store";
+	import { currNode, imaniBadgeName } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 

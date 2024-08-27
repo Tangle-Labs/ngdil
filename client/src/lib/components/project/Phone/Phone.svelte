@@ -134,7 +134,8 @@
 		class="phone"
 		in:fly="{{ y: 300, duration: 1100, x: 100 }}"
 		out:fly="{{ y: 300, duration: 1100, x: 100 }}">
-		<img class="phone__img" src="/imgs/phone.png" />
+		<img class="phone__img" src="/imgs/phone.png" alt="" />
+
 		{#if animateFlash}
 			<div class="bg"></div>
 		{/if}
@@ -153,7 +154,6 @@
 					<div class="content__title">
 						<Typography variant="list">{provider.title}</Typography>
 					</div>
-
 					<div class="content__p">
 						<Typography>{$_("components.continue_in_browser")}</Typography>
 					</div>

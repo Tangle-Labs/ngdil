@@ -173,7 +173,6 @@
 		"Ivar Leifsson": false,
 		"Lagertha Bonde": false
 	};
-
 	let showModal = false;
 
 	function handleIssueCourseInvites() {

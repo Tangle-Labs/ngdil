@@ -174,7 +174,6 @@
 		"Ivar Leifsson": false,
 		"Lagertha Bonde": false
 	};
-
 	let showModal = false;
 	let state: "init" | "loading" | "loaded" = "init";
 
@@ -184,7 +183,6 @@
 			showModal = true;
 		}
 	}
-
 	function handleModalClick() {
 		if (state === "loaded") {
 			goto("/demo/journeys/peter/students");

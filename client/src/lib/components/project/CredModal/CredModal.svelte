@@ -59,6 +59,8 @@
 	let isOpen = false;
 </script>
 
+<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <img
 	src="/imgs/show.svg"
 	class="show"

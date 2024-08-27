@@ -149,12 +149,7 @@
 	import { goto } from "$app/navigation";
 	import { Typography, BigBusinessCorp, Modal, Loading } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import {
-		currNode,
-		dominiqueEarnedCourseCred,
-		dominiqueSelectedCourse,
-		dominqueCourses
-	} from "$lib/stores/flows.store";
+	import { currNode, dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
 	import { apiClient } from "$lib/utils/axios.utils";
 	import { createWebsocket } from "$lib/utils/ws.util";
 	import { onMount } from "svelte";
@@ -162,10 +157,10 @@
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 	import { _ } from "svelte-i18n";
 
+	const ws = createWebsocket();
 	let showModal = false;
 	let receivedCreds = false;
 	let qr: string;
-	const ws = createWebsocket();
 
 	ws.onmessage = (event) => {
 		const data = JSON.parse(event.data);

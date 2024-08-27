@@ -60,11 +60,7 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import {
-		completedJourneys,
-		dominiqueAppliedForJob,
-		dominiqueEarnedCourseCred
-	} from "$lib/stores/flows.store";
+	import { completedJourneys, dominiqueAppliedForJob } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 

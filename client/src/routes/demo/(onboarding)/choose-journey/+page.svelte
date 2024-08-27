@@ -135,8 +135,6 @@
 	let qrVisible = false;
 	let buttonVisible = false;
 
-	apiClient.get("/");
-
 	function watchQr(qr: string) {
 		if (!qr) return;
 		const ws = createWebsocket();
@@ -148,9 +146,12 @@
 		};
 	}
 
+	apiClient.get("/");
+
 	onMount(() => {
 		currStep.set(2);
 	});
+
 	$: watchQr(qr);
 	$: journey = selectedJourney && journeys[selectedJourney];
 </script>

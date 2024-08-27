@@ -77,7 +77,7 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, FutureTech, Button, Loading, Modal, Radio } from "$lib/components";
+	import { Typography, FutureTech, Button, Modal, Radio } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
 		currNode,

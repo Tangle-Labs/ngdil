@@ -90,6 +90,8 @@
 </style>
 
 <script lang="ts">
+	import Typography from "../Typography/Typography.svelte";
+
 	export let variant:
 		| "primary"
 		| "secondary"
@@ -99,7 +101,6 @@
 		| "kw1c"
 		| "future-tech"
 		| "future-tech-disabled" = "primary";
-	import Typography from "../Typography/Typography.svelte";
 	export let label: string;
 	export let onClick: (...args: any[]) => void;
 </script>
@@ -110,6 +111,5 @@
 		fontVariant="{['future-tech', 'future-tech-disabled'].includes(variant) ? 'kw1c' : 'main'}"
 		color="{['primary', 'future-tech', 'future-tech-disabled', 'kw1c'].includes(variant)
 			? '--white-300'
-			: ''}">{label}</Typography
-	>
+			: ''}">{label}</Typography>
 </button>
