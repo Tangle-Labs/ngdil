@@ -86,8 +86,7 @@
 		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>Scan the QR code in your mobile wallet to connect to the Future Tech Co. dashboard.
+		<Typography>
 			{$_("journeys.imani.scan_qr_to_conn_to_future_tech_co_dashboard")}
 		</Typography>
 	</div>

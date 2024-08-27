@@ -77,14 +77,9 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, FutureTech, Button, Loading, Modal, Radio } from "$lib/components";
+	import { Typography, FutureTech, Button, Modal, Radio } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import {
-		currNode,
-		imaniBadgeName,
-		imaniChosenApplicant,
-		imaniChosenStaff
-	} from "$lib/stores/flows.store";
+	import { currNode, imaniChosenStaff } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 

@@ -169,13 +169,13 @@
 	import { Confetti } from "svelte-confetti";
 	import { _ } from "svelte-i18n";
 
-	// let students = {
-	// 	"Sarah Jones": false,
-	// 	"Ivar Leifsson": false,
-	// 	"Lagertha Bonde": false
-	// };
+	let students = {
+		"Sarah Jones": false,
+		"Ivar Leifsson": false,
+		"Lagertha Bonde": false
+	};
 	let loading = true;
-	// let showModal = false;
+	let showModal = false;
 
 	setTimeout(() => {
 		currNode.set(5);
@@ -203,8 +203,8 @@
 				x="{[-5, 5]}"
 				y="{[0, 0.1]}"
 				delay="{[500, 5000]}"
-				duration="2000"
-				amount="500"
+				duration="{2000}"
+				amount="{500}"
 				fallDistance="100vh" />
 		</div>
 	{/if}
