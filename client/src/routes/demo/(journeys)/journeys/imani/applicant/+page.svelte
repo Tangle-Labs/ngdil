@@ -53,6 +53,7 @@
 	import { credentials } from "$lib/stores/creds";
 	import { currNode, imaniChosenApplicant } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
 
 	let currStatus: "init" | "loading" | "loaded" = "init";
 
@@ -76,40 +77,45 @@
 				Great! All of <Highlight
 					>{$imaniChosenApplicant?.split(" ")[0]}’s credentials are verified.</Highlight> With such a
 				good CV let’s hire {$imaniChosenApplicant?.split(" ")[0]}.
+				<!-- {$_("journeys.imani.creds_verified_with_good_cv", {values: {ChosenApplicant: $imaniChosenApplicant?.split(" ")[0]}})} -->
 			{:else}
 				{$imaniChosenApplicant?.split(" ")[0]} has <Highlight
 					>shared their digital CV with you.</Highlight> It’s time to verify their credentials.
+				<!-- {$_("journeys.imani.cred_shared_time_to_verify", {values: {ChosenApplicant: $imaniChosenApplicant?.split(" ")[0]}})}	 -->
 			{/if}
 		</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography
 			>{currStatus === "loaded"
-				? "Click the hire applicant button to hire the candidate. You can view the candidate’s individual credentials by clicking the eye icon in each row."
-				: `Click the verify CV button to verify ${
-						$imaniChosenApplicant?.split(" ")[0]
-				  }’s credentials.`}</Typography>
+				? $_("journeys.imani.hire_candidate_btn_desc")
+				: $_("journeys.imani.verify_cv_btn_desc", {
+						values: { ChosenApplicant: $imaniChosenApplicant?.split(" ")[0] }
+				  })}</Typography>
 	</div>
 	<div class="dash">
-		<FutureTech header="3D ENGINEER JOB APPLICANT">
+		<FutureTech header="{$_('journeys.imani.3d_engineer_job_applicant').toUpperCase()}">
 			<div class="header">
 				<div class="name">
 					<Typography variant="card-header" color="--future-tech-green" fontVariant="kw1c"
-						>{$imaniChosenApplicant} Digital CV</Typography>
+						>{$imaniChosenApplicant + " " + $_("journeys.imani.digital_cv")}</Typography>
 				</div>
 
 				{#if currStatus === "init"}
-					<Button label="Verify CV" variant="future-tech" onClick="{handleVerify}" />
+					<Button
+						label="{$_('journeys.imani.verify_cv_btn')}"
+						variant="future-tech"
+						onClick="{handleVerify}" />
 				{:else if currStatus === "loading"}
 					<Button
-						label="Verifying"
+						label="{$_('journeys.imani.verifying_btn')}"
 						variant="future-tech-disabled"
 						onClick="{() => {
 							null;
 						}}" />
 				{:else}
 					<Button
-						label="Hire Applicant"
+						label="{$_('journeys.imani.hire_applicant_btn')}"
 						variant="future-tech"
 						onClick="{() => {
 							goto('/demo/journeys/imani/issue-id');
@@ -131,18 +137,20 @@
 						</div>
 						<div class="meta">
 							<div class="cred">
-								<Typography variant="list">National ID</Typography>
+								<Typography variant="list">{$_("creds.national_id")}</Typography>
 							</div>
 							<div class="issuer">
-								<Typography variant="sub-text">Issued by The Government</Typography>
+								<Typography variant="sub-text">
+									{$_("components.issued_by", { values: { IssuerName: $_("issuer.the_govt") } })}
+								</Typography>
 							</div>
 						</div>
 					</div>
 					{#if currStatus === "loaded"}
 						<div class="verify">
 							<CredModal
-								issuer="The Government"
-								name="National ID"
+								issuer="{$_('issuer.the_govt')}"
+								name="{$_('creds.national_id')}"
 								credential="{{ ...credentials.nationalId, 'Full Name': $imaniChosenApplicant }}"
 								logo="/imgs/gov.svg" />
 						</div>
@@ -162,10 +170,12 @@
 						</div>
 						<div class="meta">
 							<div class="cred">
-								<Typography variant="list">Personal Statement</Typography>
+								<Typography variant="list">{$_("journeys.imani.personal_statement")}</Typography>
 							</div>
 							<div class="issuer">
-								<Typography variant="sub-text">Issued by {$imaniChosenApplicant}</Typography>
+								<Typography variant="sub-text">
+									{$_("components.issued_by", { values: { IssuerName: $imaniChosenApplicant } })}
+								</Typography>
 							</div>
 						</div>
 					</div>
@@ -175,7 +185,7 @@
 							<CredModal
 								issuer="{$imaniChosenApplicant}"
 								logo="/imgs/verified.png"
-								name="Personal Statement"
+								name="{$_('journeys.imani.personal_statement')}"
 								credential="{{
 									...credentials.personalStatement,
 									'Full Name': $imaniChosenApplicant
@@ -197,18 +207,23 @@
 						</div>
 						<div class="meta">
 							<div class="cred">
-								<Typography variant="list">Future Engineer Diploma</Typography>
+								<Typography variant="list"
+									>{$_("journeys.imani.future_engineer_diploma")}</Typography>
 							</div>
 							<div class="issuer">
-								<Typography variant="sub-text">Issued by Koning Willem I College</Typography>
+								<Typography variant="sub-text">
+									{$_("components.issued_by", {
+										values: { IssuerName: $_("issuer.koning_willem_i_college") }
+									})}
+								</Typography>
 							</div>
 						</div>
 					</div>
 					{#if currStatus === "loaded"}
 						<div class="verify">
 							<CredModal
-								issuer="Koning Willem I College"
-								name="Future Engineer Diploma"
+								issuer="{$_('issuer.koning_willem_i_college')}"
+								name="{$_('journeys.imani.future_engineer_diploma')}"
 								logo="/imgs/kw1c-white.png"
 								credential="{{
 									...credentials.courseCred,
@@ -231,24 +246,29 @@
 						</div>
 						<div class="meta">
 							<div class="cred">
-								<Typography variant="list">Internship Certificate</Typography>
+								<Typography variant="list"
+									>{$_("journeys.imani.internship_certificate")}</Typography>
 							</div>
 							<div class="issuer">
-								<Typography variant="sub-text">Issued by Irish Future Print Co.</Typography>
+								<Typography variant="sub-text">
+									{$_("components.issued_by", {
+										values: { IssuerName: $_("issuer.irish_future_print_co") }
+									})}
+								</Typography>
 							</div>
 						</div>
 					</div>
 					{#if currStatus === "loaded"}
 						<div class="verify">
 							<CredModal
-								issuer="Irish Future Print Co."
-								name="Internship Certificate"
+								issuer="{$_('issuer.irish_future_print_co')}"
+								name="{$_('journeys.imani.internship_certificate')}"
 								logo="{'/imgs/irish.svg'}"
 								credential="{{
 									...credentials.internshipBadge,
 									'Intern Name': $imaniChosenApplicant,
-									Issuer: 'Irish Future Print Co.',
-									Country: 'Ireland'
+									Issuer: $_('issuer.irish_future_print_co'),
+									Country: $_('journeys.imani.ireland')
 								}}" />
 						</div>
 					{/if}
@@ -267,22 +287,26 @@
 						</div>
 						<div class="meta">
 							<div class="cred">
-								<Typography variant="list">Volunteering Badge</Typography>
+								<Typography variant="list">{$_("journeys.imani.volunteering_badge")}</Typography>
 							</div>
 							<div class="issuer">
-								<Typography variant="sub-text">Issued by Volunteer Corps</Typography>
+								<Typography variant="sub-text">
+									{$_("components.issued_by", {
+										values: { IssuerName: $_("issuer.volunteer_corps") }
+									})}
+								</Typography>
 							</div>
 						</div>
 					</div>
 					{#if currStatus === "loaded"}
 						<div class="verify">
 							<CredModal
-								issuer="Volunteer Corps"
-								name="Volunteering Badge"
+								issuer="{$_('issuer.volunteer_corps')}"
+								name="{$_('journeys.imani.volunteering_badge')}"
 								logo="{'/imgs/volunteer.svg'}"
 								credential="{{
 									...credentials.volunteerBadge,
-									'Holder Name': "Gilian O'Leary"
+									'Holder Name': $_('applicants.Gilian_OLeary')
 								}}" />
 						</div>
 					{/if}

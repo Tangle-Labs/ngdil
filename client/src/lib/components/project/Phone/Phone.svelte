@@ -70,26 +70,27 @@
 <script lang="ts">
 	import Typography from "../../../components/ui/Typography/Typography.svelte";
 	import { fly } from "svelte/transition";
+	import { _ } from "svelte-i18n";
 
 	const variants = {
 		openJobs: {
-			title: "You have successfully logged in to the Open Jobs Network.",
+			title: $_("components.login.open_jobs"),
 			logo: "/imgs/openjobs.png"
 		},
 		kw1cStaff: {
-			title: "You have successfully logged in to the KW1C Staff Portal.",
+			title: $_("components.login.kw1c_staff"),
 			logo: "/imgs/kw1c-white.png"
 		},
 		kw1c: {
-			title: "You have successfully logged in to the KW1C Learner Portal.",
+			title: $_("components.login.kw1c_learner"),
 			logo: "/imgs/kw1c-white.png"
 		},
 		bbc: {
-			title: "You have successfully logged in to the Big Business Corp website.",
+			title: $_("components.login.bbc"),
 			logo: "/imgs/bbc.png"
 		},
 		futureTech: {
-			title: "You have successfully logged in to the Future Tech Co. website.",
+			title: $_("components.login.future_tech"),
 			logo: "/imgs/future-tech.png"
 		}
 	};
@@ -132,9 +133,9 @@
 	<div
 		class="phone"
 		in:fly="{{ y: 300, duration: 1100, x: 100 }}"
-		out:fly="{{ y: 300, duration: 1100, x: 100 }}"
-	>
-		<img class="phone__img" src="/imgs/phone.png" />
+		out:fly="{{ y: 300, duration: 1100, x: 100 }}">
+		<img class="phone__img" src="/imgs/phone.png" alt="" />
+
 		{#if animateFlash}
 			<div class="bg"></div>
 		{/if}
@@ -147,16 +148,14 @@
 					{#if variant === "futureTech"}
 						<div class="content__corp">
 							<Typography variant="kw1c-impact" color="--future-tech-green"
-								>FUTURE TECH CO.</Typography
-							>
+								>{$_("components.future_tech_co").toUpperCase()}</Typography>
 						</div>
 					{/if}
 					<div class="content__title">
 						<Typography variant="list">{provider.title}</Typography>
 					</div>
-
 					<div class="content__p">
-						<Typography>You may continue in your browser app.</Typography>
+						<Typography>{$_("components.continue_in_browser")}</Typography>
 					</div>
 				</div>
 			</div>

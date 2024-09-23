@@ -49,6 +49,8 @@
 
 	let animatePhone = false;
 	let qr: string;
+	import { _ } from "svelte-i18n";
+
 
 	const loadQr = async function () {
 		const { data } = await apiClient.post("/siop", {
@@ -83,12 +85,12 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You've made it to the <Hightlight>KW1C website, let's log in</Hightlight> to enrol on your course
-			of choice.</Typography>
+			of choice.
+			<!-- {$_("journeys.dominique.enroll_to_course_of_choice")} -->
+		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>In your identity wallet, scan the QR code and accept the connection request to access the
-			KW1C learners portal.</Typography>
+		<Typography>{$_("journeys.dominique.scan_and_conn_to_kw1c")}</Typography>
 	</div>
 	<div class="dash">
 		<Kw1c variant="blue">
@@ -99,7 +101,7 @@
 							<img src="/imgs/kw1c-crowns.png" alt="" class="crowns" />
 							<div class="heading-text">
 								<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>LOGIN TO KW1C</Typography>
+									>{$_("journeys.dominique.login_to_kw1c").toUpperCase()}</Typography>
 							</div>
 						</div>
 						{#if qr}
@@ -112,7 +114,7 @@
 						{/if}
 						<div class="desc">
 							<Typography variant="kw1c-sub-text"
-								>Scan the QR to access the KW1C learners portal.</Typography>
+								>{$_("journeys.dominique.scan_to_access_kw1c")}</Typography>
 						</div>
 					</div>
 				</Card>

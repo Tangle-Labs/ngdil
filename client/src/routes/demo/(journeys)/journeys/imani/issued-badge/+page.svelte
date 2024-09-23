@@ -61,6 +61,7 @@
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { completedJourneys, imaniIssuedBadge } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
 
 	function handleFinishCourse() {
 		goto("/demo/choose-journey");
@@ -81,10 +82,12 @@
 		<Typography variant="heading"
 			>Congratulations. <Highlight>You have successfully created</Highlight> a new open badge and issued
 			them to your team.</Typography>
+		<!-- {$_("journeys.imani.successfully_created_new_badge_and_issued_to_team")} -->
 	</div>
 	<div class="sub-text">
-		<Typography
-			>Here is what you have achieved so far with your self-sovereign identity:</Typography>
+		<Typography>
+			{$_("journeys.imani.heres_what_you_achieved")}
+		</Typography>
 	</div>
 	<div class="card">
 		<Card withBorder="{true}">
@@ -92,30 +95,32 @@
 				<div class="content">
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list">Created an open badge template</Typography>
+						<Typography variant="list"
+							>{$_("journeys.imani.created_open_badge_template")}</Typography>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list">Trained eligible staff</Typography>
+						<Typography variant="list">{$_("journeys.imani.trained_eligible_staff")}</Typography>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list">Issued open badges to successful employees</Typography>
+						<Typography variant="list">{$_("journeys.imani.issued_open_badge_to_emp")}</Typography>
 					</div>
 
 					<div class="p">
 						<Typography>
-							You have successfully completed Imani’s journey verifying applicant credentials,
-							hiring new employees, issuing employee ID, creating new open badges, and training and
-							issuing of open badges to the team.
+							{$_("journeys.imani.completed_imani_journey")}
 							<br /><br />
-							To explore other journeys for educators and learners click continue.
+							{$_("journeys.imani.explore_other_journeys")}
 						</Typography>
 					</div>
-					<Button variant="secondary" label="continue" onClick="{handleFinishCourse}" />&nbsp;
+					<Button
+						variant="secondary"
+						label="{$_('components.continue')}"
+						onClick="{handleFinishCourse}" />&nbsp;
 					<Button
 						variant="white"
-						label="Contact NGDIL"
+						label="{$_('journeys.imani.contact_ngdil')}"
 						onClick="{() => window.open('https://ngdil.com/contact', '_blank')}" />
 				</div>
 				<div class="img">

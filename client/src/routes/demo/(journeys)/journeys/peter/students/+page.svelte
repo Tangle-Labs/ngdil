@@ -169,25 +169,13 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import {
-		currNode,
-		peterAssignedBadges,
-		peterAssignedStudent,
-		peterChosenStudents
-	} from "$lib/stores/flows.store";
+	import { currNode, peterAssignedBadges, peterAssignedStudent } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
-
-	let students = {
-		"Sarah Jones": false,
-		"Ivar Leifsson": false,
-		"Lagertha Bonde": false
-	};
+	import { _ } from "svelte-i18n";
 
 	onMount(() => {
 		currNode.set(3);
 	});
-
-	let showModal = false;
 </script>
 
 <div class="container">
@@ -195,16 +183,17 @@
 		<Typography variant="heading">
 			Three students are ready to go. <Highlight>Choose the student you want</Highlight> to assign an
 			internship placement for.
+			<!-- {$_("journeys.peter.3_students_ready_choose_1_for_internship")} -->
 		</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography>
-			Click the assign placement button to choose the internship for the student.
+			{$_("journeys.peter.assign_placement_btn_desc")}
 		</Typography>
 	</div>
 
 	<div class="dash">
-		<Kw1c variant="white" title="INERNSHIP APPLICATIONS">
+		<Kw1c variant="white" title="{$_('journeys.peter.internship_applications').toUpperCase()}">
 			<div class="sidebar">
 				{#each Array(5) as i}
 					<div class="menu-item">
@@ -217,7 +206,8 @@
 				<div class="table">
 					<div class="column">
 						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c">Student Applicant</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("journeys.peter.student_applicant")}</Typography>
 						</div>
 						{#each $peterAssignedBadges as student (student)}
 							<div class="data">
@@ -229,27 +219,29 @@
 
 					<div class="column">
 						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c">Internship Category</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("journeys.peter.internship_category")}</Typography>
 						</div>
 
 						{#each $peterAssignedBadges as student (student)}
 							<div class="data">
 								<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-									>3D Print Design</Typography>
+									>{$_("journeys.peter.3d_print_design")}</Typography>
 							</div>
 						{/each}
 					</div>
 
 					<div class="column action">
 						<div class="header action">
-							<Typography variant="sub-text" fontVariant="kw1c">Action</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("journeys.peter.action")}</Typography>
 						</div>
 
 						{#each $peterAssignedBadges as student (student)}
 							<div class="data">
 								<Button
 									variant="kw1c"
-									label="ASSIGN PLACEMENT"
+									label="{$_('journeys.peter.assign_placement').toUpperCase()}"
 									onClick="{() => {
 										peterAssignedStudent.set(student);
 										goto('/demo/journeys/peter/place-student');

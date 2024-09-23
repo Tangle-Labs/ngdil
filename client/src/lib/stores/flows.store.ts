@@ -17,12 +17,11 @@ export const JourneyInfo = {
 		desc: "HR Manager"
 	}
 };
-
 export const previousPath = writable<string>(window.location.href);
-
 export const currentJourney = persisted<Journeys | null>("journeySelected", null);
 export const nodeCount = persisted<number>("node-count", 0);
 export const currNode = persisted<number>("curr-node", 0);
+
 
 export const sessionId = writable<string>();
 export const eventUri = writable<string>();
@@ -31,17 +30,16 @@ sessionId.subscribe((s) => {
 	eventUri.set(new URL(`/events/${s}`, PUBLIC_BASE_URI).toString());
 });
 
+
 export const completedJourneys = persisted<string[]>("completedJourneys", []);
 
 /**
  * Dominique Courses
  */
-
 export const dominiqueSelectedCourse = persisted<number | null>("dominique-selectedCourse", null);
 export const dominiqueEarnedCourseCred = persisted("dominique-earnedCourseCred", false);
 export const dominiqueSharedCred = persisted("dominique-earnedSharedCred", false);
 export const dominiqueAppliedForJob = persisted("dominique-appliedForJob", false);
-
 export const dominqueCourses = [
 	{
 		category: "Construction",
@@ -78,7 +76,6 @@ export const dominqueCourses = [
 /**
  * Peter Journey
  */
-
 export const peterEnrolledStudent = persisted<boolean>("peter-enrolledStudent", false);
 export const peterAssignedInternship = persisted<boolean>("peter-assignedInternship", false);
 export const peterVerifiedInternship = persisted<boolean>("peter-verifiedInternship", false);
@@ -96,7 +93,6 @@ export const peterAssignecCompanyCountry = persisted<string>("peter-assignecCoun
 /**
  * Imani's Journey
  */
-
 export const imaniHiredEmployee = persisted<boolean>("imani-hiredEmployee", false);
 export const imaniIssuedBadge = persisted<boolean>("imani-issuedBadge", false);
 export const imaniChosenApplicant = persisted<
@@ -107,15 +103,12 @@ export const imaniBadgeVariant = persisted<"hexagon" | "rounded-hexagon" | "circ
 	"crest"
 );
 export const imaniBadgeColor = persisted<string>("imani-chosenBadgeColor", "var(--green-900)");
-
 export const imaniBadgeName = persisted<string>("imani-badgeName", "");
 export const imaniBadgeDesc = persisted<string>("imani-badgeDesc", "");
-
 interface IStaff {
 	name: string;
 	role: string;
 	selected: boolean;
 }
 export const imaniChosenStaff = persisted<IStaff[]>("imani-chosenStaff", []);
-
 export const imaniIssuedStaff = persisted<IStaff[]>("imani-issuedStaff", []);

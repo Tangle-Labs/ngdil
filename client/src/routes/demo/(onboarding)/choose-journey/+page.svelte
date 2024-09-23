@@ -108,27 +108,30 @@
 	import "@tanglelabs/open-id-qr";
 	let qr: string;
 
+	import { _ } from "svelte-i18n";
+
+
 	const journeys = {
 		dominique: {
-			heading: "Meet Dominique! A student enrolling at KW1 College, NL.",
-			p1: "Dominique has just left school and is looking to enrol at Koning Willem I College to study and obtain a Diploma.",
-			p2: "Using their self-sovereign identity, help Dominique enrol at college, earn a course credential, share that credential with potential employers, and apply for a new job.",
+			heading: $_("onboarding.choose_journey.dominique.heading"),
+			p1: $_("onboarding.choose_journey.dominique.p1"),
+			p2: $_("onboarding.choose_journey.dominique.p2"),
 			img: "/imgs/dominique.png"
 		},
 		peter: {
-			heading: "Meet Peter! A college enrolment officer at KW1 College, NL.",
-			p1: "Peter is an enrolment officer at Koning Willem I College looking to support students with their training and enrolment on international internship experiences.",
-			p2: "Using self-sovereign identity, help Peter evaluate student internship eligibility, enrol students on internationalisation course, issue course badges, assign internship placements, and verify student completion of internships on their return from their international placements.",
+			heading: $_("onboarding.choose_journey.peter.heading"),
+			p1: $_("onboarding.choose_journey.peter.p1"),
+			p2: $_("onboarding.choose_journey.peter.p2"),
 			img: "/imgs/peter.png"
 		},
 		imani: {
-			heading: "Meet Imani! A corporate HR manager at Future Tech Co.",
-			p1: "Imani is in charge of the hiring and training of staff at the Future Tech Co. where she employs and developers the company workforce.",
-			p2: "Using self-sovereign identity, help Imani in the hiring of new employees, issuing of company ID, creation of internal open badges, and the training and issuing of open badges to employees who successfully completed the company course training.",
+			heading: $_("onboarding.choose_journey.imani.heading"),
+			p1: $_("onboarding.choose_journey.imani.p1"),
+			p2: $_("onboarding.choose_journey.imani.p2"),
 			img: "/imgs/imani.png"
 		}
 	};
-
+	let qr: string;
 	let isOpen = false;
 	let selectedJourney: "dominique" | "peter" | "imani" | null = null;
 	let qrVisible = false;
@@ -139,6 +142,7 @@
 		currStep.set(2);
 	});
 
+
 	function watchQr(qr: string) {
 		console.log(qr);
 		if (!qr) return;
@@ -146,15 +150,21 @@
 		document.addEventListener("open-id-qr-success", (e) => {
 			if (e.detail.type === "vc") buttonVisible = true;
 		});
+
 	}
 
-	$: watchQr(qr);
+	apiClient.get("/");
 
+	onMount(() => {
+		currStep.set(2);
+	});
+
+	$: watchQr(qr);
 	$: journey = selectedJourney && journeys[selectedJourney];
 </script>
 
 <div class="modal">
-	<Modal withBorder="{true}" bind:isOpen="{isOpen}" borderRadius="8">
+	<Modal withBorder="{true}" bind:isOpen="{isOpen}" borderRadius="{8}">
 		{#if journey}
 			<div class="modal-content">
 				<div class="left">
@@ -172,11 +182,10 @@
 						<div class="button">
 							<Button
 								variant="white"
-								label="Continue"
+								label="{$_('components.continue')}"
 								onClick="{() => {
 									currStep.set(4);
 									if (selectedJourney) currentJourney.set(selectedJourney);
-
 									qrVisible = true;
 								}}" />
 						</div>
@@ -191,20 +200,23 @@
 						<div class="scan-header">
 							<Typography variant="card-header"
 								>{buttonVisible
-									? "Your credentials are confirmed!"
-									: "Scan QR code to connect to NGDIL & receive your credentials."}</Typography>
+									? $_("onboarding.choose_journey.cred_confirmed")
+									: $_("onboarding.choose_journey.scan_qr_to_receive_cred")}</Typography>
 						</div>
 						<div class="sub-text">
 							<Typography variant="sub-text">
 								{buttonVisible
-									? `Click to begin ${selectedJourney}'s journey.`
-									: `In your mobile wallet, scan the QR code to connect to NGDIL, then accept receipt of ${selectedJourney}’s verifiable credentials.`}
+									? $_("onboarding.choose_journey.click_to_begin_journey", {
+											values: { selected: selectedJourney }
+									  })
+									: $_("onboarding.choose_journey.scan_qr_receive_vc", {
+											values: { selected: selectedJourney }
+									  })}
 							</Typography>
 						</div>
-
 						{#if buttonVisible}
 							<Button
-								label="{`Start ${selectedJourney}'s Journey`}"
+								label="{$_('onboarding.start_journey', { values: { selected: selectedJourney } })}"
 								onClick="{() => {
 									goto(`/demo/journeys/${selectedJourney}`);
 								}}"
@@ -220,38 +232,44 @@
 </div>
 <div class="container">
 	<div class="heading">
-		<Typography variant="heading"
-			>{#if $completedJourneys.length === 0}
+		<Typography variant="heading">
+			{#if $completedJourneys.length === 0}
 				You’re all set! <Highlight>Let’s choose the user journey</Highlight> you would like to explore
 				first
 			{:else}
 				Welcome back! <Highlight>Choose the user journey</Highlight> you would like to explore next.
 			{/if}
+			<!-- {#if $completedJourneys.length === 0}
+				{$_("onboarding.choose_journey.all_set_choose_journey")}
+			{:else}
+				{$_("onboarding.choose_journey.welcome_back_choose_journey")}
+			{/if} -->
 		</Typography>
 	</div>
 	<div class="desc">
-		<Typography variant="button"
-			>Click the get started button to select the journey you would like to experience.
+		<Typography variant="button">
+			{$_("onboarding.choose_journey.click_to_get_started")}
 		</Typography>
 	</div>
 	<div class="sub-title">
 		<Typography variant="sub-text">
-			(It is recommended to experience the student journey first.)
+			({$_("onboarding.choose_journey.exp_stud_journey_first")})
 		</Typography>
 	</div>
 	<div class="cards">
 		<div class="card">
-			<Card withBorder="{true}" borderRadius="8">
+			<Card withBorder="{true}" borderRadius="{8}">
 				<div class="card-content">
 					<Avatar image="/imgs/dominique.png" />
 					<div class="text">
 						<div class="heading">
-							<Typography variant="card-header">Dominique Veritas</Typography>
+							<Typography variant="card-header"
+								>{$_("onboarding.choose_journey.dominique_veritas")}</Typography>
 						</div>
 						<div class="desc">
-							<Typography
-								>Dominique is a school graduate, excited to enrol as a student at Koning Willem I
-								College.</Typography>
+							<Typography>
+								{$_("onboarding.choose_journey.dominique_desc")}
+							</Typography>
 						</div>
 					</div>
 					<Button
@@ -268,27 +286,27 @@
 									'Business Innovation & Interdisciplinair Samenwerken'
 								]
 							});
-
 							qr = data.uri;
-
 							isOpen = true;
 						}}"
-						label="{$completedJourneys.includes('dominique') ? 'Complete' : 'Get Started'}" />
+						label="{$completedJourneys.includes('dominique')
+							? $_('components.complete')
+							: $_('components.get_started')}" />
 				</div>
 			</Card>
 		</div>
 		<div class="card">
-			<Card withBorder="{true}" borderRadius="8">
+			<Card withBorder="{true}" borderRadius="{8}">
 				<div class="card-content">
 					<Avatar image="/imgs/peter.png" />
 					<div class="text">
 						<div class="heading">
-							<Typography variant="card-header">Peter van de Meijden</Typography>
+							<Typography variant="card-header"
+								>{$_("onboarding.choose_journey.peter_van_de_meijdan")}</Typography>
 						</div>
 						<div class="desc">
 							<Typography>
-								Peter is a college enrolment officer who supports students with international
-								internships.
+								{$_("onboarding.choose_journey.peter_desc")}
 							</Typography>
 						</div>
 					</div>
@@ -300,27 +318,27 @@
 							const { data } = await apiClient.post('/api/starting-offer', {
 								credentials: ['National ID', 'Staff ID']
 							});
-
 							qr = data.uri;
-
 							isOpen = true;
 						}}"
-						label="{$completedJourneys.includes('peter') ? 'Complete' : 'Get Started'}" />
+						label="{$completedJourneys.includes('peter')
+							? $_('components.complete')
+							: $_('components.get_started')}" />
 				</div>
 			</Card>
 		</div>
 		<div class="card">
-			<Card withBorder="{true}" borderRadius="8">
+			<Card withBorder="{true}" borderRadius="{8}">
 				<div class="card-content">
 					<Avatar image="/imgs/imani.png" />
 					<div class="text">
 						<div class="heading">
-							<Typography variant="card-header">Imani Jameson</Typography>
+							<Typography variant="card-header"
+								>{$_("onboarding.choose_journey.imani_jameson")}</Typography>
 						</div>
 						<div class="desc">
 							<Typography>
-								Imani is a corporate HR manager responsible for the hiring and onboarding of new
-								staff.
+								{$_("onboarding.choose_journey.imani_desc")}
 							</Typography>
 						</div>
 					</div>
@@ -336,7 +354,9 @@
 							qr = data.uri;
 							isOpen = true;
 						}}"
-						label="{$completedJourneys.includes('imani') ? 'Complete' : 'Get Started'}" />
+						label="{$completedJourneys.includes('imani')
+							? $_('components.complete')
+							: $_('components.get_started')}" />
 				</div>
 			</Card>
 		</div>

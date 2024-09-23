@@ -51,6 +51,8 @@
 	let animatePhone = false;
 	let qr: string;
 
+	import { _ } from "svelte-i18n";
+
 	const loadQr = async function () {
 		const { data } = await apiClient.post("/api/oid4vp", {
 			presentationStage: "imaniLogin",
@@ -71,10 +73,10 @@
 
 	$: watchQr(qr);
 
+
 	onMount(() => {
 		currNode.set(0);
 		nodeCount.set(5);
-
 		loadQr();
 	});
 </script>
@@ -85,30 +87,34 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>It’s a new day, so <Highlight>let’s get started by logging in</Highlight> to the Future Tech Co.
-			staff dashboard using your SSI.</Typography>
+			staff dashboard using your SSI.
+			<!-- {$_("journeys.imani.lets_login_to_future_tech_co_staff_dashboard_by_ssi")} -->
+		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>Scan the QR code in your mobile wallet to connect to the Future Tech Co. dashboard.</Typography>
+		<Typography>
+			{$_("journeys.imani.scan_qr_to_conn_to_future_tech_co_dashboard")}
+		</Typography>
 	</div>
 	<div class="dash">
 		<FutureTech withSidebar="{false}">
 			<div class="card-container">
 				<div class="header">
 					<Typography variant="card-header" fontVariant="kw1c" color="--future-tech-green"
-						>STAFF CONNECT</Typography>
+						>{$_("journeys.imani.staff_connect").toUpperCase()}</Typography>
 				</div>
 				<div class="login-card">
 					{#if qr}
 						<open-id-qr request-uri="{qr}" event-stream-uri="{$eventUri}" size="{240}"></open-id-qr>
 					{/if}
 					<div class="heading">
-						<Typography variant="list" color="--future-tech-green-300">Scan QR to Login</Typography>
+						<Typography variant="list" color="--future-tech-green-300"
+							>{$_("journeys.imani.scan_qr_to_login")}</Typography>
 					</div>
 
 					<div class="p">
 						<Typography color="--white-300"
-							>Scan the QR to login to connect to Future Tech Co.</Typography>
+							>{$_("journeys.imani.scan_qr_to_login_to_future_tech_co")}</Typography>
 					</div>
 				</div>
 			</div>

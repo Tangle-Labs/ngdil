@@ -52,6 +52,8 @@
 	let animatePhone = false;
 
 	let qr: string;
+	import { _ } from "svelte-i18n";
+
 
 	const loadQr = async function () {
 		const { data } = await apiClient.post("/siop", {
@@ -62,6 +64,7 @@
 		});
 		qr = data.uri;
 	};
+
 	onMount(() => {
 		loadQr();
 		currNode.set(0);
@@ -73,12 +76,14 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>It’s time to spread the word. <Hightlight>Let’s connect to the Open Jobs Network</Hightlight>
-			to share your credential.</Typography>
+			to share your credential.
+			<!-- {$_("journeys.dominique.lets_conn_to_open_jobs_network")} -->
+		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>In your mobile wallet, scan the QR code & accept the connection request to login privately to
-			the Open Jobs Network.</Typography>
+		<Typography>
+			{$_("journeys.dominique.scan_qr_and_conn_pvtly_to_open_jobs")}
+		</Typography>
 	</div>
 	<div class="dash">
 		<OpenJobsNetwork>
@@ -91,11 +96,11 @@
 						{/if}
 						<div class="heading">
 							<Typography variant="card-header" color="--bbc-blue"
-								>Login to Open Jobs Network</Typography>
+								>{$_("journeys.dominique.login_to_open_jobs_network")}</Typography>
 						</div>
 						<div class="desc">
 							<Typography variant="sub-text"
-								>Scan the QR code to login to the Open Jobs Network website</Typography>
+								>{$_("journeys.dominique.scan_qr_to_login_to_open_jobs_network")}</Typography>
 						</div>
 					</div>
 				</Card>

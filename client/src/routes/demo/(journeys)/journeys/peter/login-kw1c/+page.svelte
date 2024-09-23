@@ -51,6 +51,7 @@
 
 	let animatePhone = false;
 	let qr: string;
+	import { _ } from "svelte-i18n";
 
 	const loadQr = async function () {
 		const { data } = await apiClient.post("/api/oid4vp", {
@@ -73,7 +74,6 @@
 	onMount(() => {
 		nodeCount.set(5);
 		currNode.set(0);
-
 		loadQr();
 	});
 </script>
@@ -83,12 +83,14 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>Time to get to work. Let’s use <Highlight>passwordless login</Highlight> to access the KW1C staff
-			portal.</Typography>
+			portal.
+			<!-- {$_("journeys.peter.use_passwordless_login_to_access_kw1c_staff_portal")} -->
+		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>In your identity wallet, scan the QR code and accept the connection request to access the
-			KW1C staff portal.</Typography>
+		<Typography>
+			{$_("journeys.peter.scan_qr_and_accept_request_to_access_kw1c_portal")}
+		</Typography>
 	</div>
 	<div class="dash">
 		<Kw1c variant="blue">
@@ -99,7 +101,7 @@
 							<img src="/imgs/kw1c-crowns.png" alt="" class="crowns" />
 							<div class="heading-text">
 								<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>LOGIN TO KW1C</Typography>
+									>{$_("journeys.peter.login_to_kw1c").toUpperCase()}</Typography>
 							</div>
 						</div>
 						{#if qr}
@@ -108,7 +110,7 @@
 						{/if}
 						<div class="desc">
 							<Typography variant="kw1c-sub-text"
-								>Scan the QR to access the KW1C staff portal.</Typography>
+								>{$_("journeys.peter.scan_qr_to_access_kw1c_staff_portal")}</Typography>
 						</div>
 					</div>
 				</Card>

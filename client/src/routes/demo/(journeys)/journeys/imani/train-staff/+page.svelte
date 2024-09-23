@@ -77,40 +77,34 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, FutureTech, Button, Loading, Modal, Radio } from "$lib/components";
+	import { Typography, FutureTech, Button, Modal, Radio } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import {
-		currNode,
-		imaniBadgeName,
-		imaniChosenApplicant,
-		imaniChosenStaff
-	} from "$lib/stores/flows.store";
+	import { currNode, imaniChosenStaff } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
 
 	let staff = [
 		{
-			name: "Gilean O'Leary",
-			role: "3D Print Designer",
+			name: $_("applicants.Gilian_OLeary"),
+			role: $_("journeys.imani.3d_print_designer"),
 			selected: false
 		},
 		{
-			name: "Marcus Lithero",
-			role: "Technical Engineer",
+			name: $_("applicants.Marcus_Erikson"),
+			role: $_("journeys.imani.technical_engineer"),
 			selected: false
 		},
 		{
-			name: "Ada Liefsson",
-			role: "Senior 3D Print Operator",
-
+			name: $_("applicants.Ada_Liefsso"),
+			role: $_("journeys.imani.senior_3d_print_operator"),
 			selected: false
 		},
 		{
-			name: "Malik Chaudry",
-			role: "3D Print Designer",
+			name: $_("applicants.Malik_Chaudry"),
+			role: $_("journeys.imani.3d_print_designer"),
 			selected: false
 		}
 	];
-
 	let showModal = false;
 
 	function handleTrainStaff() {
@@ -118,30 +112,34 @@
 		goto("/demo/journeys/imani/results");
 	}
 
-	$: disabled = staff.filter((s) => s.selected).length < 1;
-
 	onMount(() => {
 		currNode.set(6);
 	});
+
+	$: disabled = staff.filter((s) => s.selected).length < 1;
 </script>
 
-<Modal bind:isOpen="{showModal}" borderRadius="16">
+<Modal bind:isOpen="{showModal}" borderRadius="{16}">
 	<div class="modal-content">
 		<img src="/imgs/future-tech.png" alt="" class="logo" />
 		<div class="heading">
 			<Typography variant="card-header" fontVariant="kw1c" color="--future-tech-green"
-				>FUTURE TECH CO.</Typography>
+				>{$_("components.future_tech_co").toUpperCase()}</Typography>
 		</div>
-		<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-red-900"
-			>Your staff have attended training. Continue to see results.</Typography>
+		<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-red-900">
+			{$_("journeys.imani.staff_attended_training_see_results")}
+		</Typography>
 		<div class="p">
 			<Typography color="--black-500">
-				To view the staff results from training click the continue to results button.
+				{$_("journeys.imani.to_view_staff_result_click_continue_to_result")}
 			</Typography>
 		</div>
-		<Button variant="future-tech" label="Continue To Results" onClick="{handleTrainStaff}" />
+		<Button
+			variant="future-tech"
+			label="{$_('journeys.imani.continue_to_result')}"
+			onClick="{handleTrainStaff}" />
 		<div class="subtext">
-			<Typography variant="sub-text">Cancel</Typography>
+			<Typography variant="sub-text">{$_("components.cancel")}</Typography>
 		</div>
 	</div>
 </Modal>
@@ -149,20 +147,22 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>There are four staff <Highlight>available for the new badge training.</Highlight> Select the staff
-			to train.</Typography>
+			to train.
+			<!-- {$_("journeys.imani.4_staff_available_for_training_select_1")} -->
+		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>Select the check boxes next to the employees you wish to train, then click the train staff
-			button to continue.</Typography>
+		<Typography>
+			{$_("journeys.imani.select_emp_to_train_and_click_train_staff")}
+		</Typography>
 	</div>
 	<div class="dash">
-		<FutureTech header="COMPANY EMPLOYEES">
+		<FutureTech header="{$_('journeys.imani.company_employees').toUpperCase()}">
 			<table class="table">
 				<tr>
 					<th></th>
-					<th><Typography variant="sub-text">Employee Name</Typography></th>
-					<th><Typography variant="sub-text">Desingation</Typography></th>
+					<th><Typography variant="sub-text">{$_("journeys.imani.emp_name")}</Typography></th>
+					<th><Typography variant="sub-text">{$_("journeys.imani.designation")}</Typography></th>
 				</tr>
 				{#each staff as emp (emp.name)}
 					<tr>
@@ -183,7 +183,7 @@
 			<div class="button-container">
 				<Button
 					variant="{disabled ? 'future-tech-disabled' : 'future-tech'}"
-					label="Train Staff"
+					label="{$_('journeys.imani.train_staff')}"
 					onClick="{() => (showModal = true)}" />
 			</div>
 		</FutureTech>

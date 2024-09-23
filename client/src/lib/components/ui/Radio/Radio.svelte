@@ -33,12 +33,13 @@
 	};
 </script>
 
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
 	class="radio"
 	on:click="{() => {
 		checked = !checked;
 		onClick();
-	}}"
->
+	}}">
 	<div class="{`checked ${checked && 'active'}`}"></div>
 </div>

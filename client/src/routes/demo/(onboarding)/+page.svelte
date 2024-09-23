@@ -23,10 +23,11 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, Button, Hightlight } from "$lib/components";
+	import { Typography, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currStep } from "$lib/stores/onboarding.store";
 	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
 
 	function handleContinue() {
 		currStep.set(1);
@@ -40,17 +41,21 @@
 
 <div class="container">
 	<div class="heading">
-		<Typography variant="heading"
-			>Welcome to the <Highlight>NGDIL interactive demo</Highlight> for self-sovereign identity in learning.</Typography>
+		<Typography variant="heading">
+			Welcome to the <Highlight>NGDIL interactive demo</Highlight> for self-sovereign identity in learning.
+			<!-- {$_("onboarding.welcome_to_ngdil")} -->
+		</Typography>
 	</div>
 	<div class="desc">
 		<Typography variant="button">
-			Here we will explore the value SSI can bring to the individual participants within the
-			education and learning space, from learners, to educators, and employers.
+			{$_("onboarding.intro")}
 		</Typography>
 	</div>
 
 	<div class="button">
-		<Button variant="secondary" label="start your journey" onClick="{handleContinue}" />
+		<Button
+			variant="secondary"
+			label="{$_('onboarding.start_journey')}"
+			onClick="{handleContinue}" />
 	</div>
 </div>

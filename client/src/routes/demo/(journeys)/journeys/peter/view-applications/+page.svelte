@@ -121,6 +121,7 @@
 	import Button from "$lib/components/ui/Button/Button.svelte";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, dominiqueSelectedCourse, peterChosenStudent } from "$lib/stores/flows.store";
+	import { _ } from "svelte-i18n";
 	import { onMount } from "svelte";
 	let receivedCreds = false;
 
@@ -142,14 +143,15 @@
 		<Typography variant="heading">
 			The students are keen to get on their international internships. Let’s see <Highlight>
 				if they meet the requirements.</Highlight>
+			<!-- {$_("journeys.peter.view_applications_intro")} -->
 		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography>Click the view application button to check a student’s application.</Typography>
+		<Typography>{$_("journeys.peter.view_applications_sub_text")}</Typography>
 	</div>
 
 	<div class="dash">
-		<Kw1c variant="white" title="INTERNSHIP APPLICATIONS">
+		<Kw1c variant="white" title="{$_('journeys.peter.internship_applications').toUpperCase()}">
 			<div class="sidebar">
 				{#each Array(5) as i}
 					<div class="menu-item">
@@ -162,43 +164,46 @@
 				<div class="table">
 					<div class="column">
 						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c">Student Applicant</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("journeys.peter.student_applicant")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>SARAH JONES</Typography>
+								>{$_("applicants.Sarah_Jones")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>IVAR LEIFSSON</Typography>
+								>{$_("applicants.Ivar_Leifsson")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>LAGERTHA BONDE</Typography>
+								>{$_("applicants.Lagertha_Bonde")}</Typography>
 						</div>
 					</div>
 
 					<div class="column">
 						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c">Internship Category</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("journeys.peter.sinternship_category")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography>
+								>{$_("journeys.peter.3d_print_design")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography>
+								>{$_("journeys.peter.3d_print_design")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>3D Print Design</Typography>
+								>{$_("journeys.peter.3d_print_design")}</Typography>
 						</div>
 					</div>
 
 					<div class="column">
 						<div class="header action">
-							<Typography variant="sub-text" fontVariant="kw1c">Action</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("journeys.peter.action")}</Typography>
 						</div>
 						<div class="button-container">
 							<Button
@@ -207,7 +212,7 @@
 									goto('/demo/journeys/peter/view-application');
 								}}"
 								variant="kw1c"
-								label="VIEW APPLICATION" />
+								label="{$_('journeys.peter.view_application')}" />
 						</div>
 
 						<div class="button-container">
@@ -217,7 +222,7 @@
 									goto('/demo/journeys/peter/view-application');
 								}}"
 								variant="kw1c"
-								label="VIEW APPLICATION" />
+								label="{$_('journeys.peter.view_application')}" />
 						</div>
 
 						<div class="button-container">
@@ -227,7 +232,7 @@
 									goto('/demo/journeys/peter/view-application');
 								}}"
 								variant="kw1c"
-								label="VIEW APPLICATION" />
+								label="{$_('journeys.peter.view_application')}" />
 						</div>
 					</div>
 				</div>

@@ -1,7 +1,6 @@
 <style lang="scss">
 	.desktop-view {
 		display: block;
-
 		@media screen and (max-width: 1000px) {
 			display: none;
 		}
@@ -9,14 +8,12 @@
 
 	.mobile-view {
 		display: none;
-
 		@media screen and (max-width: 1000px) {
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
 			min-height: 100vh;
-
 			.body {
 				padding: 30px;
 				padding-top: 40px;
@@ -29,17 +26,18 @@
 
 <script>
 	import Typography from "$lib/components/ui/Typography/Typography.svelte";
+	import { _ } from "svelte-i18n";
 </script>
 
 <div class="desktop-view">
 	<slot />
 </div>
+
 <div class="mobile-view">
 	<img class="logo" src="/imgs/ngdil.svg" alt="" />
 	<div class="body">
-		<Typography
-			>This demo is best experienced on a bigger screen, please visit on a desktop or a tablet.</Typography>
+		<Typography>{$_("components.small_screen")}</Typography>
 	</div>
-
-	<a href="https://ngdil.com"> <Typography variant="button">Go Back to NGDIL</Typography></a>
+	<a href="https://ngdil.com">
+		<Typography variant="button">{$_("components.go_back_to_ngdil")}</Typography></a>
 </div>

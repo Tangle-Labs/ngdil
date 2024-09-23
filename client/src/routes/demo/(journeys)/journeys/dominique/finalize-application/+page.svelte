@@ -161,11 +161,15 @@
 	import { onMount } from "svelte";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
-	import "@tanglelabs/open-id-qr";
 
+	import "@tanglelabs/open-id-qr";
+	import { _ } from "svelte-i18n";
+
+	const ws = createWebsocket();
 	let showModal = false;
 	let receivedCreds = false;
 	let qr: string;
+
 
 	function watchQr(qr: string) {
 		if (!qr) return;
@@ -196,18 +200,19 @@
 		<div class="modal-header">
 			<img src="/imgs/bbc.png" alt="" class="logo" />
 			<div class="logo-text">
-				<Typography color="--white-300" variant="card-header">Big Business Corp</Typography>
+				<Typography color="--white-300" variant="card-header">
+					{$_("components.big_business_corp")}</Typography>
 			</div>
 		</div>
 		<div class="modal-content">
 			<Typography variant="card-header" color="--bbc-blue"
 				>{receivedCreds
-					? "Your application via digital CV has been received by Big Business Corp!"
-					: "Big Business Corp is requesting you share your digital CV."}</Typography>
+					? $_("journeys.dominique.application_received_via_digital_cv")
+					: $_("journeys.dominique.requesting_digital_cv")}</Typography>
 			<div class="p">
 				{receivedCreds
-					? "You may continue further in your browser."
-					: "In your mobile wallet scan the QR accept the request to share credentials with Big Business Corp "}
+					? $_("journeys.dominique.continue_further_in_browser")
+					: $_("journeys.dominique.scan_qr_accept_request_from_bbc")}
 			</div>
 
 			{#if receivedCreds}
@@ -222,33 +227,33 @@
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text"
-					>{receivedCreds ? "Click continue to proceed" : "Waiting for credentials"}</Typography>
+					>{receivedCreds
+						? $_("journeys.dominique.click_to_proceed")
+						: $_("journeys.dominique.waiting_for_creds")}</Typography>
 			</div>
 		</div>
 	</Modal>
 	<div class="heading">
 		<Typography variant="heading"
 			>Looks like you have all the credentials required. Let’s apply for the position and <Highlight>
-				share your credentials.</Highlight
-			></Typography>
+				share your credentials.</Highlight>
+			<!-- {$_("journeys.dominique.have_all_creds_apply_position")} -->
+		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>Click the apply now button to share multiple credentials as your digital CV.</Typography>
+		<Typography>{$_("journeys.dominique.click_apply_now_to_share_creds")}</Typography>
 	</div>
 
 	<div class="dash">
-		<BigBusinessCorp heading="Big Business Corp Jobs Board">
+		<BigBusinessCorp heading="{$_('journeys.dominique.bbc_job_board')}">
 			<div class="card">
 				<div class="left">
 					<img src="{dominqueCourses[$dominiqueSelectedCourse].img}" alt="" />
-
 					<div class="details">
 						<div class="heading">
 							<Typography variant="card-header" color="--bbc-blue"
 								>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography>
 						</div>
-
 						<div class="bars">
 							<div class="bar"></div>
 							<div class="bar"></div>
@@ -256,25 +261,25 @@
 						</div>
 					</div>
 				</div>
-
 				<div class="right">
 					<div class="heading">
 						<Typography variant="card-header" color="--bbc-blue"
-							>Application Requirements</Typography>
+							>{$_("journeys.dominique.application_requirements")}</Typography>
 					</div>
 					<div class="sub-text">
-						<Typography
-							>To apply for this role, applicants are required to share the following credentials:</Typography>
+						<Typography>{$_("journeys.dominique.applicants_req_following_creds")}</Typography>
 					</div>
 					<div class="list">
-						<Typography variant="list">National ID</Typography>
+						<Typography variant="list">{$_("creds.national_id")}</Typography>
 					</div>
 					<div class="list">
-						<Typography variant="list">KW1C Diploma</Typography>
+						<Typography variant="list">{$_("creds.kw1c_diploma")}</Typography>
 					</div>
 					<div class="list">
 						<Typography variant="list"
-							>{dominqueCourses[$dominiqueSelectedCourse].name} Certificate</Typography>
+							>{dominqueCourses[$dominiqueSelectedCourse].name +
+								" " +
+								$_("creds.certificate")}</Typography>
 					</div>
 
 					<div class="button-container">
@@ -282,7 +287,7 @@
 							class="button"
 							on:click="{() => {
 								showModal = true;
-							}}">Apply Now</button>
+							}}">{$_("components.apply_now")}</button>
 					</div>
 				</div>
 			</div>

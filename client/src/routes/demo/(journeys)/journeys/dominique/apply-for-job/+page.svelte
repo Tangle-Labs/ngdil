@@ -37,13 +37,13 @@
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 	import { apiClient } from "$lib/utils/axios.utils";
 	import { createWebsocket } from "$lib/utils/ws.util";
-
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { eventUri } from "$lib/stores/flows.store";
 
 	let animatePhone = false;
 
 	let qr: string;
+	import { _ } from "svelte-i18n";
 
 	function watchQr(qr: string) {
 		if (!qr) return;
@@ -63,8 +63,10 @@
 		});
 		qr = data.uri;
 	};
-
 	const ws = createWebsocket();
+	let animatePhone = false;
+	let qr: string;
+
 	ws.onmessage = (event) => {
 		const data = JSON.parse(event.data);
 		if (data.login) {
@@ -80,18 +82,21 @@
 		<Typography variant="heading">
 			You made it to the <Highlight>Big Business Corp website. Let’s login</Highlight> to view their
 			jobs board.
+			<!-- {$_("journeys.dominique.view_jobs")} -->
 		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>In your mobile wallet, scan the QR code & accept the connection request to login privately to
-			the Big Business Corp website.</Typography>
+		<Typography>
+			{$_("journeys.dominique.scan_and_conn_to_bbc")}
+		</Typography>
 	</div>
 	<div class="dash">
 		<BigBusinessCorp>
 			<div class="card">
 				<div class="text">
-					<Typography variant="card-header" color="--bbc-blue">Passwordless Login</Typography>
+					<Typography variant="card-header" color="--bbc-blue">
+						{$_("journeys.dominique.passwordless_login")}
+					</Typography>
 				</div>
 				<Card borderRadius="{16}">
 					<div class="card-content">
@@ -99,13 +104,15 @@
 							<open-id-qr request-uri="{qr}" event-stream-uri="{$eventUri}" size="{200}"
 							></open-id-qr>
 						{/if}
-
 						<div class="heading">
-							<Typography variant="card-header" color="--bbc-blue">Scan QR to Login</Typography>
+							<Typography variant="card-header" color="--bbc-blue">
+								{$_("journeys.dominique.scan_qr_to_login")}
+							</Typography>
 						</div>
 						<div class="desc">
-							<Typography variant="sub-text"
-								>Scan the QR to login to the Big Business Corp website.</Typography>
+							<Typography variant="sub-text">
+								{$_("journeys.dominique.scan_qr_login_desc")}
+							</Typography>
 						</div>
 					</div>
 				</Card>
