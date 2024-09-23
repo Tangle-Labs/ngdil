@@ -51,7 +51,6 @@
 	let qr: string;
 	import { _ } from "svelte-i18n";
 
-
 	const loadQr = async function () {
 		const { data } = await apiClient.post("/siop", {
 			clientMetadata: {
@@ -65,7 +64,6 @@
 	function watchQr(qr: string) {
 		if (!qr) return;
 		document.addEventListener("open-id-qr-success", (e) => {
-			console.log("here");
 			if (e.detail.type === "id") {
 				goto("/demo/journeys/dominique/choose-course");
 			}

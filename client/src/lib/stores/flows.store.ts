@@ -22,14 +22,13 @@ export const currentJourney = persisted<Journeys | null>("journeySelected", null
 export const nodeCount = persisted<number>("node-count", 0);
 export const currNode = persisted<number>("curr-node", 0);
 
-
 export const sessionId = writable<string>();
 export const eventUri = writable<string>();
 
 sessionId.subscribe((s) => {
+	console.log(sessionId);
 	eventUri.set(new URL(`/events/${s}`, PUBLIC_BASE_URI).toString());
 });
-
 
 export const completedJourneys = persisted<string[]>("completedJourneys", []);
 

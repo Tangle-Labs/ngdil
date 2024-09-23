@@ -110,7 +110,6 @@
 
 	import { _ } from "svelte-i18n";
 
-
 	const journeys = {
 		dominique: {
 			heading: $_("onboarding.choose_journey.dominique.heading"),
@@ -131,7 +130,6 @@
 			img: "/imgs/imani.png"
 		}
 	};
-	let qr: string;
 	let isOpen = false;
 	let selectedJourney: "dominique" | "peter" | "imani" | null = null;
 	let qrVisible = false;
@@ -142,7 +140,6 @@
 		currStep.set(2);
 	});
 
-
 	function watchQr(qr: string) {
 		console.log(qr);
 		if (!qr) return;
@@ -150,7 +147,6 @@
 		document.addEventListener("open-id-qr-success", (e) => {
 			if (e.detail.type === "vc") buttonVisible = true;
 		});
-
 	}
 
 	apiClient.get("/");

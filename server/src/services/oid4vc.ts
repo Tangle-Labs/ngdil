@@ -1,12 +1,14 @@
-import { PUBLIC_BASE_URI, PUBLIC_CLIENT_URI } from "@/config";
+import { DID, DID_SEED, KID, PUBLIC_BASE_URI, PUBLIC_CLIENT_URI } from "@/config";
 import { resolver } from "@/utils";
 import {
 	IssuerStoreData,
 	RelyingParty,
 	SigningAlgs,
 	SimpleStore,
+	stringToBytes,
 	VcIssuer
 } from "@tanglelabs/oid4vc";
+import { ES256Signer } from "did-jwt";
 import { readFile, writeFile } from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -15,17 +17,18 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const rpKeys = {
-	privKeyHex: "95ea66436c4ccd826007e5835a0bd0f96bd811e44fa9dd6d58c75fa04a903a8a",
-	did: "did:key:z6MkquY2TrE7KeuBNRAJ4eZbPqtYeCyGXe8seQNfK1ZXAumj",
-	kid: "did:key:z6MkquY2TrE7KeuBNRAJ4eZbPqtYeCyGXe8seQNfK1ZXAumj#z6MkquY2TrE7KeuBNRAJ4eZbPqtYeCyGXe8seQNfK1ZXAumj"
+	signer: ES256Signer(stringToBytes(DID_SEED as string)),
+	did: DID as string,
+	kid: KID as string,
+	signingAlgorithm: SigningAlgs.ES256
 };
 
 export const rp = new RelyingParty({
 	redirectUri: `${PUBLIC_BASE_URI}/auth`,
 	clientId: rpKeys.did,
 	clientMetadata: {
-		subjectSyntaxTypesSupported: ["did:key"],
-		idTokenSigningAlgValuesSupported: [SigningAlgs.EdDSA],
+		subjectSyntaxTypesSupported: ["did:jwk", "did:key"],
+		idTokenSigningAlgValuesSupported: [SigningAlgs.ES256],
 		clientName: "NGDIL",
 		vpFormats: {
 			jwt_vc_json: {
@@ -56,9 +59,8 @@ export const issuer = new VcIssuer({
 	credentialEndpoint: `${PUBLIC_BASE_URI}/api/credential`,
 	batchCredentialEndpoint: `${PUBLIC_BASE_URI}/api/credentials`,
 	credentialIssuer: `${PUBLIC_BASE_URI}/`,
-
-	cryptographicBindingMethodsSupported: ["did:key"],
-	credentialSigningAlgValuesSupported: ["EdDSA"],
+	cryptographicBindingMethodsSupported: ["did:jwk", "did:key"],
+	credentialSigningAlgValuesSupported: [SigningAlgs.ES256],
 	proofTypesSupported: ["jwt"],
 	store: new SimpleStore<IssuerStoreData>({ reader, writer }),
 	clientName: "NGDIL",
@@ -80,7 +82,7 @@ export const issuer = new VcIssuer({
 				{
 					name: "National ID",
 					logo: {
-						url: `${PUBLIC_CLIENT_URI}/imgs/gov.svg`
+						uri: `${PUBLIC_CLIENT_URI}/imgs/gov.svg`
 					}
 				}
 			]
@@ -97,7 +99,7 @@ export const issuer = new VcIssuer({
 				{
 					name: "Volunteer Badge",
 					logo: {
-						url: `${PUBLIC_CLIENT_URI}/imgs/volunteer.svg`
+						uri: `${PUBLIC_CLIENT_URI}/imgs/volunteer.svg`
 					}
 				}
 			]
@@ -114,7 +116,7 @@ export const issuer = new VcIssuer({
 				{
 					name: "School Course Certificate",
 					logo: {
-						url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+						uri: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
 					}
 				}
 			]
@@ -131,7 +133,7 @@ export const issuer = new VcIssuer({
 				{
 					name: "Staff ID",
 					logo: {
-						url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+						uri: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
 					}
 				}
 			]
@@ -148,7 +150,7 @@ export const issuer = new VcIssuer({
 				{
 					name: "Employee ID",
 					logo: {
-						url: `${PUBLIC_CLIENT_URI}/imgs/future-tech.png`
+						uri: `${PUBLIC_CLIENT_URI}/imgs/future-tech.png`
 					}
 				}
 			]
@@ -165,7 +167,7 @@ export const issuer = new VcIssuer({
 				{
 					name: "Higher Education Information Literacy Level 1",
 					logo: {
-						url: `${PUBLIC_CLIENT_URI}/imgs/werk.png`
+						uri: `${PUBLIC_CLIENT_URI}/imgs/werk.png`
 					}
 				}
 			]
@@ -182,7 +184,7 @@ export const issuer = new VcIssuer({
 				{
 					name: "Business Innovation & Interdisciplinair Samenwerken",
 					logo: {
-						url: `${PUBLIC_CLIENT_URI}/imgs/hta.png`
+						uri: `${PUBLIC_CLIENT_URI}/imgs/hta.png`
 					}
 				}
 			]
@@ -216,7 +218,7 @@ export const issuers = {
 					{
 						name: "Staff ID",
 						logo: {
-							url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+							uri: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
 						}
 					}
 				]
@@ -227,8 +229,8 @@ export const issuers = {
 		credentialEndpoint: `${PUBLIC_BASE_URI}/api/credential`,
 		batchCredentialEndpoint: `${PUBLIC_BASE_URI}/api/credentials`,
 		credentialIssuer: new URL("/kw1c", PUBLIC_BASE_URI).toString(),
-		cryptographicBindingMethodsSupported: ["did:key"],
-		credentialSigningAlgValuesSupported: ["EdDSA"],
+		cryptographicBindingMethodsSupported: ["did:jwk", "did:key"],
+		credentialSigningAlgValuesSupported: [SigningAlgs.ES256],
 		proofTypesSupported: ["jwt"],
 		store: new SimpleStore<IssuerStoreData>({ reader, writer }),
 		tokenEndpoint: `${PUBLIC_BASE_URI}/token`,
@@ -249,7 +251,7 @@ export const issuers = {
 					{
 						name: "All-Round Carpentry Certificate",
 						logo: {
-							url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+							uri: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
 						}
 					}
 				]
@@ -266,7 +268,7 @@ export const issuers = {
 					{
 						name: "Marketing Certificate",
 						logo: {
-							url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+							uri: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
 						}
 					}
 				]
@@ -283,7 +285,7 @@ export const issuers = {
 					{
 						name: "Future Engineer Certificate",
 						logo: {
-							url: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
+							uri: `${PUBLIC_CLIENT_URI}/imgs/kw1c-white.png`
 						}
 					}
 				]

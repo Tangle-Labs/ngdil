@@ -113,7 +113,6 @@
 	function watchQr(qr: string) {
 		if (!qr) return;
 		document.addEventListener("open-id-qr-success", (e) => {
-			console.log("baata baa?	");
 			if (e.detail.type === "vp") receivedCreds = true;
 		});
 	}
