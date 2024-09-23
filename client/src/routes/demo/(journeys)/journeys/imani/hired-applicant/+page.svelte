@@ -59,6 +59,7 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Button, Hightlight } from "$lib/components";
 	import { imaniHiredEmployee } from "$lib/stores/flows.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { _ } from "svelte-i18n";
 
 	function handleFinishCourse() {
@@ -69,10 +70,8 @@
 
 <div class="container">
 	<div class="heading">
-		<Typography variant="heading"
-			>You’ve already <Hightlight>successfully verified and hired</Hightlight> a new employee. Let’s
-			get them trained up next.
-			<!-- {$_("journeys.imani.hired_emp_lets_train")} -->
+		<Typography variant="heading">
+			{@html highlight($_("journeys.imani.hired_emp_lets_train"))}
 		</Typography>
 	</div>
 	<div class="sub-text">

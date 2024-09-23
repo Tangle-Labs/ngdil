@@ -81,6 +81,7 @@
 		imaniBadgeName,
 		imaniBadgeVariant
 	} from "$lib/stores/flows.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 
@@ -91,10 +92,8 @@
 
 <div class="container">
 	<div class="heading">
-		<Typography variant="heading"
-			>Your badge template is looking great. <Highlight>Let’s save the badge</Highlight> template so
-			it is available for trainees.
-			<!-- {$_("journeys.imani.save_badge_template_for_trainees")} -->
+		<Typography variant="heading">
+			{@html highlight($_("journeys.imani.save_badge_template_for_trainees"))}
 		</Typography>
 	</div>
 	<div class="sub-text">

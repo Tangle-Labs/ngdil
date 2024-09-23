@@ -15,12 +15,22 @@ export const userDeserializer = asyncHandler(
 
 			newRefreshToken = token;
 
-			res.cookie("refreshToken", token, {
-				maxAge: 365 * 24 * 60 * 60 * 1000,
-				httpOnly: true,
-				sameSite: "none",
-				secure: PUBLIC_BASE_URI?.startsWith("https")
-			});
+			const isSSLSecuredEnvironment = PUBLIC_BASE_URI?.startsWith("https");
+
+			if (isSSLSecuredEnvironment) {
+				res.cookie("refreshToken", token, {
+					maxAge: 365 * 24 * 60 * 60 * 1000,
+					httpOnly: true,
+					sameSite: "none",
+					secure: PUBLIC_BASE_URI?.startsWith("https")
+				});
+			} else {
+				res.cookie("refreshToken", token, {
+					maxAge: 365 * 24 * 60 * 60 * 1000,
+					sameSite: "lax",
+					secure: false
+				});
+			}
 		}
 
 		const { payload: refresh } = refreshToken

@@ -29,7 +29,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Button } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
+	import { highlight } from "$lib/utils/highlight";
 	import { currNode, imaniChosenApplicant } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
@@ -41,10 +41,8 @@
 
 <div class="container">
 	<div class="heading">
-		<Typography variant="heading"
-			>You’re in, and it appears you have <Highlight>three new applications</Highlight>. View
-			applicants to choose who to hire.
-			<!-- {$_("journeys.imani.view_3_new_applications_to_hire")} -->
+		<Typography variant="heading">
+			{@html highlight($_("journeys.imani.view_3_new_applications_to_hire"))}
 		</Typography>
 	</div>
 	<div class="sub-text">

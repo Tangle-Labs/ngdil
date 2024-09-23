@@ -88,6 +88,7 @@
 	import { Typography, FutureTech, Button, Loading, Modal } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, imaniBadgeName } from "$lib/stores/flows.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 
@@ -105,10 +106,8 @@
 
 <div class="container">
 	<div class="heading">
-		<Typography variant="heading"
-			>You’ve successfully <Highlight>created a new badge template.</Highlight> Let’s continue to get
-			training the staff.
-			<!-- {$_("journeys.imani.created_new_badge_desc")} -->
+		<Typography variant="heading">
+			{@html highlight($_("journeys.imani.created_new_badge_desc"))}
 		</Typography>
 	</div>
 	<div class="sub-text">

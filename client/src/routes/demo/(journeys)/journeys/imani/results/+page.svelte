@@ -85,6 +85,7 @@
 		imaniChosenStaff,
 		imaniIssuedStaff
 	} from "$lib/stores/flows.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 
@@ -130,10 +131,8 @@
 		</div>
 	</Modal>
 	<div class="heading">
-		<Typography variant="heading"
-			>Not bad at all, the <Highlight>staff were successful in their training.</Highlight> Let’s issue
-			them their badges.
-			<!-- {$_("journeys.imani.staff_successfully_trained_now_issue_badges")} -->
+		<Typography variant="heading">
+			{@html highlight($_("journeys.imani.staff_successfully_trained_now_issue_badges"))}
 		</Typography>
 	</div>
 	<div class="sub-text">

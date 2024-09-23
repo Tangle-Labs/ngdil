@@ -165,6 +165,7 @@
 	import { Typography, Kw1c, Modal, Loading, Radio } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, peterChosenStudents } from "$lib/stores/flows.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 
@@ -209,9 +210,7 @@
 
 	<div class="heading">
 		<Typography variant="heading">
-			Three students are <Highlight>looking to get this badge.</Highlight> Let’s select the students
-			and issue their course invites.
-			<!-- {$_("journeys.peter.select_students_and_issue_course_invites")} -->
+			{@html highlight($_("journeys.peter.select_students_and_issue_course_invites"))}
 		</Typography>
 	</div>
 	<div class="sub-text">

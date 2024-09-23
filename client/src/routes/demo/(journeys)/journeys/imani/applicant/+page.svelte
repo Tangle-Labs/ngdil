@@ -50,6 +50,7 @@
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Button, Loading, CredModal } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
+	import { highlight } from "$lib/utils/highlight";
 	import { credentials } from "$lib/stores/creds";
 	import { currNode, imaniChosenApplicant } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
@@ -74,14 +75,17 @@
 	<div class="heading">
 		<Typography variant="heading">
 			{#if currStatus === "loaded"}
-				Great! All of <Highlight
-					>{$imaniChosenApplicant?.split(" ")[0]}’s credentials are verified.</Highlight> With such a
-				good CV let’s hire {$imaniChosenApplicant?.split(" ")[0]}.
-				<!-- {$_("journeys.imani.creds_verified_with_good_cv", {values: {ChosenApplicant: $imaniChosenApplicant?.split(" ")[0]}})} -->
+				{@html highlight(
+					$_("journeys.imani.creds_verified_with_good_cv", {
+						values: { ChosenApplicant: $imaniChosenApplicant?.split(" ")[0] }
+					})
+				)}
 			{:else}
-				{$imaniChosenApplicant?.split(" ")[0]} has <Highlight
-					>shared their digital CV with you.</Highlight> It’s time to verify their credentials.
-				<!-- {$_("journeys.imani.cred_shared_time_to_verify", {values: {ChosenApplicant: $imaniChosenApplicant?.split(" ")[0]}})}	 -->
+				{@html highlight(
+					$_("journeys.imani.cred_shared_time_to_verify", {
+						values: { ChosenApplicant: $imaniChosenApplicant?.split(" ")[0] }
+					})
+				)}
 			{/if}
 		</Typography>
 	</div>

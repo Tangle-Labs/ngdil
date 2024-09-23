@@ -80,6 +80,7 @@
 	import { Typography, FutureTech, Button, Loading } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, imaniBadgeName, imaniIssuedStaff } from "$lib/stores/flows.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
 	import { Confetti } from "svelte-confetti";
 	import { _ } from "svelte-i18n";
@@ -110,10 +111,8 @@
 
 <div class="container">
 	<div class="heading">
-		<Typography variant="heading"
-			>And they’re away. <Highlight>You have successfully trained and issued</Highlight> open badges
-			to your employees.
-			<!-- {$_("journeys.imani.successfully_trained_issued_badge_to_emp")} -->
+		<Typography variant="heading">
+			{@html highlight($_("journeys.imani.successfully_trained_issued_badge_to_emp"))}
 		</Typography>
 	</div>
 	<div class="sub-text">

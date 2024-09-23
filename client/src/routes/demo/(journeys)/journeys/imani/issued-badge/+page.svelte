@@ -60,6 +60,7 @@
 	import { Typography, Card, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { completedJourneys, imaniIssuedBadge } from "$lib/stores/flows.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 
@@ -79,10 +80,9 @@
 
 <div class="container">
 	<div class="heading">
-		<Typography variant="heading"
-			>Congratulations. <Highlight>You have successfully created</Highlight> a new open badge and issued
-			them to your team.</Typography>
-		<!-- {$_("journeys.imani.successfully_created_new_badge_and_issued_to_team")} -->
+		<Typography variant="heading">
+			{@html highlight($_("journeys.imani.successfully_created_new_badge_and_issued_to_team"))}
+		</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography>
