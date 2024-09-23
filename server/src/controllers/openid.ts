@@ -12,6 +12,7 @@ import { presentationDefinitions } from "./presentationDefinitions";
 import { credentialDefs, getPersonaCreds } from "./credentials";
 import { PUBLIC_BASE_URI } from "@/config";
 import { resolver } from "@/utils";
+import { emitter } from "@/utils/sse";
 
 export const sendMetadata = expressAsyncHandler(async (req: Request, res: Response) => {
 	const metadata = issuer.getIssuerMetadata();
@@ -70,6 +71,11 @@ export const startingOffer = expressAsyncHandler(async (req: Request, res: Respo
 	res.json(credOffer);
 });
 
+export const getSessionIdController = expressAsyncHandler(async (req: Request, res: Response) => {
+	console.log(req.session);
+	res.json({ id: req.session.id });
+});
+
 export const singleOffer = expressAsyncHandler(async (req: Request, res: Response) => {
 	const { credential, issuer } = req.body;
 
@@ -116,7 +122,7 @@ export const credentialEndpoint = expressAsyncHandler(async (req: Request, res: 
 	const response = await issuer.createSendCredentialsResponse({
 		credentials: [cred.cred]
 	});
-	wsServer.broadcast(payload.sessionId, { creds: true });
+	emitter.emit("oid-event", { type: "vc", status: "success", state: payload.sessionId });
 	res.json(response);
 });
 
@@ -142,7 +148,9 @@ export const batchCredentialEndpoint = expressAsyncHandler(async (req: Request, 
 	const response = await issuer.createSendCredentialsResponse({
 		credentials
 	});
-	wsServer.broadcast(payload.sessionId, { creds: true });
+
+	emitter.emit("oid-event", { type: "vc", status: "success", state: payload.sessionId });
+	// wsServer.broadcast(payload.sessionId, { creds: true });
 	res.json(response);
 });
 
@@ -184,7 +192,8 @@ export const auth = expressAsyncHandler(async (req: Request, res: Response) => {
 		// @ts-ignore
 		await rp.verifyAuthResponse(req.body, presentationDefinitions[state.split("::")[0]]);
 		console.log("oid4vp: verified");
-		wsServer.broadcast(state.split("::")[1], { received: true });
+		const stateId = state.split("::")[1];
+		emitter.emit("oid-event", { type: "vp", status: "success", state: stateId });
 		res.status(200).send();
 	} else if (id_token) {
 		await rp.verifyAuthResponse(req.body);
@@ -196,9 +205,7 @@ export const auth = expressAsyncHandler(async (req: Request, res: Response) => {
 			did: iss
 		});
 
-		console.log("siopv2: authenticated");
-
-		wsServer.broadcast(state, { login: true });
+		emitter.emit("oid-event", { type: "id", status: "success", state });
 
 		res.status(200).send();
 	}
