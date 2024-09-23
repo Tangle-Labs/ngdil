@@ -32,6 +32,7 @@
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, imaniChosenApplicant } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
 
 	onMount(() => {
 		currNode.set(1);
@@ -42,74 +43,74 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You’re in, and it appears you have <Highlight>three new applications</Highlight>. View
-			applicants to choose who to hire.</Typography
-		>
+			applicants to choose who to hire.
+			<!-- {$_("journeys.imani.view_3_new_applications_to_hire")} -->
+		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography>Click the view applicant button next to the applicant you want to hire.</Typography>
+		<Typography>
+			{$_("journeys.imani.view_applicant_btn_desc")}
+		</Typography>
 	</div>
 	<div class="dash">
-		<FutureTech header="3D ENGINEER JOB APPLICATIONS">
+		<FutureTech header="{$_('journeys.imani.3d_engineer_job_applications').toUpperCase()}">
 			<div class="application">
 				<div class="info">
 					<div class="name">
-						<Typography variant="list" fontVariant="kw1c" color="--future-tech-green"
-							>Gilian O'Leary</Typography
-						>
+						<Typography variant="list" fontVariant="kw1c" color="--future-tech-green">
+							{$_("applicants.Gilian_OLeary")}
+						</Typography>
 					</div>
 					<div class="bar"></div>
 				</div>
 				<div class="action">
 					<Button
-						label="View Applicant"
+						label="{$_('journeys.imani.view_applicant')}"
 						variant="future-tech"
 						onClick="{() => {
 							imaniChosenApplicant.set("Gilian O'Leary");
 							goto('/demo/journeys/imani/applicant');
-						}}"
-					/>
+						}}" />
 				</div>
 			</div>
 
 			<div class="application">
 				<div class="info">
 					<div class="name">
-						<Typography variant="list" fontVariant="kw1c" color="--future-tech-green"
-							>Marcus Erikson</Typography
-						>
+						<Typography variant="list" fontVariant="kw1c" color="--future-tech-green">
+							{$_("applicants.Marcus_Erikson")}
+						</Typography>
 					</div>
 					<div class="bar"></div>
 				</div>
 				<div class="action">
 					<Button
-						label="View Applicant"
+						label="{$_('journeys.imani.view_applicant')}"
 						variant="future-tech"
 						onClick="{() => {
 							imaniChosenApplicant.set('Marcus Erikson');
 							goto('/demo/journeys/imani/applicant');
-						}}"
-					/>
+						}}" />
 				</div>
 			</div>
 
 			<div class="application">
 				<div class="info">
 					<div class="name">
-						<Typography variant="list" fontVariant="kw1c" color="--future-tech-green"
-							>Cassandra Blanc</Typography
-						>
+						<Typography variant="list" fontVariant="kw1c" color="--future-tech-green">
+							{$_("applicants.Cassandra_Blanc")}
+						</Typography>
 					</div>
 					<div class="bar"></div>
 				</div>
 				<div class="action">
 					<Button
-						label="View Applicant"
+						label="{$_('journeys.imani.view_applicant')}"
 						variant="future-tech"
 						onClick="{() => {
 							imaniChosenApplicant.set('Cassandra Blanc');
 							goto('/demo/journeys/imani/applicant');
-						}}"
-					/>
+						}}" />
 				</div>
 			</div>
 		</FutureTech>

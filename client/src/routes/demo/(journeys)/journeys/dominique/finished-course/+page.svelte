@@ -61,6 +61,7 @@
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, dominiqueEarnedCourseCred, nodeCount } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
 
 	function handleFinishCourse() {
 		currNode.set(0);
@@ -76,11 +77,12 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>Amazing, <Highlight>you’ve successfully enrolled with KW1C</Highlight> and earned your course
-			credential.</Typography>
+			credential.
+			<!-- {$_("journeys.dominique.successfully_enrolled_and_earned_course_cred")} -->
+		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>Here is what you have achieved so far with your self-sovereign identity:</Typography>
+		<Typography>{$_("journeys.dominique.heres_what_you_achieved")}</Typography>
 	</div>
 	<div class="card">
 		<Card withBorder="{true}">
@@ -88,27 +90,33 @@
 				<div class="content">
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list">Passwordless login to the KW1C portal</Typography>
+						<Typography variant="list"
+							>{$_("journeys.dominique.passwordless_login_to_kw1c")}</Typography>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list">Privately shared your enrolment credentials</Typography>
+						<Typography variant="list"
+							>{$_("journeys.dominique.privately_shared_creds")}</Typography>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list">Completed your course at KW1C</Typography>
+						<Typography variant="list"
+							>{$_("journeys.dominique.completed_course_at_kw1c")}</Typography>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list">Privately received a new course credential</Typography>
+						<Typography variant="list"
+							>{$_("journeys.dominique.privately_received_creds")}l</Typography>
 					</div>
 					<div class="p">
 						<Typography>
-							Now you have your new credential, let’s get sharing it with potential employers. Click
-							continue to move on with your journey.
+							{$_("journeys.dominique.have_new_cred_click_continue")}
 						</Typography>
 					</div>
-					<Button variant="secondary" label="continue" onClick="{handleFinishCourse}" />
+					<Button
+						variant="secondary"
+						label="{$_('components.continue')}"
+						onClick="{handleFinishCourse}" />
 				</div>
 				<div class="img">
 					<img src="/imgs/dominique-1.svg" alt="" />

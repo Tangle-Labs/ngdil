@@ -1,5 +1,5 @@
 import { swaggerSpecification } from "@/utils";
-import { Router, Request } from "express";
+import { Router } from "express";
 import swaggerUi from "swagger-ui-express";
 import {
 	auth,
@@ -15,13 +15,10 @@ import {
 	getSiopRequest,
 	sendSpecificMetadata,
 	sendOauthMetadata,
-	sendSpecificOauthMetadata,
-	getSessionIdController
+	sendSpecificOauthMetadata
 } from "@/controllers/openid";
 import path from "path";
 import { fileURLToPath } from "url";
-import { sse, ISseResponse } from "@toverux/expresse";
-import { emitter } from "@/utils/sse";
 
 const router = Router();
 
@@ -29,7 +26,6 @@ router.route("/.well-known/openid-credential-issuer").get(sendMetadata);
 router.route("/.well-known/oauth-authorization-server").get(sendOauthMetadata);
 router.route("/:issuer/.well-known/openid-credential-issuer").get(sendSpecificMetadata);
 router.route("/:issuer/.well-known/oauth-authorization-server").get(sendSpecificOauthMetadata);
-router.route("/api/session").get(getSessionIdController);
 router.route("/api/credential").post(credentialEndpoint);
 router.route("/api/credentials").post(batchCredentialEndpoint);
 router.route("/api/oid4vp").post(vpRequest);
@@ -44,17 +40,6 @@ router.get("/", (req, res) => {
 	res.status(204).send();
 });
 const __filename = fileURLToPath(import.meta.url);
-
-router.get("/events/:sessionId", sse(), (req: Request, res: ISseResponse) => {
-	emitter.on("oid-event", (event) => {
-		console.log(req.params.sessionId, event.state);
-		if (req.params.sessionId === event.state) {
-			console.log(req.params.sessionId, event.state);
-			console.log("sent event");
-			res.sse.data(event);
-		}
-	});
-});
 
 const __dirname = path.dirname(__filename);
 router.get("/downloads/vira", (req, res) => {

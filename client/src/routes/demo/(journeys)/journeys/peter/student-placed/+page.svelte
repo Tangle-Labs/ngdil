@@ -60,6 +60,7 @@
 	import { Typography, Card, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { peterAssignedInternship } from "$lib/stores/flows.store";
+	import { _ } from "svelte-i18n";
 
 	function handleFinishCourse() {
 		peterAssignedInternship.set(true);
@@ -70,11 +71,14 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>Amazing, you’ve <Highlight>successfully assigned internship</Highlight> placement for your students!</Typography>
+			>Amazing, you’ve <Highlight>successfully assigned internship</Highlight> placement for your students!
+			<!-- {$_("journeys.peter.successfully_assigned_placements")} -->
+		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>Here is what you have achieved so far with your self-sovereign identity:</Typography>
+		<Typography>
+			{$_("journeys.peter.heres_what_you_achieved")}
+		</Typography>
 	</div>
 	<div class="card">
 		<Card withBorder="{true}">
@@ -82,29 +86,31 @@
 				<div class="content">
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list">Evaluated student course results</Typography>
+						<Typography variant="list"
+							>{$_("journeys.peter.evaluated_student_course_results")}</Typography>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list">Issued course badges</Typography>
+						<Typography variant="list">{$_("journeys.peter.issued_course_badges")}</Typography>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list">Issued internship placements</Typography>
+						<Typography variant="list"
+							>{$_("journeys.peter.issued_internship_placements")}</Typography>
 					</div>
 					<div class="p">
 						<Typography>
-							You have successfully reviewed student course results and issued their open badges for
-							internationalisation, and found and enlisted them with their international internship
-							placements.
+							{$_("journeys.peter.completed_peter_journey")}
 							<br /><br />
-							The students are going to head off and complete their internships abroad, we can verify
-							their successful completion on their return.
+							{$_("journeys.peter.verify_internship_completion")}
 							<br /><br />
-							Click continue to proceed.
+							{$_("journeys.peter.click_to_proceed")}
 						</Typography>
 					</div>
-					<Button variant="secondary" label="continue" onClick="{handleFinishCourse}" />
+					<Button
+						variant="secondary"
+						label="{$_('components.continue')}"
+						onClick="{handleFinishCourse}" />
 				</div>
 				<div class="img">
 					<img src="/imgs/peter-2.svg" alt="" />

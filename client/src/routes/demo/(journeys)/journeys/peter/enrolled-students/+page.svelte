@@ -59,8 +59,8 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { currNode, nodeCount, peterEnrolledStudent } from "$lib/stores/flows.store";
-	import { onMount } from "svelte";
+	import { peterEnrolledStudent } from "$lib/stores/flows.store";
+	import { _ } from "svelte-i18n";
 
 	function handleFinishCourse() {
 		peterEnrolledStudent.set(true);
@@ -71,11 +71,12 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading"
-			>Amazing, you’ve <Highlight>successfully enrolled students</Highlight> with KW1C!</Typography>
+			>Amazing, you’ve <Highlight>successfully enrolled students</Highlight> with KW1C!
+			<!-- {$_("journeys.peter.successfully_enrolled_students_with_kw1c")} -->
+		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>Here is what you have achieved so far with your self-sovereign identity:</Typography>
+		<Typography>{$_("journeys.peter.heres_what_you_achieved")}</Typography>
 	</div>
 	<div class="card">
 		<Card withBorder="{true}">
@@ -83,30 +84,36 @@
 				<div class="content">
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list">Passwordless login to the KW1C staff portal</Typography>
+						<Typography variant="list"
+							>{$_("journeys.peter.passwordless_login_to_kw1c_staff_portal")}</Typography>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list">Verified student applicants credentials</Typography>
+						<Typography variant="list"
+							>{$_("journeys.peter.verified_student_applicants_creds")}</Typography>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list">Issued course invitations</Typography>
+						<Typography variant="list">{$_("journeys.peter.issued_course_invitations")}</Typography>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list">Enrolled students onto a course</Typography>
+						<Typography variant="list"
+							>{$_("journeys.peter.enrolled_students_onto_course")}</Typography>
 					</div>
 					<div class="p">
 						<Typography>
-							You have privately and securely managed the verification and enrolment of students
-							onto the internationalisation course, to prepare them for their future international
-							internships.
+							{$_(
+								"journeys.peter.verifed_and_enrolled_students_onto_course_for_future_international_internships"
+							)}
 							<br /><br />
-							Click continue to get them their course badges and find some suitable internship placements.
+							{$_("journeys.peter.click_continue_to_get_their_course_badge_and_find_internships")}
 						</Typography>
 					</div>
-					<Button variant="secondary" label="continue" onClick="{handleFinishCourse}" />
+					<Button
+						variant="secondary"
+						label="{$_('components.continue')}"
+						onClick="{handleFinishCourse}" />
 				</div>
 				<div class="img">
 					<img src="/imgs/peter-1.svg" alt="" />

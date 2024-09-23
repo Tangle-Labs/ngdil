@@ -146,27 +146,13 @@
 	import { goto } from "$app/navigation";
 	import { Typography, BigBusinessCorp, Modal, Loading } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import {
-		currNode,
-		dominiqueSelectedCourse,
-		dominqueCourses,
-		eventUri
-	} from "$lib/stores/flows.store";
+	import { currNode, dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
 	import { apiClient } from "$lib/utils/axios.utils";
 	import { onMount } from "svelte";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { createWebsocket } from "$lib/utils/ws.util";
 	import Confetti from "svelte-confetti";
-	import "@tanglelabs/open-id-qr";
-
-	function watchQr(qr: string) {
-		if (!qr) return;
-		document.addEventListener("open-id-qr-success", (e) => {
-			if (e.detail.type === "vc") receivedCreds = true;
-		});
-	}
-
-	$: watchQr(qr);
+	import { _ } from "svelte-i18n";
 
 	let showModal = false;
 	let receivedCreds = false;
@@ -180,6 +166,15 @@
 		});
 		qr = data.uri;
 	});
+
+	const ws = createWebsocket();
+	ws.onmessage = (event) => {
+		const data = JSON.parse(event.data);
+		if (data.creds) {
+			currNode.set(5);
+			receivedCreds = true;
+		}
+	};
 </script>
 
 <div class="container">
@@ -187,43 +182,48 @@
 		<div class="modal-header">
 			<img src="/imgs/bbc.png" alt="" class="logo" />
 			<div class="logo-text">
-				<Typography color="--white-300" variant="card-header">Big Business Corp</Typography>
+				<Typography color="--white-300" variant="card-header"
+					>{$_("components.big_business_corp")}</Typography>
 			</div>
 		</div>
 		<div class="modal-content">
 			<Typography variant="card-header" color="--bbc-blue"
 				>{receivedCreds
-					? "You have accepted the following credential:"
-					: "Big Business Corp Staff ID"}</Typography>
+					? $_("journeys.dominique.accepted_following_cred")
+					: $_("creds.bbc_staff_id")}</Typography>
 			<div class="p">
 				{receivedCreds
-					? "Big Business Corp Staff ID"
-					: "In your mobile wallet scan the QR and accept the credential from Big Business Corp."}
+					? $_("creds.bbc_staff_id")
+					: $_("journeys.dominique.scan_qr_accept_cred_from_bbc")}
 			</div>
 			{#if receivedCreds}
 				<img class="checked" src="/imgs/check-circle.png" alt="" />
 				<button class="button" on:click="{() => goto('/demo/journeys/dominique/job-secured')}"
-					>Continue</button>
+					>{$_("components.continue")}</button>
 			{:else if qr}
-				<open-id-qr request-uri="{qr}" event-stream-uri="{$eventUri}" size="{200}"></open-id-qr>
+				<Qr data="{qr}" size="{200}" />
 				<div class="loading">
 					<Loading size="30px" img="/imgs/blue-loading.png" />
 				</div>
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text"
-					>{receivedCreds ? "Click continue to proceed" : "Awaiting on confirmation"}</Typography>
+					>{receivedCreds
+						? $_("journeys.dominique.click_to_proceed")
+						: $_("journeys.dominique.awaiting_confirmation")}</Typography>
 			</div>
 		</div>
 	</Modal>
 	<div class="heading">
 		<Typography variant="heading"
 			><Highlight>You’ve got the job! Congratulations,</Highlight> Big Business Corp now wants to issue
-			you with your staff ID.</Typography>
+			you with your staff ID.
+			<!-- {$_("journeys.dominique.got_job_bbc_issued_staff_id")} -->
+		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>Click the get staff ID button to receive your staff ID credential from Big Business Corp.</Typography>
+		<Typography>
+			{$_("journeys.dominique.get_staff_id_btn_desc")}</Typography>
 	</div>
 	<div
 		style="position: fixed; top: -50px; left: 0; height: 100vh; width: 100vw; display: flex; justify-content: center; overflow: hidden; pointer-events: none;">
@@ -231,22 +231,21 @@
 			x="{[-5, 5]}"
 			y="{[0, 0.1]}"
 			delay="{[500, 5000]}"
-			duration="2000"
-			amount="500"
+			duration="{2000}"
+			amount="{500}"
 			fallDistance="100vh" />
 	</div>
 
 	<div class="dash">
-		<BigBusinessCorp heading="Congratulations! You got the job">
+		<BigBusinessCorp heading="{$_('journeys.dominique.congrats_you_got_the_job')}">
 			<div class="card">
 				<div class="left">
 					<img src="{dominqueCourses[$dominiqueSelectedCourse].img}" alt="" />
-
 					<div class="details">
 						<div class="heading">
-							<Typography variant="card-header" color="--bbc-blue">Dominique Veritas</Typography>
+							<Typography variant="card-header" color="--bbc-blue"
+								>{$_("onboarding.choose_journey.dominique_veritas")}</Typography>
 						</div>
-
 						<div class="bars">
 							<div class="bar"></div>
 							<div class="bar"></div>
@@ -261,12 +260,12 @@
 							>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography>
 					</div>
 					<div class="sub-text">
-						<Typography
-							>Big Business Corp would like to welcome you to the team and send you the following
-							credential:</Typography>
+						<Typography>
+							{$_("journeys.dominique.bbc_welcomes_to_team_and_send_cred")}
+						</Typography>
 					</div>
 					<div class="list">
-						<Typography variant="list">Big Business Corp Staff ID</Typography>
+						<Typography variant="list">{$_("creds.bbc_staff_id")}</Typography>
 					</div>
 
 					<div class="button-container">
@@ -274,7 +273,7 @@
 							class="button"
 							on:click="{() => {
 								showModal = true;
-							}}">Get Staff ID</button>
+							}}">{$_("journeys.dominique.get_staff_id")}</button>
 					</div>
 				</div>
 			</div>

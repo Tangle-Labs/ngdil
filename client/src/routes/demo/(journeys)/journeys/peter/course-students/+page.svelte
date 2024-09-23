@@ -165,20 +165,15 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Button, Loading } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import {
-		currNode,
-		peterAssignedBadges,
-		peterAssignedStudent,
-		peterChosenStudents
-	} from "$lib/stores/flows.store";
+	import { currNode, peterChosenStudents } from "$lib/stores/flows.store";
 	import { Confetti } from "svelte-confetti";
+	import { _ } from "svelte-i18n";
 
 	let students = {
 		"Sarah Jones": false,
 		"Ivar Leifsson": false,
 		"Lagertha Bonde": false
 	};
-
 	let loading = true;
 	let showModal = false;
 
@@ -193,12 +188,12 @@
 		<Typography variant="heading">
 			Exciting times. <Highlight>You have successfully enrolled</Highlight> your students onto the internationalisation
 			course.
+			<!-- {$_("journeys.peter.successfully_enrolled_students_onto_course")} -->
 		</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography>
-			Click the continue button to proceed and see what you have achieved so far with self-sovereign
-			identity.
+			{$_("journeys.peter.click_continue_to_see_what_you_achieved")}
 		</Typography>
 	</div>
 	{#if !loading}
@@ -208,14 +203,16 @@
 				x="{[-5, 5]}"
 				y="{[0, 0.1]}"
 				delay="{[500, 5000]}"
-				duration="2000"
-				amount="500"
+				duration="{2000}"
+				amount="{500}"
 				fallDistance="100vh" />
 		</div>
 	{/if}
 
 	<div class="dash">
-		<Kw1c variant="white" title="INTERNATIONALISATION COURSE STUDENTS">
+		<Kw1c
+			variant="white"
+			title="{$_('journeys.peter.internationalisation_course_students').toUpperCase()}">
 			<div class="sidebar">
 				{#each Array(5) as i}
 					<div class="menu-item">
@@ -228,7 +225,8 @@
 				<div class="table">
 					<div class="column">
 						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c">Student Applicant</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("journeys.peter.student_applicant")}</Typography>
 						</div>
 						{#each $peterChosenStudents as student (student)}
 							<div class="data">
@@ -240,27 +238,29 @@
 
 					<div class="column">
 						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c">Course of Study</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("journeys.peter.course_to_study")}</Typography>
 						</div>
 
 						{#each $peterChosenStudents as student (student)}
 							<div class="data">
 								<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-									>Internationalisation Course</Typography>
+									>{$_("journeys.peter.internatinalisation_course")}</Typography>
 							</div>
 						{/each}
 					</div>
 
 					<div class="column action">
 						<div class="header action">
-							<Typography variant="sub-text" fontVariant="kw1c">Course Status</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("journeys.peter.course_status")}</Typography>
 						</div>
 
 						{#each $peterChosenStudents as student (student)}
 							<div class="data action">
 								<span style:padding-right="5px">
 									<Typography variant="status" color="{loading ? '--secondary-900' : '--green-900'}"
-										>{loading ? "Pending" : "Accepted"}</Typography>
+										>{loading ? $_("components.pending") : $_("components.accepted")}</Typography>
 								</span>
 								{#if loading}
 									<Loading size="20px" />
@@ -272,7 +272,7 @@
 				</div>
 				<div class="button-continue">
 					<Button
-						label="CONTINUE"
+						label="{$_('components.continue').toUpperCase()}"
 						variant="kw1c"
 						onClick="{() => {
 							goto('/demo/journeys/peter/enrolled-students');

@@ -65,13 +65,15 @@
 
 <script lang="ts">
 	import { Typography } from "$lib/components";
+	import { _ } from "svelte-i18n";
 </script>
 
 <div class="container">
 	<div class="nav">
 		<div class="logo">
 			<img src="/imgs/openjobs.png" alt="" />
-			<Typography variant="card-header" color="--bbc-blue">The Open Jobs Network</Typography>
+			<Typography variant="card-header" color="--bbc-blue"
+				>{$_("components.open_jobs_network")}</Typography>
 		</div>
 		<div class="tabs">
 			<div class="tab">

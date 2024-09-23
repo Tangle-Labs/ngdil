@@ -64,26 +64,28 @@
 	import { completedJourneys } from "$lib/stores/flows.store";
 	import { currStep } from "$lib/stores/onboarding.store";
 	import { apiClient } from "$lib/utils/axios.utils";
+	import { _ } from "svelte-i18n";
 
 	apiClient.get("/");
 </script>
 
 <div class="background">
 	<div class="container">
-		<img src="/imgs/ngdil.svg" class="logo" />
-
+		<img src="/imgs/ngdil.svg" class="logo" alt="" />
 		<div class="slot">
 			<slot />
 		</div>
 		{#if !(window.location.pathname === "/demo/choose-journey" && $completedJourneys.length > 0)}
 			<div class="bottom">
+				<!-- svelte-ignore a11y-no-static-element-interactions -->
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<div
 					class="back"
 					on:click="{() => {
 						history.back();
 					}}">
 					<img src="/imgs/back.svg" alt="" class="icon" />
-					<Typography variant="button" color="--black-300">Back</Typography>
+					<Typography variant="button" color="--black-300">{$_("components.back")}</Typography>
 				</div>
 				<div class="progress">
 					<ProgressBar nodes="{5}" current="{$currStep}" />

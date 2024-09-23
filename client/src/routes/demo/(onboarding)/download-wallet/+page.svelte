@@ -90,23 +90,22 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { PUBLIC_BASE_URI, PUBLIC_CLIENT_URI } from "$env/static/public";
+	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 	import { Typography, Card, Button, Modal } from "$lib/components";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { wallets } from "$lib/config/config";
 	import { currStep } from "$lib/stores/onboarding.store";
-	import { apiClient } from "$lib/utils/axios.utils";
 	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
 
 	let modalVisible = false;
+	let selectedWallet: number;
 
 	function handleContinue() {
 		currStep.set(2);
 		goto("/demo/choose-journey");
 	}
-
-	let selectedWallet: number;
 
 	onMount(() => {
 		currStep.set(1);
@@ -118,18 +117,25 @@
 		<div class="content">
 			<Qr data="{`${PUBLIC_CLIENT_URI}/demo/wallets/${wallets[selectedWallet].name}`}" />
 			<div class="title">
-				<Typography variant="card-header"
-					>Scan the QR code to download the {wallets[selectedWallet].name} identity wallet</Typography>
+				<Typography variant="card-header">
+					{$_("onboarding.download_wallet.scan_qr_desc", {
+						values: { walletName: wallets[selectedWallet].name }
+					})}
+				</Typography>
 			</div>
 			<!-- <div class="icons">
 				<img src="/imgs/apple.png" alt="" class="icon" />
 				<img src="/imgs/linux.png" alt="" class="icon" />
 				<img src="/imgs/windows.png" alt="" class="icon" />
 			</div> -->
-			<Button variant="secondary" onClick="{() => goto('/demo/choose-journey')}" label="Continue" />
+			<Button
+				variant="secondary"
+				onClick="{() => goto('/demo/choose-journey')}"
+				label="{$_('components.continue')}" />
 			<div class="subtitle">
-				<Typography variant="sub-text"
-					>Click to continue once you have downloaded your wallet</Typography>
+				<Typography variant="sub-text">
+					{$_("onboarding.download_wallet.click_to_continue")}
+				</Typography>
 			</div>
 		</div>
 		<img src="{wallets[selectedWallet].image}" alt="" class="side" />
@@ -138,15 +144,16 @@
 
 <div class="container">
 	<div class="heading">
-		<Typography variant="heading"
-			>To begin with <Highlight>self-sovereign identity</Highlight> you must first have an identity wallet
-			app.</Typography>
+		<Typography variant="heading">
+			To begin with <Highlight>self-sovereign identity</Highlight> you must first have an identity wallet
+			app.
+			<!-- {$_("onboarding.download_wallet.must_have_wallet")} -->
+		</Typography>
 	</div>
 
 	<div class="desc">
 		<Typography variant="body">
-			Select the application you wish to download by clicking the button and follow the onscreen
-			installation instructions to get started.
+			{$_("onboarding.download_wallet.select_application")}
 		</Typography>
 	</div>
 
@@ -154,12 +161,15 @@
 		<div class="card tl-wallet">
 			<Card borderRadius="{8}" withBorder="{true}">
 				<div class="card-content">
-					<img src="/imgs/vira.png" />
+					<img src="/imgs/vira.png" alt="" />
 					<div class="wallet-name">
-						<Typography variant="button">Vira Identity Wallet</Typography>
+						<Typography variant="button">
+							{$_("onboarding.download_wallet.vira_id_wallet")}
+						</Typography>
 					</div>
 					<div class="info">
-						<Typography variant="sub-text">From Tangle Labs</Typography>
+						<Typography variant="sub-text"
+							>{$_("onboarding.download_wallet.tangle_labs")}</Typography>
 					</div>
 					<Button
 						variant="secondary"
@@ -167,19 +177,19 @@
 							selectedWallet = 0;
 							modalVisible = true;
 						}}"
-						label="Download" />
+						label="{$_('components.download')}" />
 				</div>
 			</Card>
 		</div>
 		<div class="card impierce-wallet">
 			<Card borderRadius="{8}" withBorder="{true}">
 				<div class="card-content">
-					<img src="/imgs/unime-logo.jpg" />
+					<img src="/imgs/unime-logo.jpg" alt="" />
 					<div class="wallet-name">
-						<Typography variant="button">UniMe</Typography>
+						<Typography variant="button">{$_("onboarding.download_wallet.unime")}</Typography>
 					</div>
 					<div class="info">
-						<Typography variant="sub-text">From Impierce</Typography>
+						<Typography variant="sub-text">{$_("onboarding.download_wallet.impierce")}</Typography>
 					</div>
 
 					<Button
@@ -188,7 +198,7 @@
 							selectedWallet = 1;
 							modalVisible = true;
 						}}"
-						label="Download" />
+						label="{$_('components.download')}" />
 				</div>
 			</Card>
 		</div>
@@ -196,8 +206,8 @@
 
 	<div class="continue">
 		<div class="subtitle">
-			<Typography>Already downloaded the wallet?</Typography>
+			<Typography>{$_("onboarding.download_wallet.already_downloaded")}</Typography>
 		</div>
-		<Button variant="white" label="continue" onClick="{handleContinue}" />
+		<Button variant="white" label="{$_('components.continue')}" onClick="{handleContinue}" />
 	</div>
 </div>

@@ -61,6 +61,7 @@
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { completedJourneys, peterVerifiedInternship } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
 
 	function handleFinishCourse() {
 		goto("/demo/choose-journey");
@@ -80,11 +81,14 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You’ve successfully <Highlight>evaluate, enrolled, trained, & verified</Highlight> your students
-			international internships.</Typography>
+			international internships.
+			<!-- {$_("journeys.peter.successfully_evaluated_enrolled_trained_verified")} -->
+		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>Here is what you have achieved so far with your self-sovereign identity:</Typography>
+		<Typography>
+			{$_("journeys.peter.heres_what_you_achieved")}
+		</Typography>
 	</div>
 	<div class="card">
 		<Card withBorder="{true}">
@@ -92,30 +96,31 @@
 				<div class="content">
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list">Privately requested credentials for verification</Typography>
+						<Typography variant="list"
+							>{$_("journeys.peter.pvtly_requested_creds_for_verification")}</Typography>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
 						<Typography variant="list"
-							>Securely verified and confirmed student internships</Typography>
+							>{$_("journeys.peter.securely_verified_and_confirmed_student_internship")}
+						</Typography>
 					</div>
 					<div class="p">
 						<Typography>
-							You have successfully navigated the privacy and simplicity of self-sovereign identity
-							to prepare and verify students for international internships, and also verify their
-							international credentials upon their return.
+							{$_("journeys.peter.successfully_verified_student_internships")}
 							<br /><br />
-							To learn more about SSI in education and
-
+							{$_("journeys.peter.learn_about_ssi_in_edu")}
 							<br /><br />
-							learning, get in touch with NGDIL. To return to explore another user journey, click continue
-							to proceed.
+							{$_("journeys.peter.get_in_touch_with_ngdil_and_continue_journey")}
 						</Typography>
 					</div>
-					<Button variant="secondary" label="continue" onClick="{handleFinishCourse}" />&nbsp;
+					<Button
+						variant="secondary"
+						label="{$_('components.continue')}"
+						onClick="{handleFinishCourse}" />&nbsp;
 					<Button
 						variant="white"
-						label="Contact NGDIL"
+						label="{$_('journeys.peter.contact_ngdil')}"
 						onClick="{() => window.open('https://ngdil.com/contact', '_blank')}" />
 				</div>
 				<div class="img">

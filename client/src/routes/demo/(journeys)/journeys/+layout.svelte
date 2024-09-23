@@ -70,25 +70,19 @@
 </style>
 
 <script lang="ts">
-	import { afterNavigate, goto } from "$app/navigation";
+	import { goto } from "$app/navigation";
 	import { Avatar, Button, ProgressBar, Typography } from "$lib/components";
-	import {
-		JourneyInfo,
-		completedJourneys,
-		currNode,
-		currentJourney,
-		nodeCount,
-		previousPath
-	} from "$lib/stores/flows.store";
-	import { apiClient } from "$lib/utils/axios.utils";
-	import { onMount } from "svelte";
+	import { JourneyInfo, currNode, currentJourney, nodeCount } from "$lib/stores/flows.store";
+	import { _ } from "svelte-i18n";
 
 	let expanded = false;
 </script>
 
 <div class="nav">
-	<img src="/imgs/ngdil.svg" class="logo" />
+	<img src="/imgs/ngdil.svg" class="logo" alt="" />
 	{#if expanded}
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div class="overlay" on:click="{() => (expanded = false)}"></div>
 	{/if}
 
@@ -113,7 +107,7 @@
 					<Button
 						variant="white"
 						onClick="{() => goto('/demo/choose-journey')}"
-						label="{'Change'}" />
+						label="{$_('components.change')}" />
 				</div>
 			{/if}
 		</div>
@@ -121,7 +115,7 @@
 			onClick="{() => {
 				window.open('https://ngdil.com/contact', '_blank');
 			}}"
-			label="Contact Us"
+			label="{$_('components.contact_us')}"
 			variant="white" />
 	</div>
 </div>
@@ -132,13 +126,15 @@
 
 {#if $nodeCount > 0}
 	<div class="bottom">
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div
 			class="back"
 			on:click="{() => {
 				history.back();
 			}}">
 			<img src="/imgs/back.svg" alt="" class="icon" />
-			<Typography variant="button" color="--black-300">Back</Typography>
+			<Typography variant="button" color="--black-300">{$_("components.back")}</Typography>
 		</div>
 		<div class="progress">
 			<ProgressBar nodes="{$nodeCount}" current="{$currNode}" />

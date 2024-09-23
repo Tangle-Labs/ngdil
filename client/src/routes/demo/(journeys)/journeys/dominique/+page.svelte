@@ -51,6 +51,7 @@
 		nodeCount
 	} from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
 
 	onMount(() => {
 		nodeCount.set(0);
@@ -60,14 +61,15 @@
 
 <div class="container">
 	<div class="heading">
-		<Typography variant="heading"
-			>Hi Dominique. <Highlight>Let’s get you started on your learning journey.</Highlight>Select
-			your experience to get started.</Typography>
+		<Typography variant="heading">
+			Hi Dominique. <Highlight>Let’s get you started on your learning journey.</Highlight>Select
+			your experience to get started.
+			<!-- {$_("journeys.dominique.intro")} -->
+		</Typography>
 	</div>
 	<div class="desc">
 		<Typography variant="button">
-			Select the first experience to start Dominique’s journey and enrol at KW1C to obtain your
-			course credential.
+			{$_("journeys.dominique.select_first_experience")}
 		</Typography>
 	</div>
 
@@ -78,14 +80,14 @@
 					<Avatar image="/imgs/dominique-1.svg" />
 					<div class="text">
 						<div class="heading">
-							<Typography variant="card-header"
-								>Enrol at KW1C and earn a course credential.</Typography>
+							<Typography variant="card-header">
+								{$_("journeys.dominique.enroll_to_kw1c")}
+							</Typography>
 						</div>
 						<div class="desc">
-							<Typography
-								>Here you will use your self-sovereign identity to connect to the KW1C learning
-								portal, apply for an educational course, complete the course and obtain your first
-								verifiable credential.</Typography>
+							<Typography>
+								{$_("journeys.dominique.kw1c_desc")}
+							</Typography>
 						</div>
 					</div>
 					<Button
@@ -94,7 +96,9 @@
 							nodeCount.set(5);
 							goto('/demo/journeys/dominique/earn-a-cred');
 						}}"
-						label="{$dominiqueEarnedCourseCred ? 'Retry' : 'Get Started'}" />
+						label="{$dominiqueEarnedCourseCred
+							? $_('components.retry')
+							: $_('components.get_started')}" />
 				</div>
 			</Card>
 		</div>
@@ -104,13 +108,13 @@
 					<Avatar image="/imgs/dominique-2.svg" />
 					<div class="text">
 						<div class="heading">
-							<Typography variant="card-header"
-								>Share your new credential on social media.</Typography>
+							<Typography variant="card-header">
+								{$_("journeys.dominique.social_media")}
+							</Typography>
 						</div>
 						<div class="desc">
 							<Typography>
-								Here you will connect your identity to a social job network and share your new
-								credential with prospective employers as you search for a new job.
+								{$_("journeys.dominique.social_media_desc")}
 							</Typography>
 						</div>
 					</div>
@@ -124,7 +128,9 @@
 							nodeCount.set(4);
 							goto('/demo/journeys/dominique/share-a-cred');
 						}}"
-						label="{$dominiqueSharedCred ? 'Retry' : 'Get Started'}" />
+						label="{$dominiqueSharedCred
+							? $_('components.retry')
+							: $_('components.get_started')}" />
 				</div>
 			</Card>
 		</div>
@@ -134,12 +140,11 @@
 					<Avatar image="/imgs/dominique-3.svg" />
 					<div class="text">
 						<div class="heading">
-							<Typography variant="card-header">Apply for a job with your digital CV.</Typography>
+							<Typography variant="card-header">{$_("journeys.dominique.apply_job")}</Typography>
 						</div>
 						<div class="desc">
 							<Typography>
-								Here you will connect to an interested employer and share a number of credentials as
-								a combined digital CV to land you your new job.
+								{$_("journeys.dominique.apply_job_desc")}
 							</Typography>
 						</div>
 					</div>
@@ -153,7 +158,9 @@
 							nodeCount.set(5);
 							goto('/demo/journeys/dominique/apply-for-job');
 						}}"
-						label="{$dominiqueAppliedForJob ? 'Retry' : 'Get Started'}" />
+						label="{$dominiqueAppliedForJob
+							? $_('components.retry')
+							: $_('components.get_started')}" />
 				</div>
 			</Card>
 		</div>
@@ -162,7 +169,7 @@
 				<Button
 					variant="secondary"
 					onClick="{() => goto('/demo/choose-journey')}"
-					label="Try Another Journey" />
+					label="{$_('journeys.dominique.try_another_journey')}" />
 			</div>
 		{/if}
 	</div>

@@ -134,7 +134,7 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, FutureTech, Button, Loading, Modal, Badge, Radio } from "$lib/components";
+	import { Typography, FutureTech, Button, Badge, Radio } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
 		currNode,
@@ -144,17 +144,7 @@
 		imaniBadgeVariant
 	} from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
-
-	let color: "red" | "blue" | "green" | "yellow" | null = null;
-	let variant: "hexagon" | "crest" | "rounded-hexagon" | "circle" | null = null;
-	let creatingBadgeImage = true;
-
-	let badgeNameValue: string;
-	let badgeDescValue: string;
-
-	let badgeName: string = "3d Print Team Management";
-	let badgeDesc: string =
-		"This badge is to certify the holder demonstrates the ability to operate as a team manager within an advanced technology 3d print environment.";
+	import { _ } from "svelte-i18n";
 
 	const colors = {
 		red: "var(--red-900)",
@@ -162,6 +152,13 @@
 		yellow: "var(--secondary-900)",
 		blue: "var(--blue-900)"
 	};
+	let color: "red" | "blue" | "green" | "yellow" | null = null;
+	let variant: "hexagon" | "crest" | "rounded-hexagon" | "circle" | null = null;
+	let creatingBadgeImage = true;
+	let badgeNameValue: string;
+	let badgeDescValue: string;
+	let badgeName: string = $_("journeys.imani.3d_print_team_management");
+	let badgeDesc: string = $_("journeys.imani.team_manager_badge_desc");
 
 	function handleCreateBadge() {
 		if (creatingBadgeImage) {
@@ -189,25 +186,27 @@
 			{#if creatingBadgeImage}
 				A badge needs to look the part. <Highlight>Let’s create an image template</Highlight>for the
 				badge in the creator.
+				<!-- {$_("journeys.imani.lets_create_img_template for_badge")} -->
 			{:else}
 				Now we <Highlight>have our badge image ready,</Highlight> let’s give the badge some information
 				to show what it is for.
+				<!-- {$_("journeys.imani.badge_img_ready_now_add_info")} -->
 			{/if}
 		</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography
 			>{creatingBadgeImage
-				? "Select the shape and color for your badge and click continue to proceed."
-				: "Click the fields to add a badge name and description, then click continue to proceed."}</Typography>
+				? $_("journeys.imani.select_shape_color_then_click_continue")
+				: $_("journeys.imani.click_fields_to_add_badge_name_and_desc")}</Typography>
 	</div>
 	<div class="dash">
-		<FutureTech header="NEW BADGE">
+		<FutureTech header="{$_('journeys.imani.new_badge').toUpperCase()}">
 			<div class="heading">
 				<Typography variant="card-header"
 					>{creatingBadgeImage
-						? "Select your badge shape & color"
-						: "Add Badge Information"}</Typography>
+						? $_("journeys.imani.select_badge_shape_color")
+						: $_("journeys.imani.add_badge_info")}</Typography>
 			</div>
 
 			{#if creatingBadgeImage}
@@ -218,14 +217,12 @@
 						</div>
 						<Radio checked="{variant === 'hexagon'}" onClick="{() => (variant = 'hexagon')}" />
 					</div>
-
 					<div class="badge">
 						<div class="badge-container">
 							<Badge variant="crest" />
 						</div>
 						<Radio checked="{variant === 'crest'}" onClick="{() => (variant = 'crest')}" />
 					</div>
-
 					<div class="badge">
 						<div class="badge-container">
 							<Badge variant="rounded-hexagon" />
@@ -234,7 +231,6 @@
 							checked="{variant === 'rounded-hexagon'}"
 							onClick="{() => (variant = 'rounded-hexagon')}" />
 					</div>
-
 					<div class="badge">
 						<div class="badge-container">
 							<Badge variant="circle" />
@@ -242,23 +238,19 @@
 						<Radio checked="{variant === 'circle'}" onClick="{() => (variant = 'circle')}" />
 					</div>
 				</div>
-
 				<div class="colors">
 					<div class="color">
 						<div class="red palette"></div>
 						<Radio checked="{color === 'red'}" onClick="{() => (color = 'red')}" />
 					</div>
-
 					<div class="color">
 						<div class="blue palette"></div>
 						<Radio checked="{color === 'blue'}" onClick="{() => (color = 'blue')}" />
 					</div>
-
 					<div class="color">
 						<div class="green palette"></div>
 						<Radio checked="{color === 'green'}" onClick="{() => (color = 'green')}" />
 					</div>
-
 					<div class="color">
 						<div class="yellow palette"></div>
 						<Radio checked="{color === 'yellow'}" onClick="{() => (color = 'yellow')}" />
@@ -266,33 +258,37 @@
 				</div>
 			{:else}
 				<div class="input">
-					<div class="label"><Typography variant="list">Badge Name</Typography></div>
+					<div class="label">
+						<Typography variant="list">{$_("journeys.imani.badge_name")}</Typography>
+					</div>
 					<input
 						type="text"
-						placeholder="3d Print Engineer"
+						placeholder="{$_('journeys.imani.3d_print_engineer')}"
 						on:click="{() => (badgeNameValue = badgeName)}"
 						bind:value="{badgeNameValue}" />
 					<div class="sub-text">
-						<Typography variant="sub-text">Enter Badge name here</Typography>
+						<Typography variant="sub-text">{$_("journeys.imani.enter_badge_name_here")}</Typography>
 					</div>
 				</div>
-
 				<div class="input">
-					<div class="label"><Typography variant="list">Badge Description</Typography></div>
+					<div class="label">
+						<Typography variant="list">{$_("journeys.imani.badge_description")}</Typography>
+					</div>
 					<textarea
 						rows="{5}"
 						bind:value="{badgeDescValue}"
-						placeholder="3d Print Engineer Badge Description"
+						placeholder="{$_('journeys.imani.3d_print_engineer_badge_desc')}"
 						on:click="{() => (badgeDescValue = badgeDesc)}"></textarea>
 					<div class="sub-text">
-						<Typography variant="sub-text">Enter Badge description here</Typography>
+						<Typography variant="sub-text">{$_("journeys.imani.enter_badge_desc_here")}</Typography>
 					</div>
 				</div>
 			{/if}
+
 			<div class="button-container">
 				<Button
 					onClick="{handleCreateBadge}"
-					label="Continue"
+					label="{$_('components.continue')}"
 					variant="{(creatingBadgeImage && !(variant && color)) ||
 					(!creatingBadgeImage && !(badgeDescValue && badgeNameValue))
 						? 'future-tech-disabled'

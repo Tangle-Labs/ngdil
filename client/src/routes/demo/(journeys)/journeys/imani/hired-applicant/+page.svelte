@@ -59,6 +59,7 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Button, Hightlight } from "$lib/components";
 	import { imaniHiredEmployee } from "$lib/stores/flows.store";
+	import { _ } from "svelte-i18n";
 
 	function handleFinishCourse() {
 		imaniHiredEmployee.set(true);
@@ -70,11 +71,14 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>You’ve already <Hightlight>successfully verified and hired</Hightlight> a new employee. Let’s
-			get them trained up next.</Typography>
+			get them trained up next.
+			<!-- {$_("journeys.imani.hired_emp_lets_train")} -->
+		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>Here is what you have achieved so far with your self-sovereign identity:</Typography>
+		<Typography>
+			{$_("journeys.imani.heres_what_you_achieved")}
+		</Typography>
 	</div>
 	<div class="card">
 		<Card withBorder="{true}">
@@ -82,30 +86,33 @@
 				<div class="content">
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list">Securely logged in to the company dashboard</Typography>
+						<Typography variant="list"
+							>{$_("journeys.imani.securely_logged_in_dashboard")}</Typography>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list">Verified applicants digital CV credentials</Typography>
+						<Typography variant="list">{$_("journeys.imani.verified_cv_creds")}</Typography>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list">Hired an employee</Typography>
+						<Typography variant="list">{$_("journeys.imani.hired_emp")}</Typography>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list">Privately issued an Employee ID credential</Typography>
+						<Typography variant="list"
+							>{$_("journeys.imani.privately_issued_emp_id_cred")}</Typography>
 					</div>
 					<div class="p">
 						<Typography>
-							You have privately and securely managed the hiring process using verifiable
-							credentials. With new staff hired, let’s create an open badge for an internal course
-							and issue them to successful staff.
+							{$_("journeys.imani.create_badge_and_issue_to_staff_desc")}
 							<br /><br />
-							Click continue to proceed and get your staff trained.
+							{$_("journeys.imani.get_staff_trained_btn_desc")}
 						</Typography>
 					</div>
-					<Button variant="secondary" label="continue" onClick="{handleFinishCourse}" />
+					<Button
+						variant="secondary"
+						label="{$_('components.continue')}"
+						onClick="{handleFinishCourse}" />
 				</div>
 				<div class="img">
 					<img src="/imgs/imani-1.svg" alt="" />

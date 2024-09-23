@@ -201,7 +201,6 @@
 	import { credentials } from "$lib/stores/creds";
 	import {
 		currNode,
-		dominiqueSelectedCourse,
 		dominqueCourses,
 		peterAssignecCompanyCountry,
 		peterAssignedCompany,
@@ -209,6 +208,8 @@
 		peterChosenStudent
 	} from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
+
 	let receivedCreds = false;
 	let loading = false;
 	let showModal = false;
@@ -233,23 +234,24 @@
 	<div class="modal-content">
 		<img src="/imgs/kw1c-white.png" alt="" class="logo" />
 		<span style:text-transform="uppercase">
-			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"
-				>YOU ARE ABOUT TO REQUEST THE FOLLOWING CREDENTIALS:
+			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900">
+				{$_("journeys.peter.about_to_request_following_creds").toUpperCase()}
 			</Typography>
 		</span>
 		<div class="credentials">
 			<Typography variant="kw1c-sub-text">
-				KW1C College ID <br />
-				Internationalisation Badge <br />
-				Internship Completion Badge <br />
-				Internship Reference <br />
+				{$_("creds.kw1c_college_id")}<br />
+				{$_("creds.internatinalisation_badge")}<br />
+				{$_("creds.internship_completion_badge")}<br />
+				{$_("creds.internship_reference")}<br />
 			</Typography>
 		</div>
 		<div class="p">
 			<Typography variant="sub-text"
-				>Click the REQUEST CREDENTIALS button to confirm and issue the request.</Typography>
+				>{$_("journeys.peter.click_request_creds_btn_to_confirm")}</Typography>
 		</div>
-		<button class="button" on:click="{handleWait}">REQUEST CREDENTIALS</button>
+		<button class="button" on:click="{handleWait}"
+			>{$_("journeys.peter.request_credentials").toUpperCase()}</button>
 		<div class="subtext">
 			<Typography variant="sub-text" />
 		</div>
@@ -260,24 +262,26 @@
 		<Typography variant="heading">
 			{#if !receivedCreds}
 				To <Highlight
-					>confirm {$peterAssignedStudent.split(" ")[0]}’s internship completion,</Highlight> let’s request
-				the credentials for verification.
+					>confirm {$peterAssignedStudent?.split(" ")[0]}’s internship completion,</Highlight> let’s
+				request the credentials for verification.
+				<!-- {$_("journeys.peter.to_confirm_request_cred_for_verification", {values: {PeterAssignedStudent: $peterAssignedStudent?.split(" ")[0]}})} -->
 			{:else}
 				It looks like {$peterAssignedStudent?.split(" ")[0]} had a very <Highlight
 					>successful international internship.</Highlight>
 				Take a look at the verified credentials.
+				<!-- {$_("journeys.peter.verified_student_creds_take_a_look", {values: {PeterAssignedStudent: $peterAssignedStudent?.split(" ")[0]}})} -->
 			{/if}
 		</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography
 			>{!receivedCreds
-				? "Click the request credentials button to verify the student credentials."
-				: "Click the eye icons next to each credential to view the credentials. Click continue to proceed."}</Typography>
+				? $_("journeys.peter.request_creds_btn_desc")
+				: $_("journeys.peter.eye_icon_btn_desc")}</Typography>
 	</div>
 
 	<div class="dash">
-		<Kw1c variant="white" title="STUDENT INTERNSHIP PROGRESS">
+		<Kw1c variant="white" title="{$_('journeys.peter.student_internship_progress').toUpperCase()}">
 			<div class="sidebar">
 				{#each Array(5) as i}
 					<div class="menu-item">
@@ -304,7 +308,7 @@
 							<button
 								class="{`button ${loading && 'loading'}`}"
 								on:click="{() => goto('/demo/journeys/peter/verified-internship')}">
-								CONTINUE
+								{$_("components.continue").toUpperCase()}
 							</button>
 						{:else}
 							<button
@@ -312,7 +316,9 @@
 								on:click="{() => {
 									showModal = true;
 								}}">
-								{loading ? "VERIFYING" : "REQUEST CREDENTIALS"}
+								{loading
+									? $_("journeys.peter.verifying").toUpperCase()
+									: $_("journeys.peter.request_credentials").toUpperCase()}
 							</button>
 						{/if}
 					</div>
@@ -336,35 +342,39 @@
 					</div>
 					<div class="column type">
 						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c">Credential Type</Typography>
-						</div>
-						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c">KW1C COLLEGE ID</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("journeys.peter.cred_type")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c"
-								>INTERNATIONALISATION BADGE</Typography>
+								>{$_("creds.kw1c_college_id").toUpperCase()}</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c">INTERNSHIP BADGE</Typography>
+							<Typography variant="card-header" fontVariant="kw1c"
+								>{$_("creds.internatinalisation_badge").toUpperCase()}</Typography>
 						</div>
 						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c">INTERNSHIP REFERENCE</Typography>
+							<Typography variant="card-header" fontVariant="kw1c"
+								>{$_("creds.internship_badge").toUpperCase()}</Typography>
+						</div>
+						<div class="data">
+							<Typography variant="card-header" fontVariant="kw1c"
+								>{$_("creds.internship_reference").toUpperCase()}</Typography>
 						</div>
 					</div>
 
 					<div class="column">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c" color="--black-500"
-								>Issuer</Typography>
+								>{$_("issuer.issuer")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--black-500"
-								>Koning Willem I College</Typography>
+								>{$_("issuer.koning_willem_i_college")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--black-500"
-								>Koning Willem I College</Typography>
+								>{$_("issuer.koning_willem_i_college")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--black-500"
@@ -378,14 +388,17 @@
 
 					<div class="column">
 						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c">Status</Typography>
+							<Typography variant="sub-text" fontVariant="kw1c"
+								>{$_("components.status")}</Typography>
 						</div>
 						{#each Array(4) as _, i}
 							<div class="data">
 								{#if receivedCreds}
-									<Typography variant="status" color="--green-900">Verified</Typography>
+									<Typography variant="status" color="--green-900"
+										>{$_("components.verified")}</Typography>
 								{:else}
-									<Typography variant="status" color="--secondary-900">Pending</Typography>
+									<Typography variant="status" color="--secondary-900"
+										>{$_("components.pending")}</Typography>
 								{/if}
 							</div>
 						{/each}
@@ -398,8 +411,8 @@
 							</div>
 							<div class="data">
 								<CredModal
-									name="College ID"
-									issuer="Koning Willem I College"
+									name="{$_('creds.college_id')}"
+									issuer="{$_('issuer.koning_willem_i_college')}"
 									credential="{{
 										...credentials.collegeId,
 										'Student Name': $peterChosenStudent
@@ -408,14 +421,14 @@
 							</div>
 							<div class="data">
 								<CredModal
-									name="Internationalisation Badge"
-									issuer="Koning Willem I College"
+									name="{$_('creds.internatinalisation_badge')}"
+									issuer="{$_('issuer.koning_willem_i_college')}"
 									logo="/imgs/kw1c-white.png"
 									credential="{{ ...credentials.internationalisation }}" />
 							</div>
 							<div class="data">
 								<CredModal
-									name="Internship Badge"
+									name="{$_('creds.internship_badge')}"
 									issuer="{$peterAssignedCompany}"
 									logo="{dominqueCourses[2].internships.find(
 										(i) => i.name === $peterAssignedCompany
@@ -429,7 +442,7 @@
 							</div>
 							<div class="data">
 								<CredModal
-									name="Internship Reference"
+									name="{$_('creds.internship_reference')}"
 									issuer="{$peterAssignedCompany}"
 									logo="{dominqueCourses[2].internships.find(
 										(i) => i.name === $peterAssignedCompany
