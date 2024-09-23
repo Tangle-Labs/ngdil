@@ -26,6 +26,7 @@
 	import { Typography, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currStep } from "$lib/stores/onboarding.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 
@@ -42,8 +43,8 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading">
-			Welcome to the <Highlight>NGDIL interactive demo</Highlight> for self-sovereign identity in learning.
-			<!-- {$_("onboarding.welcome_to_ngdil")} -->
+			<!-- Welcome to the <Highlight>NGDIL interactive demo</Highlight> for self-sovereign identity in learning. -->
+			{@html highlight($_("onboarding.welcome_to_ngdil"))}
 		</Typography>
 	</div>
 	<div class="desc">

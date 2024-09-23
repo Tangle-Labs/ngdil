@@ -169,6 +169,7 @@
 
 	$: watchQr(qr);
 	import { _ } from "svelte-i18n";
+	import { highlight } from "$lib/utils/highlight";
 
 	let showModal = false;
 	let receivedCreds = false;
@@ -222,10 +223,8 @@
 		</div>
 	</Modal>
 	<div class="heading">
-		<Typography variant="heading"
-			><Highlight>You’ve got the job! Congratulations,</Highlight> Big Business Corp now wants to issue
-			you with your staff ID.
-			<!-- {$_("journeys.dominique.got_job_bbc_issued_staff_id")} -->
+		<Typography variant="heading">
+			{@html highlight($_("journeys.dominique.got_job_bbc_issued_staff_id"))}
 		</Typography>
 	</div>
 	<div class="sub-text">

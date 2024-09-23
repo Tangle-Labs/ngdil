@@ -96,6 +96,7 @@
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { wallets } from "$lib/config/config";
 	import { currStep } from "$lib/stores/onboarding.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 
@@ -145,9 +146,7 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading">
-			To begin with <Highlight>self-sovereign identity</Highlight> you must first have an identity wallet
-			app.
-			<!-- {$_("onboarding.download_wallet.must_have_wallet")} -->
+			{@html highlight($_("onboarding.download_wallet.must_have_wallet"))}
 		</Typography>
 	</div>
 

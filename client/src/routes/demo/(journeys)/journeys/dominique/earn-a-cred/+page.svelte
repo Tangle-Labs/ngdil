@@ -50,6 +50,7 @@
 	let animatePhone = false;
 	let qr: string;
 	import { _ } from "svelte-i18n";
+	import { highlight } from "$lib/utils/highlight";
 
 	const loadQr = async function () {
 		const { data } = await apiClient.post("/siop", {
@@ -81,10 +82,8 @@
 <div class="container">
 	<Phone variant="kw1c" bind:animatePhone="{animatePhone}" />
 	<div class="heading">
-		<Typography variant="heading"
-			>You've made it to the <Hightlight>KW1C website, let's log in</Hightlight> to enrol on your course
-			of choice.
-			<!-- {$_("journeys.dominique.enroll_to_course_of_choice")} -->
+		<Typography variant="heading">
+			{@html highlight($_("journeys.dominique.enroll_to_course_of_choice"))}
 		</Typography>
 	</div>
 	<div class="sub-text">

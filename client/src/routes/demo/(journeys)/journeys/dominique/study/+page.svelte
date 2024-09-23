@@ -130,7 +130,13 @@
 	import { createWebsocket } from "$lib/utils/ws.util";
 	import "@tanglelabs/open-id-qr";
 	import { _ } from "svelte-i18n";
+	import { highlight } from "$lib/utils/highlight";
 
+	let studied = false;
+	let progress: number = 0;
+	let qr: string;
+	let showModal = false;
+	let receivedCreds: boolean = false;
 
 	const handleStudy = () => {
 		currNode.set(3);
@@ -170,7 +176,7 @@
 					: $_("journeys.dominique.kw1c_sent_new_course_cred").toUpperCase()}</Typography>
 			<div class="p">
 				{receivedCreds
-					? $_("journeys.dominique.visible_in_wallet_and_free_for_you_to_shared")
+					? $_("journeys.dominique.visible_in_wallet_and_free_for_you_to_share")
 					: $_("journeys.dominique.scan_qr_and_accept_cred_from_kw1c")}
 			</div>
 			{#if receivedCreds}
@@ -198,15 +204,11 @@
 	<div class="heading">
 		{#if studied}
 			<Typography variant="heading">
-				<Hightlight>Exciting times. You have completed your course</Hightlight>with top marks. Let’s
-				get your credential.
-				<!-- {$_("journeys.dominique.completed_course_with_top_mark_now_get_cred")} -->
+				{@html highlight($_("journeys.dominique.completed_course_with_top_mark_now_get_cred"))}
 			</Typography>
 		{:else}
 			<Typography variant="heading">
-				Congratulations. <Hightlight>You have been accepted</Hightlight> on the course. Now you need
-				to complete your studies.
-				<!-- {$_("journeys.dominique.accepted_on_course_now_stud")}	 -->
+				{@html highlight($_("journeys.dominique.accepted_on_course_now_study"))}
 			</Typography>
 		{/if}
 	</div>

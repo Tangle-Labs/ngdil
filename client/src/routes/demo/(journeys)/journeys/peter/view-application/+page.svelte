@@ -176,6 +176,7 @@
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { credentials } from "$lib/stores/creds";
 	import { currNode, dominiqueSelectedCourse, peterChosenStudent } from "$lib/stores/flows.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 	let receivedCreds = false;
@@ -199,14 +200,17 @@
 	<div class="heading">
 		<Typography variant="heading">
 			{#if !receivedCreds}
-				To evaluate {$peterChosenStudent?.split(" ")[0]}’s eligibility <Highlight>
-					let’s request the credentials</Highlight>
-				required to participate in the internship.
-				<!-- {$_("journeys.peter.view_application_enrolled_intro", {values: {PeterChosenStudent: $peterChosenStudent?.split(" ")[0]}})} -->
+				{@html highlight(
+					$_("journeys.peter.view_application_enrolled_intro", {
+						values: { PeterChosenStudent: $peterChosenStudent?.split(" ")[0] }
+					})
+				)}
 			{:else}
-				It appears {$peterChosenStudent?.split(" ")[0]} is missing an internationalisation badge. Let’s
-				enrol them onto the course.
-				<!-- {$_("journeys.peter.view_application_not_enrolled_intro", {values: {PeterChosenStudent: $peterChosenStudent?.split(" ")[0]}})} -->
+				{@html highlight(
+					$_("journeys.peter.view_application_not_enrolled_intro", {
+						values: { PeterChosenStudent: $peterChosenStudent?.split(" ")[0] }
+					})
+				)}
 			{/if}
 		</Typography>
 	</div>
@@ -214,7 +218,7 @@
 		<Typography
 			>{receivedCreds
 				? $_("journeys.peter.view_application_not_enrolled_sub_text")
-				: $_("journeys.peter.view_application_enrolled_sub_text")}</Typography>
+				: $_("journeys.peter.view_applications_enrolled_sub_text")}</Typography>
 	</div>
 
 	<div class="dash">
@@ -248,7 +252,9 @@
 							</button>
 						{:else}
 							<button class="{`button ${loading && 'loading'}`}" on:click="{handleWait}">
-								{loading ? $_("page.journeys.verifying") : $_("page.journeys.request_credentials")}
+								{loading
+									? $_("journeys.peter.verifying")
+									: $_("journeys.peter.request_credentials")}
 							</button>
 						{/if}
 					</div>
@@ -288,7 +294,7 @@
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c"
-								>{$_("creds.course_badge").toUpperCase()}</Typography>
+								>{$_("creds.college_badge").toUpperCase()}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c"
@@ -322,22 +328,50 @@
 							<Typography variant="sub-text" fontVariant="kw1c"
 								>{$_("components.status")}</Typography>
 						</div>
-						{#each Array(4) as _, i}
+						{#if receivedCreds}
 							<div class="data">
-								{#if receivedCreds}
-									{#if i !== 3}
-										<Typography variant="status" color="--green-900"
-											>{$_("components.verified")}</Typography>
-									{:else}
-										<Typography variant="status" color="--red-900"
-											>{$_("components.missing")}</Typography>
-									{/if}
-								{:else}
-									<Typography variant="status" color="--secondary-900"
-										>{$_("components.pending")}</Typography>
-								{/if}
+								<Typography variant="status" color="--green-900">
+									{$_("components.verified")}
+								</Typography>
 							</div>
-						{/each}
+							<div class="data">
+								<Typography variant="status" color="--green-900">
+									{$_("components.verified")}
+								</Typography>
+							</div>
+							<div class="data">
+								<Typography variant="status" color="--green-900">
+									{$_("components.verified")}
+								</Typography>
+							</div>
+							<div class="data">
+								<Typography variant="status" color="--red-900">
+									{$_("components.missing")}
+								</Typography>
+							</div>
+						{:else}
+							<div class="data">
+								<Typography variant="status" color="--secondary-900">
+									{$_("components.pending")}
+								</Typography>
+							</div>
+
+							<div class="data">
+								<Typography variant="status" color="--secondary-900">
+									{$_("components.pending")}
+								</Typography>
+							</div>
+							<div class="data">
+								<Typography variant="status" color="--secondary-900">
+									{$_("components.pending")}
+								</Typography>
+							</div>
+							<div class="data">
+								<Typography variant="status" color="--secondary-900">
+									{$_("components.pending")}
+								</Typography>
+							</div>
+						{/if}
 					</div>
 					<div class="column badge">
 						{#if receivedCreds}
