@@ -41,16 +41,13 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Card, Phone } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { currNode, eventUri, nodeCount } from "$lib/stores/flows.store";
+	import { currNode, nodeCount } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { apiClient } from "$lib/utils/axios.utils";
 	import { createWebsocket } from "$lib/utils/ws.util";
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
-	import "@tanglelabs/open-id-qr";
-
-	let animatePhone = false;
-	let qr: string;
+	import { _ } from "svelte-i18n";
 
 	const loadQr = async function () {
 		const { data } = await apiClient.post("/api/oid4vp", {
@@ -62,18 +59,19 @@
 		});
 		qr = data.uri;
 	};
-	function watchQr(qr: string) {
-		if (!qr) return;
-		document.addEventListener("open-id-qr-success", (e) => {
-			if (e.detail.type === "vp") goto("/demo/journeys/peter/view-applications");
-		});
-	}
+	const ws = createWebsocket();
+	ws.onmessage = (event) => {
+		const data = JSON.parse(event.data);
+		if (data.received) {
+			goto("/demo/journeys/peter/view-applications");
+		}
+	};
+	let animatePhone = false;
+	let qr: string;
 
-	$: watchQr(qr);
 	onMount(() => {
 		nodeCount.set(5);
 		currNode.set(0);
-
 		loadQr();
 	});
 </script>
@@ -83,12 +81,14 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>Time to get to work. Let’s use <Highlight>passwordless login</Highlight> to access the KW1C staff
-			portal.</Typography>
+			portal.
+			<!-- {$_("journeys.peter.use_passwordless_login_to_access_kw1c_staff_portal")} -->
+		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>In your identity wallet, scan the QR code and accept the connection request to access the
-			KW1C staff portal.</Typography>
+		<Typography>
+			{$_("journeys.peter.scan_qr_and_accept_request_to_access_kw1c_portal")}
+		</Typography>
 	</div>
 	<div class="dash">
 		<Kw1c variant="blue">
@@ -99,16 +99,15 @@
 							<img src="/imgs/kw1c-crowns.png" alt="" class="crowns" />
 							<div class="heading-text">
 								<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>LOGIN TO KW1C</Typography>
+									>{$_("journeys.peter.login_to_kw1c").toUpperCase()}</Typography>
 							</div>
 						</div>
 						{#if qr}
-							<open-id-qr request-uri="{qr}" event-stream-uri="{$eventUri}" size="{220}"
-							></open-id-qr>
+							<Qr data="{qr}" size="{200}" />
 						{/if}
 						<div class="desc">
 							<Typography variant="kw1c-sub-text"
-								>Scan the QR to access the KW1C staff portal.</Typography>
+								>{$_("journeys.peter.scan_qr_to_access_kw1c_staff_portal")}</Typography>
 						</div>
 					</div>
 				</Card>

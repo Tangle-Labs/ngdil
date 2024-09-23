@@ -139,6 +139,8 @@
 
 <script lang="ts">
 	import { Typography } from "$lib/components";
+	import { _ } from "svelte-i18n";
+
 	export let withSidebar = true;
 	export let header = "";
 </script>
@@ -149,7 +151,7 @@
 			<img src="/imgs/future-tech.png" alt="" />
 			<div class="text">
 				<Typography variant="heading" fontVariant="kw1c" color="--future-tech-green"
-					>FUTURE TECH CO.
+					>{$_("components.future_tech_co").toUpperCase()}
 				</Typography>
 			</div>
 		</div>
@@ -176,8 +178,7 @@
 				<div class="card-area">
 					<div class="heading">
 						<Typography variant="card-header" color="--future-tech-green" fontVariant="kw1c"
-							>{header}</Typography
-						>
+							>{header}</Typography>
 					</div>
 					<div class="cards">
 						<div class="future-tech-card">

@@ -121,6 +121,7 @@
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
 
 	function handleClick(i: number) {
 		if ($dominiqueSelectedCourse !== i) return;
@@ -136,15 +137,17 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>There are a few jobs available. <Highlight>Let’s select the job to apply</Highlight> for that
-			is relevant to our new credential.</Typography
+			is relevant to our new credential.
+			<!-- {$_("journeys.dominique.jobs_available_select_one_job")} -->
+			</Typography
 		>
 	</div>
 	<div class="sub-text">
-		<Typography>Select the job you can now apply for with your new credential</Typography>
+		<Typography>{$_("journeys.dominique.select_job_with_new_cred")}</Typography>
 	</div>
 
 	<div class="dash">
-		<BigBusinessCorp heading="Big Business Corp Jobs Board">
+		<BigBusinessCorp heading={$_("journeys.dominique.bbc_job_board")}>
 			<div class="content">
 				<div class="courses">
 					{#each dominqueCourses as course, i (course.name)}
@@ -157,12 +160,11 @@
 								<div class="bar"></div>
 								<div class="bar"></div>
 							</div>
-
 							<button
 								class="{`button ${$dominiqueSelectedCourse !== i && 'disabled'}`}"
 								on:click="{() => {
 									handleClick(i);
-								}}">Apply Now</button
+								}}">{$_("components.apply_now")}</button
 							>
 						</div>
 					{/each}

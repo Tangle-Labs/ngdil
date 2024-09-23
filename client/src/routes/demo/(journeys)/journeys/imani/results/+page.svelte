@@ -77,7 +77,7 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, FutureTech, Button, Loading, Modal, Radio } from "$lib/components";
+	import { Typography, FutureTech, Button, Modal, Radio } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
 		currNode,
@@ -86,10 +86,10 @@
 		imaniIssuedStaff
 	} from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
+	import { _ } from "svelte-i18n";
 
 	let staff = $imaniChosenStaff.map((s) => ({ ...s, selected: false }));
 	let staffCount = staff.length;
-
 	let showModal = false;
 
 	function handleIssueCred() {
@@ -103,48 +103,53 @@
 </script>
 
 <div class="container">
-	<Modal bind:isOpen="{showModal}" borderRadius="16">
+	<Modal bind:isOpen="{showModal}" borderRadius="{16}">
 		<div class="modal-content">
 			<img src="/imgs/future-tech.png" alt="" class="logo" />
 			<div class="heading">
 				<Typography variant="card-header" fontVariant="kw1c" color="--future-tech-green"
-					>FUTURE TECH CO.</Typography
-				>
+					>{$_("components.future_tech_co").toUpperCase()}</Typography>
 			</div>
-			<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-red-900"
-				>You are about to issue {staffCount} badges - {$imaniBadgeName}</Typography
-			>
+			<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-red-900">
+				{$_("journeys.imani.about_to_issue_badges", {
+					values: { StaffCount: staffCount, BadgeName: $imaniBadgeName }
+				})}
+			</Typography>
 			<div class="p">
 				<Typography color="--black-500">
-					To continue and issue the badges click the issue badges button.
+					{$_("journeys.imani.click_issue_badge_to_issue_and_continue")}
 				</Typography>
 			</div>
-			<Button variant="future-tech" label="Issue Badges" onClick="{handleIssueCred}" />
+			<Button
+				variant="future-tech"
+				label="{$_('journeys.imani.issue_badges')}"
+				onClick="{handleIssueCred}" />
 			<div class="subtext">
-				<Typography variant="sub-text">Cancel</Typography>
+				<Typography variant="sub-text">{$_("components.cancel")}</Typography>
 			</div>
 		</div>
 	</Modal>
 	<div class="heading">
 		<Typography variant="heading"
 			>Not bad at all, the <Highlight>staff were successful in their training.</Highlight> Let’s issue
-			them their badges.</Typography
-		>
+			them their badges.
+			<!-- {$_("journeys.imani.staff_successfully_trained_now_issue_badges")} -->
+		</Typography>
 	</div>
 	<div class="sub-text">
-		<Typography
-			>Select the check boxes next to the employees that passed, then click the issue badges button
-			to continue.</Typography
-		>
+		<Typography>
+			{$_("journeys.imani.select_emp_that_passed_then_click_issue_badges")}
+		</Typography>
 	</div>
 	<div class="dash">
-		<FutureTech header="{`${$imaniBadgeName.toUpperCase()} TRAINEES`}">
+		<FutureTech
+			header="{$imaniBadgeName.toUpperCase() + ' ' + $_('journeys.imani.trainees').toUpperCase()}">
 			<table class="table">
 				<tr>
 					<th></th>
-					<th><Typography variant="sub-text">Employee Name</Typography></th>
-					<th><Typography variant="sub-text">Designation</Typography></th>
-					<th><Typography variant="sub-text">Course Result</Typography></th>
+					<th><Typography variant="sub-text">{$_("journeys.imani.emp_name")}</Typography></th>
+					<th><Typography variant="sub-text">{$_("journeys.imani.designation")}</Typography></th>
+					<th><Typography variant="sub-text">{$_("journeys.imani.course_result")}</Typography></th>
 				</tr>
 				{#each staff as emp (emp.name)}
 					<tr>
@@ -158,7 +163,7 @@
 							<Typography variant="sub-text">{emp.role}</Typography>
 						</td>
 						<td>
-							<Typography variant="status">Passed</Typography>
+							<Typography variant="status">{$_("components.passed")}</Typography>
 						</td>
 					</tr>
 				{/each}
@@ -167,12 +172,11 @@
 			<div class="button-container">
 				<Button
 					variant="future-tech"
-					label="Issue Badges"
+					label="{$_('journeys.imani.issue_badges')}"
 					onClick="{() => {
 						showModal = true;
 						staffCount = staff.filter((e) => e.selected).length;
-					}}"
-				/>
+					}}" />
 			</div>
 		</FutureTech>
 	</div>

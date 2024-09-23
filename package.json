@@ -18,8 +18,9 @@
     "husky": "^8.0.2"
   },
   "dependencies": {
+    "@types/node": "^22.1.0",
     "patch-package": "^8.0.0",
-    "postinstall-postinstall": "^2.1.0"
+    "postinstall-postinstall": "^2.1.0",
+    "svelte-i18n": "^4.0.0"
   }
 }
-

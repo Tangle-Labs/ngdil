@@ -49,6 +49,7 @@
 
 <script lang="ts">
 	import { Modal, Typography } from "$lib/components";
+	import { _ } from "svelte-i18n";
 
 	export let credential: Record<string, string>;
 	export let name: string;
@@ -58,6 +59,8 @@
 	let isOpen = false;
 </script>
 
+<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <img
 	src="/imgs/show.svg"
 	class="show"
@@ -75,7 +78,9 @@
 			<Typography variant="card-header">{name}</Typography>
 		</div>
 		<div class="cred-issuer">
-			<Typography color="--black-500">Issued by {issuer}</Typography>
+			<Typography color="--black-500">
+				{$_("components.issued_by", { values: { IssuerName: issuer } })}
+			</Typography>
 		</div>
 		{#each Object.keys(credential) as key}
 			<div class="text-block">

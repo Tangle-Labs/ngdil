@@ -116,19 +116,29 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Modal, Loading, Hightlight, Button } from "$lib/components";
-	import {
-		dominqueCourses,
-		dominiqueSelectedCourse,
-		currNode,
-		eventUri
-	} from "$lib/stores/flows.store";
+	import { dominqueCourses, dominiqueSelectedCourse, currNode } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
 	import { Confetti } from "svelte-confetti";
 	import { apiClient } from "$lib/utils/axios.utils";
-	import { qrcode } from "svelte-qrcode-action";
+	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { createWebsocket } from "$lib/utils/ws.util";
-	import "@tanglelabs/open-id-qr";
+	import { _ } from "svelte-i18n";
 
+	const handleStudy = () => {
+		currNode.set(3);
+		studied = true;
+		const counting = setInterval(() => {
+			if (progress > 100) clearInterval(counting);
+			progress = progress < 100 ? progress + 1 : progress;
+		}, 1);
+	};
+	const ws = createWebsocket();
+	ws.onmessage = (event) => {
+		const data = JSON.parse(event.data);
+		if (data.creds) {
+			receivedCreds = true;
+		}
+	};
 	let progress = 0;
 	let studied = false;
 	let showModal = false;
@@ -143,23 +153,6 @@
 		qr = data.uri;
 		currNode.set(2);
 	});
-	const handleStudy = () => {
-		currNode.set(3);
-		studied = true;
-		const counting = setInterval(() => {
-			if (progress > 100) clearInterval(counting);
-			progress = progress < 100 ? progress + 1 : progress;
-		}, 1);
-	};
-
-	function watchQr(qr: string) {
-		if (!qr) return;
-		document.addEventListener("open-id-qr-success", (e) => {
-			if (e.detail.type === "vc") receivedCreds = true;
-		});
-	}
-
-	$: watchQr(qr);
 </script>
 
 <div class="container">
@@ -168,23 +161,23 @@
 			<img src="/imgs/kw1c-white.png" alt="" class="logo" />
 			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"
 				>{receivedCreds
-					? "YOU HAVE RECEIVED & ACCEPTED YOUR NEW COURSE CREDENTIAL."
-					: "KW1C HAS SENT YOU A NEW COURSE CREDENTIAL"}</Typography>
+					? $_("journeys.dominique.received_and_accepted_new_course_cred").toUpperCase()
+					: $_("journeys.dominique.kw1c_sent_new_course_cred").toUpperCase()}</Typography>
 			<div class="p">
 				{receivedCreds
-					? "This is now visible in your wallet and free for you to share with anyone, at any time. "
-					: "In your mobile wallet scan the QR and accept the credential from KW1C to receive your new qualification."}
+					? $_("journeys.dominique.visible_in_wallet_and_free_for_you_to_shared")
+					: $_("journeys.dominique.scan_qr_and_accept_cred_from_kw1c")}
 			</div>
 			{#if receivedCreds}
 				<img class="checked" src="/imgs/checked.png" alt="" />
 				<div class="button">
 					<Button
-						label="CONTINUE"
+						label="{$_('components.continue').toUpperCase()}"
 						variant="kw1c"
 						onClick="{() => goto('/demo/journeys/dominique/finished-course')}" />
 				</div>
 			{:else if qr}
-				<open-id-qr request-uri="{qr}" size="{200}" event-stream-uri="{$eventUri}"></open-id-qr>
+				<Qr data="{qr}" size="{200}" />
 				<div class="loading">
 					<Loading img="/imgs/blue-loading.png" size="30px" />
 				</div>
@@ -192,8 +185,8 @@
 			<div class="subtext">
 				<Typography variant="sub-text"
 					>{receivedCreds
-						? "Click Continue to proceed"
-						: "Awaiting credential acceptance..."}</Typography>
+						? $_("journeys.dominique.click_to_proceed")
+						: $_("journeys.dominique.awaiting_cred_acceptance")}</Typography>
 			</div>
 		</div>
 	</Modal>
@@ -202,19 +195,22 @@
 			<Typography variant="heading">
 				<Hightlight>Exciting times. You have completed your course</Hightlight>with top marks. Let’s
 				get your credential.
+				<!-- {$_("journeys.dominique.completed_course_with_top_mark_now_get_cred")} -->
 			</Typography>
 		{:else}
 			<Typography variant="heading">
 				Congratulations. <Hightlight>You have been accepted</Hightlight> on the course. Now you need
-				to complete your studies.</Typography>
+				to complete your studies.
+				<!-- {$_("journeys.dominique.accepted_on_course_now_stud")}	 -->
+			</Typography>
 		{/if}
 	</div>
 	<div class="sub-text">
 		<Typography>
 			{#if studied}
-				Click the get credential button to receive your credential from KW1C.
+				{$_("journeys.dominique.get_cred_btn_desc")}
 			{:else}
-				Click the start studying button to continue and complete the course.
+				{$_("journeys.dominique.start_studying_btn_desc")}
 			{/if}</Typography>
 	</div>
 	{#if studied}
@@ -224,8 +220,8 @@
 				x="{[-5, 5]}"
 				y="{[0, 0.1]}"
 				delay="{[500, 5000]}"
-				duration="2000"
-				amount="500"
+				duration="{2000}"
+				amount="{500}"
 				fallDistance="100vh" />
 		</div>
 	{/if}
@@ -235,8 +231,10 @@
 				<div class="title">
 					<Typography variant="kw1c-header" fontVariant="kw1c"
 						>{studied
-							? "CONGRATULATIONS DOMINIQUE, YOU HAVE COMPLETED YOUR COURSE!"
-							: "HELLO DOMINIQUE, WELCOME TO YOUR NEW COURSE"}</Typography>
+							? $_("journeys.dominique.congrats_dominique_you_completed_course").toUpperCase()
+							: $_(
+									"journeys.dominique.hello_dominique_welcome_to_new_course"
+							  ).toUpperCase()}</Typography>
 				</div>
 				<div class="details">
 					<div class="text">
@@ -253,12 +251,15 @@
 						{#if studied}
 							<Button
 								variant="kw1c"
-								label="GET CREDENTIAL"
+								label="{$_('journeys.dominique.get_cred').toUpperCase()}"
 								onClick="{() => {
 									showModal = true;
 								}}" />
 						{:else}
-							<Button variant="kw1c" label="START STUDYING" onClick="{handleStudy}" />
+							<Button
+								variant="kw1c"
+								label="{$_('journeys.dominique.start_studying').toUpperCase()}"
+								onClick="{handleStudy}" />
 						{/if}
 					</div>
 				</div>
