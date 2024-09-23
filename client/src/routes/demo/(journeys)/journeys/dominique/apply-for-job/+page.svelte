@@ -30,6 +30,7 @@
 </style>
 
 <script lang="ts">
+	import "@tanglelabs/open-id-qr";
 	import { goto } from "$app/navigation";
 	import { Phone, Typography, BigBusinessCorp, Card } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
@@ -37,7 +38,21 @@
 	import { apiClient } from "$lib/utils/axios.utils";
 	import { createWebsocket } from "$lib/utils/ws.util";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
+	import { eventUri } from "$lib/stores/flows.store";
+
+	let animatePhone = false;
+
+	let qr: string;
 	import { _ } from "svelte-i18n";
+
+	function watchQr(qr: string) {
+		if (!qr) return;
+		document.addEventListener("open-id-qr-success", (e) => {
+			if (e.detail.type === "id") goto("/demo/journeys/dominique/view-jobs");
+		});
+	}
+
+	$: watchQr(qr);
 
 	const loadQr = async function () {
 		const { data } = await apiClient.post("/siop", {
@@ -55,7 +70,6 @@
 	ws.onmessage = (event) => {
 		const data = JSON.parse(event.data);
 		if (data.login) {
-			goto("/demo/journeys/dominique/view-jobs");
 		}
 	};
 
@@ -87,7 +101,8 @@
 				<Card borderRadius="{16}">
 					<div class="card-content">
 						{#if qr}
-							<Qr data="{qr}" size="{200}" />
+							<open-id-qr request-uri="{qr}" event-stream-uri="{$eventUri}" size="{200}"
+							></open-id-qr>
 						{/if}
 						<div class="heading">
 							<Typography variant="card-header" color="--bbc-blue">

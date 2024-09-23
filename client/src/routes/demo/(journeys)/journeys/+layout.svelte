@@ -72,7 +72,16 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Avatar, Button, ProgressBar, Typography } from "$lib/components";
-	import { JourneyInfo, currNode, currentJourney, nodeCount } from "$lib/stores/flows.store";
+	import {
+		JourneyInfo,
+		completedJourneys,
+		currNode,
+		currentJourney,
+		nodeCount,
+		previousPath
+	} from "$lib/stores/flows.store";
+	import { apiClient } from "$lib/utils/axios.utils";
+	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 
 	let expanded = false;

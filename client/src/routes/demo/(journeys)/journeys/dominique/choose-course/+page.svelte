@@ -91,12 +91,18 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Modal, Loading, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { currNode, dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
+	import {
+		currNode,
+		dominiqueSelectedCourse,
+		dominqueCourses,
+		eventUri
+	} from "$lib/stores/flows.store";
 	import { apiClient } from "$lib/utils/axios.utils";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { onMount } from "svelte";
 	import { createWebsocket } from "$lib/utils/ws.util";
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
+	import "@tanglelabs/open-id-qr";
 	import { _ } from "svelte-i18n";
 
 	const ws = createWebsocket();
@@ -104,12 +110,13 @@
 	let qr: string;
 	let showModal = false;
 
-	ws.onmessage = (event) => {
-		const data = JSON.parse(event.data);
-		if (data.received) {
-			receivedCreds = true;
-		}
-	};
+	function watchQr(qr: string) {
+		if (!qr) return;
+		document.addEventListener("open-id-qr-success", (e) => {
+			console.log("baata baa?	");
+			if (e.detail.type === "vp") receivedCreds = true;
+		});
+	}
 
 	onMount(async () => {
 		currNode.set(1);
@@ -124,6 +131,8 @@
 		});
 		qr = uri;
 	});
+
+	$: watchQr(qr);
 </script>
 
 <div class="container">
@@ -151,7 +160,7 @@
 			</div>
 			{#if !receivedCreds}
 				<div class="qr">
-					<Qr data="{qr}" size="{200}" />
+					<open-id-qr request-uri="{qr}" size="{200}" event-stream-uri="{$eventUri}"></open-id-qr>
 				</div>
 			{/if}
 			{#if receivedCreds}

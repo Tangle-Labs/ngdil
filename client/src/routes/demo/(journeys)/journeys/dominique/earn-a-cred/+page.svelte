@@ -39,13 +39,18 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Card, Hightlight, Phone } from "$lib/components";
-	import { currNode, nodeCount } from "$lib/stores/flows.store";
+	import { currNode, eventUri, nodeCount } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { apiClient } from "$lib/utils/axios.utils";
 	import { createWebsocket } from "$lib/utils/ws.util";
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
+	import "@tanglelabs/open-id-qr";
+
+	let animatePhone = false;
+	let qr: string;
 	import { _ } from "svelte-i18n";
+
 
 	const loadQr = async function () {
 		const { data } = await apiClient.post("/siop", {
@@ -56,24 +61,21 @@
 		});
 		qr = data.uri;
 	};
-	const ws = createWebsocket();
-	let animatePhone = false;
-	let qr: string;
 
-	ws.onmessage = (event) => {
-		const data = JSON.parse(event.data);
-		if (data.login) {
-			goto("/demo/journeys/dominique/choose-course");
-		}
-	};
+	function watchQr(qr: string) {
+		if (!qr) return;
+		document.addEventListener("open-id-qr-success", (e) => {
+			console.log("here");
+			if (e.detail.type === "id") {
+				goto("/demo/journeys/dominique/choose-course");
+			}
+		});
+	}
 
 	loadQr();
+	$: watchQr(qr);
 	currNode.set(0);
 	nodeCount.set(5);
-
-	// ws.onopen = () => {
-	// 	// ws.send(JSON.stringify({ action: "join" }));
-	// };
 
 	onMount(() => {});
 </script>
@@ -104,7 +106,10 @@
 						</div>
 						{#if qr}
 							<div class="qr">
-								<Qr size="{200}" data="{qr}" />
+								{#key qr}
+									<open-id-qr size="{180}" request-uri="{qr}" event-stream-uri="{$eventUri}"
+									></open-id-qr>
+								{/key}
 							</div>
 						{/if}
 						<div class="desc">
