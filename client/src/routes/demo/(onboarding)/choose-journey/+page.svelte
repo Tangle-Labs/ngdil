@@ -109,7 +109,7 @@
 	let qr: string;
 
 	import { _ } from "svelte-i18n";
-
+	import { highlight } from "$lib/utils/highlight";
 
 	const journeys = {
 		dominique: {
@@ -131,7 +131,6 @@
 			img: "/imgs/imani.png"
 		}
 	};
-	let qr: string;
 	let isOpen = false;
 	let selectedJourney: "dominique" | "peter" | "imani" | null = null;
 	let qrVisible = false;
@@ -142,7 +141,6 @@
 		currStep.set(2);
 	});
 
-
 	function watchQr(qr: string) {
 		console.log(qr);
 		if (!qr) return;
@@ -150,7 +148,6 @@
 		document.addEventListener("open-id-qr-success", (e) => {
 			if (e.detail.type === "vc") buttonVisible = true;
 		});
-
 	}
 
 	apiClient.get("/");
@@ -234,16 +231,10 @@
 	<div class="heading">
 		<Typography variant="heading">
 			{#if $completedJourneys.length === 0}
-				You’re all set! <Highlight>Let’s choose the user journey</Highlight> you would like to explore
-				first
+				{@html highlight($_("onboarding.choose_journey.all_set_choose_journey"))}
 			{:else}
-				Welcome back! <Highlight>Choose the user journey</Highlight> you would like to explore next.
+				{@html highlight($_("onboarding.choose_journey.welcome_back_choose_journey"))}
 			{/if}
-			<!-- {#if $completedJourneys.length === 0}
-				{$_("onboarding.choose_journey.all_set_choose_journey")}
-			{:else}
-				{$_("onboarding.choose_journey.welcome_back_choose_journey")}
-			{/if} -->
 		</Typography>
 	</div>
 	<div class="desc">

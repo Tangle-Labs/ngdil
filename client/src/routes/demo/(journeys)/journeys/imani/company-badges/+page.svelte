@@ -88,6 +88,7 @@
 	import { Typography, FutureTech, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, nodeCount } from "$lib/stores/flows.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 
@@ -99,10 +100,8 @@
 
 <div class="container">
 	<div class="heading">
-		<Typography variant="heading"
-			>Future Tech Co. <Highlight>is big on employee development.</Highlight> Let’s create a new badge
-			so we can train staff.
-			<!-- {$_("journeys.imani.future_tech_to_create_new_badge")} -->
+		<Typography variant="heading">
+			{@html highlight($_("journeys.imani.future_tech_to_create_new_badge"))}
 		</Typography>
 	</div>
 	<div class="sub-text">

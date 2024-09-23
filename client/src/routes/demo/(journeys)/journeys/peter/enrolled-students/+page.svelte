@@ -60,6 +60,7 @@
 	import { Typography, Card, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { peterEnrolledStudent } from "$lib/stores/flows.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { _ } from "svelte-i18n";
 
 	function handleFinishCourse() {
@@ -70,9 +71,8 @@
 
 <div class="container">
 	<div class="heading">
-		<Typography variant="heading"
-			>Amazing, you’ve <Highlight>successfully enrolled students</Highlight> with KW1C!
-			<!-- {$_("journeys.peter.successfully_enrolled_students_with_kw1c")} -->
+		<Typography variant="heading">
+			{@html highlight($_("journeys.peter.successfully_enrolled_students_with_kw1c"))}
 		</Typography>
 	</div>
 	<div class="sub-text">

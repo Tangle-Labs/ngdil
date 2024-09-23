@@ -52,6 +52,7 @@
 	let qr: string;
 
 	import { _ } from "svelte-i18n";
+	import { highlight } from "$lib/utils/highlight";
 
 	const loadQr = async function () {
 		const { data } = await apiClient.post("/api/oid4vp", {
@@ -73,7 +74,6 @@
 
 	$: watchQr(qr);
 
-
 	onMount(() => {
 		currNode.set(0);
 		nodeCount.set(5);
@@ -85,10 +85,8 @@
 
 <div class="container">
 	<div class="heading">
-		<Typography variant="heading"
-			>It’s a new day, so <Highlight>let’s get started by logging in</Highlight> to the Future Tech Co.
-			staff dashboard using your SSI.
-			<!-- {$_("journeys.imani.lets_login_to_future_tech_co_staff_dashboard_by_ssi")} -->
+		<Typography variant="heading">
+			{@html highlight($_("journeys.imani.lets_login_to_future_tech_co_staff_dashboard_by_ssi"))}
 		</Typography>
 	</div>
 	<div class="sub-text">

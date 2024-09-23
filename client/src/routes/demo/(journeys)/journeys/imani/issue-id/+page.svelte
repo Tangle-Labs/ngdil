@@ -88,6 +88,7 @@
 	import { Typography, FutureTech, Button, Loading, Modal } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, imaniChosenApplicant } from "$lib/stores/flows.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
 	import { Confetti } from "svelte-confetti";
 	import { _ } from "svelte-i18n";
@@ -140,17 +141,17 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>{#if currStage === "issued"}
-				Great work. {$imaniChosenApplicant?.split(" ")[0]} has <Highlight
-					>received their employee ID card.</Highlight> Let’s continue to see what’s next.
-				<!-- {$_("journeys.imani.applicant_received_emp_id_card", {
+				{@html highlight(
+					$_("journeys.imani.applicant_received_emp_id_card", {
 						values: { ChosenApplicant: $imaniChosenApplicant?.split(" ")[0] }
-					})} -->
+					})
+				)}
 			{:else}
-				<Highlight>{$imaniChosenApplicant?.split(" ")[0]} has accepted your job offer</Highlight> and
-				joined the system. Let’s issue their employee ID credential.
-				<!-- {$_("journeys.imani.applicant_accepted_job_and_joined_system", {
-					values: { ChosenApplicant: $imaniChosenApplicant?.split(" ")[0] }
-				})} -->
+				{@html highlight(
+					$_("journeys.imani.applicant_accepted_job_and_joined_system", {
+						values: { ChosenApplicant: $imaniChosenApplicant?.split(" ")[0] }
+					})
+				)}
 			{/if}</Typography>
 	</div>
 	<div class="sub-text">

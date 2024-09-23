@@ -80,6 +80,7 @@
 	import { Typography, FutureTech, Button, Modal, Radio } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, imaniChosenStaff } from "$lib/stores/flows.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 
@@ -145,10 +146,8 @@
 </Modal>
 <div class="container">
 	<div class="heading">
-		<Typography variant="heading"
-			>There are four staff <Highlight>available for the new badge training.</Highlight> Select the staff
-			to train.
-			<!-- {$_("journeys.imani.4_staff_available_for_training_select_1")} -->
+		<Typography variant="heading">
+			{@html highlight($_("journeys.imani.4_staff_available_for_training_select_1"))}
 		</Typography>
 	</div>
 	<div class="sub-text">

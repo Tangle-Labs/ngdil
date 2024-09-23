@@ -143,6 +143,7 @@
 		imaniBadgeName,
 		imaniBadgeVariant
 	} from "$lib/stores/flows.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 
@@ -184,13 +185,9 @@
 	<div class="heading">
 		<Typography variant="heading">
 			{#if creatingBadgeImage}
-				A badge needs to look the part. <Highlight>Let’s create an image template</Highlight>for the
-				badge in the creator.
-				<!-- {$_("journeys.imani.lets_create_img_template for_badge")} -->
+				{@html highlight($_("journeys.imani.lets_create_img_template for_badge"))}
 			{:else}
-				Now we <Highlight>have our badge image ready,</Highlight> let’s give the badge some information
-				to show what it is for.
-				<!-- {$_("journeys.imani.badge_img_ready_now_add_info")} -->
+				{@html highlight($_("journeys.imani.badge_img_ready_now_add_info"))}
 			{/if}
 		</Typography>
 	</div>

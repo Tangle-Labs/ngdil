@@ -50,6 +50,7 @@
 		peterEnrolledStudent,
 		peterVerifiedInternship
 	} from "$lib/stores/flows.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 
@@ -61,10 +62,8 @@
 
 <div class="container">
 	<div class="heading">
-		<Typography variant="heading"
-			>Hi Peter. Let’s get you <Highlight>started with enrolling your students.</Highlight> Select your
-			experience to get started.
-			<!-- {$_("journeys.peter.intro")} -->
+		<Typography variant="heading">
+			{@html highlight($_("journeys.peter.intro"))}
 		</Typography>
 	</div>
 	<div class="desc">

@@ -61,6 +61,7 @@
 	import { Typography, Card, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { completedJourneys, dominiqueAppliedForJob } from "$lib/stores/flows.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 
@@ -80,10 +81,8 @@
 
 <div class="container">
 	<div class="heading">
-		<Typography variant="heading"
-			><Highlight>You are now an employee of the Big Business Corp.</Highlight> Let’s see what you have
-			achieved.
-			<!-- {$_("journeys.dominique.you_are_now_emp")} -->
+		<Typography variant="heading">
+			{@html highlight($_("journeys.dominique.you_are_now_emp"))}
 		</Typography>
 	</div>
 	<div class="sub-text">

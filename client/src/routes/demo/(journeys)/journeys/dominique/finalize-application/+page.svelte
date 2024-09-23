@@ -81,6 +81,8 @@
 		box-sizing: border-box;
 		justify-content: center;
 		text-align: center;
+		flex-direction: column;
+		align-items: center;
 
 		& > * {
 			padding: 10px 0;
@@ -164,12 +166,12 @@
 
 	import "@tanglelabs/open-id-qr";
 	import { _ } from "svelte-i18n";
+	import { highlight } from "$lib/utils/highlight";
 
 	const ws = createWebsocket();
 	let showModal = false;
 	let receivedCreds = false;
 	let qr: string;
-
 
 	function watchQr(qr: string) {
 		if (!qr) return;
@@ -208,7 +210,7 @@
 			<Typography variant="card-header" color="--bbc-blue"
 				>{receivedCreds
 					? $_("journeys.dominique.application_received_via_digital_cv")
-					: $_("journeys.dominique.requesting_digital_cv")}</Typography>
+					: $_("journeys.dominique.requesting_digtal_cv")}</Typography>
 			<div class="p">
 				{receivedCreds
 					? $_("journeys.dominique.continue_further_in_browser")
@@ -234,10 +236,8 @@
 		</div>
 	</Modal>
 	<div class="heading">
-		<Typography variant="heading"
-			>Looks like you have all the credentials required. Let’s apply for the position and <Highlight>
-				share your credentials.</Highlight>
-			<!-- {$_("journeys.dominique.have_all_creds_apply_position")} -->
+		<Typography variant="heading">
+			{@html highlight($_("journeys.dominique.have_all_creds_apply_position"))}
 		</Typography>
 	</div>
 	<div class="sub-text">

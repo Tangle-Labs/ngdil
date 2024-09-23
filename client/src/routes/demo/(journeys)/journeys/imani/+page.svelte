@@ -43,6 +43,7 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Avatar, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
+	import { highlight } from "$lib/utils/highlight";
 	import {
 		currNode,
 		imaniHiredEmployee,
@@ -62,12 +63,9 @@
 	<div class="heading">
 		<Typography variant="heading"
 			>{#if $imaniHiredEmployee}
-				<Highlight>Great new hire.</Highlight> Let’s get creating a new open badge and training the staff.
-				<!-- {$_("journeys.imani.imani_hired_emp_intro")} -->
+				{@html highlight($_("journeys.imani.imani_hired_emp_intro"))}
 			{:else}
-				Hi Imani. Let’s <Highlight>get you hiring some experienced staff</Highlight>. Select your
-				first experience to get started.
-				<!-- {$_("journeys.imani.imani_yet_to_hire_emp_intro")} -->
+				{@html highlight($_("journeys.imani.imani_yet_to_hire_emp_intro"))}
 			{/if}</Typography>
 	</div>
 	<div class="desc">

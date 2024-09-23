@@ -207,6 +207,7 @@
 		peterAssignedStudent,
 		peterChosenStudent
 	} from "$lib/stores/flows.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 
@@ -261,15 +262,17 @@
 	<div class="heading">
 		<Typography variant="heading">
 			{#if !receivedCreds}
-				To <Highlight
-					>confirm {$peterAssignedStudent?.split(" ")[0]}’s internship completion,</Highlight> let’s
-				request the credentials for verification.
-				<!-- {$_("journeys.peter.to_confirm_request_cred_for_verification", {values: {PeterAssignedStudent: $peterAssignedStudent?.split(" ")[0]}})} -->
+				{@html highlight(
+					$_("journeys.peter.to_confirm_request_cred_for_verification", {
+						values: { PeterAssignedStudent: $peterAssignedStudent?.split(" ")[0] }
+					})
+				)}
 			{:else}
-				It looks like {$peterAssignedStudent?.split(" ")[0]} had a very <Highlight
-					>successful international internship.</Highlight>
-				Take a look at the verified credentials.
-				<!-- {$_("journeys.peter.verified_student_creds_take_a_look", {values: {PeterAssignedStudent: $peterAssignedStudent?.split(" ")[0]}})} -->
+				{@html highlight(
+					$_("journeys.peter.verified_student_creds_take_a_look", {
+						values: { PeterAssignedStudent: $peterAssignedStudent?.split(" ")[0] }
+					})
+				)}
 			{/if}
 		</Typography>
 	</div>
@@ -391,17 +394,41 @@
 							<Typography variant="sub-text" fontVariant="kw1c"
 								>{$_("components.status")}</Typography>
 						</div>
-						{#each Array(4) as _, i}
+						{#if receivedCreds}
 							<div class="data">
-								{#if receivedCreds}
-									<Typography variant="status" color="--green-900"
-										>{$_("components.verified")}</Typography>
-								{:else}
-									<Typography variant="status" color="--secondary-900"
-										>{$_("components.pending")}</Typography>
-								{/if}
+								<Typography variant="status" color="--green-900"
+									>{$_("components.verified")}</Typography>
 							</div>
-						{/each}
+							<div class="data">
+								<Typography variant="status" color="--green-900"
+									>{$_("components.verified")}</Typography>
+							</div>
+							<div class="data">
+								<Typography variant="status" color="--green-900"
+									>{$_("components.verified")}</Typography>
+							</div>
+							<div class="data">
+								<Typography variant="status" color="--green-900"
+									>{$_("components.verified")}</Typography>
+							</div>
+						{:else}
+							<div class="data">
+								<Typography variant="status" color="--secondary-900"
+									>{$_("components.pending")}</Typography>
+							</div>
+							<div class="data">
+								<Typography variant="status" color="--secondary-900"
+									>{$_("components.pending")}</Typography>
+							</div>
+							<div class="data">
+								<Typography variant="status" color="--secondary-900"
+									>{$_("components.pending")}</Typography>
+							</div>
+							<div class="data">
+								<Typography variant="status" color="--secondary-900"
+									>{$_("components.pending")}</Typography>
+							</div>
+						{/if}
 					</div>
 
 					<div class="column">

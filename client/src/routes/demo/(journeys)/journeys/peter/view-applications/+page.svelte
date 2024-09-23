@@ -123,6 +123,7 @@
 	import { currNode, dominiqueSelectedCourse, peterChosenStudent } from "$lib/stores/flows.store";
 	import { _ } from "svelte-i18n";
 	import { onMount } from "svelte";
+	import { highlight } from "$lib/utils/highlight";
 	let receivedCreds = false;
 
 	function handleWait() {
@@ -141,9 +142,7 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading">
-			The students are keen to get on their international internships. Let’s see <Highlight>
-				if they meet the requirements.</Highlight>
-			<!-- {$_("journeys.peter.view_applications_intro")} -->
+			{@html highlight($_("journeys.peter.view_applications_intro"))}
 		</Typography>
 	</div>
 	<div class="sub-text">

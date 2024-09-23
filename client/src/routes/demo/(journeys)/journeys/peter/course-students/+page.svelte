@@ -166,6 +166,7 @@
 	import { Typography, Kw1c, Button, Loading } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, peterChosenStudents } from "$lib/stores/flows.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { Confetti } from "svelte-confetti";
 	import { _ } from "svelte-i18n";
 
@@ -186,9 +187,7 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading">
-			Exciting times. <Highlight>You have successfully enrolled</Highlight> your students onto the internationalisation
-			course.
-			<!-- {$_("journeys.peter.successfully_enrolled_students_onto_course")} -->
+			{@html highlight($_("journeys.peter.successfully_enrolled_students_onto_course"))}
 		</Typography>
 	</div>
 	<div class="sub-text">

@@ -40,10 +40,9 @@
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { eventUri } from "$lib/stores/flows.store";
 
-	let animatePhone = false;
-
 	let qr: string;
 	import { _ } from "svelte-i18n";
+	import { highlight } from "$lib/utils/highlight";
 
 	function watchQr(qr: string) {
 		if (!qr) return;
@@ -65,7 +64,6 @@
 	};
 	const ws = createWebsocket();
 	let animatePhone = false;
-	let qr: string;
 
 	ws.onmessage = (event) => {
 		const data = JSON.parse(event.data);
@@ -80,9 +78,7 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading">
-			You made it to the <Highlight>Big Business Corp website. Let’s login</Highlight> to view their
-			jobs board.
-			<!-- {$_("journeys.dominique.view_jobs")} -->
+			{@html highlight($_("journeys.dominique.view_jobs"))}
 		</Typography>
 	</div>
 	<div class="sub-text">

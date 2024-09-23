@@ -219,6 +219,7 @@
 	import { Typography, OpenJobsNetwork, Avatar, Modal } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 
@@ -231,10 +232,8 @@
 
 <div class="container">
 	<div class="heading">
-		<Typography variant="heading"
-			>You <Highlight>shared your credential</Highlight> and an interested employer has messaged you
-			after seeing your skills.
-			<!-- {$_("journeys.dominique.shared_cred_and_employer_msged")} -->
+		<Typography variant="heading">
+			{@html highlight($_("journeys.dominique.shared_cred_and_employer_msged"))}
 		</Typography>
 	</div>
 	<div class="sub-text">

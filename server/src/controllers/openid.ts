@@ -72,7 +72,6 @@ export const startingOffer = expressAsyncHandler(async (req: Request, res: Respo
 });
 
 export const getSessionIdController = expressAsyncHandler(async (req: Request, res: Response) => {
-	console.log(req.session);
 	res.json({ id: req.session.id });
 });
 

@@ -251,6 +251,5 @@ export const getPersonaCreds = async (
 		);
 	}
 
-	console.log(creds);
 	return creds.map((c) => c.cred);
 };

@@ -60,6 +60,8 @@
 		box-sizing: border-box;
 		justify-content: center;
 		text-align: center;
+		flex-direction: column;
+		align-items: center;
 
 		.p {
 			color: var(--black-500);
@@ -104,6 +106,7 @@
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 	import "@tanglelabs/open-id-qr";
 	import { _ } from "svelte-i18n";
+	import { highlight } from "$lib/utils/highlight";
 
 	const ws = createWebsocket();
 	let receivedCreds = false;
@@ -113,7 +116,6 @@
 	function watchQr(qr: string) {
 		if (!qr) return;
 		document.addEventListener("open-id-qr-success", (e) => {
-			console.log("baata baa?	");
 			if (e.detail.type === "vp") receivedCreds = true;
 		});
 	}
@@ -137,10 +139,8 @@
 
 <div class="container">
 	<div class="heading">
-		<Typography variant="heading"
-			>You’re in! Now let’s <Highlight>take a look at the courses</Highlight>available and select
-			the course you wish to study.
-			<!-- {$_("journeys.dominique.select_course")} -->
+		<Typography variant="heading">
+			{@html highlight($_("journeys.dominique.select_course"))}
 		</Typography>
 	</div>
 	<div class="sub-text">
@@ -151,7 +151,7 @@
 			<img src="/imgs/kw1c-white.png" alt="" class="logo" />
 			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"
 				>{receivedCreds
-					? $_("journeys.dominique.kw1c_received_cred").toUpperCase()
+					? $_("journeys.dominique.kw1c_recieved_cred").toUpperCase()
 					: $_("journeys.dominique.kw1c_requesting_cred").toUpperCase()}</Typography>
 			<div class="p">
 				{receivedCreds

@@ -60,6 +60,7 @@
 	import { Typography, Card, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, dominiqueEarnedCourseCred, nodeCount } from "$lib/stores/flows.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 
@@ -75,10 +76,8 @@
 
 <div class="container">
 	<div class="heading">
-		<Typography variant="heading"
-			>Amazing, <Highlight>you’ve successfully enrolled with KW1C</Highlight> and earned your course
-			credential.
-			<!-- {$_("journeys.dominique.successfully_enrolled_and_earned_course_cred")} -->
+		<Typography variant="heading">
+			{@html highlight($_("journeys.dominique.successfully_enrolled_and_earned_course_cred"))}
 		</Typography>
 	</div>
 	<div class="sub-text">

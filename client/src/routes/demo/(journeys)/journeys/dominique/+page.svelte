@@ -50,6 +50,7 @@
 		dominiqueSharedCred,
 		nodeCount
 	} from "$lib/stores/flows.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 
@@ -62,9 +63,7 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading">
-			Hi Dominique. <Highlight>Let’s get you started on your learning journey.</Highlight>Select
-			your experience to get started.
-			<!-- {$_("journeys.dominique.intro")} -->
+			{@html highlight($_("journeys.dominique.intro"))}
 		</Typography>
 	</div>
 	<div class="desc">

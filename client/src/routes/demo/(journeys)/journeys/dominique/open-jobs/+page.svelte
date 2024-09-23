@@ -157,6 +157,8 @@
 		box-sizing: border-box;
 		justify-content: center;
 		text-align: center;
+		flex-direction: column;
+		align-items: center;
 
 		& > * {
 			padding: 20px 0;
@@ -234,8 +236,8 @@
 
 	$: watchQr(qr);
 	import { _ } from "svelte-i18n";
-
-
+	import { highlight } from "$lib/utils/highlight";
+	let receivedCreds: boolean = false;
 
 	onMount(async () => {
 		currNode.set(1);
@@ -252,15 +254,12 @@
 	});
 
 	let showModal = false;
-
 </script>
 
 <div class="container">
 	<div class="heading">
-		<Typography variant="heading"
-			>You’re all <Highlight>logged in to the Open Jobs Network.</Highlight> Now, share your credential
-			with potential employers.
-			<!-- {$_("journeys.dominique.logged_in_to_open_job_network")} -->
+		<Typography variant="heading">
+			{@html highlight($_("journeys.dominique.logged_in_to_open_job_network"))}
 		</Typography>
 	</div>
 	<div class="sub-text">

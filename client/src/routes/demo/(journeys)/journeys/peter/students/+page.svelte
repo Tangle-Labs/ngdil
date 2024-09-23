@@ -170,6 +170,7 @@
 	import { Typography, Kw1c, Button } from "$lib/components";
 	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, peterAssignedBadges, peterAssignedStudent } from "$lib/stores/flows.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 
@@ -181,9 +182,7 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading">
-			Three students are ready to go. <Highlight>Choose the student you want</Highlight> to assign an
-			internship placement for.
-			<!-- {$_("journeys.peter.3_students_ready_choose_1_for_internship")} -->
+			{@html highlight($_("journeys.peter.3_students_ready_choose_1_for_internship"))}
 		</Typography>
 	</div>
 	<div class="sub-text">

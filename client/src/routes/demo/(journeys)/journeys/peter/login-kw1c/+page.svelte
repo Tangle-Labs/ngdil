@@ -52,6 +52,7 @@
 	let animatePhone = false;
 	let qr: string;
 	import { _ } from "svelte-i18n";
+	import { highlight } from "$lib/utils/highlight";
 
 	const loadQr = async function () {
 		const { data } = await apiClient.post("/api/oid4vp", {
@@ -81,10 +82,8 @@
 <Phone variant="kw1cStaff" bind:animatePhone="{animatePhone}" />
 <div class="container">
 	<div class="heading">
-		<Typography variant="heading"
-			>Time to get to work. Let’s use <Highlight>passwordless login</Highlight> to access the KW1C staff
-			portal.
-			<!-- {$_("journeys.peter.use_passwordless_login_to_access_kw1c_staff_portal")} -->
+		<Typography variant="heading">
+			{@html highlight($_("journeys.peter.use_passwordless_login_to_access_kw1c_staff_portal"))}
 		</Typography>
 	</div>
 	<div class="sub-text">

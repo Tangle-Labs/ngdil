@@ -53,7 +53,7 @@
 
 	let qr: string;
 	import { _ } from "svelte-i18n";
-
+	import { highlight } from "$lib/utils/highlight";
 
 	const loadQr = async function () {
 		const { data } = await apiClient.post("/siop", {
@@ -74,10 +74,8 @@
 <Phone bind:animatePhone="{animatePhone}" variant="openJobs" />
 <div class="container">
 	<div class="heading">
-		<Typography variant="heading"
-			>It’s time to spread the word. <Hightlight>Let’s connect to the Open Jobs Network</Hightlight>
-			to share your credential.
-			<!-- {$_("journeys.dominique.lets_conn_to_open_jobs_network")} -->
+		<Typography variant="heading">
+			{@html highlight($_("journeys.dominique.lets_conn_to_open_jobs_network"))}
 		</Typography>
 	</div>
 	<div class="sub-text">

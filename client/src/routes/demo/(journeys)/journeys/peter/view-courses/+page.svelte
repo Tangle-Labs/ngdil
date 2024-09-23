@@ -152,6 +152,7 @@
 		nodeCount,
 		peterChosenStudent
 	} from "$lib/stores/flows.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 	let receivedCreds = false;
@@ -173,9 +174,7 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading">
-			Your <Highlight>students have completed their course.</Highlight> Let’s check their results and
-			issue their badges.
-			{$_("journeys.peter.view_courses_intro")}
+			{@html highlight($_("journeys.peter.view_courses_intro"))}
 		</Typography>
 	</div>
 	<div class="sub-text">

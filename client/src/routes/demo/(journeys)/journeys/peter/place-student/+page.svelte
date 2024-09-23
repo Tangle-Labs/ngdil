@@ -208,6 +208,7 @@
 		peterAssignedCompany,
 		peterAssignedStudent
 	} from "$lib/stores/flows.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 
@@ -279,11 +280,11 @@
 
 	<div class="heading">
 		<Typography variant="heading">
-			{$peterAssignedStudent?.split(" ")[0]} has <Highlight
-				>two relevant internship opportunities.</Highlight> Let’s assign their placement.
-			<!-- {$_("journeys.peter.2_relevent_internship", {
-				values: { PeterAssignedStudent: $peterAssignedStudent?.split(" ")[0] }
-			})} -->
+			{@html highlight(
+				$_("journeys.peter.2_relevent_internship", {
+					values: { PeterAssignedStudent: $peterAssignedStudent?.split(" ")[0] }
+				})
+			)}
 		</Typography>
 	</div>
 	<div class="sub-text">
