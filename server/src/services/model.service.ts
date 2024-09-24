@@ -62,6 +62,7 @@ export class ModelService<T extends Model<InferAttributes<T>, InferCreationAttri
 				throw new Error(`500::Unable to find ${this.context}`);
 			});
 		timer({ operation: `findOne ${this.context}`, success: 1 });
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore
 		return entity;
 	}
@@ -101,6 +102,7 @@ export class ModelService<T extends Model<InferAttributes<T>, InferCreationAttri
 			throw new Error(`500::Unable find ${this.context}`);
 		});
 		timer({ operation: `findById ${this.context}`, success: 1 });
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore
 		return entity;
 	}
@@ -121,16 +123,18 @@ export class ModelService<T extends Model<InferAttributes<T>, InferCreationAttri
 		});
 
 		for (const key of Object.keys(updateParams)) {
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			// @ts-ignore
 			entity[key] = updateParams[key] ?? entity[key];
 		}
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore
 		await entity.save().catch((e) => {
 			timer({ operation: `update ${this.context}`, success: 0 });
 			Logger.error(e);
 			throw new Error(`500::Unable to update ${this.model.getTableName()}`);
 		});
-
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore
 		return entity;
 	}
@@ -148,9 +152,11 @@ export class ModelService<T extends Model<InferAttributes<T>, InferCreationAttri
 			Logger.error(e);
 			throw new Error(`500::Unable to delete ${this.model.getTableName()}`);
 		});
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore
 		entity.destroy();
 		timer({ operation: "delete", success: 1 });
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore
 		return entity;
 	}

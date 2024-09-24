@@ -102,7 +102,7 @@
 		| "future-tech"
 		| "future-tech-disabled" = "primary";
 	export let label: string;
-	export let onClick: (...args: any[]) => void;
+	export let onClick: (...args: unknown[]) => void;
 </script>
 
 <button class="{`button ${variant}`}" on:click="{onClick}">
@@ -111,5 +111,6 @@
 		fontVariant="{['future-tech', 'future-tech-disabled'].includes(variant) ? 'kw1c' : 'main'}"
 		color="{['primary', 'future-tech', 'future-tech-disabled', 'kw1c'].includes(variant)
 			? '--white-300'
-			: ''}">{label}</Typography>
+			: ''}">{label}</Typography
+	>
 </button>

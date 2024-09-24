@@ -197,21 +197,24 @@
 	</div>
 	{#if !loading}
 		<div
-			style="position: fixed; top: -50px; left: 0; height: 100vh; width: 100vw; display: flex; justify-content: center; overflow: hidden; pointer-events: none;">
+			style="position: fixed; top: -50px; left: 0; height: 100vh; width: 100vw; display: flex; justify-content: center; overflow: hidden; pointer-events: none;"
+		>
 			<Confetti
 				x="{[-5, 5]}"
 				y="{[0, 0.1]}"
 				delay="{[500, 5000]}"
 				duration="{2000}"
 				amount="{500}"
-				fallDistance="100vh" />
+				fallDistance="100vh"
+			/>
 		</div>
 	{/if}
 
 	<div class="dash">
 		<Kw1c
 			variant="white"
-			title="{$_('journeys.peter.internationalisation_course_students').toUpperCase()}">
+			title="{$_('journeys.peter.internationalisation_course_students').toUpperCase()}"
+		>
 			<div class="sidebar">
 				{#each Array(5) as i}
 					<div class="menu-item">
@@ -225,12 +228,14 @@
 					<div class="column">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c"
-								>{$_("journeys.peter.student_applicant")}</Typography>
+								>{$_("journeys.peter.student_applicant")}</Typography
+							>
 						</div>
 						{#each $peterChosenStudents as student (student)}
 							<div class="data">
 								<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>{student.toUpperCase()}</Typography>
+									>{student.toUpperCase()}</Typography
+								>
 							</div>
 						{/each}
 					</div>
@@ -238,13 +243,15 @@
 					<div class="column">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c"
-								>{$_("journeys.peter.course_to_study")}</Typography>
+								>{$_("journeys.peter.course_to_study")}</Typography
+							>
 						</div>
 
 						{#each $peterChosenStudents as student (student)}
 							<div class="data">
 								<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-									>{$_("journeys.peter.internatinalisation_course")}</Typography>
+									>{$_("journeys.peter.internatinalisation_course")}</Typography
+								>
 							</div>
 						{/each}
 					</div>
@@ -252,14 +259,16 @@
 					<div class="column action">
 						<div class="header action">
 							<Typography variant="sub-text" fontVariant="kw1c"
-								>{$_("journeys.peter.course_status")}</Typography>
+								>{$_("journeys.peter.course_status")}</Typography
+							>
 						</div>
 
 						{#each $peterChosenStudents as student (student)}
 							<div class="data action">
 								<span style:padding-right="5px">
 									<Typography variant="status" color="{loading ? '--secondary-900' : '--green-900'}"
-										>{loading ? $_("components.pending") : $_("components.accepted")}</Typography>
+										>{loading ? $_("components.pending") : $_("components.accepted")}</Typography
+									>
 								</span>
 								{#if loading}
 									<Loading size="20px" />
@@ -275,7 +284,8 @@
 						variant="kw1c"
 						onClick="{() => {
 							goto('/demo/journeys/peter/enrolled-students');
-						}}" />
+						}}"
+					/>
 				</div>
 			</div>
 		</Kw1c>

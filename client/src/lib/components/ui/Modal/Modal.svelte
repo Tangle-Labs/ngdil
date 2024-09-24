@@ -50,7 +50,8 @@
 	<div
 		class="modal"
 		transition:fly="{{ y: 50, duration: 400 }}"
-		style:border-radius="{`${borderRadius}px`}">
+		style:border-radius="{`${borderRadius}px`}"
+	>
 		<Card withBorder="{withBorder}" withoutPadding="{withoutPadding}" borderRadius="{borderRadius}">
 			<slot />
 		</Card>

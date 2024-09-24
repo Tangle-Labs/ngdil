@@ -1,5 +1,5 @@
 import { PUBLIC_BASE_URI } from "@/config";
-import { SessionsService, UsersService } from "@/services";
+import { SessionsService } from "@/services";
 import { createJsonWebToken, validateJsonWebToken } from "@/utils";
 import { NextFunction, Request, Response } from "express";
 import asyncHandler from "express-async-handler";
@@ -36,9 +36,10 @@ export const userDeserializer = asyncHandler(
 		const { payload: refresh } = refreshToken
 			? validateJsonWebToken(refreshToken)
 			: newRefreshToken
-			? validateJsonWebToken(newRefreshToken)
-			: { payload: null };
+				? validateJsonWebToken(newRefreshToken)
+				: { payload: null };
 		if (!refresh) return next();
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore
 		const session = await SessionsService.findOne({ id: refresh.sessionId });
 

@@ -58,7 +58,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Button } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, dominiqueSharedCred } from "$lib/stores/flows.store";
 	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
@@ -90,17 +89,20 @@
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
 						<Typography variant="list"
-							>{$_("journeys.dominique.passwordless_sign_on_to_social_network")}</Typography>
+							>{$_("journeys.dominique.passwordless_sign_on_to_social_network")}</Typography
+						>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
 						<Typography variant="list"
-							>{$_("journeys.dominique.shared_cred_with_employers")}</Typography>
+							>{$_("journeys.dominique.shared_cred_with_employers")}</Typography
+						>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
 						<Typography variant="list"
-							>{$_("journeys.dominique.received_job_invitation")}</Typography>
+							>{$_("journeys.dominique.received_job_invitation")}</Typography
+						>
 					</div>
 					<div class="p">
 						<Typography>
@@ -110,7 +112,8 @@
 					<Button
 						variant="secondary"
 						label="{$_('components.continue')}"
-						onClick="{handleFinishShare}" />
+						onClick="{handleFinishShare}"
+					/>
 				</div>
 				<div class="img">
 					<img src="/imgs/dominique-2.svg" alt="" />

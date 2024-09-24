@@ -38,12 +38,9 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, Kw1c, Card, Hightlight, Phone } from "$lib/components";
+	import { Typography, Kw1c, Card, Phone } from "$lib/components";
 	import { currNode, eventUri, nodeCount } from "$lib/stores/flows.store";
-	import { onMount } from "svelte";
-	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { apiClient } from "$lib/utils/axios.utils";
-	import { createWebsocket } from "$lib/utils/ws.util";
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 	import "@tanglelabs/open-id-qr";
 
@@ -75,8 +72,6 @@
 	$: watchQr(qr);
 	currNode.set(0);
 	nodeCount.set(5);
-
-	onMount(() => {});
 </script>
 
 <div class="container">
@@ -98,7 +93,8 @@
 							<img src="/imgs/kw1c-crowns.png" alt="" class="crowns" />
 							<div class="heading-text">
 								<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>{$_("journeys.dominique.login_to_kw1c").toUpperCase()}</Typography>
+									>{$_("journeys.dominique.login_to_kw1c").toUpperCase()}</Typography
+								>
 							</div>
 						</div>
 						{#if qr}
@@ -111,7 +107,8 @@
 						{/if}
 						<div class="desc">
 							<Typography variant="kw1c-sub-text"
-								>{$_("journeys.dominique.scan_to_access_kw1c")}</Typography>
+								>{$_("journeys.dominique.scan_to_access_kw1c")}</Typography
+							>
 						</div>
 					</div>
 				</Card>

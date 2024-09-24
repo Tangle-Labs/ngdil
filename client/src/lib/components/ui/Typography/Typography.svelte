@@ -77,4 +77,5 @@
 
 <span
 	class="{`typography ${variant} ${fontVariant}-font`}"
-	style="{color && `color: var(${color});`}"><slot /></span>
+	style="{color && `color: var(${color});`}"><slot /></span
+>

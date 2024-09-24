@@ -49,7 +49,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Button, Loading, CredModal } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { highlight } from "$lib/utils/highlight";
 	import { credentials } from "$lib/stores/creds";
 	import { currNode, imaniChosenApplicant } from "$lib/stores/flows.store";
@@ -95,35 +94,40 @@
 				? $_("journeys.imani.hire_candidate_btn_desc")
 				: $_("journeys.imani.verify_cv_btn_desc", {
 						values: { ChosenApplicant: $imaniChosenApplicant?.split(" ")[0] }
-				  })}</Typography>
+				  })}</Typography
+		>
 	</div>
 	<div class="dash">
 		<FutureTech header="{$_('journeys.imani.3d_engineer_job_applicant').toUpperCase()}">
 			<div class="header">
 				<div class="name">
 					<Typography variant="card-header" color="--future-tech-green" fontVariant="kw1c"
-						>{$imaniChosenApplicant + " " + $_("journeys.imani.digital_cv")}</Typography>
+						>{$imaniChosenApplicant + " " + $_("journeys.imani.digital_cv")}</Typography
+					>
 				</div>
 
 				{#if currStatus === "init"}
 					<Button
 						label="{$_('journeys.imani.verify_cv_btn')}"
 						variant="future-tech"
-						onClick="{handleVerify}" />
+						onClick="{handleVerify}"
+					/>
 				{:else if currStatus === "loading"}
 					<Button
 						label="{$_('journeys.imani.verifying_btn')}"
 						variant="future-tech-disabled"
 						onClick="{() => {
 							null;
-						}}" />
+						}}"
+					/>
 				{:else}
 					<Button
 						label="{$_('journeys.imani.hire_applicant_btn')}"
 						variant="future-tech"
 						onClick="{() => {
 							goto('/demo/journeys/imani/issue-id');
-						}}" />
+						}}"
+					/>
 				{/if}
 			</div>
 
@@ -156,7 +160,8 @@
 								issuer="{$_('issuer.the_govt')}"
 								name="{$_('creds.national_id')}"
 								credential="{{ ...credentials.nationalId, 'Full Name': $imaniChosenApplicant }}"
-								logo="/imgs/gov.svg" />
+								logo="/imgs/gov.svg"
+							/>
 						</div>
 					{/if}
 				</div>
@@ -193,7 +198,8 @@
 								credential="{{
 									...credentials.personalStatement,
 									'Full Name': $imaniChosenApplicant
-								}}" />
+								}}"
+							/>
 						</div>
 					{/if}
 				</div>
@@ -212,7 +218,8 @@
 						<div class="meta">
 							<div class="cred">
 								<Typography variant="list"
-									>{$_("journeys.imani.future_engineer_diploma")}</Typography>
+									>{$_("journeys.imani.future_engineer_diploma")}</Typography
+								>
 							</div>
 							<div class="issuer">
 								<Typography variant="sub-text">
@@ -232,7 +239,8 @@
 								credential="{{
 									...credentials.courseCred,
 									'Student Name': $imaniChosenApplicant
-								}}" />
+								}}"
+							/>
 						</div>
 					{/if}
 				</div>
@@ -250,8 +258,8 @@
 						</div>
 						<div class="meta">
 							<div class="cred">
-								<Typography variant="list"
-									>{$_("journeys.imani.internship_certificate")}</Typography>
+								<Typography variant="list">{$_("journeys.imani.internship_certificate")}</Typography
+								>
 							</div>
 							<div class="issuer">
 								<Typography variant="sub-text">
@@ -273,7 +281,8 @@
 									'Intern Name': $imaniChosenApplicant,
 									Issuer: $_('issuer.irish_future_print_co'),
 									Country: $_('journeys.imani.ireland')
-								}}" />
+								}}"
+							/>
 						</div>
 					{/if}
 				</div>
@@ -311,7 +320,8 @@
 								credential="{{
 									...credentials.volunteerBadge,
 									'Holder Name': $_('applicants.Gilian_OLeary')
-								}}" />
+								}}"
+							/>
 						</div>
 					{/if}
 				</div>

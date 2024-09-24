@@ -31,12 +31,10 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, OpenJobsNetwork, Phone, Card, Hightlight } from "$lib/components";
-	import { currNode, eventUri, nodeCount } from "$lib/stores/flows.store";
+	import { Typography, OpenJobsNetwork, Phone, Card } from "$lib/components";
+	import { currNode, eventUri } from "$lib/stores/flows.store";
 	import { apiClient } from "$lib/utils/axios.utils";
-	import { createWebsocket } from "$lib/utils/ws.util";
 	import { onMount } from "svelte";
-	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 	import "@tanglelabs/open-id-qr";
 
@@ -94,11 +92,13 @@
 						{/if}
 						<div class="heading">
 							<Typography variant="card-header" color="--bbc-blue"
-								>{$_("journeys.dominique.login_to_open_jobs_network")}</Typography>
+								>{$_("journeys.dominique.login_to_open_jobs_network")}</Typography
+							>
 						</div>
 						<div class="desc">
 							<Typography variant="sub-text"
-								>{$_("journeys.dominique.scan_qr_to_login_to_open_jobs_network")}</Typography>
+								>{$_("journeys.dominique.scan_qr_to_login_to_open_jobs_network")}</Typography
+							>
 						</div>
 					</div>
 				</Card>

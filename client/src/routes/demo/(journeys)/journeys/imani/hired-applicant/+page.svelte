@@ -86,7 +86,8 @@
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
 						<Typography variant="list"
-							>{$_("journeys.imani.securely_logged_in_dashboard")}</Typography>
+							>{$_("journeys.imani.securely_logged_in_dashboard")}</Typography
+						>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
@@ -99,7 +100,8 @@
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
 						<Typography variant="list"
-							>{$_("journeys.imani.privately_issued_emp_id_cred")}</Typography>
+							>{$_("journeys.imani.privately_issued_emp_id_cred")}</Typography
+						>
 					</div>
 					<div class="p">
 						<Typography>
@@ -111,7 +113,8 @@
 					<Button
 						variant="secondary"
 						label="{$_('components.continue')}"
-						onClick="{handleFinishCourse}" />
+						onClick="{handleFinishCourse}"
+					/>
 				</div>
 				<div class="img">
 					<img src="/imgs/imani-1.svg" alt="" />

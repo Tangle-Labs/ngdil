@@ -78,7 +78,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Button, Loading } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, imaniBadgeName, imaniIssuedStaff } from "$lib/stores/flows.store";
 	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
@@ -98,14 +97,16 @@
 
 {#if !pending}
 	<div
-		style="position: fixed; top: -50px; left: 0; height: 100vh; width: 100vw; display: flex; justify-content: center; overflow: hidden; pointer-events: none;">
+		style="position: fixed; top: -50px; left: 0; height: 100vh; width: 100vw; display: flex; justify-content: center; overflow: hidden; pointer-events: none;"
+	>
 		<Confetti
 			x="{[-5, 5]}"
 			y="{[0, 0.1]}"
 			delay="{[500, 5000]}"
 			duration="{2000}"
 			amount="{500}"
-			fallDistance="100vh" />
+			fallDistance="100vh"
+		/>
 	</div>
 {/if}
 
@@ -124,7 +125,8 @@
 		<FutureTech
 			header="{$imaniBadgeName.toUpperCase() +
 				' ' +
-				$_('journeys.imani.badge_holders').toUpperCase()}">
+				$_('journeys.imani.badge_holders').toUpperCase()}"
+		>
 			<table class="table">
 				<tr>
 					<th><Typography variant="sub-text">{$_("journeys.imani.emp_name")}</Typography></th>
@@ -145,7 +147,8 @@
 									<Loading size="1rem" />
 									<div class="text">
 										<Typography variant="status" color="--secondary-900"
-											>{$_("components.pending")}</Typography>
+											>{$_("components.pending")}</Typography
+										>
 									</div>
 								</div>
 							{:else}
@@ -160,7 +163,8 @@
 				<Button
 					variant="{pending ? 'future-tech-disabled' : 'future-tech'}"
 					label="{$_('components.continue')}"
-					onClick="{() => goto('/demo/journeys/imani/issued-badge')}" />
+					onClick="{() => goto('/demo/journeys/imani/issued-badge')}"
+				/>
 			</div>
 		</FutureTech>
 	</div>

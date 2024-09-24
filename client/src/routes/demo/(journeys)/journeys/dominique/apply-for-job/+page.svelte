@@ -33,11 +33,8 @@
 	import "@tanglelabs/open-id-qr";
 	import { goto } from "$app/navigation";
 	import { Phone, Typography, BigBusinessCorp, Card } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 	import { apiClient } from "$lib/utils/axios.utils";
-	import { createWebsocket } from "$lib/utils/ws.util";
-	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { eventUri } from "$lib/stores/flows.store";
 
 	let qr: string;
@@ -62,14 +59,7 @@
 		});
 		qr = data.uri;
 	};
-	const ws = createWebsocket();
 	let animatePhone = false;
-
-	ws.onmessage = (event) => {
-		const data = JSON.parse(event.data);
-		if (data.login) {
-		}
-	};
 
 	loadQr();
 </script>

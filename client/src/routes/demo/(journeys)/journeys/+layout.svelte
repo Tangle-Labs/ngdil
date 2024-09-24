@@ -72,16 +72,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Avatar, Button, ProgressBar, Typography } from "$lib/components";
-	import {
-		JourneyInfo,
-		completedJourneys,
-		currNode,
-		currentJourney,
-		nodeCount,
-		previousPath
-	} from "$lib/stores/flows.store";
-	import { apiClient } from "$lib/utils/axios.utils";
-	import { onMount } from "svelte";
+	import { JourneyInfo, currNode, currentJourney, nodeCount } from "$lib/stores/flows.store";
 	import { _ } from "svelte-i18n";
 
 	let expanded = false;
@@ -100,7 +91,8 @@
 			<Avatar
 				variant="small"
 				onClick="{() => (expanded = true)}"
-				image="{`/imgs/${$currentJourney}.png`}" />
+				image="{`/imgs/${$currentJourney}.png`}"
+			/>
 			{#if expanded}
 				<div class="dropdown">
 					<div class="Name">
@@ -116,7 +108,8 @@
 					<Button
 						variant="white"
 						onClick="{() => goto('/demo/choose-journey')}"
-						label="{$_('components.change')}" />
+						label="{$_('components.change')}"
+					/>
 				</div>
 			{/if}
 		</div>
@@ -125,7 +118,8 @@
 				window.open('https://ngdil.com/contact', '_blank');
 			}}"
 			label="{$_('components.contact_us')}"
-			variant="white" />
+			variant="white"
+		/>
 	</div>
 </div>
 
@@ -141,7 +135,8 @@
 			class="back"
 			on:click="{() => {
 				history.back();
-			}}">
+			}}"
+		>
 			<img src="/imgs/back.svg" alt="" class="icon" />
 			<Typography variant="button" color="--black-300">{$_("components.back")}</Typography>
 		</div>
