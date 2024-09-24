@@ -8,3 +8,4 @@ export { default as ProgressBar } from "./ProgressBar/ProgressBar.svelte";
 export { default as Radio } from "./Radio/Radio.svelte";
 export { default as TextInput } from "./TextInput/TextInput.svelte";
 export { default as Typography } from "./Typography/Typography.svelte";
+export { default as LangSwitchBtn } from "./LanguageSwitchBtn/LangSwitchBtn.svelte";

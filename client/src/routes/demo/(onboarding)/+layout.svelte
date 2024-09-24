@@ -5,7 +5,7 @@
 		padding: 0;
 		margin: 0;
 		box-sizing: border-box;
-		padding: 15vh 22.5vw;
+		padding: 10vh 22.5vw;
 
 		@media screen and (max-width: 1200px) {
 			padding: 15vh 15vw;
@@ -61,6 +61,7 @@
 
 <script>
 	import { ProgressBar, Typography } from "$lib/components";
+	import LangSwitchBtn from "$lib/components/ui/LanguageSwitchBtn/LangSwitchBtn.svelte";
 	import { completedJourneys } from "$lib/stores/flows.store";
 	import { currStep } from "$lib/stores/onboarding.store";
 	import { apiClient } from "$lib/utils/axios.utils";
@@ -69,6 +70,7 @@
 	apiClient.get("/");
 </script>
 
+<LangSwitchBtn />
 <div class="background">
 	<div class="container">
 		<img src="/imgs/ngdil.svg" class="logo" alt="" />

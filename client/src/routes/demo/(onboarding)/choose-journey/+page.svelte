@@ -100,16 +100,14 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Loading, Card, Avatar, Button, Modal } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
-	import { completedJourneys, currentJourney, sessionId, eventUri } from "$lib/stores/flows.store";
+	import { completedJourneys, currentJourney, eventUri } from "$lib/stores/flows.store";
 	import { currStep } from "$lib/stores/onboarding.store";
 	import { apiClient } from "$lib/utils/axios.utils";
 	import { onMount } from "svelte";
 	import "@tanglelabs/open-id-qr";
-	let qr: string;
-
 	import { _ } from "svelte-i18n";
 	import { highlight } from "$lib/utils/highlight";
+	let qr: string;
 
 	const journeys = {
 		dominique: {
