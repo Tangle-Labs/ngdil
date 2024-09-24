@@ -174,52 +174,62 @@
 					<div class="column">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c"
-								>{$_("journeys.peter.student_applicant")}</Typography>
+								>{$_("journeys.peter.student_applicant")}</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>{$_("applicants.Sarah_Jones").toUpperCase()}</Typography>
+								>{$_("applicants.Sarah_Jones").toUpperCase()}</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>{$_("applicants.Ivar_Leifsson").toUpperCase()}</Typography>
+								>{$_("applicants.Ivar_Leifsson").toUpperCase()}</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>{$_("applicants.Lagertha_Bonde").toUpperCase()}</Typography>
+								>{$_("applicants.Lagertha_Bonde").toUpperCase()}</Typography
+							>
 						</div>
 					</div>
 
 					<div class="column">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c"
-								>{$_("journeys.peter.internship_placement")}</Typography>
+								>{$_("journeys.peter.internship_placement")}</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>{$peterAssignedCompany}</Typography>
+								>{$peterAssignedCompany}</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>{$peterAssignedCompany}</Typography>
+								>{$peterAssignedCompany}</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>{$peterAssignedCompany}</Typography>
+								>{$peterAssignedCompany}</Typography
+							>
 						</div>
 					</div>
 
 					<div class="column">
 						<div class="header action">
 							<Typography variant="sub-text" fontVariant="kw1c"
-								>{$_("journeys.peter.action")}</Typography>
+								>{$_("journeys.peter.action")}</Typography
+							>
 						</div>
 						<div class="button-container">
 							<button
 								class="{`button ${$peterAssignedStudent !== 'Sarah Jones' && 'disabled'}`}"
 								on:click="{() => {
 									goto('/demo/journeys/peter/verify-internship');
-								}}">{$_("journeys.peter.verify_completion").toUpperCase()}</button>
+								}}">{$_("journeys.peter.verify_completion").toUpperCase()}</button
+							>
 						</div>
 
 						<div class="button-container">
@@ -227,14 +237,16 @@
 								class="{`button ${$peterAssignedStudent !== 'Ivar Leifsson' && 'disabled'}`}"
 								on:click="{() => {
 									goto('/demo/journeys/peter/verify-internship');
-								}}">{$_("journeys.peter.verify_completion").toUpperCase()}</button>
+								}}">{$_("journeys.peter.verify_completion").toUpperCase()}</button
+							>
 						</div>
 						<div class="button-container">
 							<button
 								class="{`button ${$peterAssignedStudent !== 'Lagertha Bonde' && 'disabled'}`}"
 								on:click="{() => {
 									goto('/demo/journeys/peter/verify-internship');
-								}}">{$_("journeys.peter.verify_completion").toUpperCase()}</button>
+								}}">{$_("journeys.peter.verify_completion").toUpperCase()}</button
+							>
 						</div>
 					</div>
 				</div>

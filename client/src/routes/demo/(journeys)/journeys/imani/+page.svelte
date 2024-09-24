@@ -42,7 +42,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Avatar, Button } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { highlight } from "$lib/utils/highlight";
 	import {
 		currNode,
@@ -66,7 +65,8 @@
 				{@html highlight($_("journeys.imani.imani_hired_emp_intro"))}
 			{:else}
 				{@html highlight($_("journeys.imani.imani_yet_to_hire_emp_intro"))}
-			{/if}</Typography>
+			{/if}</Typography
+		>
 	</div>
 	<div class="desc">
 		<Typography variant="button">
@@ -84,7 +84,8 @@
 					<div class="text">
 						<div class="heading">
 							<Typography variant="card-header"
-								>{$_("journeys.imani.hiring_emp_with_digital_cv")}</Typography>
+								>{$_("journeys.imani.hiring_emp_with_digital_cv")}</Typography
+							>
 						</div>
 						<div class="desc">
 							<Typography>
@@ -97,7 +98,8 @@
 						onClick="{() => {
 							goto('/demo/journeys/imani/login');
 						}}"
-						label="{$imaniHiredEmployee ? $_('components.retry') : $_('components.get_started')}" />
+						label="{$imaniHiredEmployee ? $_('components.retry') : $_('components.get_started')}"
+					/>
 				</div>
 			</Card>
 		</div>
@@ -109,7 +111,8 @@
 					<div class="text">
 						<div class="heading">
 							<Typography variant="card-header"
-								>{$_("journeys.imani.create_and_issue_company_skill_badge")}</Typography>
+								>{$_("journeys.imani.create_and_issue_company_skill_badge")}</Typography
+							>
 						</div>
 						<div class="desc">
 							<Typography>
@@ -126,7 +129,8 @@
 						onClick="{() => {
 							goto('/demo/journeys/imani/company-badges');
 						}}"
-						label="{$imaniIssuedBadge ? $_('components.retry') : $_('components.get_started')}" />
+						label="{$imaniIssuedBadge ? $_('components.retry') : $_('components.get_started')}"
+					/>
 				</div>
 			</Card>
 		</div>
@@ -135,7 +139,8 @@
 				<Button
 					variant="secondary"
 					onClick="{() => goto('/demo/choose-journey')}"
-					label="{$_('components.try_another_journey')}" />
+					label="{$_('components.try_another_journey')}"
+				/>
 			</div>
 		{/if}
 	</div>

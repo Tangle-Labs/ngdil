@@ -211,7 +211,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, OpenJobsNetwork, Avatar, Modal, Loading } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
 		currNode,
 		dominiqueSelectedCourse,
@@ -219,9 +218,7 @@
 		eventUri
 	} from "$lib/stores/flows.store";
 	import { apiClient } from "$lib/utils/axios.utils";
-	import { createWebsocket } from "$lib/utils/ws.util";
 	import { onMount } from "svelte";
-	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 
 	import "@tanglelabs/open-id-qr";
@@ -237,7 +234,7 @@
 	$: watchQr(qr);
 	import { _ } from "svelte-i18n";
 	import { highlight } from "$lib/utils/highlight";
-	let receivedCreds: boolean = false;
+	let receivedCreds = false;
 
 	onMount(async () => {
 		currNode.set(1);
@@ -273,7 +270,8 @@
 			<Typography variant="card-header" color="--bbc-blue"
 				>{receivedCreds
 					? $_("journeys.dominique.open_job_network_received_confirmation")
-					: $_("journeys.dominique.allow_open_job_network_to_share_cred")}</Typography>
+					: $_("journeys.dominique.allow_open_job_network_to_share_cred")}</Typography
+			>
 			<div class="p">
 				{receivedCreds
 					? $_("journeys.dominique.continue_further_in_browser")
@@ -282,7 +280,8 @@
 			{#if receivedCreds}
 				<img class="checked" src="/imgs/open-jobs-check.png" alt="" />
 				<button class="button" on:click="{() => goto('/demo/journeys/dominique/new-message')}"
-					>{$_("components.continue")}</button>
+					>{$_("components.continue")}</button
+				>
 			{:else if qr}
 				<open-id-qr request-uri="{qr}" event-stream-uri="{$eventUri}" size="{240}"></open-id-qr>
 				<div class="loading">
@@ -293,7 +292,8 @@
 				<Typography variant="sub-text"
 					>{receivedCreds
 						? $_("journeys.dominique.click_to_proceed")
-						: $_("journeys.dominique.waiting_for_creds")}</Typography>
+						: $_("journeys.dominique.waiting_for_creds")}</Typography
+				>
 			</div>
 		</div>
 	</Modal>
@@ -346,18 +346,21 @@
 					<img src="/imgs/kw1c-white.png" alt="" class="logo" />
 					<div class="credential">
 						<Typography variant="card-header"
-							>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography>
+							>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography
+						>
 					</div>
 					<div class="issued-by">
 						<Typography variant="sub-text"
 							>{$_("components.issued_by", { values: { IssuerName: "" } })}<br />
-							{$_("issuer.koning_willem_i_college")}</Typography>
+							{$_("issuer.koning_willem_i_college")}</Typography
+						>
 					</div>
 					<button
 						class="button"
 						on:click="{() => {
 							showModal = true;
-						}}">{$_("journeys.dominique.share_cred_btn")}</button>
+						}}">{$_("journeys.dominique.share_cred_btn")}</button
+					>
 				</div>
 			</div>
 		</OpenJobsNetwork>

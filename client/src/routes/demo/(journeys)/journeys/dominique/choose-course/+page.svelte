@@ -92,7 +92,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Modal, Loading, Button } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
 		currNode,
 		dominiqueSelectedCourse,
@@ -100,15 +99,12 @@
 		eventUri
 	} from "$lib/stores/flows.store";
 	import { apiClient } from "$lib/utils/axios.utils";
-	import Qr from "$lib/components/project/Qr/Qr.svelte";
 	import { onMount } from "svelte";
-	import { createWebsocket } from "$lib/utils/ws.util";
 	import { PUBLIC_CLIENT_URI } from "$env/static/public";
 	import "@tanglelabs/open-id-qr";
 	import { _ } from "svelte-i18n";
 	import { highlight } from "$lib/utils/highlight";
 
-	const ws = createWebsocket();
 	let receivedCreds = false;
 	let qr: string;
 	let showModal = false;
@@ -152,7 +148,8 @@
 			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"
 				>{receivedCreds
 					? $_("journeys.dominique.kw1c_recieved_cred").toUpperCase()
-					: $_("journeys.dominique.kw1c_requesting_cred").toUpperCase()}</Typography>
+					: $_("journeys.dominique.kw1c_requesting_cred").toUpperCase()}</Typography
+			>
 			<div class="p">
 				{receivedCreds
 					? $_("journeys.dominique.continue_further_in_browser")
@@ -171,7 +168,8 @@
 					onClick="{() => {
 						currNode.set(2);
 						goto('/demo/journeys/dominique/study');
-					}}" />
+					}}"
+				/>
 			{:else}
 				<Loading img="/imgs/blue-loading.png" />
 			{/if}
@@ -179,7 +177,8 @@
 				<Typography variant="sub-text"
 					>{receivedCreds
 						? $_("journeys.dominique.click_to_proceed")
-						: $_("journeys.dominique.waiting_for_creds")}</Typography>
+						: $_("journeys.dominique.waiting_for_creds")}</Typography
+				>
 			</div>
 		</div>
 	</Modal>
@@ -192,11 +191,13 @@
 							<img src="{course.img}" alt="" />
 							<div class="subtext">
 								<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-									>{course.category.toUpperCase()}</Typography>
+									>{course.category.toUpperCase()}</Typography
+								>
 							</div>
 							<div class="title">
 								<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>{course.name.toUpperCase()}</Typography>
+									>{course.name.toUpperCase()}</Typography
+								>
 							</div>
 
 							<div class="requirements">
@@ -214,7 +215,8 @@
 										dominiqueSelectedCourse.set(i);
 									}}"
 									variant="kw1c"
-									label="{$_('components.enroll_now').toUpperCase()}" />
+									label="{$_('components.enroll_now').toUpperCase()}"
+								/>
 							</div>
 						</div>
 					{/each}

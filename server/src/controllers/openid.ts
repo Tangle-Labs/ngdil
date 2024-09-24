@@ -1,9 +1,7 @@
 import { issuer, issuers, rp } from "@/services/oid4vc";
-import { Request, Response, response } from "express";
+import { Request, Response } from "express";
 import expressAsyncHandler from "express-async-handler";
-// @ts-ignore
 import { CredOfferService, SessionsService, SiopOfferService } from "@/services";
-import { wsServer } from "@/server";
 import { ServiceFactory } from "@/services/servicefactory";
 import { IdentityService } from "@/services/identity.service";
 import { nanoid } from "nanoid";
@@ -52,8 +50,8 @@ export const startingOffer = expressAsyncHandler(async (req: Request, res: Respo
 	const persona = req.body.credentials.includes("School Course Certificate")
 		? "dominique"
 		: req.body.credentials.includes("Staff ID")
-		? "peter"
-		: "imani";
+			? "peter"
+			: "imani";
 
 	req.session.credentialDef = persona;
 	await req.session.save();
@@ -78,6 +76,7 @@ export const getSessionIdController = expressAsyncHandler(async (req: Request, r
 export const singleOffer = expressAsyncHandler(async (req: Request, res: Response) => {
 	const { credential, issuer } = req.body;
 
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	// @ts-ignore
 	const credDef = credentialDefs[credential];
 	const id = nanoid();
@@ -108,6 +107,7 @@ export const credentialEndpoint = expressAsyncHandler(async (req: Request, res: 
 
 	const identityService = ServiceFactory.get<IdentityService>("identity");
 	const session = await SessionsService.findById(payload.sessionId);
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	// @ts-ignore
 	const credDef = credentialDefs[session.credentialDef];
 	if (!credDef) throw new Error("definition not found");
@@ -149,7 +149,6 @@ export const batchCredentialEndpoint = expressAsyncHandler(async (req: Request, 
 	});
 
 	emitter.emit("oid-event", { type: "vc", status: "success", state: payload.sessionId });
-	// wsServer.broadcast(payload.sessionId, { creds: true });
 	res.json(response);
 });
 
@@ -175,6 +174,7 @@ export const vpRequest = expressAsyncHandler(async (req: Request, res: Response)
 		requestBy: "reference",
 		requestUri: new URL(`/api/offers/siop/${id}`, PUBLIC_BASE_URI).toString(),
 		responseType: "vp_token",
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore
 		presentationDefinition: presentationDefinitions[presentationStage],
 		state: `${presentationStage}::${req.session.id}`,
@@ -188,6 +188,7 @@ export const vpRequest = expressAsyncHandler(async (req: Request, res: Response)
 export const auth = expressAsyncHandler(async (req: Request, res: Response) => {
 	const { state, vp_token, id_token } = req.body;
 	if (vp_token) {
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore
 		await rp.verifyAuthResponse(req.body, presentationDefinitions[state.split("::")[0]]);
 		console.log("oid4vp: verified");
@@ -197,7 +198,7 @@ export const auth = expressAsyncHandler(async (req: Request, res: Response) => {
 	} else if (id_token) {
 		await rp.verifyAuthResponse(req.body);
 		const { iss } = await rp.validateJwt(id_token);
-
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore
 		await SessionsService.findByIdAndUpdate(state, {
 			isValid: true,

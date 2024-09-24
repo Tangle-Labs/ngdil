@@ -218,7 +218,8 @@
 		<Typography
 			>{receivedCreds
 				? $_("journeys.peter.view_application_not_enrolled_sub_text")
-				: $_("journeys.peter.view_applications_enrolled_sub_text")}</Typography>
+				: $_("journeys.peter.view_applications_enrolled_sub_text")}</Typography
+		>
 	</div>
 
 	<div class="dash">
@@ -236,18 +237,21 @@
 					<div class="student">
 						<div class="name">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>{$peterChosenStudent?.toLocaleUpperCase()}</Typography>
+								>{$peterChosenStudent?.toLocaleUpperCase()}</Typography
+							>
 						</div>
 						<div class="course">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>{$_("journeys.peter.3d_print_design")}</Typography>
+								>{$_("journeys.peter.3d_print_design")}</Typography
+							>
 						</div>
 					</div>
 					<div class="button-container">
 						{#if receivedCreds}
 							<button
 								class="{`button ${loading && 'loading'}`}"
-								on:click="{() => goto('/demo/journeys/peter/enrol-students')}">
+								on:click="{() => goto('/demo/journeys/peter/enrol-students')}"
+							>
 								{$_("journeys.peter.enrol_student").toUpperCase()}
 							</button>
 						{:else}
@@ -274,7 +278,8 @@
 									<img
 										src="{`/imgs/${i !== 3 ? 'verified' : 'missing'}.png`}"
 										alt=""
-										class="circle" />
+										class="circle"
+									/>
 								{/if}
 							</div>
 						{/each}
@@ -282,23 +287,28 @@
 					<div class="column type">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c"
-								>{$_("journeys.peter.cred_type")}</Typography>
+								>{$_("journeys.peter.cred_type")}</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c"
-								>{$_("creds.national_id").toUpperCase()}</Typography>
+								>{$_("creds.national_id").toUpperCase()}</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c"
-								>{$_("creds.college_id").toUpperCase()}</Typography>
+								>{$_("creds.college_id").toUpperCase()}</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c"
-								>{$_("creds.college_badge").toUpperCase()}</Typography>
+								>{$_("creds.college_badge").toUpperCase()}</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c"
-								>{$_("creds.internatinalisation_badge").toUpperCase()}</Typography>
+								>{$_("creds.internatinalisation_badge").toUpperCase()}</Typography
+							>
 						</div>
 					</div>
 
@@ -311,22 +321,26 @@
 						</div>
 						<div class="data">
 							<Typography variant="list" fontVariant="kw1c"
-								>{$_("issuer.koning_willem_i_college")}</Typography>
+								>{$_("issuer.koning_willem_i_college")}</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="list" fontVariant="kw1c"
-								>{$_("issuer.koning_willem_i_college")}</Typography>
+								>{$_("issuer.koning_willem_i_college")}</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="list" fontVariant="kw1c"
-								>{$_("issuer.koning_willem_i_college")}</Typography>
+								>{$_("issuer.koning_willem_i_college")}</Typography
+							>
 						</div>
 					</div>
 
 					<div class="column">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c"
-								>{$_("components.status")}</Typography>
+								>{$_("components.status")}</Typography
+							>
 						</div>
 						{#if receivedCreds}
 							<div class="data">
@@ -383,7 +397,8 @@
 									name="{$_('creds.national_id')}"
 									issuer="{$_('issuer.the_govt')}"
 									credential="{{ ...credentials.nationalId, 'Full Name': $peterChosenStudent }}"
-									logo="/imgs/gov.svg" />
+									logo="/imgs/gov.svg"
+								/>
 							</div>
 							<div class="data">
 								<CredModal
@@ -393,7 +408,8 @@
 										...credentials.collegeId,
 										'Student Name': $peterChosenStudent
 									}}"
-									logo="/imgs/kw1c-white.png" />
+									logo="/imgs/kw1c-white.png"
+								/>
 							</div>
 							<div class="data">
 								<CredModal
@@ -403,7 +419,8 @@
 									credential="{{
 										...credentials.courseCred,
 										'Student Name': $peterChosenStudent
-									}}" />
+									}}"
+								/>
 							</div>
 							<div class="data"></div>
 						{/if}

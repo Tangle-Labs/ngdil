@@ -12,7 +12,10 @@
     "prepare": "husky install",
     "dev:server": "pnpm -F=server dev",
     "dev:client": "pnpm -F=client dev --host",
-    "storybook": "yarn workspace client storybook"
+    "storybook": "yarn workspace client storybook",
+    "format": "pnpm -F=* format",
+    "format-check": "pnpm -F=* format-check",
+    "lint": "pnpm -F=* lint"
   },
   "devDependencies": {
     "husky": "^8.0.2"

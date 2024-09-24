@@ -73,7 +73,8 @@
 		<div class="logo">
 			<img src="/imgs/openjobs.png" alt="" />
 			<Typography variant="card-header" color="--bbc-blue"
-				>{$_("components.open_jobs_network")}</Typography>
+				>{$_("components.open_jobs_network")}</Typography
+			>
 		</div>
 		<div class="tabs">
 			<div class="tab">

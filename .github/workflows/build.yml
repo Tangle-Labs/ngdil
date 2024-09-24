@@ -1,0 +1,34 @@
+name: "Build Check"
+
+on:
+  pull_request:
+  push:
+    branches:
+      - "dev"
+      - "main"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20.x
+
+      - name: Install Dependencies
+        run: |
+          echo "installing pnpm"
+          npm install -g pnpm
+          echo "installing deps for packages"
+          pnpm i
+
+      - name: Server Build
+        run: pnpm --filter=server build
+
+      - name: Client Build
+        run: |
+          cp ./.env.sample ./.env
+          pnpm --filter=client build

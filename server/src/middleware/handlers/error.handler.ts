@@ -5,12 +5,7 @@ function extractNumbers(s: string) {
 	return s.replace(/^\D+/g, "");
 }
 
-export const ExpressErrorHandler = (
-	err: Error,
-	req: Request,
-	res: Response,
-	next: NextFunction
-) => {
+export const ExpressErrorHandler = (err: Error, req: Request, res: Response) => {
 	const statusCode = err.message && err.message.split("::")[0];
 	// if status code starts with 2xx convert it to a fucking status 500
 	Logger.error(err);

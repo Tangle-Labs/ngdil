@@ -178,7 +178,8 @@
 				<div class="card-area">
 					<div class="heading">
 						<Typography variant="card-header" color="--future-tech-green" fontVariant="kw1c"
-							>{header}</Typography>
+							>{header}</Typography
+						>
 					</div>
 					<div class="cards">
 						<div class="future-tech-card">

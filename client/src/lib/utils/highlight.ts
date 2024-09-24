@@ -1,12 +1,5 @@
-import { get } from "svelte/store";
-import { _ } from "svelte-i18n";
-
-const i18n = get(_);
-
 export function highlight(str: string): string {
 	const placeholderRegex = /\[(.*?)\]/g;
-
-	let index = 0;
 
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	return str.replace(placeholderRegex, (_, match) => {

@@ -7,7 +7,6 @@ import { db } from "@/models";
 import { router } from "@/routers";
 import { ExpressErrorHandler, corsConfig, AppInterceptor } from "@/middleware";
 import { userDeserializer } from "./middleware/auth/auth.middleware";
-import { initWebSocketManager } from "./services/ws";
 import http from "http";
 import { IdentityService } from "./services/identity.service";
 import { ServiceFactory } from "./services/servicefactory";
@@ -27,7 +26,6 @@ app.use("/", router);
 app.use(ExpressErrorHandler);
 
 const server = http.createServer(app);
-export const wsServer = initWebSocketManager(server);
 
 server.listen(PORT, async () => {
 	await db.authenticate();
