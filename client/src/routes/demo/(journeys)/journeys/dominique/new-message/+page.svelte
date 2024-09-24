@@ -217,7 +217,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, OpenJobsNetwork, Avatar, Modal } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
 	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
@@ -245,7 +244,8 @@
 		<div class="modal-content">
 			<div class="heading">
 				<Typography variant="card-header" color="--bbc-blue"
-					>{$_("journeys.dominique.from_bbc")}.</Typography>
+					>{$_("journeys.dominique.from_bbc")}.</Typography
+				>
 			</div>
 			<div class="message">
 				<Typography>
@@ -265,7 +265,8 @@
 				</Typography>
 			</div>
 			<button class="button" on:click="{() => goto('/demo/journeys/dominique/shared-cred')}"
-				>{$_("components.continue")}</button>
+				>{$_("components.continue")}</button
+			>
 			<div class="subtext">
 				<Typography variant="sub-text">{$_("journeys.dominique.click_to_proceed")}</Typography>
 			</div>
@@ -293,7 +294,8 @@
 					<div class="card card-1">
 						<div class="sub-text">
 							<Typography variant="sub-text"
-								>{$_("journeys.dominique.dominique_shared_cred")}l</Typography>
+								>{$_("journeys.dominique.dominique_shared_cred")}l</Typography
+							>
 						</div>
 						<div class="details">
 							<img src="/imgs/kw1c-white.png" class="logo" alt="" />
@@ -302,7 +304,8 @@
 									<Typography variant="button"
 										>{dominqueCourses[$dominiqueSelectedCourse].name +
 											" " +
-											$_("creds.certificate")}</Typography>
+											$_("creds.certificate")}</Typography
+									>
 								</div>
 								<div class="sub-text">
 									<Typography variant="sub-text">
@@ -341,7 +344,8 @@
 					<img src="/imgs/inbox.png" alt="" class="logo" />
 					<div class="credential">
 						<Typography variant="button" color="--bbc-blue"
-							>{$_("journeys.dominique.you_have_new_msg")}</Typography>
+							>{$_("journeys.dominique.you_have_new_msg")}</Typography
+						>
 					</div>
 					<div class="issued-by">
 						<Typography variant="sub-text">{$_("journeys.dominique.from_bbc")}</Typography>
@@ -351,7 +355,8 @@
 						on:click="{() => {
 							showModal = true;
 							currNode.set(3);
-						}}">{$_("journeys.dominique.view_msg_btn")}</button>
+						}}">{$_("journeys.dominique.view_msg_btn")}</button
+					>
 				</div>
 			</div>
 		</OpenJobsNetwork>

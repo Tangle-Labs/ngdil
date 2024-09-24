@@ -9,7 +9,6 @@
 	import type { Options } from "qr-code-styling";
 
 	export let data: string;
-	export let logo: string = "/imgs/tl-logo.png";
 	export let size = 220;
 	export let bgColor = "#ffffff";
 	export let fgColor = "#3d3d3d";

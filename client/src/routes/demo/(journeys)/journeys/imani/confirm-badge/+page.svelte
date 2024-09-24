@@ -144,7 +144,8 @@
 					label="{$_('journeys.imani.save_badge')}"
 					onClick="{() => {
 						goto('/demo/journeys/imani/badges');
-					}}" />
+					}}"
+				/>
 			</div>
 		</FutureTech>
 	</div>

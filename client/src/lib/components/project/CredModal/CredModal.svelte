@@ -67,7 +67,8 @@
 	alt=""
 	on:click="{() => {
 		isOpen = true;
-	}}" />
+	}}"
+/>
 
 <Modal bind:isOpen="{isOpen}">
 	<div class="card-content">

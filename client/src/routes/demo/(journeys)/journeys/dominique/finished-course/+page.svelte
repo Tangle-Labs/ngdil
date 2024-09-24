@@ -58,7 +58,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Button } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, dominiqueEarnedCourseCred, nodeCount } from "$lib/stores/flows.store";
 	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
@@ -90,22 +89,25 @@
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
 						<Typography variant="list"
-							>{$_("journeys.dominique.passwordless_login_to_kw1c")}</Typography>
+							>{$_("journeys.dominique.passwordless_login_to_kw1c")}</Typography
+						>
+					</div>
+					<div class="list">
+						<img src="/imgs/check-circle.png" alt="" />
+						<Typography variant="list">{$_("journeys.dominique.privately_shared_creds")}</Typography
+						>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
 						<Typography variant="list"
-							>{$_("journeys.dominique.privately_shared_creds")}</Typography>
+							>{$_("journeys.dominique.completed_course_at_kw1c")}</Typography
+						>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
 						<Typography variant="list"
-							>{$_("journeys.dominique.completed_course_at_kw1c")}</Typography>
-					</div>
-					<div class="list">
-						<img src="/imgs/check-circle.png" alt="" />
-						<Typography variant="list"
-							>{$_("journeys.dominique.privately_received_creds")}l</Typography>
+							>{$_("journeys.dominique.privately_received_creds")}l</Typography
+						>
 					</div>
 					<div class="p">
 						<Typography>
@@ -115,7 +117,8 @@
 					<Button
 						variant="secondary"
 						label="{$_('components.continue')}"
-						onClick="{handleFinishCourse}" />
+						onClick="{handleFinishCourse}"
+					/>
 				</div>
 				<div class="img">
 					<img src="/imgs/dominique-1.svg" alt="" />

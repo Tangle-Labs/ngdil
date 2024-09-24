@@ -41,7 +41,7 @@
 	export let image: string;
 	export let variant: "large" | "medium" | "small" = "medium";
 	export let text: string | null = null;
-	export let onClick: (...args: any[]) => any = () => null;
+	export let onClick: (...args: unknown[]) => unknown = () => null;
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -52,7 +52,8 @@
 		alt="user avatar"
 		class="avatar-img"
 		class:large="{variant === 'large'}"
-		class:small="{variant === 'small'}" />
+		class:small="{variant === 'small'}"
+	/>
 	{#if text}
 		<div class="accompanying-text">{text}</div>
 	{/if}

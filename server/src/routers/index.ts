@@ -45,6 +45,8 @@ router.get("/", (req, res) => {
 });
 const __filename = fileURLToPath(import.meta.url);
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 router.get("/events/:sessionId", sse(), (req: Request, res: ISseResponse) => {
 	emitter.on("oid-event", (event) => {
 		console.log(req.params.sessionId, event.state);

@@ -117,8 +117,7 @@
 
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { Typography, BigBusinessCorp, Modal, Loading } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
+	import { Typography, BigBusinessCorp } from "$lib/components";
 	import { currNode, dominiqueSelectedCourse, dominqueCourses } from "$lib/stores/flows.store";
 	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
@@ -162,7 +161,8 @@
 								class="{`button ${$dominiqueSelectedCourse !== i && 'disabled'}`}"
 								on:click="{() => {
 									handleClick(i);
-								}}">{$_("components.apply_now")}</button>
+								}}">{$_("components.apply_now")}</button
+							>
 						</div>
 					{/each}
 				</div>

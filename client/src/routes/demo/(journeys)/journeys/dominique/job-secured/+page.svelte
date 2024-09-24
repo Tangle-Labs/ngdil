@@ -59,7 +59,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Button } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { completedJourneys, dominiqueAppliedForJob } from "$lib/stores/flows.store";
 	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
@@ -97,12 +96,14 @@
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
 						<Typography variant="list"
-							>{$_("journeys.dominique.connected_pvtly_bbc_website")}</Typography>
+							>{$_("journeys.dominique.connected_pvtly_bbc_website")}</Typography
+						>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
 						<Typography variant="list"
-							>{$_("journeys.dominique.shared_multiple_creds_as_cv")}</Typography>
+							>{$_("journeys.dominique.shared_multiple_creds_as_cv")}</Typography
+						>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
@@ -111,7 +112,8 @@
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
 						<Typography variant="list"
-							>{$_("journeys.dominique.securely_received_staff_id_cred")}</Typography>
+							>{$_("journeys.dominique.securely_received_staff_id_cred")}</Typography
+						>
 					</div>
 					<div class="p">
 						<Typography>
@@ -123,11 +125,13 @@
 					<Button
 						variant="secondary"
 						label="{$_('components.continue')}"
-						onClick="{handleFinishCourse}" />&nbsp;
+						onClick="{handleFinishCourse}"
+					/>&nbsp;
 					<Button
 						variant="white"
 						label="{$_('journeys.dominique.contact_ngdil')}"
-						onClick="{() => window.open('https://ngdil.com/contact', '_blank')}" />
+						onClick="{() => window.open('https://ngdil.com/contact', '_blank')}"
+					/>
 				</div>
 				<div class="img">
 					<img src="/imgs/dominique-3.svg" alt="" />

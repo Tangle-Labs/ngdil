@@ -87,7 +87,8 @@
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
 						<Typography variant="list"
-							>{$_("journeys.peter.evaluated_student_course_results")}</Typography>
+							>{$_("journeys.peter.evaluated_student_course_results")}</Typography
+						>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
@@ -96,7 +97,8 @@
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
 						<Typography variant="list"
-							>{$_("journeys.peter.issued_internship_placements")}</Typography>
+							>{$_("journeys.peter.issued_internship_placements")}</Typography
+						>
 					</div>
 					<div class="p">
 						<Typography>
@@ -110,7 +112,8 @@
 					<Button
 						variant="secondary"
 						label="{$_('components.continue')}"
-						onClick="{handleFinishCourse}" />
+						onClick="{handleFinishCourse}"
+					/>
 				</div>
 				<div class="img">
 					<img src="/imgs/peter-2.svg" alt="" />

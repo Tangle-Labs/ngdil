@@ -28,7 +28,7 @@
 
 <script lang="ts">
 	export let checked = false;
-	export let onClick: (...props: any[]) => any = () => {
+	export let onClick: (...props: unknown[]) => void = () => {
 		null;
 	};
 </script>
@@ -40,6 +40,7 @@
 	on:click="{() => {
 		checked = !checked;
 		onClick();
-	}}">
+	}}"
+>
 	<div class="{`checked ${checked && 'active'}`}"></div>
 </div>

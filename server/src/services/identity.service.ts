@@ -3,7 +3,7 @@ import path from "path";
 import { readFile, writeFile } from "fs/promises";
 import { fileURLToPath } from "url";
 import { nanoid } from "nanoid";
-import { DidJwkAdapter} from "@tanglelabs/jwk-identity-adapter"
+import { DidJwkAdapter } from "@tanglelabs/jwk-identity-adapter";
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -31,8 +31,10 @@ const constructFileStore = ({ path, password }: { path: string; password: string
 };
 
 export class IdentityService {
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	//@ts-ignore
 	manager: IdentityManager<IotaAdapter>;
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	// @ts-ignore
 	did: DidKeyAccount;
 
@@ -46,10 +48,10 @@ export class IdentityService {
 			})
 		});
 		const store = constructFileStore({
-			path: path.resolve(__dirname, `./identity-vc`),
+			path: path.resolve(__dirname, "./identity-vc"),
 			password: "asdf"
 		});
-
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore
 		service.did = await service.manager
 			.getDid({

@@ -57,6 +57,7 @@
 		<Button
 			variant="secondary"
 			label="{$_('onboarding.start_journey')}"
-			onClick="{handleContinue}" />
+			onClick="{handleContinue}"
+		/>
 	</div>
 </div>

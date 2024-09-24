@@ -6,7 +6,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "node --watch --import=tsx src/server.ts | pino-pretty",
-		"lint": "prettier --plugin-search-dir . --check . && eslint \"src/**/*.{ts,json}\"",
+		"lint": "eslint \"src/**/*.{ts,json}\"",
 		"format": "prettier --plugin-search-dir . --write .",
 		"format-check": "prettier -c \"**/*.{ts,js,json}\"",
 		"build": "tsc && resolve-tspaths"
