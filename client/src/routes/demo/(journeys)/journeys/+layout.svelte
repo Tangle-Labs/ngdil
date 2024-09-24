@@ -80,8 +80,6 @@
 		nodeCount,
 		previousPath
 	} from "$lib/stores/flows.store";
-	import { apiClient } from "$lib/utils/axios.utils";
-	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 
 	let expanded = false;
