@@ -86,7 +86,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Button } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, nodeCount } from "$lib/stores/flows.store";
 	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
@@ -161,8 +160,7 @@
 					label="{$_('journeys.imani.create_new_badge')}"
 					onClick="{() => {
 						goto('/demo/journeys/imani/new-badge');
-					}}"
-				/>
+					}}" />
 			</div>
 		</FutureTech>
 	</div>

@@ -73,7 +73,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Button, Badge } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
 		currNode,
 		imaniBadgeColor,
@@ -144,8 +143,7 @@
 					label="{$_('journeys.imani.save_badge')}"
 					onClick="{() => {
 						goto('/demo/journeys/imani/badges');
-					}}"
-				/>
+					}}" />
 			</div>
 		</FutureTech>
 	</div>

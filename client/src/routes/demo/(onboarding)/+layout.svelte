@@ -29,9 +29,9 @@
 			}
 
 			& > .bottom {
-				width: 50%;
+				width: 80%;
 				display: flex;
-				justify-content: center;
+				justify-content: end;
 				position: relative;
 
 				& > .back {
@@ -85,8 +85,7 @@
 					class="back"
 					on:click="{() => {
 						history.back();
-					}}"
-				>
+					}}">
 					<img src="/imgs/back.svg" alt="" class="icon" />
 					<Typography variant="button" color="--black-300">{$_("components.back")}</Typography>
 				</div>

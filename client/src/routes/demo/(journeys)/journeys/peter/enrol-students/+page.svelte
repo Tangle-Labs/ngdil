@@ -93,8 +93,7 @@
 	}
 
 	.button-container {
-		margin-left: 60%;
-		width: 40%;
+		margin-left: 50%;
 	}
 
 	.modal-content {
@@ -130,6 +129,7 @@
 	}
 
 	.button {
+		min-width: max-content;
 		font-family: var(--kw1c-font);
 		border: none;
 		background: var(--kw1c-red-900);
@@ -163,7 +163,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Modal, Loading, Radio } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, peterChosenStudents } from "$lib/stores/flows.store";
 	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
@@ -201,8 +200,7 @@
 			</Typography>
 			<div class="p">{$_("journeys.peter.click_send_invites_to_confirm")}</div>
 			<button class="button" on:click="{() => goto('/demo/journeys/peter/course-students')}"
-				>{$_("journeys.peter.send_invites").toUpperCase()}</button
-			>
+				>{$_("journeys.peter.send_invites").toUpperCase()}</button>
 			<div class="subtext">
 				<Typography variant="sub-text" />
 			</div>
@@ -223,8 +221,7 @@
 	<div class="dash">
 		<Kw1c
 			variant="white"
-			title="{$_('journeys.peter.internationalisation_course_applicants').toUpperCase()}"
-		>
+			title="{$_('journeys.peter.internationalisation_course_applicants').toUpperCase()}">
 			<div class="sidebar">
 				{#each Array(5) as i}
 					<div class="menu-item">
@@ -253,72 +250,60 @@
 					<div class="column">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c"
-								>{$_("journeys.peter.student_applicant")}</Typography
-							>
+								>{$_("journeys.peter.student_applicant")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>{$_("applicants.Sarah_Jones")}</Typography
-							>
+								>{$_("applicants.Sarah_Jones")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>{$_("applicants.Ivar_Leifsson")}</Typography
-							>
+								>{$_("applicants.Ivar_Leifsson")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>{$_("applicants.Lagertha_Bonde")}</Typography
-							>
+								>{$_("applicants.Lagertha_Bonde")}</Typography>
 						</div>
 					</div>
 
 					<div class="column">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c"
-								>{$_("journeys.peter.internship_category")}</Typography
-							>
+								>{$_("journeys.peter.internship_category")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>{$_("journeys.peter.3d_print_design")}</Typography
-							>
+								>{$_("journeys.peter.3d_print_design")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>{$_("journeys.peter.3d_print_design")}</Typography
-							>
+								>{$_("journeys.peter.3d_print_design")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>{$_("journeys.peter.3d_print_design")}</Typography
-							>
+								>{$_("journeys.peter.3d_print_design")}</Typography>
 						</div>
 					</div>
 
 					<div class="column">
 						<div class="header action">
 							<Typography variant="sub-text" fontVariant="kw1c"
-								>{$_("journeys.peter.course_application")}</Typography
-							>
+								>{$_("journeys.peter.course_application")}</Typography>
 						</div>
 
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>{$_("journeys.peter.internatinalisation_course")}</Typography
-							>
+								>{$_("journeys.peter.internatinalisation_course")}</Typography>
 						</div>
 
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>{$_("journeys.peter.internatinalisation_course")}</Typography
-							>
+								>{$_("journeys.peter.internatinalisation_course")}</Typography>
 						</div>
 
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>{$_("journeys.peter.internatinalisation_course")}</Typography
-							>
+								>{$_("journeys.peter.internatinalisation_course")}</Typography>
 						</div>
 					</div>
 				</div>
@@ -327,8 +312,7 @@
 					<button
 						class="{`button ${selected.length <= 0 && 'disabled'}`}"
 						on:click="{handleIssueCourseInvites}"
-						>{$_("journeys.peter.send_invitations").toUpperCase()}</button
-					>
+						>{$_("journeys.peter.send_invitations").toUpperCase()}</button>
 				</div>
 			</div>
 		</Kw1c>

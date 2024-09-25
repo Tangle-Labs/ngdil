@@ -135,7 +135,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Button, Badge, Radio } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
 		currNode,
 		imaniBadgeColor,
@@ -195,8 +194,7 @@
 		<Typography
 			>{creatingBadgeImage
 				? $_("journeys.imani.select_shape_color_then_click_continue")
-				: $_("journeys.imani.click_fields_to_add_badge_name_and_desc")}</Typography
-		>
+				: $_("journeys.imani.click_fields_to_add_badge_name_and_desc")}</Typography>
 	</div>
 	<div class="dash">
 		<FutureTech header="{$_('journeys.imani.new_badge').toUpperCase()}">
@@ -204,8 +202,7 @@
 				<Typography variant="card-header"
 					>{creatingBadgeImage
 						? $_("journeys.imani.select_badge_shape_color")
-						: $_("journeys.imani.add_badge_info")}</Typography
-				>
+						: $_("journeys.imani.add_badge_info")}</Typography>
 			</div>
 
 			{#if creatingBadgeImage}
@@ -228,8 +225,7 @@
 						</div>
 						<Radio
 							checked="{variant === 'rounded-hexagon'}"
-							onClick="{() => (variant = 'rounded-hexagon')}"
-						/>
+							onClick="{() => (variant = 'rounded-hexagon')}" />
 					</div>
 					<div class="badge">
 						<div class="badge-container">
@@ -265,8 +261,7 @@
 						type="text"
 						placeholder="{$_('journeys.imani.3d_print_engineer')}"
 						on:click="{() => (badgeNameValue = badgeName)}"
-						bind:value="{badgeNameValue}"
-					/>
+						bind:value="{badgeNameValue}" />
 					<div class="sub-text">
 						<Typography variant="sub-text">{$_("journeys.imani.enter_badge_name_here")}</Typography>
 					</div>
@@ -293,8 +288,7 @@
 					variant="{(creatingBadgeImage && !(variant && color)) ||
 					(!creatingBadgeImage && !(badgeDescValue && badgeNameValue))
 						? 'future-tech-disabled'
-						: 'future-tech'}"
-				/>
+						: 'future-tech'}" />
 			</div>
 		</FutureTech>
 	</div>

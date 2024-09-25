@@ -9,6 +9,7 @@
 			display: flex;
 			transform: translate(6%, 10%);
 			justify-content: space-between;
+			padding-bottom: 20px;
 
 			.course {
 				width: 32%;
@@ -161,8 +162,7 @@
 								class="{`button ${$dominiqueSelectedCourse !== i && 'disabled'}`}"
 								on:click="{() => {
 									handleClick(i);
-								}}">{$_("components.apply_now")}</button
-							>
+								}}">{$_("components.apply_now")}</button>
 						</div>
 					{/each}
 				</div>

@@ -51,7 +51,7 @@
 	}
 
 	.bottom {
-		padding: 0 17vw;
+		padding: 0 17vw 10vh;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -91,8 +91,7 @@
 			<Avatar
 				variant="small"
 				onClick="{() => (expanded = true)}"
-				image="{`/imgs/${$currentJourney}.png`}"
-			/>
+				image="{`/imgs/${$currentJourney}.png`}" />
 			{#if expanded}
 				<div class="dropdown">
 					<div class="Name">
@@ -108,8 +107,7 @@
 					<Button
 						variant="white"
 						onClick="{() => goto('/demo/choose-journey')}"
-						label="{$_('components.change')}"
-					/>
+						label="{$_('components.change')}" />
 				</div>
 			{/if}
 		</div>
@@ -118,8 +116,7 @@
 				window.open('https://ngdil.com/contact', '_blank');
 			}}"
 			label="{$_('components.contact_us')}"
-			variant="white"
-		/>
+			variant="white" />
 	</div>
 </div>
 
@@ -135,8 +132,7 @@
 			class="back"
 			on:click="{() => {
 				history.back();
-			}}"
-		>
+			}}">
 			<img src="/imgs/back.svg" alt="" class="icon" />
 			<Typography variant="button" color="--black-300">{$_("components.back")}</Typography>
 		</div>

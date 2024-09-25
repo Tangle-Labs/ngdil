@@ -53,11 +53,13 @@
 			width: 100%;
 			height: 100%;
 			min-height: 50vh;
+			overflow-y: scroll;
+			overflow-x: hidden;
 			background: var(--future-tech-background);
 
 			.sidenav {
 				background: var(--future-tech-green);
-				height: 100%;
+				min-height: 100%;
 				width: 20%;
 				min-height: 52vh;
 				padding: 20px 35px;
@@ -178,8 +180,7 @@
 				<div class="card-area">
 					<div class="heading">
 						<Typography variant="card-header" color="--future-tech-green" fontVariant="kw1c"
-							>{header}</Typography
-						>
+							>{header}</Typography>
 					</div>
 					<div class="cards">
 						<div class="future-tech-card">

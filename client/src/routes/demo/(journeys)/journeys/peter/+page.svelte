@@ -42,7 +42,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Avatar, Button } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
 		currNode,
 		nodeCount,
@@ -82,8 +81,7 @@
 							<Typography variant="card-header"
 								>{$_(
 									"journeys.peter.verify_student_and_enroll_on_internationalisation_course"
-								)}</Typography
-							>
+								)}</Typography>
 						</div>
 						<div class="desc">
 							<Typography>
@@ -96,8 +94,9 @@
 						onClick="{() => {
 							goto('/demo/journeys/peter/login-kw1c');
 						}}"
-						label="{$peterEnrolledStudent ? $_('components.retry') : $_('components.get_started')}"
-					/>
+						label="{$peterEnrolledStudent
+							? $_('components.retry')
+							: $_('components.get_started')}" />
 				</div>
 			</Card>
 		</div>
@@ -130,8 +129,7 @@
 						}}"
 						label="{$peterAssignedInternship
 							? $_('components.retry')
-							: $_('components.get_started')}"
-					/>
+							: $_('components.get_started')}" />
 				</div>
 			</Card>
 		</div>
@@ -142,8 +140,7 @@
 					<div class="text">
 						<div class="heading">
 							<Typography variant="card-header"
-								>{$_("journeys.peter.verify_students_internship_creds")}</Typography
-							>
+								>{$_("journeys.peter.verify_students_internship_creds")}</Typography>
 						</div>
 						<div class="desc">
 							<Typography>
@@ -162,8 +159,7 @@
 						}}"
 						label="{$peterVerifiedInternship
 							? $_('components.retry')
-							: $_('components.get_started')}"
-					/>
+							: $_('components.get_started')}" />
 				</div>
 			</Card>
 		</div>
@@ -172,8 +168,7 @@
 				<Button
 					variant="secondary"
 					onClick="{() => goto('/demo/choose-journey')}"
-					label="{$_('components.try_another_journey')}"
-				/>
+					label="{$_('components.try_another_journey')}" />
 			</div>
 		{/if}
 	</div>

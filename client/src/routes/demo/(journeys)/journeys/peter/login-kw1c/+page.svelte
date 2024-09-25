@@ -40,7 +40,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Card, Phone } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, eventUri, nodeCount } from "$lib/stores/flows.store";
 	import { onMount } from "svelte";
 	import Qr from "$lib/components/project/Qr/Qr.svelte";
@@ -100,8 +99,7 @@
 							<img src="/imgs/kw1c-crowns.png" alt="" class="crowns" />
 							<div class="heading-text">
 								<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>{$_("journeys.peter.login_to_kw1c").toUpperCase()}</Typography
-								>
+									>{$_("journeys.peter.login_to_kw1c").toUpperCase()}</Typography>
 							</div>
 						</div>
 						{#if qr}
@@ -110,8 +108,7 @@
 						{/if}
 						<div class="desc">
 							<Typography variant="kw1c-sub-text"
-								>{$_("journeys.peter.scan_qr_to_access_kw1c_staff_portal")}</Typography
-							>
+								>{$_("journeys.peter.scan_qr_to_access_kw1c_staff_portal")}</Typography>
 						</div>
 					</div>
 				</Card>

@@ -58,7 +58,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Button } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { peterEnrolledStudent } from "$lib/stores/flows.store";
 	import { highlight } from "$lib/utils/highlight";
 	import { _ } from "svelte-i18n";
@@ -85,14 +84,12 @@
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
 						<Typography variant="list"
-							>{$_("journeys.peter.passwordless_login_to_kw1c_staff_portal")}</Typography
-						>
+							>{$_("journeys.peter.passwordless_login_to_kw1c_staff_portal")}</Typography>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
 						<Typography variant="list"
-							>{$_("journeys.peter.verified_student_applicants_creds")}</Typography
-						>
+							>{$_("journeys.peter.verified_student_applicants_creds")}</Typography>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
@@ -101,8 +98,7 @@
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
 						<Typography variant="list"
-							>{$_("journeys.peter.enrolled_students_onto_course")}</Typography
-						>
+							>{$_("journeys.peter.enrolled_students_onto_course")}</Typography>
 					</div>
 					<div class="p">
 						<Typography>
@@ -116,8 +112,7 @@
 					<Button
 						variant="secondary"
 						label="{$_('components.continue')}"
-						onClick="{handleFinishCourse}"
-					/>
+						onClick="{handleFinishCourse}" />
 				</div>
 				<div class="img">
 					<img src="/imgs/peter-1.svg" alt="" />

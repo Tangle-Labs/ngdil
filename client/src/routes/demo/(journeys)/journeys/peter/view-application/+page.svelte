@@ -7,13 +7,14 @@
 
 	.dash {
 		.content {
+			display: flex;
+			justify-items: center;
+			justify-content: space-between;
+			padding-right: 15px;
 			.sidebar {
-				position: absolute;
-				top: 0;
-				left: 0;
 				width: 18%;
 				background: rgb(255, 255, 255);
-				height: 100%;
+				min-height: 100%;
 				filter: drop-shadow(0px 8px 28px rgba(20, 20, 43, 0.1));
 				display: flex;
 				flex-wrap: wrap;
@@ -46,14 +47,11 @@
 			}
 
 			.card {
-				width: 72.5%;
-				height: calc(100% - 50px);
+				width: 80%;
 				background: white;
-				position: absolute;
-				bottom: 0;
-				right: 5%;
 				border-top-right-radius: 20px;
 				border-top-left-radius: 20px;
+				margin-top: 15px;
 				padding: 20px;
 				box-sizing: border-box;
 
@@ -72,6 +70,7 @@
 
 				.table {
 					display: flex;
+					gap: 15px;
 
 					.column {
 						display: flex;
@@ -79,7 +78,9 @@
 						width: 20%;
 
 						&.badge {
-							width: 30px;
+							// width: 30px;
+							display: flex;
+							align-self: flex-end;
 						}
 
 						&:last-of-type {
@@ -91,7 +92,7 @@
 						}
 
 						&.type {
-							width: 50%;
+							width: 30%;
 						}
 
 						&:nth-of-type(3) {
@@ -99,7 +100,8 @@
 						}
 
 						&:nth-of-type(4) {
-							width: 10%;
+							width: 15%;
+							align-content: end;
 						}
 
 						.data,
@@ -153,6 +155,7 @@
 		font-weight: 500;
 		margin-bottom: 0;
 		transition: 0.5s all;
+		min-width: max-content;
 
 		&.loading {
 			background: var(--black-300);
@@ -173,9 +176,8 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Modal, Loading, CredModal } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { credentials } from "$lib/stores/creds";
-	import { currNode, dominiqueSelectedCourse, peterChosenStudent } from "$lib/stores/flows.store";
+	import { currNode, peterChosenStudent } from "$lib/stores/flows.store";
 	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
@@ -218,212 +220,198 @@
 		<Typography
 			>{receivedCreds
 				? $_("journeys.peter.view_application_not_enrolled_sub_text")
-				: $_("journeys.peter.view_applications_enrolled_sub_text")}</Typography
-		>
+				: $_("journeys.peter.view_applications_enrolled_sub_text")}</Typography>
 	</div>
 
 	<div class="dash">
 		<Kw1c variant="white" title="{$_('journeys.peter.student_applicant').toUpperCase()}">
-			<div class="sidebar">
-				{#each Array(5) as i}
-					<div class="menu-item">
-						<div class="square"></div>
-						<div class="rect"></div>
-					</div>
-				{/each}
-			</div>
-			<div class="card">
-				<div class="card-header">
-					<div class="student">
-						<div class="name">
-							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>{$peterChosenStudent?.toLocaleUpperCase()}</Typography
-							>
+			<div class="content">
+				<div class="sidebar">
+					{#each Array(5) as i}
+						<div class="menu-item">
+							<div class="square"></div>
+							<div class="rect"></div>
 						</div>
-						<div class="course">
-							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>{$_("journeys.peter.3d_print_design")}</Typography
-							>
-						</div>
-					</div>
-					<div class="button-container">
-						{#if receivedCreds}
-							<button
-								class="{`button ${loading && 'loading'}`}"
-								on:click="{() => goto('/demo/journeys/peter/enrol-students')}"
-							>
-								{$_("journeys.peter.enrol_student").toUpperCase()}
-							</button>
-						{:else}
-							<button class="{`button ${loading && 'loading'}`}" on:click="{handleWait}">
-								{loading
-									? $_("journeys.peter.verifying")
-									: $_("journeys.peter.request_credentials")}
-							</button>
-						{/if}
-					</div>
+					{/each}
 				</div>
-				<div class="table">
-					<div class="column">
-						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c" color="--white-300">.</Typography>
-						</div>
-						{#each Array(4) as _, i}
-							<div class="circle-container">
-								{#if loading}
-									<Loading img="/imgs/blue-loading.png" size="30px" />
-								{:else if !receivedCreds}
-									<div class="circle"></div>
-								{:else}
-									<img
-										src="{`/imgs/${i !== 3 ? 'verified' : 'missing'}.png`}"
-										alt=""
-										class="circle"
-									/>
-								{/if}
+				<div class="card">
+					<div class="card-header">
+						<div class="student">
+							<div class="name">
+								<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
+									>{$peterChosenStudent?.toLocaleUpperCase()}</Typography>
 							</div>
-						{/each}
-					</div>
-					<div class="column type">
-						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c"
-								>{$_("journeys.peter.cred_type")}</Typography
-							>
+							<div class="course">
+								<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
+									>{$_("journeys.peter.3d_print_design")}</Typography>
+							</div>
 						</div>
-						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c"
-								>{$_("creds.national_id").toUpperCase()}</Typography
-							>
-						</div>
-						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c"
-								>{$_("creds.college_id").toUpperCase()}</Typography
-							>
-						</div>
-						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c"
-								>{$_("creds.college_badge").toUpperCase()}</Typography
-							>
-						</div>
-						<div class="data">
-							<Typography variant="card-header" fontVariant="kw1c"
-								>{$_("creds.internatinalisation_badge").toUpperCase()}</Typography
-							>
+						<div class="button-container">
+							{#if receivedCreds}
+								<button
+									class="{`button ${loading && 'loading'}`}"
+									on:click="{() => goto('/demo/journeys/peter/enrol-students')}">
+									{$_("journeys.peter.enrol_student").toUpperCase()}
+								</button>
+							{:else}
+								<button class="{`button ${loading && 'loading'}`}" on:click="{handleWait}">
+									{loading
+										? $_("journeys.peter.verifying")
+										: $_("journeys.peter.request_credentials")}
+								</button>
+							{/if}
 						</div>
 					</div>
-
-					<div class="column">
-						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c">{$_("issuer.issuer")}</Typography>
-						</div>
-						<div class="data">
-							<Typography variant="list" fontVariant="kw1c">{$_("issuer.the_govt")}</Typography>
-						</div>
-						<div class="data">
-							<Typography variant="list" fontVariant="kw1c"
-								>{$_("issuer.koning_willem_i_college")}</Typography
-							>
-						</div>
-						<div class="data">
-							<Typography variant="list" fontVariant="kw1c"
-								>{$_("issuer.koning_willem_i_college")}</Typography
-							>
-						</div>
-						<div class="data">
-							<Typography variant="list" fontVariant="kw1c"
-								>{$_("issuer.koning_willem_i_college")}</Typography
-							>
-						</div>
-					</div>
-
-					<div class="column">
-						<div class="header">
-							<Typography variant="sub-text" fontVariant="kw1c"
-								>{$_("components.status")}</Typography
-							>
-						</div>
-						{#if receivedCreds}
-							<div class="data">
-								<Typography variant="status" color="--green-900">
-									{$_("components.verified")}
-								</Typography>
-							</div>
-							<div class="data">
-								<Typography variant="status" color="--green-900">
-									{$_("components.verified")}
-								</Typography>
-							</div>
-							<div class="data">
-								<Typography variant="status" color="--green-900">
-									{$_("components.verified")}
-								</Typography>
-							</div>
-							<div class="data">
-								<Typography variant="status" color="--red-900">
-									{$_("components.missing")}
-								</Typography>
-							</div>
-						{:else}
-							<div class="data">
-								<Typography variant="status" color="--secondary-900">
-									{$_("components.pending")}
-								</Typography>
-							</div>
-
-							<div class="data">
-								<Typography variant="status" color="--secondary-900">
-									{$_("components.pending")}
-								</Typography>
-							</div>
-							<div class="data">
-								<Typography variant="status" color="--secondary-900">
-									{$_("components.pending")}
-								</Typography>
-							</div>
-							<div class="data">
-								<Typography variant="status" color="--secondary-900">
-									{$_("components.pending")}
-								</Typography>
-							</div>
-						{/if}
-					</div>
-					<div class="column badge">
-						{#if receivedCreds}
+					<div class="table">
+						<div class="column">
 							<div class="header">
-								<Typography variant="sub-text" fontVariant="kw1c" color="--white-300">_</Typography>
+								<Typography variant="sub-text" fontVariant="kw1c" color="--white-300">.</Typography>
+							</div>
+							{#each Array(4) as _, i}
+								<div class="circle-container">
+									{#if loading}
+										<Loading img="/imgs/blue-loading.png" size="30px" />
+									{:else if !receivedCreds}
+										<div class="circle"></div>
+									{:else}
+										<img
+											src="{`/imgs/${i !== 3 ? 'verified' : 'missing'}.png`}"
+											alt=""
+											class="circle" />
+									{/if}
+								</div>
+							{/each}
+						</div>
+						<div class="column type">
+							<div class="header">
+								<Typography variant="sub-text" fontVariant="kw1c"
+									>{$_("journeys.peter.cred_type")}</Typography>
 							</div>
 							<div class="data">
-								<CredModal
-									name="{$_('creds.national_id')}"
-									issuer="{$_('issuer.the_govt')}"
-									credential="{{ ...credentials.nationalId, 'Full Name': $peterChosenStudent }}"
-									logo="/imgs/gov.svg"
-								/>
+								<Typography variant="card-header" fontVariant="kw1c"
+									>{$_("creds.national_id").toUpperCase()}</Typography>
 							</div>
 							<div class="data">
-								<CredModal
-									name="{$_('creds.college_id')}"
-									issuer="{$_('issuer.koning_willem_i_college')}"
-									credential="{{
-										...credentials.collegeId,
-										'Student Name': $peterChosenStudent
-									}}"
-									logo="/imgs/kw1c-white.png"
-								/>
+								<Typography variant="card-header" fontVariant="kw1c"
+									>{$_("creds.college_id").toUpperCase()}</Typography>
 							</div>
 							<div class="data">
-								<CredModal
-									name="{$_('creds.college_badge')}"
-									issuer="{$_('issuer.koning_willem_i_college')}"
-									logo="/imgs/kw1c-white.png"
-									credential="{{
-										...credentials.courseCred,
-										'Student Name': $peterChosenStudent
-									}}"
-								/>
+								<Typography variant="card-header" fontVariant="kw1c"
+									>{$_("creds.college_badge").toUpperCase()}</Typography>
 							</div>
-							<div class="data"></div>
-						{/if}
+							<div class="data">
+								<Typography variant="card-header" fontVariant="kw1c"
+									>{$_("creds.internatinalisation_badge").toUpperCase()}</Typography>
+							</div>
+						</div>
+
+						<div class="column">
+							<div class="header">
+								<Typography variant="sub-text" fontVariant="kw1c">{$_("issuer.issuer")}</Typography>
+							</div>
+							<div class="data">
+								<Typography variant="list" fontVariant="kw1c">{$_("issuer.the_govt")}</Typography>
+							</div>
+							<div class="data">
+								<Typography variant="list" fontVariant="kw1c"
+									>{$_("issuer.koning_willem_i_college")}</Typography>
+							</div>
+							<div class="data">
+								<Typography variant="list" fontVariant="kw1c"
+									>{$_("issuer.koning_willem_i_college")}</Typography>
+							</div>
+							<div class="data">
+								<Typography variant="list" fontVariant="kw1c"
+									>{$_("issuer.koning_willem_i_college")}</Typography>
+							</div>
+						</div>
+
+						<div class="column status">
+							<div class="header">
+								<Typography variant="sub-text" fontVariant="kw1c"
+									>{$_("components.status")}</Typography>
+							</div>
+							{#if receivedCreds}
+								<div class="data">
+									<Typography variant="status" color="--green-900">
+										{$_("components.verified")}
+									</Typography>
+								</div>
+								<div class="data">
+									<Typography variant="status" color="--green-900">
+										{$_("components.verified")}
+									</Typography>
+								</div>
+								<div class="data">
+									<Typography variant="status" color="--green-900">
+										{$_("components.verified")}
+									</Typography>
+								</div>
+								<div class="data">
+									<Typography variant="status" color="--red-900">
+										{$_("components.missing")}
+									</Typography>
+								</div>
+							{:else}
+								<div class="data">
+									<Typography variant="status" color="--secondary-900">
+										{$_("components.pending")}
+									</Typography>
+								</div>
+
+								<div class="data">
+									<Typography variant="status" color="--secondary-900">
+										{$_("components.pending")}
+									</Typography>
+								</div>
+								<div class="data">
+									<Typography variant="status" color="--secondary-900">
+										{$_("components.pending")}
+									</Typography>
+								</div>
+								<div class="data">
+									<Typography variant="status" color="--secondary-900">
+										{$_("components.pending")}
+									</Typography>
+								</div>
+							{/if}
+						</div>
+						<div class="column badge">
+							{#if receivedCreds}
+								<div class="header">
+									<Typography variant="sub-text" fontVariant="kw1c" color="--white-300"
+										>_</Typography>
+								</div>
+								<div class="data">
+									<CredModal
+										name="{$_('creds.national_id')}"
+										issuer="{$_('issuer.the_govt')}"
+										credential="{{ ...credentials.nationalId, 'Full Name': $peterChosenStudent }}"
+										logo="/imgs/gov.svg" />
+								</div>
+								<div class="data">
+									<CredModal
+										name="{$_('creds.college_id')}"
+										issuer="{$_('issuer.koning_willem_i_college')}"
+										credential="{{
+											...credentials.collegeId,
+											'Student Name': $peterChosenStudent
+										}}"
+										logo="/imgs/kw1c-white.png" />
+								</div>
+								<div class="data">
+									<CredModal
+										name="{$_('creds.college_badge')}"
+										issuer="{$_('issuer.koning_willem_i_college')}"
+										logo="/imgs/kw1c-white.png"
+										credential="{{
+											...credentials.courseCred,
+											'Student Name': $peterChosenStudent
+										}}" />
+								</div>
+								<div class="data"></div>
+							{/if}
+						</div>
 					</div>
 				</div>
 			</div>

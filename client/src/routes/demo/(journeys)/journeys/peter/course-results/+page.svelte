@@ -164,7 +164,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Modal, Loading, Radio } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, peterAssignedBadges, peterChosenStudents } from "$lib/stores/flows.store";
 	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
@@ -216,8 +215,7 @@
 					{$_("journeys.peter.about_to_issue_student_courses_badges", {
 						values: { BadgeCount: selected.length }
 					}).toUpperCase()}
-				{/if}</Typography
-			>
+				{/if}</Typography>
 			<div class="p">
 				{#if state === "loaded"}
 					{$_("journeys.peter.click_continue_to_assign_internships")}
@@ -231,8 +229,7 @@
 				<button class="button" on:click="{handleModalClick}"
 					>{state === "init"
 						? $_("journeys.peter.issue_badges").toUpperCase()
-						: $_("components.continue").toUpperCase()}</button
-				>
+						: $_("components.continue").toUpperCase()}</button>
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text" />
@@ -254,8 +251,7 @@
 	<div class="dash">
 		<Kw1c
 			variant="white"
-			title="{$_('journeys.peter.internationalisation_course_students').toUpperCase()}"
-		>
+			title="{$_('journeys.peter.internationalisation_course_students').toUpperCase()}">
 			<div class="sidebar">
 				{#each Array(5) as i}
 					<div class="menu-item">
@@ -280,14 +276,12 @@
 					<div class="column">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c"
-								>{$_("journeys.peter.student_applicant")}</Typography
-							>
+								>{$_("journeys.peter.student_applicant")}</Typography>
 						</div>
 						{#each $peterChosenStudents as student}
 							<div class="data">
 								<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>{student.toUpperCase()}</Typography
-								>
+									>{student.toUpperCase()}</Typography>
 							</div>
 						{/each}
 					</div>
@@ -295,15 +289,13 @@
 					<div class="column">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c"
-								>{$_("journeys.peter.internship_category")}</Typography
-							>
+								>{$_("journeys.peter.internship_category")}</Typography>
 						</div>
 
 						{#each $peterChosenStudents as student (student)}
 							<div class="data">
 								<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-									>{$_("journeys.peter.3d_print_design")}</Typography
-								>
+									>{$_("journeys.peter.3d_print_design")}</Typography>
 							</div>
 						{/each}
 					</div>
@@ -311,15 +303,13 @@
 					<div class="column">
 						<div class="header action">
 							<Typography variant="sub-text" fontVariant="kw1c"
-								>{$_("journeys.peter.course_result")}</Typography
-							>
+								>{$_("journeys.peter.course_result")}</Typography>
 						</div>
 
 						{#each $peterChosenStudents as student (student)}
 							<div class="data">
 								<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--green-900"
-									>{$_("journeys.peter.pass").toUpperCase()}</Typography
-								>
+									>{$_("journeys.peter.pass").toUpperCase()}</Typography>
 							</div>
 						{/each}
 					</div>
@@ -329,8 +319,7 @@
 					<button
 						class="{`button ${selected.length <= 0 && 'disabled'}`}"
 						on:click="{handleIssueCourseBadges}"
-						>{$_("journeys.peter.issue_course_badges").toUpperCase()}</button
-					>
+						>{$_("journeys.peter.issue_course_badges").toUpperCase()}</button>
 				</div>
 			</div>
 		</Kw1c>

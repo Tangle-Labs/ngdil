@@ -25,9 +25,12 @@
 </style>
 
 <script>
+	import LangSwitchBtn from "$lib/components/ui/LanguageSwitchBtn/LangSwitchBtn.svelte";
 	import Typography from "$lib/components/ui/Typography/Typography.svelte";
 	import { _ } from "svelte-i18n";
 </script>
+
+<LangSwitchBtn />
 
 <div class="desktop-view">
 	<slot />
@@ -39,6 +42,5 @@
 		<Typography>{$_("components.small_screen")}</Typography>
 	</div>
 	<a href="https://ngdil.com">
-		<Typography variant="button">{$_("components.go_back_to_ngdil")}</Typography></a
-	>
+		<Typography variant="button">{$_("components.go_back_to_ngdil")}</Typography></a>
 </div>

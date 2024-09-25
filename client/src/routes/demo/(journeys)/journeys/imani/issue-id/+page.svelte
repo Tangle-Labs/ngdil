@@ -86,7 +86,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Button, Loading, Modal } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, imaniChosenApplicant } from "$lib/stores/flows.store";
 	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
@@ -132,8 +131,7 @@
 			<Button
 				variant="future-tech"
 				label="{$_('journeys.imani.issue_cred')}"
-				onClick="{handleIssueCred}"
-			/>
+				onClick="{handleIssueCred}" />
 			<div class="subtext">
 				<Typography variant="sub-text">{$_("components.cancel")}</Typography>
 			</div>
@@ -153,8 +151,7 @@
 						values: { ChosenApplicant: $imaniChosenApplicant?.split(" ")[0] }
 					})
 				)}
-			{/if}</Typography
-		>
+			{/if}</Typography>
 	</div>
 	<div class="sub-text">
 		<Typography
@@ -164,20 +161,17 @@
 				{$_("journeys.imani.click_issue_id_to_issue_applicant_emp_id_cred", {
 					values: { ChosenApplicant: $imaniChosenApplicant?.split(" ")[0] }
 				})}
-			{/if}</Typography
-		>
+			{/if}</Typography>
 	</div>
 	<div
-		style="position: fixed; top: -50px; left: 0; height: 100vh; width: 100vw; display: flex; justify-content: center; overflow: hidden; pointer-events: none;"
-	>
+		style="position: fixed; top: -50px; left: 0; height: 100vh; width: 100vw; display: flex; justify-content: center; overflow: hidden; pointer-events: none;">
 		<Confetti
 			x="{[-5, 5]}"
 			y="{[0, 0.1]}"
 			delay="{[500, 5000]}"
 			duration="{2000}"
 			amount="{500}"
-			fallDistance="100vh"
-		/>
+			fallDistance="100vh" />
 	</div>
 	<div class="dash">
 		<FutureTech header="{$_('journeys.imani.company_employees').toUpperCase()}">
@@ -207,15 +201,13 @@
 								label="{$_('journeys.imani.issue_id')}"
 								onClick="{() => {
 									showModal = true;
-								}}"
-							/>
+								}}" />
 						{:else if currStage === "loading"}
 							<div class="loading">
 								<Loading size="1.125rem" />
 								<div class="text">
 									<Typography variant="status" color="--secondary-900"
-										>{$_("components.pending")}</Typography
-									>
+										>{$_("components.pending")}</Typography>
 								</div>
 							</div>
 						{:else}
@@ -237,7 +229,7 @@
 
 				<tr>
 					<td>
-						<Typography variant="list">{$_("applicants.Ada_Liefsso")}</Typography>
+						<Typography variant="list">{$_("applicants.Ada_Liefsson")}</Typography>
 					</td>
 					<td>
 						<Typography variant="sub-text">{$_("journeys.imani.3d_print_designer")}</Typography>
@@ -256,8 +248,7 @@
 					</td>
 					<td>
 						<Typography variant="status" color="--kw1c-red-900"
-							>{$_("components.expired")}</Typography
-						>
+							>{$_("components.expired")}</Typography>
 					</td>
 				</tr>
 
@@ -281,8 +272,7 @@
 						label="{$_('components.continue')}"
 						onClick="{() => {
 							goto('/demo/journeys/imani/hired-applicant');
-						}}"
-					/>
+						}}" />
 				</div>
 			{/if}
 		</FutureTech>

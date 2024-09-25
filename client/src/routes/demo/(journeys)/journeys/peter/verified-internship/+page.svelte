@@ -58,8 +58,8 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Card, Button } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { completedJourneys, peterVerifiedInternship } from "$lib/stores/flows.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 
@@ -79,10 +79,8 @@
 
 <div class="container">
 	<div class="heading">
-		<Typography variant="heading"
-			>You’ve successfully <Highlight>evaluate, enrolled, trained, & verified</Highlight> your students
-			international internships.
-			<!-- {$_("journeys.peter.successfully_evaluated_enrolled_trained_verified")} -->
+		<Typography variant="heading">
+			{@html highlight($_("journeys.peter.successfully_evaluated_enrolled_trained_verified"))}
 		</Typography>
 	</div>
 	<div class="sub-text">
@@ -97,8 +95,7 @@
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
 						<Typography variant="list"
-							>{$_("journeys.peter.pvtly_requested_creds_for_verification")}</Typography
-						>
+							>{$_("journeys.peter.pvtly_requested_creds_for_verification")}</Typography>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
@@ -118,13 +115,11 @@
 					<Button
 						variant="secondary"
 						label="{$_('components.continue')}"
-						onClick="{handleFinishCourse}"
-					/>&nbsp;
+						onClick="{handleFinishCourse}" />&nbsp;
 					<Button
 						variant="white"
 						label="{$_('journeys.peter.contact_ngdil')}"
-						onClick="{() => window.open('https://ngdil.com/contact', '_blank')}"
-					/>
+						onClick="{() => window.open('https://ngdil.com/contact', '_blank')}" />
 				</div>
 				<div class="img">
 					<img src="/imgs/peter-3.svg" alt="" />

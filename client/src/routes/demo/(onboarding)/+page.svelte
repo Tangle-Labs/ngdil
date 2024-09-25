@@ -24,7 +24,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Button } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currStep } from "$lib/stores/onboarding.store";
 	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
@@ -43,7 +42,6 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading">
-			<!-- Welcome to the <Highlight>NGDIL interactive demo</Highlight> for self-sovereign identity in learning. -->
 			{@html highlight($_("onboarding.welcome_to_ngdil"))}
 		</Typography>
 	</div>
@@ -57,7 +55,6 @@
 		<Button
 			variant="secondary"
 			label="{$_('onboarding.start_journey')}"
-			onClick="{handleContinue}"
-		/>
+			onClick="{handleContinue}" />
 	</div>
 </div>

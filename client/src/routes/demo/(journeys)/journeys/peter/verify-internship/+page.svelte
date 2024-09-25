@@ -9,11 +9,11 @@
 		.content {
 			.sidebar {
 				position: absolute;
-				top: 0;
-				left: 0;
+				// top: 0;
+				// left: 0;
 				width: 18%;
+				min-height: 100%;
 				background: rgb(255, 255, 255);
-				height: 100%;
 				filter: drop-shadow(0px 8px 28px rgba(20, 20, 43, 0.1));
 				display: flex;
 				flex-wrap: wrap;
@@ -47,7 +47,7 @@
 
 			.card {
 				width: 72.5%;
-				height: calc(100% - 50px);
+
 				background: white;
 				position: absolute;
 				bottom: 0;
@@ -83,7 +83,12 @@
 						}
 
 						&.type {
-							width: 50%;
+							width: max-content;
+							padding-inline-end: 20px;
+						}
+
+						&:nth-of-type(2) {
+							width: 30%;
 						}
 
 						&:nth-of-type(3) {
@@ -91,12 +96,12 @@
 						}
 
 						&:nth-of-type(4) {
-							width: 10%;
+							width: 30%;
 						}
 
 						&:nth-of-type(5) {
 							padding: 0px 10px;
-							width: 30px;
+							width: 10%;
 						}
 
 						.data,
@@ -165,6 +170,7 @@
 	}
 
 	.button {
+		min-width: max-content;
 		font-family: var(--kw1c-font);
 		border: none;
 		background: var(--kw1c-red-900);
@@ -197,7 +203,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Modal, Loading, CredModal } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { credentials } from "$lib/stores/creds";
 	import {
 		currNode,
@@ -249,12 +254,10 @@
 		</div>
 		<div class="p">
 			<Typography variant="sub-text"
-				>{$_("journeys.peter.click_request_creds_btn_to_confirm")}</Typography
-			>
+				>{$_("journeys.peter.click_request_creds_btn_to_confirm")}</Typography>
 		</div>
 		<button class="button" on:click="{handleWait}"
-			>{$_("journeys.peter.request_credentials").toUpperCase()}</button
-		>
+			>{$_("journeys.peter.request_credentials").toUpperCase()}</button>
 		<div class="subtext">
 			<Typography variant="sub-text" />
 		</div>
@@ -282,8 +285,7 @@
 		<Typography
 			>{!receivedCreds
 				? $_("journeys.peter.request_creds_btn_desc")
-				: $_("journeys.peter.eye_icon_btn_desc")}</Typography
-		>
+				: $_("journeys.peter.eye_icon_btn_desc")}</Typography>
 	</div>
 
 	<div class="dash">
@@ -301,8 +303,7 @@
 					<div class="student">
 						<div class="name">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>{$peterAssignedStudent?.toUpperCase()}</Typography
-							>
+								>{$peterAssignedStudent?.toUpperCase()}</Typography>
 						</div>
 						<div class="course">
 							<Typography fontVariant="kw1c" variant="kw1c-sub-text" color="--kw1c-red-900">
@@ -314,8 +315,7 @@
 						{#if receivedCreds}
 							<button
 								class="{`button ${loading && 'loading'}`}"
-								on:click="{() => goto('/demo/journeys/peter/verified-internship')}"
-							>
+								on:click="{() => goto('/demo/journeys/peter/verified-internship')}">
 								{$_("components.continue").toUpperCase()}
 							</button>
 						{:else}
@@ -323,8 +323,7 @@
 								class="{`button ${loading && 'loading'}`}"
 								on:click="{() => {
 									showModal = true;
-								}}"
-							>
+								}}">
 								{loading
 									? $_("journeys.peter.verifying").toUpperCase()
 									: $_("journeys.peter.request_credentials").toUpperCase()}
@@ -352,106 +351,87 @@
 					<div class="column type">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c"
-								>{$_("journeys.peter.cred_type")}</Typography
-							>
+								>{$_("journeys.peter.cred_type")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c"
-								>{$_("creds.kw1c_college_id").toUpperCase()}</Typography
-							>
+								>{$_("creds.kw1c_college_id").toUpperCase()}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c"
-								>{$_("creds.internatinalisation_badge").toUpperCase()}</Typography
-							>
+								>{$_("creds.internatinalisation_badge").toUpperCase()}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c"
-								>{$_("creds.internship_badge").toUpperCase()}</Typography
-							>
+								>{$_("creds.internship_badge").toUpperCase()}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="card-header" fontVariant="kw1c"
-								>{$_("creds.internship_reference").toUpperCase()}</Typography
-							>
+								>{$_("creds.internship_reference").toUpperCase()}</Typography>
 						</div>
 					</div>
 
 					<div class="column">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c" color="--black-500"
-								>{$_("issuer.issuer")}</Typography
-							>
+								>{$_("issuer.issuer")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--black-500"
-								>{$_("issuer.koning_willem_i_college")}</Typography
-							>
+								>{$_("issuer.koning_willem_i_college")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--black-500"
-								>{$_("issuer.koning_willem_i_college")}</Typography
-							>
+								>{$_("issuer.koning_willem_i_college")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--black-500"
-								>{$peterAssignedCompany}</Typography
-							>
+								>{$peterAssignedCompany}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--black-500"
-								>{$peterAssignedCompany}</Typography
-							>
+								>{$peterAssignedCompany}</Typography>
 						</div>
 					</div>
 
 					<div class="column">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c"
-								>{$_("components.status")}</Typography
-							>
+								>{$_("components.status")}</Typography>
 						</div>
 						{#if receivedCreds}
 							<div class="data">
 								<Typography variant="status" color="--green-900"
-									>{$_("components.verified")}</Typography
-								>
+									>{$_("components.verified")}</Typography>
 							</div>
 							<div class="data">
 								<Typography variant="status" color="--green-900"
-									>{$_("components.verified")}</Typography
-								>
+									>{$_("components.verified")}</Typography>
 							</div>
 							<div class="data">
 								<Typography variant="status" color="--green-900"
-									>{$_("components.verified")}</Typography
-								>
+									>{$_("components.verified")}</Typography>
 							</div>
 							<div class="data">
 								<Typography variant="status" color="--green-900"
-									>{$_("components.verified")}</Typography
-								>
+									>{$_("components.verified")}</Typography>
 							</div>
 						{:else}
 							<div class="data">
 								<Typography variant="status" color="--secondary-900"
-									>{$_("components.pending")}</Typography
-								>
+									>{$_("components.pending")}</Typography>
 							</div>
 							<div class="data">
 								<Typography variant="status" color="--secondary-900"
-									>{$_("components.pending")}</Typography
-								>
+									>{$_("components.pending")}</Typography>
 							</div>
 							<div class="data">
 								<Typography variant="status" color="--secondary-900"
-									>{$_("components.pending")}</Typography
-								>
+									>{$_("components.pending")}</Typography>
 							</div>
 							<div class="data">
 								<Typography variant="status" color="--secondary-900"
-									>{$_("components.pending")}</Typography
-								>
+									>{$_("components.pending")}</Typography>
 							</div>
 						{/if}
 					</div>
@@ -469,16 +449,14 @@
 										...credentials.collegeId,
 										'Student Name': $peterChosenStudent
 									}}"
-									logo="/imgs/kw1c-white.png"
-								/>
+									logo="/imgs/kw1c-white.png" />
 							</div>
 							<div class="data">
 								<CredModal
 									name="{$_('creds.internatinalisation_badge')}"
 									issuer="{$_('issuer.koning_willem_i_college')}"
 									logo="/imgs/kw1c-white.png"
-									credential="{{ ...credentials.internationalisation }}"
-								/>
+									credential="{{ ...credentials.internationalisation }}" />
 							</div>
 							<div class="data">
 								<CredModal
@@ -492,8 +470,7 @@
 										'Intern Name': $peterChosenStudent,
 										Issuer: $peterAssignedCompany,
 										Country: $peterAssignecCompanyCountry
-									}}"
-								/>
+									}}" />
 							</div>
 							<div class="data">
 								<CredModal
@@ -505,8 +482,7 @@
 									credential="{{
 										...credentials.internshipReference,
 										Country: $peterAssignecCompanyCountry
-									}}"
-								/>
+									}}" />
 							</div>
 						{/if}
 					</div>

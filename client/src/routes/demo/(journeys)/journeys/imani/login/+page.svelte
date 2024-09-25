@@ -5,11 +5,12 @@
 		}
 
 		.card-container {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
+			width: 100%;
+			display: flex;
+			flex-direction: column;
 			text-align: center;
+			align-items: center;
+			align-self: center;
 
 			.header {
 				padding-bottom: 10px;
@@ -39,7 +40,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Phone } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, eventUri, nodeCount } from "$lib/stores/flows.store";
 	import { apiClient } from "$lib/utils/axios.utils";
 	import { createWebsocket } from "$lib/utils/ws.util";
@@ -99,8 +99,7 @@
 			<div class="card-container">
 				<div class="header">
 					<Typography variant="card-header" fontVariant="kw1c" color="--future-tech-green"
-						>{$_("journeys.imani.staff_connect").toUpperCase()}</Typography
-					>
+						>{$_("journeys.imani.staff_connect").toUpperCase()}</Typography>
 				</div>
 				<div class="login-card">
 					{#if qr}
@@ -108,14 +107,12 @@
 					{/if}
 					<div class="heading">
 						<Typography variant="list" color="--future-tech-green-300"
-							>{$_("journeys.imani.scan_qr_to_login")}</Typography
-						>
+							>{$_("journeys.imani.scan_qr_to_login")}</Typography>
 					</div>
 
 					<div class="p">
 						<Typography color="--white-300"
-							>{$_("journeys.imani.scan_qr_to_login_to_future_tech_co")}</Typography
-						>
+							>{$_("journeys.imani.scan_qr_to_login_to_future_tech_co")}</Typography>
 					</div>
 				</div>
 			</div>

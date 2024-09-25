@@ -86,7 +86,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Button, Loading, Modal } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, imaniBadgeName } from "$lib/stores/flows.store";
 	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
@@ -131,8 +130,7 @@
 							<Loading size="16px" />
 						{/if}
 						<Typography variant="status" color="{loading ? '--secondary-900' : '--green-900'}"
-							>{loading ? $_("components.pending") : $_("components.active")}</Typography
-						>
+							>{loading ? $_("components.pending") : $_("components.active")}</Typography>
 					</td>
 				</tr>
 				<tr>
@@ -179,8 +177,7 @@
 					label="{$_('components.continue')}"
 					onClick="{() => {
 						goto('/demo/journeys/imani/train-staff');
-					}}"
-				/>
+					}}" />
 			</div>
 		</FutureTech>
 	</div>

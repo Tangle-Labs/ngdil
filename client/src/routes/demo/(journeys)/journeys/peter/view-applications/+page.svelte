@@ -119,7 +119,6 @@
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Modal, Loading } from "$lib/components";
 	import Button from "$lib/components/ui/Button/Button.svelte";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, dominiqueSelectedCourse, peterChosenStudent } from "$lib/stores/flows.store";
 	import { _ } from "svelte-i18n";
 	import { onMount } from "svelte";
@@ -164,54 +163,45 @@
 					<div class="column">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c"
-								>{$_("journeys.peter.student_applicant")}</Typography
-							>
+								>{$_("journeys.peter.student_applicant")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>{$_("applicants.Sarah_Jones")}</Typography
-							>
+								>{$_("applicants.Sarah_Jones")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>{$_("applicants.Ivar_Leifsson")}</Typography
-							>
+								>{$_("applicants.Ivar_Leifsson")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>{$_("applicants.Lagertha_Bonde")}</Typography
-							>
+								>{$_("applicants.Lagertha_Bonde")}</Typography>
 						</div>
 					</div>
 
 					<div class="column">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c"
-								>{$_("journeys.peter.sinternship_category")}</Typography
-							>
+								>{$_("journeys.peter.internship_category")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>{$_("journeys.peter.3d_print_design")}</Typography
-							>
+								>{$_("journeys.peter.3d_print_design")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>{$_("journeys.peter.3d_print_design")}</Typography
-							>
+								>{$_("journeys.peter.3d_print_design")}</Typography>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>{$_("journeys.peter.3d_print_design")}</Typography
-							>
+								>{$_("journeys.peter.3d_print_design")}</Typography>
 						</div>
 					</div>
 
 					<div class="column">
 						<div class="header action">
 							<Typography variant="sub-text" fontVariant="kw1c"
-								>{$_("journeys.peter.action")}</Typography
-							>
+								>{$_("journeys.peter.action")}</Typography>
 						</div>
 						<div class="button-container">
 							<Button
@@ -220,8 +210,7 @@
 									goto('/demo/journeys/peter/view-application');
 								}}"
 								variant="kw1c"
-								label="{$_('journeys.peter.view_application')}"
-							/>
+								label="{$_('journeys.peter.view_application')}" />
 						</div>
 
 						<div class="button-container">
@@ -231,8 +220,7 @@
 									goto('/demo/journeys/peter/view-application');
 								}}"
 								variant="kw1c"
-								label="{$_('journeys.peter.view_application')}"
-							/>
+								label="{$_('journeys.peter.view_application')}" />
 						</div>
 
 						<div class="button-container">
@@ -242,8 +230,7 @@
 									goto('/demo/journeys/peter/view-application');
 								}}"
 								variant="kw1c"
-								label="{$_('journeys.peter.view_application')}"
-							/>
+								label="{$_('journeys.peter.view_application')}" />
 						</div>
 					</div>
 				</div>
