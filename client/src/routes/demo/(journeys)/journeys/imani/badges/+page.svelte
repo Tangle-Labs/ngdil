@@ -130,7 +130,8 @@
 							<Loading size="16px" />
 						{/if}
 						<Typography variant="status" color="{loading ? '--secondary-900' : '--green-900'}"
-							>{loading ? $_("components.pending") : $_("components.active")}</Typography>
+							>{loading ? $_("components.pending") : $_("components.active")}</Typography
+						>
 					</td>
 				</tr>
 				<tr>
@@ -177,7 +178,8 @@
 					label="{$_('components.continue')}"
 					onClick="{() => {
 						goto('/demo/journeys/imani/train-staff');
-					}}" />
+					}}"
+				/>
 			</div>
 		</FutureTech>
 	</div>

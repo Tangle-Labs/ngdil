@@ -124,7 +124,8 @@
 		<img src="/imgs/future-tech.png" alt="" class="logo" />
 		<div class="heading">
 			<Typography variant="card-header" fontVariant="kw1c" color="--future-tech-green"
-				>{$_("components.future_tech_co").toUpperCase()}</Typography>
+				>{$_("components.future_tech_co").toUpperCase()}</Typography
+			>
 		</div>
 		<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-red-900">
 			{$_("journeys.imani.staff_attended_training_see_results")}
@@ -137,7 +138,8 @@
 		<Button
 			variant="future-tech"
 			label="{$_('journeys.imani.continue_to_result')}"
-			onClick="{handleTrainStaff}" />
+			onClick="{handleTrainStaff}"
+		/>
 		<div class="subtext">
 			<Typography variant="sub-text">{$_("components.cancel")}</Typography>
 		</div>
@@ -182,7 +184,8 @@
 				<Button
 					variant="{disabled ? 'future-tech-disabled' : 'future-tech'}"
 					label="{$_('journeys.imani.train_staff')}"
-					onClick="{() => (showModal = true)}" />
+					onClick="{() => (showModal = true)}"
+				/>
 			</div>
 		</FutureTech>
 	</div>

@@ -162,7 +162,8 @@
 								class="{`button ${$dominiqueSelectedCourse !== i && 'disabled'}`}"
 								on:click="{() => {
 									handleClick(i);
-								}}">{$_("components.apply_now")}</button>
+								}}">{$_("components.apply_now")}</button
+							>
 						</div>
 					{/each}
 				</div>

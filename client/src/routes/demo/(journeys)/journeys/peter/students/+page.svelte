@@ -205,12 +205,14 @@
 					<div class="column">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c"
-								>{$_("journeys.peter.student_applicant")}</Typography>
+								>{$_("journeys.peter.student_applicant")}</Typography
+							>
 						</div>
 						{#each $peterAssignedBadges as student (student)}
 							<div class="data">
 								<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>{student.toUpperCase()}</Typography>
+									>{student.toUpperCase()}</Typography
+								>
 							</div>
 						{/each}
 					</div>
@@ -218,13 +220,15 @@
 					<div class="column">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c"
-								>{$_("journeys.peter.internship_category")}</Typography>
+								>{$_("journeys.peter.internship_category")}</Typography
+							>
 						</div>
 
 						{#each $peterAssignedBadges as student (student)}
 							<div class="data">
 								<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-									>{$_("journeys.peter.3d_print_design")}</Typography>
+									>{$_("journeys.peter.3d_print_design")}</Typography
+								>
 							</div>
 						{/each}
 					</div>
@@ -232,7 +236,8 @@
 					<div class="column action">
 						<div class="header action">
 							<Typography variant="sub-text" fontVariant="kw1c"
-								>{$_("journeys.peter.action")}</Typography>
+								>{$_("journeys.peter.action")}</Typography
+							>
 						</div>
 
 						{#each $peterAssignedBadges as student (student)}
@@ -243,7 +248,8 @@
 									onClick="{() => {
 										peterAssignedStudent.set(student);
 										goto('/demo/journeys/peter/place-student');
-									}}" />
+									}}"
+								/>
 							</div>
 						{/each}
 					</div>

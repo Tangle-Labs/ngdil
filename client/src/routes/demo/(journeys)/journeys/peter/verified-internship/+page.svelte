@@ -95,7 +95,8 @@
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
 						<Typography variant="list"
-							>{$_("journeys.peter.pvtly_requested_creds_for_verification")}</Typography>
+							>{$_("journeys.peter.pvtly_requested_creds_for_verification")}</Typography
+						>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
@@ -115,11 +116,13 @@
 					<Button
 						variant="secondary"
 						label="{$_('components.continue')}"
-						onClick="{handleFinishCourse}" />&nbsp;
+						onClick="{handleFinishCourse}"
+					/>&nbsp;
 					<Button
 						variant="white"
 						label="{$_('journeys.peter.contact_ngdil')}"
-						onClick="{() => window.open('https://ngdil.com/contact', '_blank')}" />
+						onClick="{() => window.open('https://ngdil.com/contact', '_blank')}"
+					/>
 				</div>
 				<div class="img">
 					<img src="/imgs/peter-3.svg" alt="" />

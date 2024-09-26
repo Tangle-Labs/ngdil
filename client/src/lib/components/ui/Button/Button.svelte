@@ -112,5 +112,6 @@
 		fontVariant="{['future-tech', 'future-tech-disabled'].includes(variant) ? 'kw1c' : 'main'}"
 		color="{['primary', 'future-tech', 'future-tech-disabled', 'kw1c'].includes(variant)
 			? '--white-300'
-			: ''}">{label}</Typography>
+			: ''}">{label}</Typography
+	>
 </button>

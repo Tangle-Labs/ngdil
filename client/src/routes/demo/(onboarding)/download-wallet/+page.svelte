@@ -131,7 +131,8 @@
 			<Button
 				variant="secondary"
 				onClick="{() => goto('/demo/choose-journey')}"
-				label="{$_('components.continue')}" />
+				label="{$_('components.continue')}"
+			/>
 			<div class="subtitle">
 				<Typography variant="sub-text">
 					{$_("onboarding.download_wallet.click_to_continue")}
@@ -167,7 +168,8 @@
 					</div>
 					<div class="info">
 						<Typography variant="sub-text"
-							>{$_("onboarding.download_wallet.tangle_labs")}</Typography>
+							>{$_("onboarding.download_wallet.tangle_labs")}</Typography
+						>
 					</div>
 					<Button
 						variant="secondary"
@@ -175,7 +177,8 @@
 							selectedWallet = 0;
 							modalVisible = true;
 						}}"
-						label="{$_('components.download')}" />
+						label="{$_('components.download')}"
+					/>
 				</div>
 			</Card>
 		</div>
@@ -196,7 +199,8 @@
 							selectedWallet = 1;
 							modalVisible = true;
 						}}"
-						label="{$_('components.download')}" />
+						label="{$_('components.download')}"
+					/>
 				</div>
 			</Card>
 		</div>

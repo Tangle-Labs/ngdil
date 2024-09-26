@@ -95,7 +95,8 @@
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
 						<Typography variant="list"
-							>{$_("journeys.imani.created_open_badge_template")}</Typography>
+							>{$_("journeys.imani.created_open_badge_template")}</Typography
+						>
 					</div>
 					<div class="list">
 						<img src="/imgs/check-circle.png" alt="" />
@@ -116,11 +117,13 @@
 					<Button
 						variant="secondary"
 						label="{$_('components.continue')}"
-						onClick="{handleFinishCourse}" />&nbsp;
+						onClick="{handleFinishCourse}"
+					/>&nbsp;
 					<Button
 						variant="white"
 						label="{$_('journeys.imani.contact_ngdil')}"
-						onClick="{() => window.open('https://ngdil.com/contact', '_blank')}" />
+						onClick="{() => window.open('https://ngdil.com/contact', '_blank')}"
+					/>
 				</div>
 				<div class="img">
 					<img src="/imgs/imani-2.svg" alt="" />

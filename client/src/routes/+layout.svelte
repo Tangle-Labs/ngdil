@@ -42,5 +42,6 @@
 		<Typography>{$_("components.small_screen")}</Typography>
 	</div>
 	<a href="https://ngdil.com">
-		<Typography variant="button">{$_("components.go_back_to_ngdil")}</Typography></a>
+		<Typography variant="button">{$_("components.go_back_to_ngdil")}</Typography></a
+	>
 </div>

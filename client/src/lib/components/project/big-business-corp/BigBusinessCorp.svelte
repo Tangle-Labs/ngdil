@@ -81,7 +81,8 @@
 			<img src="/imgs/bbc.png" alt="" />
 			<div class="text">
 				<Typography color="--white-300" variant="card-header"
-					>{$_("components.big_business_corp")}</Typography>
+					>{$_("components.big_business_corp")}</Typography
+				>
 			</div>
 		</div>
 		<div class="tabs">

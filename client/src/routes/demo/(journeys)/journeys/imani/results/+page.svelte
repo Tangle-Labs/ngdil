@@ -108,7 +108,8 @@
 			<img src="/imgs/future-tech.png" alt="" class="logo" />
 			<div class="heading">
 				<Typography variant="card-header" fontVariant="kw1c" color="--future-tech-green"
-					>{$_("components.future_tech_co").toUpperCase()}</Typography>
+					>{$_("components.future_tech_co").toUpperCase()}</Typography
+				>
 			</div>
 			<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-red-900">
 				{$_("journeys.imani.about_to_issue_badges", {
@@ -123,7 +124,8 @@
 			<Button
 				variant="future-tech"
 				label="{$_('journeys.imani.issue_badges')}"
-				onClick="{handleIssueCred}" />
+				onClick="{handleIssueCred}"
+			/>
 			<div class="subtext">
 				<Typography variant="sub-text">{$_("components.cancel")}</Typography>
 			</div>
@@ -141,7 +143,8 @@
 	</div>
 	<div class="dash">
 		<FutureTech
-			header="{$imaniBadgeName.toUpperCase() + ' ' + $_('journeys.imani.trainees').toUpperCase()}">
+			header="{$imaniBadgeName.toUpperCase() + ' ' + $_('journeys.imani.trainees').toUpperCase()}"
+		>
 			<table class="table">
 				<tr>
 					<th></th>
@@ -174,7 +177,8 @@
 					onClick="{() => {
 						showModal = true;
 						staffCount = staff.filter((e) => e.selected).length;
-					}}" />
+					}}"
+				/>
 			</div>
 		</FutureTech>
 	</div>

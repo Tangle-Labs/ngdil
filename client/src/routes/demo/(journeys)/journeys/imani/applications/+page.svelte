@@ -68,7 +68,8 @@
 						onClick="{() => {
 							imaniChosenApplicant.set("Gilian O'Leary");
 							goto('/demo/journeys/imani/applicant');
-						}}" />
+						}}"
+					/>
 				</div>
 			</div>
 
@@ -88,7 +89,8 @@
 						onClick="{() => {
 							imaniChosenApplicant.set('Marcus Erikson');
 							goto('/demo/journeys/imani/applicant');
-						}}" />
+						}}"
+					/>
 				</div>
 			</div>
 
@@ -108,7 +110,8 @@
 						onClick="{() => {
 							imaniChosenApplicant.set('Cassandra Blanc');
 							goto('/demo/journeys/imani/applicant');
-						}}" />
+						}}"
+					/>
 				</div>
 			</div>
 		</FutureTech>

@@ -188,14 +188,16 @@
 			<img src="/imgs/bbc.png" alt="" class="logo" />
 			<div class="logo-text">
 				<Typography color="--white-300" variant="card-header"
-					>{$_("components.big_business_corp")}</Typography>
+					>{$_("components.big_business_corp")}</Typography
+				>
 			</div>
 		</div>
 		<div class="modal-content">
 			<Typography variant="card-header" color="--bbc-blue"
 				>{receivedCreds
 					? $_("journeys.dominique.accepted_following_cred")
-					: $_("creds.bbc_staff_id")}</Typography>
+					: $_("creds.bbc_staff_id")}</Typography
+			>
 			<div class="p">
 				{receivedCreds
 					? $_("creds.bbc_staff_id")
@@ -204,7 +206,8 @@
 			{#if receivedCreds}
 				<img class="checked" src="/imgs/check-circle.png" alt="" />
 				<button class="button" on:click="{() => goto('/demo/journeys/dominique/job-secured')}"
-					>{$_("components.continue")}</button>
+					>{$_("components.continue")}</button
+				>
 			{:else if qr}
 				<open-id-qr request-uri="{qr}" event-stream-uri="{$eventUri}" size="{200}"></open-id-qr>
 				<div class="loading">
@@ -215,7 +218,8 @@
 				<Typography variant="sub-text"
 					>{receivedCreds
 						? $_("journeys.dominique.click_to_proceed")
-						: $_("journeys.dominique.awaiting_confirmation")}</Typography>
+						: $_("journeys.dominique.awaiting_confirmation")}</Typography
+				>
 			</div>
 		</div>
 	</Modal>
@@ -226,17 +230,20 @@
 	</div>
 	<div class="sub-text">
 		<Typography>
-			{$_("journeys.dominique.get_staff_id_btn_desc")}</Typography>
+			{$_("journeys.dominique.get_staff_id_btn_desc")}</Typography
+		>
 	</div>
 	<div
-		style="position: fixed; top: -50px; left: 0; height: 100vh; width: 100vw; display: flex; justify-content: center; overflow: hidden; pointer-events: none;">
+		style="position: fixed; top: -50px; left: 0; height: 100vh; width: 100vw; display: flex; justify-content: center; overflow: hidden; pointer-events: none;"
+	>
 		<Confetti
 			x="{[-5, 5]}"
 			y="{[0, 0.1]}"
 			delay="{[500, 5000]}"
 			duration="{2000}"
 			amount="{500}"
-			fallDistance="100vh" />
+			fallDistance="100vh"
+		/>
 	</div>
 
 	<div class="dash">
@@ -247,7 +254,8 @@
 					<div class="details">
 						<div class="heading">
 							<Typography variant="card-header" color="--bbc-blue"
-								>{$_("onboarding.choose_journey.dominique_veritas")}</Typography>
+								>{$_("onboarding.choose_journey.dominique_veritas")}</Typography
+							>
 						</div>
 						<div class="bars">
 							<div class="bar"></div>
@@ -260,7 +268,8 @@
 				<div class="right">
 					<div class="heading">
 						<Typography variant="card-header" color="--bbc-blue"
-							>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography>
+							>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography
+						>
 					</div>
 					<div class="sub-text">
 						<Typography>
@@ -276,7 +285,8 @@
 							class="button"
 							on:click="{() => {
 								showModal = true;
-							}}">{$_("journeys.dominique.get_staff_id")}</button>
+							}}">{$_("journeys.dominique.get_staff_id")}</button
+						>
 					</div>
 				</div>
 			</div>

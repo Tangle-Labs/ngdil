@@ -96,7 +96,8 @@
 						}}"
 						label="{$dominiqueEarnedCourseCred
 							? $_('components.retry')
-							: $_('components.get_started')}" />
+							: $_('components.get_started')}"
+					/>
 				</div>
 			</Card>
 		</div>
@@ -126,9 +127,8 @@
 							nodeCount.set(4);
 							goto('/demo/journeys/dominique/share-a-cred');
 						}}"
-						label="{$dominiqueSharedCred
-							? $_('components.retry')
-							: $_('components.get_started')}" />
+						label="{$dominiqueSharedCred ? $_('components.retry') : $_('components.get_started')}"
+					/>
 				</div>
 			</Card>
 		</div>
@@ -158,7 +158,8 @@
 						}}"
 						label="{$dominiqueAppliedForJob
 							? $_('components.retry')
-							: $_('components.get_started')}" />
+							: $_('components.get_started')}"
+					/>
 				</div>
 			</Card>
 		</div>
@@ -167,7 +168,8 @@
 				<Button
 					variant="secondary"
 					onClick="{() => goto('/demo/choose-journey')}"
-					label="{$_('components.try_another_journey')}" />
+					label="{$_('components.try_another_journey')}"
+				/>
 			</div>
 		{/if}
 	</div>

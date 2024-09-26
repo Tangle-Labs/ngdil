@@ -199,11 +199,13 @@
 					<div class="column">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c"
-								>{$_("journeys.peter.course_name")}</Typography>
+								>{$_("journeys.peter.course_name")}</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>{$_("journeys.peter.internationalisation")}</Typography>
+								>{$_("journeys.peter.internationalisation")}</Typography
+							>
 						</div>
 						<div class="data">
 							<div class="blue-bar"></div>
@@ -216,11 +218,13 @@
 					<div class="column">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c"
-								>{$_("journeys.peter.course_status")}</Typography>
+								>{$_("journeys.peter.course_status")}</Typography
+							>
 						</div>
 						<div class="data">
 							<Typography variant="status" fontVariant="kw1c" color="--green-900"
-								>{$_("components.complete")}</Typography>
+								>{$_("components.complete")}</Typography
+							>
 						</div>
 						<div class="data">
 							<div class="red-bar"></div>
@@ -233,7 +237,8 @@
 					<div class="column">
 						<div class="header">
 							<Typography variant="sub-text" fontVariant="kw1c" color="--white-300"
-								>{$_("journeys.peter.action")}</Typography>
+								>{$_("journeys.peter.action")}</Typography
+							>
 						</div>
 						<div class="button-container">
 							<Button
@@ -241,7 +246,8 @@
 								variant="kw1c"
 								onClick="{() => {
 									goto('/demo/journeys/peter/course-results');
-								}}" />
+								}}"
+							/>
 						</div>
 
 						<div class="button-container">
