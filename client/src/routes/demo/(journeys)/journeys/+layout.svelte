@@ -51,7 +51,7 @@
 	}
 
 	.bottom {
-		padding: 0 17vw;
+		padding: 0 17vw 10vh;
 		display: flex;
 		justify-content: center;
 		align-items: center;

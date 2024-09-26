@@ -53,11 +53,13 @@
 			width: 100%;
 			height: 100%;
 			min-height: 50vh;
+			overflow-y: scroll;
+			overflow-x: hidden;
 			background: var(--future-tech-background);
 
 			.sidenav {
 				background: var(--future-tech-green);
-				height: 100%;
+				min-height: 100%;
 				width: 20%;
 				min-height: 52vh;
 				padding: 20px 35px;

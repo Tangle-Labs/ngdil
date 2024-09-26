@@ -16,7 +16,7 @@
 
 				.bar {
 					height: 10px;
-					width: 100%;
+					width: 90%;
 					background: var(--white-700);
 					margin-top: 10px;
 					border-radius: 10px;

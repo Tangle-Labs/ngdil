@@ -93,8 +93,7 @@
 	}
 
 	.button-container {
-		margin-left: 60%;
-		width: 40%;
+		margin-left: 50%;
 	}
 
 	.modal-content {
@@ -130,6 +129,7 @@
 	}
 
 	.button {
+		min-width: max-content;
 		font-family: var(--kw1c-font);
 		border: none;
 		background: var(--kw1c-red-900);
@@ -163,7 +163,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Modal, Loading, Radio } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, peterChosenStudents } from "$lib/stores/flows.store";
 	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";

@@ -29,9 +29,9 @@
 			}
 
 			& > .bottom {
-				width: 50%;
+				width: 80%;
 				display: flex;
-				justify-content: center;
+				justify-content: end;
 				position: relative;
 
 				& > .back {

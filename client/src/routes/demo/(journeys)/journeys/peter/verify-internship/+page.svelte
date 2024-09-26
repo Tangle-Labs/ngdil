@@ -9,11 +9,11 @@
 		.content {
 			.sidebar {
 				position: absolute;
-				top: 0;
-				left: 0;
+				// top: 0;
+				// left: 0;
 				width: 18%;
+				min-height: 100%;
 				background: rgb(255, 255, 255);
-				height: 100%;
 				filter: drop-shadow(0px 8px 28px rgba(20, 20, 43, 0.1));
 				display: flex;
 				flex-wrap: wrap;
@@ -47,7 +47,7 @@
 
 			.card {
 				width: 72.5%;
-				height: calc(100% - 50px);
+
 				background: white;
 				position: absolute;
 				bottom: 0;
@@ -83,7 +83,12 @@
 						}
 
 						&.type {
-							width: 50%;
+							width: max-content;
+							padding-inline-end: 20px;
+						}
+
+						&:nth-of-type(2) {
+							width: 30%;
 						}
 
 						&:nth-of-type(3) {
@@ -91,12 +96,12 @@
 						}
 
 						&:nth-of-type(4) {
-							width: 10%;
+							width: 30%;
 						}
 
 						&:nth-of-type(5) {
 							padding: 0px 10px;
-							width: 30px;
+							width: 10%;
 						}
 
 						.data,
@@ -165,6 +170,7 @@
 	}
 
 	.button {
+		min-width: max-content;
 		font-family: var(--kw1c-font);
 		border: none;
 		background: var(--kw1c-red-900);
@@ -197,7 +203,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Modal, Loading, CredModal } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { credentials } from "$lib/stores/creds";
 	import {
 		currNode,

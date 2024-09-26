@@ -86,7 +86,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Button, Loading, Modal } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, imaniChosenApplicant } from "$lib/stores/flows.store";
 	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
@@ -237,7 +236,7 @@
 
 				<tr>
 					<td>
-						<Typography variant="list">{$_("applicants.Ada_Liefsso")}</Typography>
+						<Typography variant="list">{$_("applicants.Ada_Liefsson")}</Typography>
 					</td>
 					<td>
 						<Typography variant="sub-text">{$_("journeys.imani.3d_print_designer")}</Typography>

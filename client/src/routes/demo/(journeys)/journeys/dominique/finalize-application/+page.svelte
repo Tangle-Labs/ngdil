@@ -6,7 +6,7 @@
 
 		.dash {
 			.card {
-				margin: 0px 10%;
+				margin: 0px 10% 10%;
 				background: white;
 				border-radius: 20px;
 				display: flex;

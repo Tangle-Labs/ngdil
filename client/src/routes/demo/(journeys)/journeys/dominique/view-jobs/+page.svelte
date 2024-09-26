@@ -9,6 +9,7 @@
 			display: flex;
 			transform: translate(6%, 10%);
 			justify-content: space-between;
+			padding-bottom: 20px;
 
 			.course {
 				width: 32%;

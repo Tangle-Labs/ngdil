@@ -5,7 +5,6 @@
 		box-sizing: border-box;
 		overflow: hidden;
 		border: 1px solid black;
-
 		.nav {
 			width: 100%;
 			padding: 10px 40px;
@@ -65,6 +64,8 @@
 		.content {
 			min-height: 50vh;
 			position: relative;
+			overflow-y: scroll;
+			overflow-x: hidden;
 
 			.division {
 				position: absolute;

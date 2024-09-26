@@ -78,7 +78,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Button, Modal, Radio } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, imaniChosenStaff } from "$lib/stores/flows.store";
 	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
@@ -96,7 +95,7 @@
 			selected: false
 		},
 		{
-			name: $_("applicants.Ada_Liefsso"),
+			name: $_("applicants.Ada_Liefsson"),
 			role: $_("journeys.imani.senior_3d_print_operator"),
 			selected: false
 		},

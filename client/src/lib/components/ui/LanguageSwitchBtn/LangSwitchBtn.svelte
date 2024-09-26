@@ -3,17 +3,23 @@
 		margin: 30px 30px 0 0;
 		display: flex;
 		justify-content: end;
-		align-items: center;
-		align-content: center;
-		gap: 7px;
 
 		& > .lang-select {
 			display: flex;
 			align-items: center;
 
+			img {
+				background: var(--primary-500);
+				padding: 5px;
+				border-top-left-radius: 7px;
+				border-bottom-left-radius: 7px;
+			}
+
 			select {
+				background: var(--primary-300);
 				border: none;
-				width: min-content;
+				padding: 5px;
+				min-width: max-content;
 				user-select: none;
 				outline: none;
 				width: 90px;
@@ -36,8 +42,8 @@
 <div class="lang-switch">
 	<div class="lang-select">
 		<img src="/imgs/lang.svg" alt="" />
-		<select class="translator" bind:value="{$locale}">
-			<option value="" selected disabled>
+		<select bind:value="{$locale}">
+			<option value="" disabled>
 				<Typography variant="button">Select Language</Typography>
 			</option>
 			{#each $locales as locale}

@@ -164,7 +164,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Button, Loading } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, peterChosenStudents } from "$lib/stores/flows.store";
 	import { highlight } from "$lib/utils/highlight";
 	import { Confetti } from "svelte-confetti";
@@ -265,7 +264,7 @@
 
 						{#each $peterChosenStudents as student (student)}
 							<div class="data action">
-								<span style:padding-right="5px">
+								<span style:padding-right="10px">
 									<Typography variant="status" color="{loading ? '--secondary-900' : '--green-900'}"
 										>{loading ? $_("components.pending") : $_("components.accepted")}</Typography
 									>

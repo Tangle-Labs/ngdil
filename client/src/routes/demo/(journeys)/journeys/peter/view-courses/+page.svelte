@@ -65,6 +65,10 @@
 						flex-wrap: wrap;
 						width: 32%;
 
+						&:nth-of-type(1) {
+							width: 60%;
+						}
+
 						.data,
 						.button-container {
 							width: 100%;
@@ -145,7 +149,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Button } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
 		currNode,
 		dominiqueSelectedCourse,

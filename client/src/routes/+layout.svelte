@@ -25,9 +25,12 @@
 </style>
 
 <script>
+	import LangSwitchBtn from "$lib/components/ui/LanguageSwitchBtn/LangSwitchBtn.svelte";
 	import Typography from "$lib/components/ui/Typography/Typography.svelte";
 	import { _ } from "svelte-i18n";
 </script>
+
+<LangSwitchBtn />
 
 <div class="desktop-view">
 	<slot />

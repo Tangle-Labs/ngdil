@@ -168,7 +168,7 @@
 				<Button
 					variant="secondary"
 					onClick="{() => goto('/demo/choose-journey')}"
-					label="{$_('journeys.dominique.try_another_journey')}"
+					label="{$_('components.try_another_journey')}"
 				/>
 			</div>
 		{/if}

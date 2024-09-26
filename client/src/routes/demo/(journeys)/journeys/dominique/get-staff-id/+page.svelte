@@ -6,7 +6,7 @@
 
 		.dash {
 			.card {
-				margin: 0px 10%;
+				margin: 0px 10% 10%;
 				background: white;
 				border-radius: 20px;
 				filter: drop-shadow(0px 8px 28px rgba(20, 20, 43, 0.1));
@@ -107,7 +107,7 @@
 	}
 
 	.button-container {
-		width: 50%;
+		min-width: max-content;
 		.button {
 			margin: 20px 0;
 		}

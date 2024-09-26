@@ -99,6 +99,7 @@
 	}
 
 	.button {
+		min-width: max-content;
 		font-family: var(--kw1c-font);
 		border: none;
 		background: var(--kw1c-red-900);
@@ -131,13 +132,13 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
 		currNode,
 		nodeCount,
 		peterAssignedCompany,
 		peterAssignedStudent
 	} from "$lib/stores/flows.store";
+	import { highlight } from "$lib/utils/highlight";
 	import { onMount } from "svelte";
 	import { _ } from "svelte-i18n";
 
@@ -150,9 +151,9 @@
 <div class="container">
 	<div class="heading">
 		<Typography variant="heading">
-			Your students have <Highlight>returned from their internships abroad.</Highlight> Let’s verify
-			their internship completion.
-			<!-- {$_("journeys.peter.students_returned_from_internships_now_verify_internship_completion")} -->
+			{@html highlight(
+				$_("journeys.peter.students_returned_from_internships_now_verify_internship_completion")
+			)}
 		</Typography>
 	</div>
 	<div class="sub-text">

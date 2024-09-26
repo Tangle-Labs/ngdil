@@ -5,11 +5,12 @@
 		}
 
 		.card-container {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
+			width: 100%;
+			display: flex;
+			flex-direction: column;
 			text-align: center;
+			align-items: center;
+			align-self: center;
 
 			.header {
 				padding-bottom: 10px;
@@ -39,7 +40,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, FutureTech, Phone } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import { currNode, eventUri, nodeCount } from "$lib/stores/flows.store";
 	import { apiClient } from "$lib/utils/axios.utils";
 	import { createWebsocket } from "$lib/utils/ws.util";

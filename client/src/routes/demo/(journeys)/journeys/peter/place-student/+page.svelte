@@ -200,7 +200,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { Typography, Kw1c, Modal, Loading } from "$lib/components";
-	import Highlight from "$lib/components/ui/Highlight/Highlight.svelte";
 	import {
 		currNode,
 		dominqueCourses,
@@ -339,15 +338,17 @@
 						<div class="card internship">
 							<img src="/imgs/engineer.png" alt="" />
 							<div class="intern-content">
-								<div class="location">
-									<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-										>{internship.location}</Typography
-									>
-								</div>
-								<div class="org">
-									<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-										>{internship.name}</Typography
-									>
+								<div>
+									<div class="location">
+										<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
+											>{internship.location}</Typography
+										>
+									</div>
+									<div class="org">
+										<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
+											>{internship.name}</Typography
+										>
+									</div>
 								</div>
 								<button
 									class="button"

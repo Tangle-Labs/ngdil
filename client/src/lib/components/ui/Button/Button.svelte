@@ -3,6 +3,7 @@
 		padding: 8px 32px;
 		border: 0;
 		transition: all 0.5s;
+		min-width: max-content;
 		border-radius: 5px;
 		outline: none;
 		text-transform: capitalize;

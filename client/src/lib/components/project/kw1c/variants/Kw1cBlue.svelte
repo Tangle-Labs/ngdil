@@ -90,6 +90,8 @@
 		.content {
 			min-height: 50vh;
 			position: relative;
+			overflow-y: scroll;
+			overflow-x: hidden;
 		}
 	}
 </style>

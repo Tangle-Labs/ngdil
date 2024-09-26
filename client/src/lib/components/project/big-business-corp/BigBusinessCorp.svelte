@@ -62,6 +62,8 @@
 			min-height: 50vh;
 			background: var(--bbc-background);
 			position: relative;
+			overflow-y: scroll;
+			overflow-x: hidden;
 		}
 	}
 </style>
