@@ -250,8 +250,7 @@
 						<br />
 					</Typography>
 					<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-						>{$peterAssignedCompany}</Typography
-					>
+						>{$peterAssignedCompany}</Typography>
 				{/if}
 			</span>
 			<div class="p">
@@ -270,8 +269,7 @@
 				<button class="button" on:click="{handleModalClick}"
 					>{state === "loaded"
 						? $_("components.continue").toUpperCase()
-						: $_("journeys.peter.assign_placement").toUpperCase()}</button
-				>
+						: $_("journeys.peter.assign_placement").toUpperCase()}</button>
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text" />
@@ -310,26 +308,22 @@
 						<div class="text-block">
 							<div class="header">
 								<Typography fontVariant="kw1c" variant="sub-text"
-									>{$_("journeys.peter.student_applicant")}</Typography
-								>
+									>{$_("journeys.peter.student_applicant")}</Typography>
 							</div>
 							<div class="content">
 								<Typography fontVariant="kw1c" variant="kw1c-header" color="--kw1c-blue-900"
-									>{$peterAssignedStudent?.toUpperCase()}</Typography
-								>
+									>{$peterAssignedStudent?.toUpperCase()}</Typography>
 							</div>
 						</div>
 
 						<div class="text-block">
 							<div class="header">
 								<Typography fontVariant="kw1c" variant="sub-text"
-									>{$_("journeys.peter.internship_category")}</Typography
-								>
+									>{$_("journeys.peter.internship_category")}</Typography>
 							</div>
 							<div class="content">
 								<Typography fontVariant="kw1c" variant="kw1c-sub-text" color="--kw1c-red-900"
-									>{$_("journeys.peter.3d_print_design")}</Typography
-								>
+									>{$_("journeys.peter.3d_print_design")}</Typography>
 							</div>
 						</div>
 					</div>
@@ -341,13 +335,11 @@
 								<div>
 									<div class="location">
 										<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-											>{internship.location}</Typography
-										>
+											>{internship.location}</Typography>
 									</div>
 									<div class="org">
 										<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-											>{internship.name}</Typography
-										>
+											>{internship.name}</Typography>
 									</div>
 								</div>
 								<button
@@ -356,8 +348,7 @@
 										peterAssignedCompany.set(internship.name);
 										peterAssignecCompanyCountry.set(internship.location.split(',')[1]);
 										showModal = true;
-									}}">{$_("journeys.peter.assign_placement").toUpperCase()}</button
-								>
+									}}">{$_("journeys.peter.assign_placement").toUpperCase()}</button>
 							</div>
 						</div>
 					{/each}
