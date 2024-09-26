@@ -9,7 +9,8 @@
 		"lint": "eslint \"src/**/*.{ts,json}\"",
 		"format": "prettier --plugin-search-dir . --write .",
 		"format-check": "prettier -c \"**/*.{ts,js,json}\"",
-		"build": "tsc && resolve-tspaths"
+		"build": "tsc && resolve-tspaths",
+		"run-dev": "tsx ./src/server.ts"
 	},
 	"dependencies": {
 		"@cef-ebsi/key-did-resolver": "^2.0.2",
