@@ -36,8 +36,8 @@ export const userDeserializer = asyncHandler(
 		const { payload: refresh } = refreshToken
 			? validateJsonWebToken(refreshToken)
 			: newRefreshToken
-				? validateJsonWebToken(newRefreshToken)
-				: { payload: null };
+			? validateJsonWebToken(newRefreshToken)
+			: { payload: null };
 		if (!refresh) return next();
 		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore

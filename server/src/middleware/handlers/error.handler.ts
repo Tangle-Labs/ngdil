@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import { Logger } from "../../utils";
 
 function extractNumbers(s: string) {
