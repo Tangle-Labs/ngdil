@@ -50,8 +50,8 @@ export const startingOffer = expressAsyncHandler(async (req: Request, res: Respo
 	const persona = req.body.credentials.includes("School Course Certificate")
 		? "dominique"
 		: req.body.credentials.includes("Staff ID")
-			? "peter"
-			: "imani";
+		? "peter"
+		: "imani";
 
 	req.session.credentialDef = persona;
 	await req.session.save();

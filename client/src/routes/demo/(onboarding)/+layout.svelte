@@ -1,59 +1,51 @@
 <style lang="scss">
-	.background {
+	.main {
+		position: fixed;
+		display: flex;
+		flex-direction: column;
 		min-height: 100vh;
-		width: 100%;
-		padding: 0;
-		margin: 0;
-		box-sizing: border-box;
-		padding: 10vh 22.5vw;
+		// padding-bottom: 100px;
 
-		@media screen and (max-width: 1200px) {
-			padding: 15vh 15vw;
-		}
-
-		@media screen and (max-width: 900px) {
-			padding: 15vh 5vw;
-		}
-
-		& > .container {
+		.background {
+			padding: 10vh 22.5vw;
+			margin: auto;
 			display: flex;
 			height: 100%;
-			flex-wrap: wrap;
-			justify-content: center;
-			align-items: stretch;
-			align-content: space-between;
 
-			& > .slot {
-				min-height: calc(70vh - 160px);
-				padding-bottom: 20px;
-			}
-
-			& > .bottom {
-				width: 80%;
+			& > .container {
 				display: flex;
-				justify-content: end;
-				position: relative;
+				height: 100%;
+				flex-wrap: wrap;
+				justify-content: center;
+				align-items: center;
 
-				& > .back {
-					position: absolute;
-					top: 50%;
-					transform: translateY(-50%);
-					left: 0;
+				& > .slot {
+					padding-bottom: 20px;
 				}
 
-				.progress {
-					width: calc(100% - 200px);
-					justify-content: center;
+				& > .bottom {
+					width: 50%;
 					display: flex;
+					gap: 20px;
+					justify-items: center;
+					justify-content: center;
 
-					& > .bar {
-						width: 50%;
+					& > .back {
+						width: max-content;
+						display: block;
+						align-self: center;
+						justify-self: start;
+					}
 
-						@media screen and (max-width: 900px) {
-							width: 100%;
-						}
+					& > .progress {
+						width: 60%;
 					}
 				}
+			}
+
+			.lang-btn {
+				display: flex;
+				align-self: end;
 			}
 		}
 	}
@@ -70,30 +62,34 @@
 	apiClient.get("/");
 </script>
 
-<LangSwitchBtn />
-<div class="background">
-	<div class="container">
-		<img src="/imgs/ngdil.svg" class="logo" alt="" />
-		<div class="slot">
-			<slot />
-		</div>
-		{#if !(window.location.pathname === "/demo/choose-journey" && $completedJourneys.length > 0)}
-			<div class="bottom">
-				<!-- svelte-ignore a11y-no-static-element-interactions -->
-				<!-- svelte-ignore a11y-click-events-have-key-events -->
-				<div
-					class="back"
-					on:click="{() => {
-						history.back();
-					}}"
-				>
-					<img src="/imgs/back.svg" alt="" class="icon" />
-					<Typography variant="button" color="--black-300">{$_("components.back")}</Typography>
-				</div>
-				<div class="progress">
-					<ProgressBar nodes="{5}" current="{$currStep}" />
-				</div>
+<div class="main">
+	<div class="background">
+		<div class="container">
+			<img src="/imgs/ngdil.svg" class="logo" alt="" />
+			<div class="slot">
+				<slot />
 			</div>
-		{/if}
+			{#if !(window.location.pathname === "/demo/choose-journey" && $completedJourneys.length > 0)}
+				<div class="bottom">
+					<!-- svelte-ignore a11y-click-events-have-key-events -->
+					<!-- svelte-ignore a11y-no-static-element-interactions -->
+					<div
+						class="back"
+						on:click="{() => {
+							history.back();
+						}}"
+					>
+						<img src="/imgs/back.svg" alt="" class="icon" />
+						<Typography variant="button" color="--black-300">{$_("components.back")}</Typography>
+					</div>
+					<div class="progress">
+						<ProgressBar nodes="{5}" current="{$currStep}" />
+					</div>
+				</div>
+			{/if}
+		</div>
+	</div>
+	<div class="lang-btn">
+		<LangSwitchBtn />
 	</div>
 </div>

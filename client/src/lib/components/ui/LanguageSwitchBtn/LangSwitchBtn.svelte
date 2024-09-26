@@ -1,6 +1,6 @@
 <style lang="scss">
 	.lang-switch {
-		margin: 30px 30px 0 0;
+		margin: 0 50px 50px 0;
 		display: flex;
 		justify-content: end;
 
@@ -9,14 +9,14 @@
 			align-items: center;
 
 			img {
-				background: var(--primary-500);
+				background: var(--white-500);
 				padding: 5px;
 				border-top-left-radius: 7px;
 				border-bottom-left-radius: 7px;
 			}
 
 			select {
-				background: var(--primary-300);
+				background: var(--white-300);
 				border: none;
 				padding: 5px;
 				min-width: max-content;
