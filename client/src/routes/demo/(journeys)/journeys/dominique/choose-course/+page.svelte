@@ -157,9 +157,14 @@
 					: $_("journeys.dominique.scan_qr_and_accept_request")}
 			</div>
 			{#if !receivedCreds}
-				<div class="qr">
-					<open-id-qr request-uri="{qr}" size="{200}" event-stream-uri="{$eventUri}"></open-id-qr>
-				</div>
+				{#if qr}
+					{#key qr}
+						<div class="qr">
+							<open-id-qr request-uri="{qr}" size="{200}" event-stream-uri="{$eventUri}"
+							></open-id-qr>
+						</div>
+					{/key}
+				{/if}
 			{/if}
 			{#if receivedCreds}
 				<img class="checked" src="/imgs/checked.png" alt="" />

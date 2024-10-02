@@ -89,7 +89,4 @@
 			{/if}
 		</div>
 	</div>
-	<div class="lang-btn">
-		<LangSwitchBtn />
-	</div>
 </div>

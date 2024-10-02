@@ -104,7 +104,10 @@
 				</div>
 				<div class="login-card">
 					{#if qr}
-						<open-id-qr request-uri="{qr}" event-stream-uri="{$eventUri}" size="{240}"></open-id-qr>
+						{#key qr}
+							<open-id-qr request-uri="{qr}" event-stream-uri="{$eventUri}" size="{240}"
+							></open-id-qr>
+						{/key}
 					{/if}
 					<div class="heading">
 						<Typography variant="list" color="--future-tech-green-300"

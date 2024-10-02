@@ -209,10 +209,12 @@
 					>{$_("components.continue")}</button
 				>
 			{:else if qr}
-				<open-id-qr request-uri="{qr}" event-stream-uri="{$eventUri}" size="{200}"></open-id-qr>
-				<div class="loading">
-					<Loading size="30px" img="/imgs/blue-loading.png" />
-				</div>
+				{#key qr}
+					<open-id-qr request-uri="{qr}" event-stream-uri="{$eventUri}" size="{200}"></open-id-qr>
+					<div class="loading">
+						<Loading size="30px" img="/imgs/blue-loading.png" />
+					</div>
+				{/key}
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text"
