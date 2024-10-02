@@ -1,1 +1,0 @@
-{"version":3,"file":"onboarding.store-gJCzGVTB.js","sources":["../../../.svelte-kit/adapter-node/chunks/onboarding.store.js"],"sourcesContent":["import { p as persisted } from \"./index2.js\";\nconst currStep = persisted(\"onboardingCurrStep\", 0);\nexport {\n  currStep as c\n};\n"],"names":[],"mappings":";;AACK,MAAC,QAAQ,GAAG,SAAS,CAAC,oBAAoB,EAAE,CAAC;;;;"}
