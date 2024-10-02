@@ -99,7 +99,8 @@
 							<img src="/imgs/kw1c-crowns.png" alt="" class="crowns" />
 							<div class="heading-text">
 								<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>{$_("journeys.peter.login_to_kw1c").toUpperCase()}</Typography>
+									>{$_("journeys.peter.login_to_kw1c").toUpperCase()}</Typography
+								>
 							</div>
 						</div>
 						{#if qr}
@@ -110,7 +111,8 @@
 						{/if}
 						<div class="desc">
 							<Typography variant="kw1c-sub-text"
-								>{$_("journeys.peter.scan_qr_to_access_kw1c_staff_portal")}</Typography>
+								>{$_("journeys.peter.scan_qr_to_access_kw1c_staff_portal")}</Typography
+							>
 						</div>
 					</div>
 				</Card>

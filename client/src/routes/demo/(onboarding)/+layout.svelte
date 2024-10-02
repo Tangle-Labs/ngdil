@@ -77,7 +77,8 @@
 						class="back"
 						on:click="{() => {
 							history.back();
-						}}">
+						}}"
+					>
 						<img src="/imgs/back.svg" alt="" class="icon" />
 						<Typography variant="button" color="--black-300">{$_("components.back")}</Typography>
 					</div>

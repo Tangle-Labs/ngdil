@@ -171,7 +171,8 @@
 			<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-red-900"
 				>{receivedCreds
 					? $_("journeys.dominique.received_and_accepted_new_course_cred").toUpperCase()
-					: $_("journeys.dominique.kw1c_sent_new_course_cred").toUpperCase()}</Typography>
+					: $_("journeys.dominique.kw1c_sent_new_course_cred").toUpperCase()}</Typography
+			>
 			<div class="p">
 				{receivedCreds
 					? $_("journeys.dominique.visible_in_wallet_and_free_for_you_to_share")
@@ -183,7 +184,8 @@
 					<Button
 						label="{$_('components.continue').toUpperCase()}"
 						variant="kw1c"
-						onClick="{() => goto('/demo/journeys/dominique/finished-course')}" />
+						onClick="{() => goto('/demo/journeys/dominique/finished-course')}"
+					/>
 				</div>
 			{:else if qr}
 				{#key qr}
@@ -197,7 +199,8 @@
 				<Typography variant="sub-text"
 					>{receivedCreds
 						? $_("journeys.dominique.click_to_proceed")
-						: $_("journeys.dominique.awaiting_cred_acceptance")}</Typography>
+						: $_("journeys.dominique.awaiting_cred_acceptance")}</Typography
+				>
 			</div>
 		</div>
 	</Modal>
@@ -218,18 +221,21 @@
 				{$_("journeys.dominique.get_cred_btn_desc")}
 			{:else}
 				{$_("journeys.dominique.start_studying_btn_desc")}
-			{/if}</Typography>
+			{/if}</Typography
+		>
 	</div>
 	{#if studied}
 		<div
-			style="position: fixed; top: -50px; left: 0; height: 100vh; width: 100vw; display: flex; justify-content: center; overflow: hidden; pointer-events: none;">
+			style="position: fixed; top: -50px; left: 0; height: 100vh; width: 100vw; display: flex; justify-content: center; overflow: hidden; pointer-events: none;"
+		>
 			<Confetti
 				x="{[-5, 5]}"
 				y="{[0, 0.1]}"
 				delay="{[500, 5000]}"
 				duration="{2000}"
 				amount="{500}"
-				fallDistance="100vh" />
+				fallDistance="100vh"
+			/>
 		</div>
 	{/if}
 	<div class="dash-outer">
@@ -241,17 +247,20 @@
 							? $_("journeys.dominique.congrats_dominique_you_completed_course").toUpperCase()
 							: $_(
 									"journeys.dominique.hello_dominique_welcome_to_new_course"
-							  ).toUpperCase()}</Typography>
+							  ).toUpperCase()}</Typography
+					>
 				</div>
 				<div class="details">
 					<div class="text">
 						<div class="category">
 							<Typography variant="kw1c-sub-text" fontVariant="kw1c" color="--kw1c-red-900"
-								>{dominqueCourses[$dominiqueSelectedCourse].category.toUpperCase()}</Typography>
+								>{dominqueCourses[$dominiqueSelectedCourse].category.toUpperCase()}</Typography
+							>
 						</div>
 						<div class="course">
 							<Typography variant="kw1c-header" fontVariant="kw1c" color="--kw1c-blue-900"
-								>{dominqueCourses[$dominiqueSelectedCourse].name.toUpperCase()}</Typography>
+								>{dominqueCourses[$dominiqueSelectedCourse].name.toUpperCase()}</Typography
+							>
 						</div>
 					</div>
 					<div class="button">
@@ -261,12 +270,14 @@
 								label="{$_('journeys.dominique.get_cred').toUpperCase()}"
 								onClick="{() => {
 									showModal = true;
-								}}" />
+								}}"
+							/>
 						{:else}
 							<Button
 								variant="kw1c"
 								label="{$_('journeys.dominique.start_studying').toUpperCase()}"
-								onClick="{handleStudy}" />
+								onClick="{handleStudy}"
+							/>
 						{/if}
 					</div>
 				</div>
@@ -279,7 +290,8 @@
 							<div class="dash gray-dash"></div>
 							<div class="progress">
 								<Typography variant="status" fontVariant="kw1c" color="--kw1c-blue-900"
-									>{progress}%</Typography>
+									>{progress}%</Typography
+								>
 							</div>
 						</div>
 					{/each}

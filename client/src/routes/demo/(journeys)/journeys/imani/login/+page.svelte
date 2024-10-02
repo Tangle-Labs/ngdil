@@ -99,7 +99,8 @@
 			<div class="card-container">
 				<div class="header">
 					<Typography variant="card-header" fontVariant="kw1c" color="--future-tech-green"
-						>{$_("journeys.imani.staff_connect").toUpperCase()}</Typography>
+						>{$_("journeys.imani.staff_connect").toUpperCase()}</Typography
+					>
 				</div>
 				<div class="login-card">
 					{#if qr}
@@ -110,12 +111,14 @@
 					{/if}
 					<div class="heading">
 						<Typography variant="list" color="--future-tech-green-300"
-							>{$_("journeys.imani.scan_qr_to_login")}</Typography>
+							>{$_("journeys.imani.scan_qr_to_login")}</Typography
+						>
 					</div>
 
 					<div class="p">
 						<Typography color="--white-300"
-							>{$_("journeys.imani.scan_qr_to_login_to_future_tech_co")}</Typography>
+							>{$_("journeys.imani.scan_qr_to_login_to_future_tech_co")}</Typography
+						>
 					</div>
 				</div>
 			</div>

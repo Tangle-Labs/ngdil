@@ -270,7 +270,8 @@
 			<Typography variant="card-header" color="--bbc-blue"
 				>{receivedCreds
 					? $_("journeys.dominique.open_job_network_received_confirmation")
-					: $_("journeys.dominique.allow_open_job_network_to_share_cred")}</Typography>
+					: $_("journeys.dominique.allow_open_job_network_to_share_cred")}</Typography
+			>
 			<div class="p">
 				{receivedCreds
 					? $_("journeys.dominique.continue_further_in_browser")
@@ -279,7 +280,8 @@
 			{#if receivedCreds}
 				<img class="checked" src="/imgs/open-jobs-check.png" alt="" />
 				<button class="button" on:click="{() => goto('/demo/journeys/dominique/new-message')}"
-					>{$_("components.continue")}</button>
+					>{$_("components.continue")}</button
+				>
 			{:else if qr}
 				{#key qr}
 					<open-id-qr request-uri="{qr}" event-stream-uri="{$eventUri}" size="{240}"></open-id-qr>
@@ -292,7 +294,8 @@
 				<Typography variant="sub-text"
 					>{receivedCreds
 						? $_("journeys.dominique.click_to_proceed")
-						: $_("journeys.dominique.waiting_for_creds")}</Typography>
+						: $_("journeys.dominique.waiting_for_creds")}</Typography
+				>
 			</div>
 		</div>
 	</Modal>
@@ -345,18 +348,21 @@
 					<img src="/imgs/kw1c-white.png" alt="" class="logo" />
 					<div class="credential">
 						<Typography variant="card-header"
-							>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography>
+							>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography
+						>
 					</div>
 					<div class="issued-by">
 						<Typography variant="sub-text"
 							>{$_("components.issued_by", { values: { IssuerName: "" } })}<br />
-							{$_("issuer.koning_willem_i_college")}</Typography>
+							{$_("issuer.koning_willem_i_college")}</Typography
+						>
 					</div>
 					<button
 						class="button"
 						on:click="{() => {
 							showModal = true;
-						}}">{$_("journeys.dominique.share_cred_btn")}</button>
+						}}">{$_("journeys.dominique.share_cred_btn")}</button
+					>
 				</div>
 			</div>
 		</OpenJobsNetwork>

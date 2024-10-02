@@ -94,11 +94,13 @@
 						{/if}
 						<div class="heading">
 							<Typography variant="card-header" color="--bbc-blue"
-								>{$_("journeys.dominique.login_to_open_jobs_network")}</Typography>
+								>{$_("journeys.dominique.login_to_open_jobs_network")}</Typography
+							>
 						</div>
 						<div class="desc">
 							<Typography variant="sub-text"
-								>{$_("journeys.dominique.scan_qr_to_login_to_open_jobs_network")}</Typography>
+								>{$_("journeys.dominique.scan_qr_to_login_to_open_jobs_network")}</Typography
+							>
 						</div>
 					</div>
 				</Card>
