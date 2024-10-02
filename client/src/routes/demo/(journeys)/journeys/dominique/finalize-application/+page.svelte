@@ -199,16 +199,14 @@
 			<img src="/imgs/bbc.png" alt="" class="logo" />
 			<div class="logo-text">
 				<Typography color="--white-300" variant="card-header">
-					{$_("components.big_business_corp")}</Typography
-				>
+					{$_("components.big_business_corp")}</Typography>
 			</div>
 		</div>
 		<div class="modal-content">
 			<Typography variant="card-header" color="--bbc-blue"
 				>{receivedCreds
 					? $_("journeys.dominique.application_received_via_digital_cv")
-					: $_("journeys.dominique.requesting_digtal_cv")}</Typography
-			>
+					: $_("journeys.dominique.requesting_digtal_cv")}</Typography>
 			<div class="p">
 				{receivedCreds
 					? $_("journeys.dominique.continue_further_in_browser")
@@ -218,20 +216,20 @@
 			{#if receivedCreds}
 				<img class="checked" src="/imgs/check-circle.png" alt="" />
 				<button class="button" on:click="{() => goto('/demo/journeys/dominique/get-staff-id')}"
-					>Continue</button
-				>
+					>Continue</button>
 			{:else if qr}
-				<open-id-qr request-uri="{qr}" size="{200}" event-stream-uri="{$eventUri}"></open-id-qr>
-				<div class="loading">
-					<Loading size="30px" img="/imgs/blue-loading.png" />
-				</div>
+				{#key qr}
+					<open-id-qr request-uri="{qr}" size="{200}" event-stream-uri="{$eventUri}"></open-id-qr>
+					<div class="loading">
+						<Loading size="30px" img="/imgs/blue-loading.png" />
+					</div>
+				{/key}
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text"
 					>{receivedCreds
 						? $_("journeys.dominique.click_to_proceed")
-						: $_("journeys.dominique.waiting_for_creds")}</Typography
-				>
+						: $_("journeys.dominique.waiting_for_creds")}</Typography>
 			</div>
 		</div>
 	</Modal>
@@ -252,8 +250,7 @@
 					<div class="details">
 						<div class="heading">
 							<Typography variant="card-header" color="--bbc-blue"
-								>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography
-							>
+								>{dominqueCourses[$dominiqueSelectedCourse].name}</Typography>
 						</div>
 						<div class="bars">
 							<div class="bar"></div>
@@ -265,8 +262,7 @@
 				<div class="right">
 					<div class="heading">
 						<Typography variant="card-header" color="--bbc-blue"
-							>{$_("journeys.dominique.application_requirements")}</Typography
-						>
+							>{$_("journeys.dominique.application_requirements")}</Typography>
 					</div>
 					<div class="sub-text">
 						<Typography>{$_("journeys.dominique.applicants_req_following_creds")}</Typography>
@@ -281,8 +277,7 @@
 						<Typography variant="list"
 							>{dominqueCourses[$dominiqueSelectedCourse].name +
 								" " +
-								$_("creds.certificate")}</Typography
-						>
+								$_("creds.certificate")}</Typography>
 					</div>
 
 					<div class="button-container">
@@ -290,8 +285,7 @@
 							class="button"
 							on:click="{() => {
 								showModal = true;
-							}}">{$_("components.apply_now")}</button
-						>
+							}}">{$_("components.apply_now")}</button>
 					</div>
 				</div>
 			</div>

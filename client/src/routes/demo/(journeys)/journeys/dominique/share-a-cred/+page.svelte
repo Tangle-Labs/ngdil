@@ -87,18 +87,18 @@
 				<Card borderRadius="{16}">
 					<div class="card-content">
 						{#if qr}
-							<open-id-qr request-uri="{qr}" event-stream-uri="{$eventUri}" size="{200}"
-							></open-id-qr>
+							{#key qr}
+								<open-id-qr request-uri="{qr}" event-stream-uri="{$eventUri}" size="{200}"
+								></open-id-qr>
+							{/key}
 						{/if}
 						<div class="heading">
 							<Typography variant="card-header" color="--bbc-blue"
-								>{$_("journeys.dominique.login_to_open_jobs_network")}</Typography
-							>
+								>{$_("journeys.dominique.login_to_open_jobs_network")}</Typography>
 						</div>
 						<div class="desc">
 							<Typography variant="sub-text"
-								>{$_("journeys.dominique.scan_qr_to_login_to_open_jobs_network")}</Typography
-							>
+								>{$_("journeys.dominique.scan_qr_to_login_to_open_jobs_network")}</Typography>
 						</div>
 					</div>
 				</Card>
