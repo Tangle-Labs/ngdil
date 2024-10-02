@@ -178,7 +178,8 @@
 									currStep.set(4);
 									if (selectedJourney) currentJourney.set(selectedJourney);
 									qrVisible = true;
-								}}" />
+								}}"
+							/>
 						</div>
 					{/if}
 				</div>
@@ -195,7 +196,8 @@
 							<Typography variant="card-header"
 								>{buttonVisible
 									? $_("onboarding.choose_journey.cred_confirmed")
-									: $_("onboarding.choose_journey.scan_qr_to_receive_cred")}</Typography>
+									: $_("onboarding.choose_journey.scan_qr_to_receive_cred")}</Typography
+							>
 						</div>
 						<div class="sub-text">
 							<Typography variant="sub-text">
@@ -214,7 +216,8 @@
 								onClick="{() => {
 									goto(`/demo/journeys/${selectedJourney}`);
 								}}"
-								variant="secondary" />
+								variant="secondary"
+							/>
 						{:else}
 							<Loading size="30px" />
 						{/if}
@@ -252,7 +255,8 @@
 					<div class="text">
 						<div class="heading">
 							<Typography variant="card-header"
-								>{$_("onboarding.choose_journey.dominique_veritas")}</Typography>
+								>{$_("onboarding.choose_journey.dominique_veritas")}</Typography
+							>
 						</div>
 						<div class="desc">
 							<Typography>
@@ -279,7 +283,8 @@
 						}}"
 						label="{$completedJourneys.includes('dominique')
 							? $_('components.complete')
-							: $_('components.get_started')}" />
+							: $_('components.get_started')}"
+					/>
 				</div>
 			</Card>
 		</div>
@@ -290,7 +295,8 @@
 					<div class="text">
 						<div class="heading">
 							<Typography variant="card-header"
-								>{$_("onboarding.choose_journey.peter_van_de_meijdan")}</Typography>
+								>{$_("onboarding.choose_journey.peter_van_de_meijdan")}</Typography
+							>
 						</div>
 						<div class="desc">
 							<Typography>
@@ -311,7 +317,8 @@
 						}}"
 						label="{$completedJourneys.includes('peter')
 							? $_('components.complete')
-							: $_('components.get_started')}" />
+							: $_('components.get_started')}"
+					/>
 				</div>
 			</Card>
 		</div>
@@ -322,7 +329,8 @@
 					<div class="text">
 						<div class="heading">
 							<Typography variant="card-header"
-								>{$_("onboarding.choose_journey.imani_jameson")}</Typography>
+								>{$_("onboarding.choose_journey.imani_jameson")}</Typography
+							>
 						</div>
 						<div class="desc">
 							<Typography>
@@ -344,7 +352,8 @@
 						}}"
 						label="{$completedJourneys.includes('imani')
 							? $_('components.complete')
-							: $_('components.get_started')}" />
+							: $_('components.get_started')}"
+					/>
 				</div>
 			</Card>
 		</div>

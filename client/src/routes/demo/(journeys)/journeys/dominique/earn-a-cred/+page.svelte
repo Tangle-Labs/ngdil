@@ -96,7 +96,8 @@
 							<img src="/imgs/kw1c-crowns.png" alt="" class="crowns" />
 							<div class="heading-text">
 								<Typography variant="card-header" fontVariant="kw1c" color="--kw1c-blue-900"
-									>{$_("journeys.dominique.login_to_kw1c").toUpperCase()}</Typography>
+									>{$_("journeys.dominique.login_to_kw1c").toUpperCase()}</Typography
+								>
 							</div>
 						</div>
 						{#if qr}
@@ -109,7 +110,8 @@
 						{/if}
 						<div class="desc">
 							<Typography variant="kw1c-sub-text"
-								>{$_("journeys.dominique.scan_to_access_kw1c")}</Typography>
+								>{$_("journeys.dominique.scan_to_access_kw1c")}</Typography
+							>
 						</div>
 					</div>
 				</Card>
