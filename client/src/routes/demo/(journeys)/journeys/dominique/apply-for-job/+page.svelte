@@ -40,6 +40,7 @@
 	let qr: string;
 	import { _ } from "svelte-i18n";
 	import { highlight } from "$lib/utils/highlight";
+	import { onMount } from "svelte";
 
 	function watchQr(qr: string) {
 		if (!qr) return;
@@ -61,7 +62,9 @@
 	};
 	let animatePhone = false;
 
-	loadQr();
+	onMount(() => {
+		loadQr();
+	});
 </script>
 
 <Phone variant="bbc" bind:animatePhone="{animatePhone}" />
