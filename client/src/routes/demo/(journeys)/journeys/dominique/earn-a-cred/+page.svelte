@@ -48,6 +48,7 @@
 	let qr: string;
 	import { _ } from "svelte-i18n";
 	import { highlight } from "$lib/utils/highlight";
+	import { onMount } from "svelte";
 
 	const loadQr = async function () {
 		const { data } = await apiClient.post("/siop", {
@@ -68,7 +69,9 @@
 		});
 	}
 
-	loadQr();
+	onMount(() => {
+		loadQr();
+	});
 	$: watchQr(qr);
 	currNode.set(0);
 	nodeCount.set(5);

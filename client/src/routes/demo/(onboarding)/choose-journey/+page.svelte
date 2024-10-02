@@ -135,10 +135,6 @@
 	let buttonVisible = false;
 	let renderQr = false;
 
-	onMount(() => {
-		currStep.set(2);
-	});
-
 	function watchQr(qr: string) {
 		console.log(qr);
 		if (!qr) return;
