@@ -5,6 +5,7 @@ node_modules
 grafana/data
 
 
+build
 # Logs
 logs
 *.log

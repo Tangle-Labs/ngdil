@@ -28,7 +28,8 @@
 	}
 </style>
 
-<script>
+<script lang="ts">
+	import { onMount } from "svelte";
 	import { Typography } from "..";
 	import { _ } from "svelte-i18n";
 	import { locale, locales } from "svelte-i18n";
@@ -37,6 +38,12 @@
 		en: "English",
 		nl: "Nederlands"
 	};
+
+	onMount(() => {
+		if ($locale?.includes("-")) {
+			locale.update((l) => l.split("-")[0]);
+		}
+	});
 </script>
 
 <div class="lang-switch">

@@ -221,10 +221,12 @@
 					>Continue</button
 				>
 			{:else if qr}
-				<open-id-qr request-uri="{qr}" size="{200}" event-stream-uri="{$eventUri}"></open-id-qr>
-				<div class="loading">
-					<Loading size="30px" img="/imgs/blue-loading.png" />
-				</div>
+				{#key qr}
+					<open-id-qr request-uri="{qr}" size="{200}" event-stream-uri="{$eventUri}"></open-id-qr>
+					<div class="loading">
+						<Loading size="30px" img="/imgs/blue-loading.png" />
+					</div>
+				{/key}
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text"

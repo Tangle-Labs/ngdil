@@ -190,7 +190,10 @@
 				{#if qrVisible}
 					<div class="right">
 						{#if qr}
-							<open-id-qr size="200" request-uri="{qr}" event-stream-uri="{$eventUri}"></open-id-qr>
+							{#key qr}
+								<open-id-qr size="200" request-uri="{qr}" event-stream-uri="{$eventUri}"
+								></open-id-qr>
+							{/key}
 						{/if}
 
 						<div class="scan-header">

@@ -87,8 +87,10 @@
 				<Card borderRadius="{16}">
 					<div class="card-content">
 						{#if qr}
-							<open-id-qr request-uri="{qr}" event-stream-uri="{$eventUri}" size="{200}"
-							></open-id-qr>
+							{#key qr}
+								<open-id-qr request-uri="{qr}" event-stream-uri="{$eventUri}" size="{200}"
+								></open-id-qr>
+							{/key}
 						{/if}
 						<div class="heading">
 							<Typography variant="card-header" color="--bbc-blue"

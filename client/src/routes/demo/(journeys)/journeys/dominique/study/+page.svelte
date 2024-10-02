@@ -188,10 +188,12 @@
 					/>
 				</div>
 			{:else if qr}
-				<open-id-qr request-uri="{qr}" size="{200}" event-stream-uri="{$eventUri}"></open-id-qr>
-				<div class="loading">
-					<Loading img="/imgs/blue-loading.png" size="30px" />
-				</div>
+				{#key qr}
+					<open-id-qr request-uri="{qr}" size="{200}" event-stream-uri="{$eventUri}"></open-id-qr>
+					<div class="loading">
+						<Loading img="/imgs/blue-loading.png" size="30px" />
+					</div>
+				{/key}
 			{/if}
 			<div class="subtext">
 				<Typography variant="sub-text"

@@ -104,8 +104,10 @@
 							</div>
 						</div>
 						{#if qr}
-							<open-id-qr request-uri="{qr}" event-stream-uri="{$eventUri}" size="{220}"
-							></open-id-qr>
+							{#key qr}
+								<open-id-qr request-uri="{qr}" event-stream-uri="{$eventUri}" size="{220}"
+								></open-id-qr>
+							{/key}
 						{/if}
 						<div class="desc">
 							<Typography variant="kw1c-sub-text"
