@@ -179,8 +179,8 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2
       '@tanglelabs/oid4vc':
-        specifier: 0.2.1-alpha.10
-        version: 0.2.1-alpha.10
+        specifier: 0.2.1-alpha.12
+        version: 0.2.1-alpha.12
       '@tanglelabs/ssimon':
         specifier: ^0.7.1
         version: 0.7.1
@@ -1572,8 +1572,8 @@ packages:
   '@tanglelabs/key-identity-adapter@0.2.2':
     resolution: {integrity: sha512-MSpJj0T98p3z3mEU8YgJm+ZWW4GfJ2SQ3SBihinnkwNwhN02BOWTIEC9rKVS9McvB+vXEUNu6xfJzGrxeyfbyQ==}
 
-  '@tanglelabs/oid4vc@0.2.1-alpha.10':
-    resolution: {integrity: sha512-4pcyxalEABW95Qfb6LteKWCwV+w0VHpXak3c/yhpuuzD+OFPqbAjxl/Rw13SS6Rd98MCrOW7bJQ+R7i9jqXl6g==}
+  '@tanglelabs/oid4vc@0.2.1-alpha.12':
+    resolution: {integrity: sha512-NWVCQ0HB/UPijxTOYhRMxq78IlJuCxlu8dvaLP8wE9/LBJTXwYa/iimZih5d2Fw8hbBVVgEzdg3dlnoVzVV1xA==}
 
   '@tanglelabs/open-id-qr@0.1.0-alpha.1':
     resolution: {integrity: sha512-682zA94j2/EdXGtK7lMmYjHWXi+OW11HTYv6SBxERV0ZlJnyHxkPAt65qokQdLnEsvWYR7jjGw/uMP9RLJpn2w==}
@@ -6267,7 +6267,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@tanglelabs/oid4vc@0.2.1-alpha.10':
+  '@tanglelabs/oid4vc@0.2.1-alpha.12':
     dependencies:
       '@sphereon/did-resolver-jwk': 0.10.2-unstable.5
       '@sphereon/pex': 2.1.0
